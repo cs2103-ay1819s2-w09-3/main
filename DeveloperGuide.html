@@ -2058,25 +2058,19 @@ for <code>RemarkCommandParser</code>.</p>
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix D: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is <code>RestOrRant</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
+<h3 id="use-case-checking-for-available-tables" class="discrete">Use case: Checking for available tables</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to list persons</p>
+<p>User enters command to list all tables in the restaurant.</p>
 </li>
 <li>
-<p>AddressBook shows a list of persons</p>
-</li>
-<li>
-<p>User requests to delete a specific person in the list</p>
-</li>
-<li>
-<p>AddressBook deletes the person</p>
+<p>RestOrRant Program returns the status (number of customers at the table/number of seats at the table) of all tables in the restaurant.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2090,18 +2084,49 @@ for <code>RemarkCommandParser</code>.</p>
 <ul class="none">
 <li>
 <p>2a. The list is empty.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. RestOrRant Program returns an error message that there are no tables in the restaurant.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-taking-an-order" class="discrete">Use case: Taking an order</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>3a. The given index is invalid.</p>
+<p>User enters the table number, along with item codes and quantities of the menu items.</p>
+</li>
+<li>
+<p>RestOrRant Program updates the specified table&#8217;s order with the menu items and displays the new order list.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. AddressBook shows an error message.</p>
+<p>1a. The item code(s) is/are invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. RestOrRant Program displays the item codes that are invalid and remove them from the list of item codes to add to the order.</p>
 <div class="paragraph">
-<p>Use case resumes at step 2.</p>
+<p>Use case resumes from step 2.</p>
 </div>
 </li>
 </ul>
@@ -2109,8 +2134,146 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
+<h3 id="use-case-adding-items-to-menu" class="discrete">Use case: Adding Items to Menu</h3>
 <div class="paragraph">
-<p><em>{More to be added}</em></p>
+<p><strong>Preconditions:</strong> Item to be added cannot exist in the menu.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enters the addToMenu command along with the item&#8217;s code, name and price.</p>
+</li>
+<li>
+<p>RestOrRant Program updates the menu to include the added menu item.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. The menu already contains the item to be added.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. RestOrRant Program prints out "Invalid arguments, item already exists in the menu!".</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b. The item code already exists in the menu.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. RestOrRant Program prints out "Invalid arguments, item code exists in the menu!".</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c. The item code does not follow the standard alphanumeric format.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c1. RestOrRant Program prints out "Invalid code. Please use an alphanumeric code. Example: W09".</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-check-statistics" class="discrete">Use case: Check Statistics</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enters the statistic command with specific optional arguements (year, month and date).</p>
+</li>
+<li>
+<p>RestOrRant Program collates data from the stated period, calculates all the statistics and prints out the calculated data in a neat presentation for the user to refer to.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. The arguments are invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. RestOrRant Program prints out "Invalid arguments. All arguments should be a numercial number. Format: getStatistics [Year] [Month] [Date]".</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. There is no data recorded, list is empty.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. RestOrRant Program prints out "No available data recorded."</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. Not all arguments were keyed in.</p>
+</li>
+<li>
+<p>2b1. RestOrRant Program returns the statistical data based on the year if only 1 argument was specified; and the month if only 2 arguments were specified.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2123,15 +2286,9 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>9</code> or higher installed.</p>
 </li>
 <li>
-<p>Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.</p>
-</li>
-<li>
 <p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
 </div>
 </div>
 </div>
@@ -2144,9 +2301,21 @@ for <code>RemarkCommandParser</code>.</p>
 <dd>
 <p>Windows, Linux, Unix, OS-X</p>
 </dd>
-<dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
+<dt class="hdlist1"><a id="order"></a> Order</dt>
 <dd>
-<p>A contact detail that is not meant to be shared with others</p>
+<p>The list of menu items ordered by dining customers ata table</p>
+</dd>
+<dt class="hdlist1"><a id="menu"></a> Menu</dt>
+<dd>
+<p>The list of items available to be ordered by dining customers at the restaurant</p>
+</dd>
+<dt class="hdlist1"><a id="bill"></a> Bill</dt>
+<dd>
+<p>The amount of money that dining customers have to pay based on their order</p>
+</dd>
+<dt class="hdlist1"><a id="statistics"></a> Statistics</dt>
+<dd>
+<p>The record of the revenue earned, number of customers and number of menu items purchased</p>
 </dd>
 </dl>
 </div>
@@ -2298,4 +2467,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-02-19 11:00:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-02-19 11:37:36 UTC</div></div></div></body></html>
