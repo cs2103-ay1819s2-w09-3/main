@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>AddressBook Level 4 - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>RestOrRant - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>AddressBook Level 4 - User Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>RestOrRant - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team W09-3</code>      Since: <code>Feb 2019</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -14,19 +14,29 @@
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">3.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">3.5. Locating persons by name: <code>find</code></a></li>
-<li><a href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">3.7. Selecting a person : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">3.8. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.11. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.12. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.13. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.14. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#adding-tables-code-addtables-code">3.2. Adding tables : <code>addTables</code></a></li>
+<li><a href="#listing-all-tables-in-the-restaurant-code-listtables-code">3.3. Listing all tables in the restaurant : <code>listTables</code></a></li>
+<li><a href="#updating-the-table-code-updatetable-code">3.4. Updating the table: <code>updateTable</code></a></li>
+<li><a href="#removing-a-table-code-removetable-code">3.5. Removing a table : <code>removeTable</code></a></li>
+<li><a href="#adding-an-item-to-an-order-code-addtoorder-code">3.6. Adding an item to an order: <code>addToOrder</code></a></li>
+<li><a href="#adding-a-note-to-an-item-in-an-order-code-addnote-code">3.7. Adding a note to an item in an order: <code>addNote</code></a></li>
+<li><a href="#deleting-an-item-from-an-order-code-deletefromorder-code">3.8. Deleting an item from an order: <code>deleteFromOrder</code></a></li>
+<li><a href="#viewing-all-the-items-in-an-order-code-vieworder-code">3.9. Viewing all the items in an order: <code>viewOrder</code></a></li>
+<li><a href="#clearing-all-the-items-in-an-order-code-clearorder-code">3.10. Clearing all the items in an order: <code>clearOrder</code></a></li>
+<li><a href="#marking-an-item-in-an-order-as-served-code-serve-code">3.11. Marking an item in an order as served: <code>serve</code></a></li>
+<li><a href="#checking-if-table-is-served-code-istableserved-code">3.12. Checking if table is served : <code>isTableServed</code></a></li>
+<li><a href="#listing-all-items-in-menu-code-printmenu-code">3.13. Listing all items in menu : <code>printMenu</code></a></li>
+<li><a href="#adding-menu-items-to-the-menu-code-addtomenu-code">3.14. Adding menu items to the menu : <code>addToMenu</code></a></li>
+<li><a href="#removing-menu-items-from-the-menu-code-removefrommenu-code">3.15. Removing menu items from the menu : <code>removeFromMenu</code></a></li>
+<li><a href="#checking-if-item-exists-in-the-menu-code-itemexists-code">3.16. Checking if item exists in the menu : <code>itemExists</code></a></li>
+<li><a href="#calculating-the-bill-of-an-order-code-bill-code">3.17. Calculating the bill of an order : <code>bill</code></a></li>
+<li><a href="#getting-the-most-popular-item-ordered-code-getmostpopularitem-code">3.18. Getting the most popular item ordered: <code>getMostPopularItem</code></a></li>
+<li><a href="#getting-the-total-number-of-customers-code-gettotalcustomers-code">3.19. Getting the total number of customers : <code>getTotalCustomers</code></a></li>
+<li><a href="#getting-the-total-revenue-code-gettotalrevenue-code">3.20. Getting the total revenue : <code>getTotalRevenue</code></a></li>
+<li><a href="#getting-all-the-statistics-code-getstatistics-code">3.21. Getting all the statistics : <code>getStatistics</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.22. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.23. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.24. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -38,7 +48,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook Level 4 (AB4) is for those who <strong>prefer to use a desktop app for managing contacts</strong>. More importantly, AB4 is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB4 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>RestOrRant (ROR) is for those who <strong>prefer to use a desktop app for managing contacts</strong>. More importantly, ROR is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ROR can get your restaurant management tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
@@ -51,10 +61,10 @@
 <p>Ensure you have Java version <code>9</code> or later installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/se-edu/addressbook-level4/releases">here</a>.</p>
+<p>Download the latest <code>RestOrRant.jar</code> <a href="https://github.com/se-edu/addressbook-level4/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
+<p>Copy the file to the folder you want to use as the home folder for your RestOrRant application.</p>
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
@@ -73,16 +83,16 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>list</code></strong> : lists all contacts</p>
+<p><strong><code>list</code></strong> : lists all tables</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
+<p><strong><code>addTables</code></strong><code>1 2 3</code> : adds 3 tables of size1, 2 and 3 respectively in the restaurant.</p>
 </li>
 <li>
-<p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
+<p><strong><code>removeTables</code></strong><code>3</code> : deletes the table with the table number 3.</p>
 </li>
 <li>
-<p><strong><code>exit</code></strong> : exits the app</p>
+<p><strong><code>exit</code></strong> : exits the application.</p>
 </li>
 </ul>
 </div>
@@ -105,16 +115,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>addTables NUMBER_OF_SEATS</code>, <code>NUMBER_OF_SEATS</code> is a parameter which can be used as <code>addTables 4</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
+<p>Items in square brackets are optional e.g <code>ITEM_CODE QUANTITY [ITEM_CODE QUANTITY]</code> can be used as <code>W09 3 A02 4</code> or as <code>W09 3</code>.</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
-</li>
-<li>
-<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
+<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[ITEM_CODE QUANTITY]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>W09 3</code>, <code>W09 3 A02 4</code> etc.</p>
 </li>
 </ul>
 </div>
@@ -127,22 +134,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></h3>
+<h3 id="adding-tables-code-addtables-code"><a class="link" href="#adding-tables-code-addtables-code">3.2. Adding tables : <code>addTables</code></a></h3>
 <div class="paragraph">
-<p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A person can have any number of tags (including 0)
-</td>
-</tr>
-</table>
+<p>Adds tables to the restaurant.<br>
+Format: <code>addTables NUMBER_OF_SEATS [NUMBER_OF_SEATS]&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -150,45 +145,36 @@ A person can have any number of tags (including 0)
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
+<p><code>addTables 4</code></p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+<p><code>addTables 4 2 4</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></h3>
+<h3 id="listing-all-tables-in-the-restaurant-code-listtables-code"><a class="link" href="#listing-all-tables-in-the-restaurant-code-listtables-code">3.3. Listing all tables in the restaurant : <code>listTables</code></a></h3>
 <div class="paragraph">
-<p>Shows a list of all persons in the address book.<br>
-Format: <code>list</code></p>
+<p>Shows a list of all tables in the restaurant as well as their current occupancy.<br>
+Format: <code>listTables</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">3.4. Editing a person : <code>edit</code></a></h3>
+<h3 id="updating-the-table-code-updatetable-code"><a class="link" href="#updating-the-table-code-updatetable-code">3.4. Updating the table: <code>updateTable</code></a></h3>
 <div class="paragraph">
-<p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+<p>Updates the status of the table.<br>
+Format: <code>updateTable TABLE_NUMBER NEW_OCCUPANCY</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed person list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Checks if the specified table exists before updating.</p>
 </li>
 <li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to the input values.</p>
-</li>
-<li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
-</li>
-<li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+<p>Checks if the specified <code>NEW_OCCUPANCY</code> is greater than 0 and not more than the capacity of the table.</p>
 </li>
 </ul>
 </div>
@@ -200,40 +186,29 @@ Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+<p><code>updateTable 2 0</code></p>
 </li>
 <li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+<p><code>updateTable 1 4</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">3.5. Locating persons by name: <code>find</code></a></h3>
+<h3 id="removing-a-table-code-removetable-code"><a class="link" href="#removing-a-table-code-removetable-code">3.5. Removing a table : <code>removeTable</code></a></h3>
 <div class="paragraph">
-<p>Finds persons whose names contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+<p>Removes an existing table in the restaurant.<br>
+Format: <code>removeTable TABLE_NUMBER</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+<p>Checks that the table exists.</p>
 </li>
 <li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
-</li>
-<li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
-</li>
-<li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+<p>Checks that the table is not occupied.</p>
 </li>
 </ul>
 </div>
@@ -245,34 +220,29 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code></p>
-</li>
-<li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+<p><code>removeTable 3</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></h3>
+<h3 id="adding-an-item-to-an-order-code-addtoorder-code"><a class="link" href="#adding-an-item-to-an-order-code-addtoorder-code">3.6. Adding an item to an order: <code>addToOrder</code></a></h3>
 <div class="paragraph">
-<p>Deletes the specified person from the address book.<br>
-Format: <code>delete INDEX</code></p>
+<p>Adds the specified item to the order of the specified table and displays the new order list.<br>
+Format: <code>addToOrder TABLE_NUMBER ITEM_CODE QUANTITY [ITEM_CODE QUANTITY]…</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the person at the specified <code>INDEX</code>.</p>
+<p>Item has to exist in the menu (i.e. item code has to be valid).</p>
 </li>
 <li>
-<p>The index refers to the index number shown in the displayed person list.</p>
+<p>If the item is already in the order, the quantity for that item is increased.</p>
 </li>
 <li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>There is no limit to the number of items added.</p>
 </li>
 </ul>
 </div>
@@ -284,36 +254,26 @@ Format: <code>delete INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>list</code><br>
-<code>delete 2</code><br>
-Deletes the 2nd person in the address book.</p>
+<p><code>addToOrder 1 W09 2</code></p>
 </li>
 <li>
-<p><code>find Betsy</code><br>
-<code>delete 1</code><br>
-Deletes the 1st person in the results of the <code>find</code> command.</p>
+<p><code>addToOrder 5 W09 1 N01 1 C04 2</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">3.7. Selecting a person : <code>select</code></a></h3>
+<h3 id="adding-a-note-to-an-item-in-an-order-code-addnote-code"><a class="link" href="#adding-a-note-to-an-item-in-an-order-code-addnote-code">3.7. Adding a note to an item in an order: <code>addNote</code></a></h3>
 <div class="paragraph">
-<p>Selects the person identified by the index number used in the displayed person list.<br>
-Format: <code>select INDEX</code></p>
+<p>Adds a note to an item in the order of the specified table.<br>
+Format: <code>addNote TABLE_NUMBER ITEM_CODE NOTE</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Selects the person and loads the Google search page the person at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the displayed person list.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+<p>Item has to exist both in the menu (i.e. item code has to be valid) and order before the note is added.</p>
 </li>
 </ul>
 </div>
@@ -325,58 +285,30 @@ Format: <code>select INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>list</code><br>
-<code>select 2</code><br>
-Selects the 2nd person in the address book.</p>
-</li>
-<li>
-<p><code>find Betsy</code><br>
-<code>select 1</code><br>
-Selects the 1st person in the results of the <code>find</code> command.</p>
+<p><code>addNote 1 W09 Less spicy</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.8. Listing entered commands : <code>history</code></a></h3>
+<h3 id="deleting-an-item-from-an-order-code-deletefromorder-code"><a class="link" href="#deleting-an-item-from-an-order-code-deletefromorder-code">3.8. Deleting an item from an order: <code>deleteFromOrder</code></a></h3>
 <div class="paragraph">
-<p>Lists all the commands that you have entered in reverse chronological order.<br>
-Format: <code>history</code></p>
+<p>Deletes a specified item from the order of the specified table.<br>
+Format: <code>deleteFromOrder TABLE_NUMBER ITEM_CODE [QUANTITY]</code></p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
-</div>
-</td>
-</tr>
-</table>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Item has to exist both in the menu (i.e. item code has to be valid) and order before it is deleted from the order.</p>
+</li>
+<li>
+<p>If no quantity is specified, all quantities of the item will be deleted.</p>
+</li>
+</ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></h3>
-<div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
-Format: <code>undo</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -384,30 +316,21 @@ Format: <code>undo</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete 1</code><br>
-<code>list</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<p><code>deleteFromOrder 1 W09</code><br>
+Deletes all W09 Chicken Wings from table 1’s order.</p>
 </li>
 <li>
-<p><code>select 1</code><br>
-<code>list</code><br>
-<code>undo</code><br>
-The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<p><code>deleteFromOrder 1 W09 1</code><br>
+Reduces the quantity of W09 Chicken Wings by 1 in table 1’s order.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="viewing-all-the-items-in-an-order-code-vieworder-code"><a class="link" href="#viewing-all-the-items-in-an-order-code-vieworder-code">3.9. Viewing all the items in an order: <code>viewOrder</code></a></h3>
 <div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command.<br>
-Format: <code>redo</code></p>
+<p>Shows a list of items ordered by the specified table.<br>
+Format: <code>viewOrder TABLE_NUMBER</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -415,49 +338,378 @@ Format: <code>redo</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete 1</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>redo</code><br>
-The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
+<p><code>viewOrder 1</code><br>
+Returns<br>
+<code>----------------------------------------</code><br>
+<code>Order from Table 1</code><br>
+<code>----------------------------------------</code><br>
+<code>1. W09 Chicken Wings [1/2 served]</code><br>
+` Less spicy`<br>
+<code>2. A02 French Fries [0/1 served]</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.11. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-the-items-in-an-order-code-clearorder-code"><a class="link" href="#clearing-all-the-items-in-an-order-code-clearorder-code">3.10. Clearing all the items in an order: <code>clearOrder</code></a></h3>
 <div class="paragraph">
-<p>Clears all entries from the address book.<br>
-Format: <code>clear</code></p>
+<p>Deletes all the items ordered by the specified table.<br>
+Format: <code>clearOrder TABLE_NUMBER</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>clearOrder 1</code></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.12. Exiting the program : <code>exit</code></a></h3>
+<h3 id="marking-an-item-in-an-order-as-served-code-serve-code"><a class="link" href="#marking-an-item-in-an-order-as-served-code-serve-code">3.11. Marking an item in an order as served: <code>serve</code></a></h3>
+<div class="paragraph">
+<p>Marks the specified item as served for the specified table.<br>
+Format: <code>serve TABLE_NUMBER ITEM_CODE [QUANTITY]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Item has to exist in both the menu (i.e. item code has to be valid) and order before it is marked as served.</p>
+</li>
+<li>
+<p>The quantity served cannot be greater than the ordered quantity of the item.</p>
+</li>
+<li>
+<p>If quantity is not specified, the default quantity is 1.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>serve 1 W09</code><br>
+Updates the status of table 1’s order with 1 W09 Chicken Wings served.</p>
+</li>
+<li>
+<p><code>serve 5 C04 2</code><br>
+Updates the status of table 5’s order with 2 C04 Shrimp Fried Rice served.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="checking-if-table-is-served-code-istableserved-code"><a class="link" href="#checking-if-table-is-served-code-istableserved-code">3.12. Checking if table is served : <code>isTableServed</code></a></h3>
+<div class="paragraph">
+<p>Checks if all menu items on the order has been served.<br>
+Format: <code>isTableServed</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Checks if the table exists.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>isTableServed</code><br>
+Returns <code>Table is fully served</code> or <code>Table is not fully served</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-items-in-menu-code-printmenu-code"><a class="link" href="#listing-all-items-in-menu-code-printmenu-code">3.13. Listing all items in menu : <code>printMenu</code></a></h3>
+<div class="paragraph">
+<p>Lists all the items in the menu currently.<br>
+Format: <code>printMenu</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>“Menu is empty” is printed if there is no item in current menu.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-menu-items-to-the-menu-code-addtomenu-code"><a class="link" href="#adding-menu-items-to-the-menu-code-addtomenu-code">3.14. Adding menu items to the menu : <code>addToMenu</code></a></h3>
+<div class="paragraph">
+<p>Adds the specified item to the menu.<br>
+Format: <code>addToMenu ITEM_CODE ITEM_NAME ITEM_PRICE</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addToMenu c/A02 n/French Fries p/2.00</code><br>
+Adds French Fries with item code A02 and price $2.00 to the menu.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-menu-items-from-the-menu-code-removefrommenu-code"><a class="link" href="#removing-menu-items-from-the-menu-code-removefrommenu-code">3.15. Removing menu items from the menu : <code>removeFromMenu</code></a></h3>
+<div class="paragraph">
+<p>Removes the specified item from the menu.<br>
+Format: <code>removeFromMenu ITEM_CODE ITEM_NAME</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>removeFromMenu c/A02 n/French Fries</code><br>
+Removes French Fries with item code A02 from the menu.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="checking-if-item-exists-in-the-menu-code-itemexists-code"><a class="link" href="#checking-if-item-exists-in-the-menu-code-itemexists-code">3.16. Checking if item exists in the menu : <code>itemExists</code></a></h3>
+<div class="paragraph">
+<p>Checks if item with the specified item code exists in the menu.<br>
+Format: <code>itemExists ITEM_CODE</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>itemExists A02</code><br>
+Checks if item with code A02 exists in the menu.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="calculating-the-bill-of-an-order-code-bill-code"><a class="link" href="#calculating-the-bill-of-an-order-code-bill-code">3.17. Calculating the bill of an order : <code>bill</code></a></h3>
+<div class="paragraph">
+<p>Calculates the bill of an order from the specified table.<br>
+Format: <code>bill TABLE_NUMBER</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bill 1</code><br>
+Returns the total price of the order from table 1.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getting-the-most-popular-item-ordered-code-getmostpopularitem-code"><a class="link" href="#getting-the-most-popular-item-ordered-code-getmostpopularitem-code">3.18. Getting the most popular item ordered: <code>getMostPopularItem</code></a></h3>
+<div class="paragraph">
+<p>Returns the item on the menu that has the most orders.<br>
+Format: <code>getMostPopularItem</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>getMostPopularItem</code><br>
+Returns the most popular item <code>W09 Chicken Wings</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getting-the-total-number-of-customers-code-gettotalcustomers-code"><a class="link" href="#getting-the-total-number-of-customers-code-gettotalcustomers-code">3.19. Getting the total number of customers : <code>getTotalCustomers</code></a></h3>
+<div class="paragraph">
+<p>Returns the total number of customer for the stated day, month or year.<br>
+Format: <code>getTotalCustomers [YEAR] [MONTH] [DAY]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>YEAR</code>, <code>MONTH</code>, <code>DAY</code> has to be valid.</p>
+</li>
+<li>
+<p>If the stated period has no records, it will inform the user that there is no record.</p>
+</li>
+<li>
+<p>If <strong>no arguments</strong> are included, by default it returns the total number of customers for the <strong>current day</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>getTotalCustomers</code><br>
+Returns the total number of customers of the current day <code>21</code></p>
+</li>
+<li>
+<p><code>getTotalCustomers 2019 01 01</code><br>
+Returns the total number of customers on the specific day 01/01/2019 <code>21</code></p>
+</li>
+<li>
+<p><code>getTotalCustomers 2019 02</code><br>
+Returns the total number of customers of the month February 2019 <code>600</code></p>
+</li>
+<li>
+<p><code>getTotalCustomers 2019</code><br>
+Returns the total number of customers of the year 2019 <code>1200</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getting-the-total-revenue-code-gettotalrevenue-code"><a class="link" href="#getting-the-total-revenue-code-gettotalrevenue-code">3.20. Getting the total revenue : <code>getTotalRevenue</code></a></h3>
+<div class="paragraph">
+<p>Returns the total revenue earned by the restaurant by the stated year, month or day.<br>
+Format: <code>getTotalRevenue [YEAR] [MONTH] [DAY]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>YEAR</code>, <code>MONTH</code>, <code>DAY</code> has to be valid.</p>
+</li>
+<li>
+<p>If the stated period has no records, it will inform the user that there is no record.</p>
+</li>
+<li>
+<p>If <strong>no arguments</strong> are included, by default it returns the total revenue for the <strong>current day</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>getTotalRevenue</code><br>
+Returns the total revenue of the current day <code>$45</code></p>
+</li>
+<li>
+<p><code>getTotalCustomers 2019 01 01</code><br>
+Returns the total revenue on the specific day 01/01/2019 <code>$45</code></p>
+</li>
+<li>
+<p><code>getTotalCustomers 2019 02</code><br>
+Returns the total revenue of the month February 2019 <code>$7000</code></p>
+</li>
+<li>
+<p><code>getTotalCustomers 2019</code><br>
+Returns the total revenue of the year 2019 <code>15000</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getting-all-the-statistics-code-getstatistics-code"><a class="link" href="#getting-all-the-statistics-code-getstatistics-code">3.21. Getting all the statistics : <code>getStatistics</code></a></h3>
+<div class="paragraph">
+<p>Returns all the calculated statistics.<br>
+Format: <code>getStatistics</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>It internally executes all the necessary calculations like:
+E.g. Most popular item, Yearly revenue, Monthly revenue, Recent average revenue.</p>
+</li>
+<li>
+<p>Prints out all the statistics it has been computed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>getStatistics</code><br>
+Returns All the statistics it has computed.
+<code>WELCOME TO RestOrRant STATISTIC CHART!</code><br>
+<code>-----------------------------------------------------------------</code><br>
+<code>Total Revenue</code><br>
+<code>-----------------------------------------------------------------</code><br>
+<code>Year 2018: $10540</code><br>
+` `<br>
+<code>Year 2019: $1700</code><br>
+`	Jan: $800`<br>
+`	Feb: $900`<br>
+<code>Average Monthly Revenue: $850</code><br>
+<code>-----------------------------------------------------------------</code><br>
+<code>Total Number of Customers</code><br>
+<code>-----------------------------------------------------------------</code><br>
+<code>Year 2018: 20000</code><br>
+<code>Year 2019: 50</code><br>
+`	Jan: 30`<br>
+`	Feb: 20`<br>
+<code>Average no. of Monthly Customers: 25</code><br>
+<code>-----------------------------------------------------------------</code><br>
+<code>Top 3 most popular dish item</code><br>
+<code>-----------------------------------------------------------------</code><br>
+`	1. W09 Chicken Wings`<br>
+`	2. W12 Pork Chop Rice`<br>
+`	3. A01 Dumpling Noodles`<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.22. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.13. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.23. Saving the data</a></h3>
 <div class="paragraph">
-<p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
+<p>RestOrRant data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.14. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.24. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
@@ -469,7 +721,7 @@ There is no need to save manually.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+<strong>A</strong>: Install the application in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous RestOrRant folder.</p>
 </div>
 </div>
 </div>
@@ -479,44 +731,86 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
+<p><strong>Add tables</strong> : <code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS] &#8230;&#8203;</code><br>
+e.g. <code>addTables 2 4 6 8</code></p>
 </li>
 <li>
-<p><strong>Clear</strong> : <code>clear</code></p>
+<p><strong>Remove table</strong> : <code>removeTable TABLE_NUMBER</code><br>
+e.g. <code>removeTable 3</code></p>
 </li>
 <li>
-<p><strong>Delete</strong> : <code>delete INDEX</code><br>
-e.g. <code>delete 3</code></p>
+<p><strong>Update table</strong> : <code>updateTable TABLE_NUMBER NEW_OCCUPANCY</code><br>
+e.g. <code>updateTable 3 2</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
+<p><strong>List tables</strong> : <code>listTables</code></p>
 </li>
 <li>
-<p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br>
-e.g. <code>find James Jake</code></p>
+<p><strong>Add items to order</strong> : <code>addToOrder TABLE_NUMBER ITEM_CODE QUANTITY [ITEM_CODE QUANTITY] …</code><br>
+e.g. <code>addToOrder 5 W09 1 N01 1 C04 2</code></p>
 </li>
 <li>
-<p><strong>List</strong> : <code>list</code></p>
+<p><strong>Add note to order</strong> : <code>addNote TABLE_NUMBER ITEM_CODE NOTE</code><br>
+e.g. <code>addNote 1 W09 Less spicy</code></p>
+</li>
+<li>
+<p><strong>Delete item from order</strong> : <code>deleteFromOrder TABLE_NUMBER ITEM_CODE [QUANTITY]</code><br>
+e.g. <code>deleteFromOrder 1 W09 1</code></p>
+</li>
+<li>
+<p><strong>View order</strong> : <code>viewOrder TABLE_NUMBER</code><br>
+e.g. <code>viewOrder 1</code></p>
+</li>
+<li>
+<p><strong>Clear order</strong> : <code>clearOrder TABLE_NUMBER</code><br>
+e.g. <code>clearOrder 1</code></p>
+</li>
+<li>
+<p><strong>Update item served status</strong> : <code>serve TABLE_NUMBER ITEM_CODE [QUANTITY]</code><br>
+e.g. <code>serve 5 C04 2</code></p>
+</li>
+<li>
+<p><strong>Table serve status</strong> : <code>isTableServed</code></p>
+</li>
+<li>
+<p><strong>List items in menu</strong> : <code>printMenu</code><br></p>
+</li>
+<li>
+<p><strong>Add item to Menu</strong> : <code>addToMenu</code><br>
+e.g. <code>addToMenu c/A02 n/French Fries p/2.00</code></p>
+</li>
+<li>
+<p><strong>Remove item from menu</strong> : <code>removeFromMenu</code><br>
+e.g. <code>removeFromMenu c/A02 n/French Fries</code></p>
+</li>
+<li>
+<p><strong>Check if item exists in the menu</strong> : <code>itemExists</code><br>
+e.g. <code>itemExists ITEM_CODE</code></p>
+</li>
+<li>
+<p><strong>Calculate bill of an order</strong> : <code>bill</code><br>
+e.g. <code>bill TABLE_NUMBER</code></p>
+</li>
+<li>
+<p><strong>Get most popular item</strong> : <code>getMostPopularItem</code><br>
+e.g. <code>getMostPopularItem</code></p>
+</li>
+<li>
+<p><strong>Get total number of customers</strong> : <code>getTotalCustomers</code><br>
+e.g. <code>getTotalCustomers [YEAR] [MONTH] [DAY]</code></p>
+</li>
+<li>
+<p><strong>Get total revenue</strong> : <code>getTotalRevenue</code><br>
+e.g. <code>getTotalRevenue [YEAR] [MONTH] [DAY]</code></p>
+</li>
+<li>
+<p><strong>Get all statistics</strong> : <code>getStatistics</code><br>
+e.g. <code>getStatistics</code></p>
 </li>
 <li>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
-<li>
-<p><strong>Select</strong> : <code>select INDEX</code><br>
-e.g.<code>select 2</code></p>
-</li>
-<li>
-<p><strong>History</strong> : <code>history</code></p>
-</li>
-<li>
-<p><strong>Undo</strong> : <code>undo</code></p>
-</li>
-<li>
-<p><strong>Redo</strong> : <code>redo</code></p>
-</li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-02-19 12:52:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-02-19 14:32:09 UTC</div></div></div></body></html>
