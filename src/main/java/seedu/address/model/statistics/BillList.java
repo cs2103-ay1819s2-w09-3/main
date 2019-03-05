@@ -18,7 +18,8 @@ import seedu.address.model.statistics.exception.BillNotFoundException;
 public class BillList implements Iterable<Bill> {
 
     private final ObservableList<Bill> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Bill> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Bill> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Adds a bill to the list.

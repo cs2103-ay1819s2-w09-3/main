@@ -26,7 +26,8 @@ public class StorageManager implements Storage {
     private TablesStorage tablesStorage;
     private StatisticsStorage statsStorage;
 
-    public StorageManager(UserPrefsStorage userPrefsStorage, OrdersStorage ordersStorage, MenuStorage menuStorage, StatisticsStorage statsStorage, TablesStorage tablesStorage) {
+    public StorageManager(UserPrefsStorage userPrefsStorage, OrdersStorage ordersStorage, MenuStorage menuStorage,
+                          StatisticsStorage statsStorage, TablesStorage tablesStorage) {
         super();
         this.menuStorage = menuStorage;
         this.userPrefsStorage = userPrefsStorage;

@@ -23,7 +23,8 @@ public class OrderItemListPanel extends UiPart<Region> {
     @FXML
     private ListView<OrderItem> orderItemListView;
 
-    public OrderItemListPanel(ObservableList<OrderItem> orderItemList, ObservableValue<OrderItem> selectedOrderItem, Consumer<OrderItem> onSelectedOrderItemChange) {
+    public OrderItemListPanel(ObservableList<OrderItem> orderItemList, ObservableValue<OrderItem> selectedOrderItem,
+                              Consumer<OrderItem> onSelectedOrderItemChange) {
         super(FXML);
         orderItemListView.setItems(orderItemList);
         orderItemListView.setCellFactory(listView -> new OrderItemListViewCell());

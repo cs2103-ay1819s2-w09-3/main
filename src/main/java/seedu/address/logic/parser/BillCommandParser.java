@@ -35,7 +35,8 @@ public class BillCommandParser implements Parser<BillCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public BillCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TABLENUMBER, PREFIX_DAY, PREFIX_MONTH, PREFIX_YEAR);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TABLENUMBER, PREFIX_DAY, PREFIX_MONTH,
+                PREFIX_YEAR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TABLENUMBER, PREFIX_DAY, PREFIX_MONTH, PREFIX_YEAR) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BillCommand.MESSAGE_USAGE));

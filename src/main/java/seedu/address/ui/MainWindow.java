@@ -119,7 +119,8 @@ public class MainWindow extends UiPart<Stage> {
         menuBrowserPanel = new MenuBrowserPanel(logic.selectedMenuItemProperty());
         browserPlaceholder.getChildren().add(menuBrowserPanel.getRoot());
 
-        orderItemListPanel = new OrderItemListPanel(logic.getFilteredOrderItemList(), logic.selectedOrderItemProperty(), logic::setSelectedOrderItem);
+        orderItemListPanel = new OrderItemListPanel(logic.getFilteredOrderItemList(),
+                logic.selectedOrderItemProperty(), logic::setSelectedOrderItem);
         listPanelPlaceholder.getChildren().add(orderItemListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -166,7 +167,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(), (int) primaryStage.getX(), (int) primaryStage.getY());
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -190,7 +192,8 @@ public class MainWindow extends UiPart<Stage> {
                 menuBrowserPanel = new MenuBrowserPanel(logic.selectedMenuItemProperty()); // TODO: change to tables
                 browserPlaceholder.getChildren().add(menuBrowserPanel.getRoot());
 
-                orderItemListPanel = new OrderItemListPanel(logic.getFilteredOrderItemList(), logic.selectedOrderItemProperty(), logic::setSelectedOrderItem);
+                orderItemListPanel = new OrderItemListPanel(logic.getFilteredOrderItemList(),
+                        logic.selectedOrderItemProperty(), logic::setSelectedOrderItem);
                 listPanelPlaceholder.getChildren().add(orderItemListPanel.getRoot());
 
                 statusBarFooter.updateMode("Restaurant Mode");
@@ -200,7 +203,8 @@ public class MainWindow extends UiPart<Stage> {
                 menuBrowserPanel = new MenuBrowserPanel(logic.selectedMenuItemProperty());
                 browserPlaceholder.getChildren().add(menuBrowserPanel.getRoot());
 
-                orderItemListPanel = new OrderItemListPanel(logic.getFilteredOrderItemList(), logic.selectedOrderItemProperty(), logic::setSelectedOrderItem);
+                orderItemListPanel = new OrderItemListPanel(logic.getFilteredOrderItemList(),
+                        logic.selectedOrderItemProperty(), logic::setSelectedOrderItem);
                 listPanelPlaceholder.getChildren().add(orderItemListPanel.getRoot());
 
                 statusBarFooter.updateMode("Table Mode");
@@ -211,7 +215,8 @@ public class MainWindow extends UiPart<Stage> {
                 menuBrowserPanel = new MenuBrowserPanel(logic.selectedMenuItemProperty());
                 browserPlaceholder.getChildren().add(menuBrowserPanel.getRoot());
 
-                menuListPanel = new MenuListPanel(logic.getFilteredMenuItemList(), logic.selectedMenuItemProperty(), logic::setSelectedMenuItem);
+                menuListPanel = new MenuListPanel(logic.getFilteredMenuItemList(), logic.selectedMenuItemProperty(),
+                        logic::setSelectedMenuItem);
                 listPanelPlaceholder.getChildren().add(menuListPanel.getRoot());
 
                 statusBarFooter.updateMode("Menu Mode");

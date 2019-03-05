@@ -43,7 +43,8 @@ public class Version implements Comparable<Version> {
             throw new IllegalArgumentException(String.format(EXCEPTION_STRING_NOT_VERSION, versionString));
         }
 
-        return new Version(Integer.parseInt(versionMatcher.group(1)), Integer.parseInt(versionMatcher.group(2)), Integer.parseInt(versionMatcher.group(3)), versionMatcher.group(4) == null ? false : true);
+        return new Version(Integer.parseInt(versionMatcher.group(1)), Integer.parseInt(versionMatcher.group(2)),
+                Integer.parseInt(versionMatcher.group(3)), versionMatcher.group(4) == null ? false : true);
     }
 
     public int getMajor() {

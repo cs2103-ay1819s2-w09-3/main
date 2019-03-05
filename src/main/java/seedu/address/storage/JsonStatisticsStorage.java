@@ -48,7 +48,8 @@ public class JsonStatisticsStorage implements StatisticsStorage {
     public Optional<ReadOnlyStatistics> readStatistics(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableStatistics> jsonStats = JsonUtil.readJsonFile(filePath, JsonSerializableStatistics.class);
+        Optional<JsonSerializableStatistics> jsonStats = JsonUtil.readJsonFile(filePath,
+                JsonSerializableStatistics.class);
         if (!jsonStats.isPresent()) {
             return Optional.empty();
         }

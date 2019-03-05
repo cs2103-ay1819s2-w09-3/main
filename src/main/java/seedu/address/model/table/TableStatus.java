@@ -7,9 +7,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 
 public class TableStatus {
 
-    public static final String MESSAGE_CONSTRAINTS = "Table status should only contain numbers\nand the number of seats taken is less than number of seats.";
+    public static final String MESSAGE_CONSTRAINTS = "Table status should only contain numbers\nand the number of " +
+            "seats taken is less than number of seats.";
 
-    public static final String MESSAGE_INVALID_NUMBER_OF_CUSTOMERS = "Table unable to accommodate number of customers provided.";
+    public static final String MESSAGE_INVALID_NUMBER_OF_CUSTOMERS = "Table unable to accommodate number of customers" +
+            " provided.";
     public static final String SEATS_VALIDATION_REGEX = "\\d+";
     public static final String STATUS_VALIDATION_REGEX = "\\d+/\\d+";
     public final String numberOfSeats;

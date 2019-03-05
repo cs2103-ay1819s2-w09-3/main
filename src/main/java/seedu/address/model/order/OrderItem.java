@@ -79,7 +79,8 @@ public class OrderItem {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("[Table ").append(getTableNumber()).append("] ").append(getMenuItemCode()).append(" | Qty Ordered: ").append(getQuantity());
+        builder.append("[Table ").append(getTableNumber()).append("] ").append(getMenuItemCode()).append(" | Qty " +
+                "Ordered: ").append(getQuantity());
         return builder.toString();
     }
 

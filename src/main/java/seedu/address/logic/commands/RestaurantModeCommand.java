@@ -14,7 +14,8 @@ import seedu.address.model.Model;
  */
 public class RestaurantModeCommand extends ChangeModeCommand {
     public static final String COMMAND_WORD = "restaurantMode"; // change to standardize with other modes
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Change to Restaurant Mode.\n" + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Change to Restaurant Mode.\n" + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "Mode changed to Restaurant Mode";
 
     @Override

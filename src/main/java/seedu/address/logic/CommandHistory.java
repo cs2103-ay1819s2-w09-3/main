@@ -10,7 +10,8 @@ import javafx.collections.ObservableList;
  */
 public class CommandHistory {
     private final ObservableList<String> userInputHistory = FXCollections.observableArrayList();
-    private final ObservableList<String> unmodifiableUserInputHistory = FXCollections.unmodifiableObservableList(userInputHistory);
+    private final ObservableList<String> unmodifiableUserInputHistory =
+            FXCollections.unmodifiableObservableList(userInputHistory);
 
     public CommandHistory() {
     }

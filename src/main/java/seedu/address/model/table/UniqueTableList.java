@@ -29,7 +29,8 @@ import seedu.address.model.table.exceptions.TableNotFoundException;
 public class UniqueTableList implements Iterable<Table> {
 
     private final ObservableList<Table> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Table> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Table> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent table as the given argument.

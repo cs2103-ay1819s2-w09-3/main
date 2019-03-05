@@ -26,7 +26,8 @@ import seedu.address.model.menu.exceptions.MenuItemNotFoundException;
 public class UniqueMenuItemList {
 
     private final ObservableList<MenuItem> internalList = FXCollections.observableArrayList();
-    private final ObservableList<MenuItem> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<MenuItem> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.

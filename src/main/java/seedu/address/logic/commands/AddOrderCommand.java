@@ -23,7 +23,9 @@ public class AddOrderCommand extends Command {
 
     public static final String COMMAND_WORD = "addToOrder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds order item(s) to the selected table's order. " + "Parameters: ITEM_CODE QUANTITY [ITEM_CODE QUANTITY]...\n" + "Example: " + COMMAND_WORD + " W09 2 C18 1 C02 1";
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Adds order item(s) to the selected table's order. " + "Parameters: ITEM_CODE QUANTITY " +
+                    "[ITEM_CODE QUANTITY]...\n" + "Example: " + COMMAND_WORD + " W09 2 C18 1 C02 1";
 
     public static final String MESSAGE_SUCCESS = "New order items added:\n%1$s";
     public static final String MESSAGE_DUPLICATE_ORDER_ITEM = "Item [%1$s] already exists in table %2$s's order";
@@ -54,7 +56,8 @@ public class AddOrderCommand extends Command {
             }
             OrderItem orderItem = new OrderItem(tableNumber, itemCodes.get(i), itemQuantities.get(i));
             if (model.hasOrderItem(orderItem)) { // add order items until encountering a duplicate
-                throw new CommandException(String.format(MESSAGE_DUPLICATE_ORDER_ITEM, itemCodes.get(i), tableNumber.toString()));
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_ORDER_ITEM, itemCodes.get(i),
+                        tableNumber.toString()));
             }
             model.addOrderItem(orderItem);
             orderItems.add(orderItem);

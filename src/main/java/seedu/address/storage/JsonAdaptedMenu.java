@@ -24,7 +24,8 @@ class JsonAdaptedMenu {
      * Constructs a {@code JsonAdaptedMenu} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedMenu(@JsonProperty("name") String name, @JsonProperty("code") String code, @JsonProperty("price") String price) {
+    public JsonAdaptedMenu(@JsonProperty("name") String name, @JsonProperty("code") String code, @JsonProperty("price"
+    ) String price) {
         this.name = name;
         this.code = code;
         this.price = price;

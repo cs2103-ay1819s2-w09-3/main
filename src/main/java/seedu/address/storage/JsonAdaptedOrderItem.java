@@ -24,7 +24,10 @@ class JsonAdaptedOrderItem {
      * Constructs a {@code JsonAdaptedOrderItem} with the given order item details.
      */
     @JsonCreator
-    public JsonAdaptedOrderItem(@JsonProperty("tableNumber") String tableNumber, @JsonProperty("menuItemCode") String menuItem, @JsonProperty("ordered") String quantityOrdered, @JsonProperty("unserved") String quantityUnserved) {
+    public JsonAdaptedOrderItem(@JsonProperty("tableNumber") String tableNumber,
+                                @JsonProperty("menuItemCode") String menuItem,
+                                @JsonProperty("ordered") String quantityOrdered,
+                                @JsonProperty("unserved") String quantityUnserved) {
         this.tableNumber = tableNumber;
         this.menuItemCode = menuItem;
         this.quantityOrdered = quantityOrdered;

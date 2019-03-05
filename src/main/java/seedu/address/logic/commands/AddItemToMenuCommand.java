@@ -14,7 +14,9 @@ import seedu.address.model.menu.MenuItem;
 
 public class AddItemToMenuCommand extends Command {
     public static final String COMMAND_WORD = "addToMenu";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. " + "Parameters: " + PREFIX_CODE + "CODE " + PREFIX_NAME + "NAME " + PREFIX_PRICE + "PRICE " + "Example: " + COMMAND_WORD + " " + PREFIX_CODE + "A02 " + PREFIX_NAME + "French Fries " + PREFIX_PRICE + "2.00";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. " + "Parameters: "
+            + PREFIX_CODE + "CODE " + PREFIX_NAME + "NAME " + PREFIX_PRICE + "PRICE " + "Example: " + COMMAND_WORD + 
+            " " + PREFIX_CODE + "A02 " + PREFIX_NAME + "French Fries " + PREFIX_PRICE + "2.00";
     public static final String MESSAGE_SUCCESS = "New menu item added: %1$s";
     public static final String MESSAGE_DUPLICATE_MENU_ITEM = "This item already exists in the menu";
     public static final String MESSAGE_INCORRECT_MODE = "Incorrect Mode, unable to execute command. Enter menuMode";

@@ -23,7 +23,8 @@ class JsonAdaptedTable {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTable(@JsonProperty("tableNumber") String tableNumber, @JsonProperty("tableStatus") String tableStatus) {
+    public JsonAdaptedTable(@JsonProperty("tableNumber") String tableNumber,
+                            @JsonProperty("tableStatus") String tableStatus) {
         this.tableNumber = tableNumber;
         this.tableStatus = tableStatus;
     }
@@ -43,7 +44,8 @@ class JsonAdaptedTable {
      */
     public Table toModelType() throws IllegalValueException {
         if (tableNumber == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TableNumber.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TableNumber.class.getSimpleName()));
         }
         if (!TableNumber.isValidTableNumber(tableNumber)) {
             throw new IllegalValueException(TableNumber.MESSAGE_CONSTRAINTS);

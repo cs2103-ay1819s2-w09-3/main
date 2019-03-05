@@ -52,17 +52,21 @@ public class RestOrRant implements ReadOnlyRestOrRant {
     }
 
     /**
-     * Creates an RestOrRant using the data specified in {@code copyOrders, copyMenu, copyTables} // TODO: add more parameters
+     * Creates an RestOrRant using the data specified in {@code copyOrders, copyMenu, copyTables} // TODO: add more 
+     * parameters
      */
-    public RestOrRant(ReadOnlyOrders copyOrders, ReadOnlyMenu copyMenu, ReadOnlyTables copyTables, ReadOnlyStatistics copyStatistics) {
+    public RestOrRant(ReadOnlyOrders copyOrders, ReadOnlyMenu copyMenu, ReadOnlyTables copyTables,
+                      ReadOnlyStatistics copyStatistics) {
         this();
         resetData(copyOrders, copyMenu, copyTables, copyStatistics);
     }
 
     /**
-     * Resets the existing data of this {@code RestOrRant} with new data from {@code newOrders, newMenu, newTables}. //TODO: add more parameters
+     * Resets the existing data of this {@code RestOrRant} with new data from {@code newOrders, newMenu, newTables}. 
+     * //TODO: add more parameters
      */
-    public void resetData(ReadOnlyOrders newOrders, ReadOnlyMenu newMenu, ReadOnlyTables newTables, ReadOnlyStatistics newStatistics) {
+    public void resetData(ReadOnlyOrders newOrders, ReadOnlyMenu newMenu, ReadOnlyTables newTables,
+                          ReadOnlyStatistics newStatistics) {
         requireAllNonNull(newOrders, newMenu, newTables, newStatistics);
         orders.setOrderItems(newOrders.getOrderItemList());
         menu.setMenuItems(newMenu.getMenuItemList());
@@ -95,7 +99,8 @@ public class RestOrRant implements ReadOnlyRestOrRant {
 
     @Override
     public String toString() {
-        return orders.getOrderItemList().size() + " order items" + "\n" + menu.getMenuItemList().size() + " menu items" + "\n" + statistics.getBillList().size() + " bills";
+        return orders.getOrderItemList().size() + " order items" + "\n" + menu.getMenuItemList().size() + " menu " +
+                "items" + "\n" + statistics.getBillList().size() + " bills";
         // TODO: refine later
     }
 

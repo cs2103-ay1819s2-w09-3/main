@@ -115,7 +115,8 @@ public class MainApp extends Application {
                 logger.info("Statistics data file not found. Will be starting with an empty RestOrRant");
                 initialData = new RestOrRant();
             } else {
-                initialData = new RestOrRant(ordersOptional.get(), menuOptional.get(), tablesOptional.get(), statisticsOptional.get());
+                initialData = new RestOrRant(ordersOptional.get(), menuOptional.get(), tablesOptional.get(),
+                        statisticsOptional.get());
             }
 
             // initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
@@ -156,7 +157,8 @@ public class MainApp extends Application {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
-            logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. " + "Using default config properties");
+            logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. " + "Using " +
+                    "default config properties");
             initializedConfig = new Config();
         }
 
@@ -183,7 +185,8 @@ public class MainApp extends Application {
             Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
-            logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. " + "Using default user prefs");
+            logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. " + "Using default " +
+                    "user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty RestOrRant");

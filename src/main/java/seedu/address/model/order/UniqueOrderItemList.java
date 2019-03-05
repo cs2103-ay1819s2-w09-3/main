@@ -26,7 +26,8 @@ import seedu.address.model.order.exceptions.OrderItemNotFoundException;
 public class UniqueOrderItemList implements Iterable<OrderItem> {
 
     private final ObservableList<OrderItem> internalList = FXCollections.observableArrayList();
-    private final ObservableList<OrderItem> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<OrderItem> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent order item as the given argument.

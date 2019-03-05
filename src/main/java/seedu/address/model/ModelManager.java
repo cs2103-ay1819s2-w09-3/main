@@ -139,7 +139,8 @@ public class ModelManager implements Model {
 
     @Override
     public void setRestOrRant(ReadOnlyRestOrRant restOrRant) {
-        this.restOrRant.resetData(restOrRant.getOrders(), restOrRant.getMenu(), restOrRant.getTables(), restOrRant.getStatistics());
+        this.restOrRant.resetData(restOrRant.getOrders(), restOrRant.getMenu(), restOrRant.getTables(),
+                restOrRant.getStatistics());
     }
 
     @Override
@@ -232,7 +233,8 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedTableReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedTable.getValue());
+            boolean wasSelectedTableReplaced =
+                    change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedTable.getValue());
             if (wasSelectedTableReplaced) {
                 //Update selectedTable to its new value.
                 int index = change.getRemoved().indexOf(selectedTable.getValue());
@@ -240,7 +242,8 @@ public class ModelManager implements Model {
                 continue;
             }
 
-            boolean wasSelectedTableRemoved = change.getRemoved().stream().anyMatch(removedTable -> selectedTable.getValue().isSameTable(removedTable));
+            boolean wasSelectedTableRemoved =
+                    change.getRemoved().stream().anyMatch(removedTable -> selectedTable.getValue().isSameTable(removedTable));
             if (wasSelectedTableRemoved) {
                 // Select the table that came before it in the list,
                 // or clear the selection if there is no such table.
@@ -388,7 +391,8 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedOrderItemReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedOrderItem.getValue());
+            boolean wasSelectedOrderItemReplaced =
+                    change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedOrderItem.getValue());
             if (wasSelectedOrderItemReplaced) {
                 // Update selectedOrderItem to its new value.
                 int index = change.getRemoved().indexOf(selectedOrderItem.getValue());
@@ -396,7 +400,8 @@ public class ModelManager implements Model {
                 continue;
             }
 
-            boolean wasSelectedOrderItemRemoved = change.getRemoved().stream().anyMatch(removedOrderItem -> selectedOrderItem.getValue().isSameOrderItem(removedOrderItem));
+            boolean wasSelectedOrderItemRemoved =
+                    change.getRemoved().stream().anyMatch(removedOrderItem -> selectedOrderItem.getValue().isSameOrderItem(removedOrderItem));
             if (wasSelectedOrderItemRemoved) {
                 // Select the order item that came before it in the list,
                 // or clear the selection if there is no such order item.
@@ -415,7 +420,8 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedMenuItemReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedMenuItem.getValue());
+            boolean wasSelectedMenuItemReplaced =
+                    change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedMenuItem.getValue());
             if (wasSelectedMenuItemReplaced) {
                 // Update selectedMenuItem to its new value.
                 int index = change.getRemoved().indexOf(selectedMenuItem.getValue());
@@ -423,7 +429,8 @@ public class ModelManager implements Model {
                 continue;
             }
 
-            boolean wasSelectedMenuItemRemoved = change.getRemoved().stream().anyMatch(removedMenuItem -> selectedMenuItem.getValue().isSameMenuItem(removedMenuItem));
+            boolean wasSelectedMenuItemRemoved =
+                    change.getRemoved().stream().anyMatch(removedMenuItem -> selectedMenuItem.getValue().isSameMenuItem(removedMenuItem));
             if (wasSelectedMenuItemRemoved) {
                 // Select the menu item that came before it in the list,
                 // or clear the selection if there is no such menu item.
@@ -498,7 +505,8 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedBillReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedBill.getValue());
+            boolean wasSelectedBillReplaced =
+                    change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedBill.getValue());
             if (wasSelectedBillReplaced) {
                 //Update selectedBill to its new value.
                 int index = change.getRemoved().indexOf(selectedBill.getValue());

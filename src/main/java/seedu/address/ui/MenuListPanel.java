@@ -23,7 +23,8 @@ public class MenuListPanel extends UiPart<Region> {
     @FXML
     private ListView<MenuItem> menuItemListView;
 
-    public MenuListPanel(ObservableList<MenuItem> menuItemList, ObservableValue<MenuItem> selectedMenuItem, Consumer<MenuItem> onSelectedMenuItemChange) {
+    public MenuListPanel(ObservableList<MenuItem> menuItemList, ObservableValue<MenuItem> selectedMenuItem,
+                         Consumer<MenuItem> onSelectedMenuItemChange) {
         super(FXML);
         menuItemListView.setItems(menuItemList);
         menuItemListView.setCellFactory(listView -> new MenuItemListViewCell());

@@ -25,7 +25,9 @@ public class BillCommand extends Command {
     public static final String COMMAND_WORD = "bill";
     public static final String COMMAND_ALIAS = "b";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Retrieves the Bill for a Table. " + "Parameters: " + PREFIX_TABLENUMBER + "TABLE NUMBER " + PREFIX_DAY + "DAY " + PREFIX_MONTH + "MONTH " + PREFIX_YEAR + "YEAR " + "Example: " + COMMAND_WORD + " " + PREFIX_TABLENUMBER + "1 " + PREFIX_DAY + "30 " + PREFIX_MONTH + "12 " + PREFIX_YEAR + "2019 ";
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Retrieves the Bill for a Table. " + "Parameters: " + PREFIX_TABLENUMBER + "TABLE NUMBER" +
+                    " " + PREFIX_DAY + "DAY " + PREFIX_MONTH + "MONTH " + PREFIX_YEAR + "YEAR " + "Example: " + COMMAND_WORD + " " + PREFIX_TABLENUMBER + "1 " + PREFIX_DAY + "30 " + PREFIX_MONTH + "12 " + PREFIX_YEAR + "2019 ";
 
     public static final String MESSAGE_SUCCESS = "Bill Calculated: %1$s";
     public static final String MESSAGE_TABLE_DOES_NOT_EXIST = "This table does not exist.";

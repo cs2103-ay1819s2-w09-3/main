@@ -24,7 +24,9 @@ class JsonAdaptedBill {
      * Constructs a {@code JsonAdaptedBill} with the given bill details.
      */
     @JsonCreator
-    public JsonAdaptedBill(@JsonProperty("tableNumber") String tableNumber, @JsonProperty("day") String day, @JsonProperty("month") String month, @JsonProperty("year") String year, @JsonProperty("totalBill") String totalBill) {
+    public JsonAdaptedBill(@JsonProperty("tableNumber") String tableNumber, @JsonProperty("day") String day,
+                           @JsonProperty("month") String month, @JsonProperty("year") String year, @JsonProperty(
+                                   "totalBill") String totalBill) {
         this.tableNumber = tableNumber;
         this.day = day;
         this.month = month;
