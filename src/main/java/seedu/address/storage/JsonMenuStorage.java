@@ -14,7 +14,6 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyRestOrRant;
 import seedu.address.model.menu.ReadOnlyMenu;
 
 /**
@@ -50,8 +49,7 @@ public class JsonMenuStorage implements MenuStorage {
     public Optional<ReadOnlyMenu> readMenu(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableMenu> jsonMenu = JsonUtil.readJsonFile(
-                filePath, JsonSerializableMenu.class);
+        Optional<JsonSerializableMenu> jsonMenu = JsonUtil.readJsonFile(filePath, JsonSerializableMenu.class);
         if (!jsonMenu.isPresent()) {
             return Optional.empty();
         }

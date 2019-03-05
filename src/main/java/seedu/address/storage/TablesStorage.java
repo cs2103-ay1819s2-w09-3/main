@@ -6,10 +6,11 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyRestOrRant;
-import seedu.address.model.table.ReadOnlyTables;
 import seedu.address.model.RestOrRant;
+import seedu.address.model.table.ReadOnlyTables;
 
-/**s
+/**
+ * s
  * Represents a storage for {@link RestOrRant}.
  */
 public interface TablesStorage {
@@ -21,9 +22,10 @@ public interface TablesStorage {
 
     /**
      * Returns Tables data as a {@link ReadOnlyTables}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws IOException             if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyTables> readTables() throws DataConversionException, IOException;
 
@@ -34,6 +36,7 @@ public interface TablesStorage {
 
     /**
      * Saves the given {@link ReadOnlyRestOrRant} to the storage.
+     *
      * @param tables cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

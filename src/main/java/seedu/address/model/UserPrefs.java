@@ -15,14 +15,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path menuFilePath = Paths.get("data", "menu.json");
-    private Path ordersFilePath = Paths.get("data" , "orders.json");
+    private Path ordersFilePath = Paths.get("data", "orders.json");
     private Path tablesFilePath = Paths.get("data", "tables.json");
     private Path statisticsFilePath = Paths.get("data", "statistics.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {}
+    public UserPrefs() {
+    }
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
@@ -52,21 +53,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
     }
-    
+
     public Path getMenuFilePath() {
         return menuFilePath;
-    }
-    
-    public Path getOrdersFilePath() {
-        return ordersFilePath;
-    }
-
-    public Path getTablesFilePath() {
-        return tablesFilePath;
-    }
-
-    public Path getStatisticsFilePath() {
-        return statisticsFilePath;
     }
 
     public void setMenuFilePath(Path menuFilePath) {
@@ -74,14 +63,26 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.menuFilePath = menuFilePath;
     }
 
+    public Path getOrdersFilePath() {
+        return ordersFilePath;
+    }
+
     public void setOrdersFilePath(Path ordersFilePath) {
         requireNonNull(ordersFilePath);
         this.ordersFilePath = ordersFilePath;
     }
 
+    public Path getTablesFilePath() {
+        return tablesFilePath;
+    }
+
     public void setTablesFilePath(Path tablesFilePath) {
         requireNonNull(tablesFilePath);
         this.tablesFilePath = tablesFilePath;
+    }
+
+    public Path getStatisticsFilePath() {
+        return statisticsFilePath;
     }
 
     public void setStatisticsFilePath(Path statsFilePath) {
@@ -100,11 +101,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs o = (UserPrefs) other;
 
-        return guiSettings.equals(o.guiSettings)
-                && menuFilePath.equals(o.menuFilePath)
-                && ordersFilePath.equals(o.ordersFilePath)
-                && tablesFilePath.equals(o.tablesFilePath)
-                && statisticsFilePath.equals(o.statisticsFilePath);
+        return guiSettings.equals(o.guiSettings) && menuFilePath.equals(o.menuFilePath) && ordersFilePath.equals(o.ordersFilePath) && tablesFilePath.equals(o.tablesFilePath) && statisticsFilePath.equals(o.statisticsFilePath);
     }
 
     @Override

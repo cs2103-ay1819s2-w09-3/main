@@ -1,13 +1,10 @@
 package seedu.address.model.order;
 
-import seedu.address.model.menu.Code;
-import seedu.address.model.menu.MenuItem;
-import seedu.address.model.table.TableNumber;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.menu.Code;
 import seedu.address.model.table.TableNumber;
 
 /**
@@ -52,9 +49,7 @@ public class OrderItem {
             return true;
         }
 
-        return otherOrderItem != null
-                && otherOrderItem.getTableNumber().equals(getTableNumber())
-                && otherOrderItem.getMenuItemCode().equals(getMenuItemCode());
+        return otherOrderItem != null && otherOrderItem.getTableNumber().equals(getTableNumber()) && otherOrderItem.getMenuItemCode().equals(getMenuItemCode());
     }
 
     /**
@@ -84,12 +79,7 @@ public class OrderItem {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("[Table ")
-                .append(getTableNumber())
-                .append("] ")
-                .append(getMenuItemCode())
-                .append(" | Qty Ordered: ")
-                .append(getQuantity());
+        builder.append("[Table ").append(getTableNumber()).append("] ").append(getMenuItemCode()).append(" | Qty Ordered: ").append(getQuantity());
         return builder.toString();
     }
 

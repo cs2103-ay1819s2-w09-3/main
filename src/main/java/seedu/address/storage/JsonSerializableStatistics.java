@@ -18,7 +18,7 @@ import seedu.address.model.statistics.Statistics;
  */
 @JsonRootName(value = "statsList")
 class JsonSerializableStatistics {
-    
+
     private final List<JsonAdaptedBill> statsList = new ArrayList<>();
 
     /**

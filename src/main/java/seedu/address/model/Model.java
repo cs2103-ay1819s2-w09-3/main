@@ -6,9 +6,9 @@ import java.util.function.Predicate;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.statistics.Bill;
 import seedu.address.model.menu.MenuItem;
 import seedu.address.model.order.OrderItem;
+import seedu.address.model.statistics.Bill;
 import seedu.address.model.table.Table;
 import seedu.address.model.table.TableNumber;
 import seedu.address.model.table.TableStatus;
@@ -17,20 +17,22 @@ import seedu.address.model.table.TableStatus;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<MenuItem> PREDICATE_SHOW_ALL_MENU_ITEMS = unused -> true;
     Predicate<OrderItem> PREDICATE_SHOW_ALL_ORDER_ITEMS = unused -> true;
     Predicate<Table> PREDICATE_SHOW_ALL_TABLES = unused -> true;
 
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
-
-    /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -46,11 +48,22 @@ public interface Model {
      * Returns the user prefs' Orders file path.
      */
     Path getOrdersFilePath();
+
+    /**
+     * Sets the user prefs' Orders file path.
+     */
+    void setOrdersFilePath(Path restOrRantFilePath);
+    // TODO: add get file path for each feature
+
     /**
      * Returns the user pref's Menu file path.
      */
     Path getMenuFilePath();
-    // TODO: add get file path for each feature
+
+    /**
+     * Sets the user pref's Menu file path.
+     */
+    void setMenuFilePath(Path menuFilePath);
 
     /**
      * Returns the user prefs' Tables file path.
@@ -61,16 +74,6 @@ public interface Model {
      * Returns the user prefs' statistics file path.
      */
     Path getStatisticsFilePath();
-
-    /**
-     * Sets the user prefs' Orders file path.
-     */
-    void setOrdersFilePath(Path restOrRantFilePath);
-
-    /**
-     * Sets the user pref's Menu file path.
-     */
-    void setMenuFilePath(Path menuFilePath);
     // TODO: add set file path for each feature
 
     /**
@@ -79,12 +82,14 @@ public interface Model {
     void setStatisticsFilePath(Path statisticsFilePath);
 
     /**
+     * Returns the RestOrRant
+     */
+    ReadOnlyRestOrRant getRestOrRant();
+
+    /**
      * Replaces RestOrRant data with the data in {@code restOrRant}.
      */
     void setRestOrRant(ReadOnlyRestOrRant restOrRant);
-
-    /** Returns the RestOrRant */
-    ReadOnlyRestOrRant getRestOrRant();
 
     /**
      * Notifies the listeners that the RestOrRant (mode) has been modified.
@@ -122,11 +127,14 @@ public interface Model {
      */
     void setTable(Table target, Table editedTable);
 
-    /** Returns an unmodifiable view of the filtered table list */
+    /**
+     * Returns an unmodifiable view of the filtered table list
+     */
     ObservableList<Table> getFilteredTableList();
 
     /**
      * Updates the filter of the filtered table list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null/
      */
     void updateFilteredTableList(Predicate<Table> predicate);
@@ -145,6 +153,7 @@ public interface Model {
 
     /**
      * Sets the selected table in the filtered table list.
+     *
      * @param table
      */
     void setSelectedTable(Table table);
@@ -153,7 +162,7 @@ public interface Model {
      * Returns true if an order item with the same identity as {@code orderItem} exists in the RestOrRant's Orders.
      */
     boolean hasOrderItem(OrderItem orderItem);
-    
+
     /**
      * Returns true if a menu item with the same identity as {@code menuItem} exists in the menu.
      */
@@ -176,7 +185,7 @@ public interface Model {
      * {@code orderItem} must not already exist in the RestOrRant's Orders.
      */
     void addOrderItem(OrderItem orderItem);
-    
+
     /**
      * Adds the given menu item to the menu.
      * {@code menuItem} must not already exist in the menu.
@@ -208,29 +217,38 @@ public interface Model {
      */
     void setBill(Bill target, Bill editedItem);
 
-    /** Returns an unmodifiable view of the filtered order item list */
+    /**
+     * Returns an unmodifiable view of the filtered order item list
+     */
     ObservableList<OrderItem> getFilteredOrderItemList();
 
-    /** Returns an unmodifiable view of the filtered menu item list */
+    /**
+     * Returns an unmodifiable view of the filtered menu item list
+     */
     ObservableList<MenuItem> getFilteredMenuItemList();
-    
-    /** Returns an unmodifiable view of the filtered bill list */
+
+    /**
+     * Returns an unmodifiable view of the filtered bill list
+     */
     ObservableList<Bill> getFilteredBillList();
 
     /**
      * Updates the filter of the filtered order item list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderItemList(Predicate<OrderItem> predicate);
-    
+
     /**
      * Updates the filter of the filtered menu item list to filter by the given {@code predicate}
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMenuItemList(Predicate<MenuItem> predicate);
 
     /**
      * Updates the filter of the filtered bill list to filter by the given {@code predicate}
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredBillList(Predicate<Bill> predicate);
@@ -240,7 +258,7 @@ public interface Model {
      * null if no order item is selected.
      */
     ReadOnlyProperty<OrderItem> selectedOrderItemProperty();
-    
+
     /**
      * Selected menu item in the menu item list.
      * null if no menu item is selected.
@@ -252,12 +270,17 @@ public interface Model {
      * null if no bill is selected.
      */
     ReadOnlyProperty<Bill> selectedBillProperty();
-    
+
     /**
      * Returns the selected order item in the filtered order item list.
      * null if no order item is selected.
      */
     OrderItem getSelectedOrderItem();
+
+    /**
+     * Sets the selected order item in the filtered order item list.
+     */
+    void setSelectedOrderItem(OrderItem orderItem);
 
     /**
      * Returns the selected menu item in the filtered menu item list.
@@ -266,26 +289,22 @@ public interface Model {
     MenuItem getSelectedMenuItem();
 
     /**
+     * Sets the selected menu item in the filtered menu item list.
+     */
+    void setSelectedMenuItem(MenuItem menuItem);
+
+    /**
      * Returns the selected bill in the filtered bill list.
      * null if no bill is selected.
      */
     Bill getSelectedBill();
 
     /**
-     * Sets the selected order item in the filtered order item list.
-     */
-    void setSelectedOrderItem(OrderItem orderItem);
-
-    /**
-     * Sets the selected menu item in the filtered menu item list.
-     */
-    void setSelectedMenuItem(MenuItem menuItem);
-
-    /**
      * Sets the selected bill in the filtered bill list.
      */
     void setSelectedBill(Bill bill);
-    /** 
+
+    /**
      * Notifies the listeners that the RestOrRant orders has been modified.
      */
     void updateOrders();
@@ -293,7 +312,7 @@ public interface Model {
     /**
      * Get the Bill list
      */
-    ObservableList<Bill> getBillList ();
+    ObservableList<Bill> getBillList();
 
     /**
      * Changes the current mode of the RestOrRant.

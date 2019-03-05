@@ -21,7 +21,7 @@ import seedu.address.model.table.exceptions.TableNotFoundException;
  * the table being added or updated is unique in terms of identity in the UniqueOrderTableList. However, the removal
  * of a table uses Table#isSameTable(Table) so as to ensure that the table with exactly the same
  * fields will be removed. TODO: this is quite pointless now, may use the same function for both.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Table#isSameTable(Table)
@@ -29,8 +29,7 @@ import seedu.address.model.table.exceptions.TableNotFoundException;
 public class UniqueTableList implements Iterable<Table> {
 
     private final ObservableList<Table> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Table> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Table> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent table as the given argument.

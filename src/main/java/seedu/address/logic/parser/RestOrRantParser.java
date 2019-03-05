@@ -8,7 +8,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.Mode;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddItemToMenuCommand;
+import seedu.address.logic.commands.AddOrderCommand;
+import seedu.address.logic.commands.AddTableCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.MenuModeCommand;
+import seedu.address.logic.commands.RestaurantModeCommand;
+import seedu.address.logic.commands.TableModeCommand;
+import seedu.address.logic.commands.UpdateTableCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -42,13 +51,13 @@ public class RestOrRantParser {
         switch (commandWord) {
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();
-                
+
             case HelpCommand.COMMAND_ALIAS:
                 return new HelpCommand();
 
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
-                
+
             case ExitCommand.COMMAND_ALIAS:
                 return new ExitCommand();
 
@@ -67,14 +76,14 @@ public class RestOrRantParser {
                     throw new ParseException(MESSAGE_INVALID_MODE);
                 }
                 return new AddTableCommandParser().parse(arguments);
-            
+
             // Commands that work in Menu Mode
             case AddItemToMenuCommand.COMMAND_WORD:
                 if (mode != Mode.MENU_MODE) {
                     throw new ParseException(MESSAGE_INVALID_MODE);
                 }
                 return new AddItemToMenuCommandParser().parse(arguments);
-                
+
             // Commands that work in Table Mode
             case AddOrderCommand.COMMAND_WORD:
                 if (mode != Mode.TABLE_MODE) {
@@ -91,7 +100,7 @@ public class RestOrRantParser {
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
-        
+
     }
-    
+
 }

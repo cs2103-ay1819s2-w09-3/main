@@ -2,13 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.commands.TableModeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.menu.Code;
 import seedu.address.model.table.TableNumber;
 
 /**
@@ -19,6 +14,7 @@ public class TableModeCommandParser implements Parser<TableModeCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the TableModeCommand
      * and returns an TableModeCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public TableModeCommand parse(String args) throws ParseException {
@@ -26,8 +22,7 @@ public class TableModeCommandParser implements Parser<TableModeCommand> {
             TableNumber tableNumber = ParserUtil.parseTableNumber(args);
             return new TableModeCommand(tableNumber);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TableModeCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TableModeCommand.MESSAGE_USAGE));
         }
     }
 }

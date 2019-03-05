@@ -9,12 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.ReadOnlyRestOrRant;
-import seedu.address.model.RestOrRant;
 import seedu.address.model.menu.Menu;
 import seedu.address.model.menu.MenuItem;
 import seedu.address.model.menu.ReadOnlyMenu;
-import seedu.address.model.person.Person;
 
 /**
  * An Immutable RestOrRant that is serializable to JSON format.

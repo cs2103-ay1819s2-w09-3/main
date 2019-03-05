@@ -1,15 +1,15 @@
 package seedu.address.model.menu;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.menu.exceptions.DuplicateMenuItemException;
-import seedu.address.model.menu.exceptions.MenuItemNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.menu.exceptions.DuplicateMenuItemException;
+import seedu.address.model.menu.exceptions.MenuItemNotFoundException;
 
 /**
  * A list of menu items that enforces uniqueness between its elements and does not allow nulls.
@@ -18,7 +18,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * so as to ensure that the menu item being added or updated is unique in terms of identity in the
  * UniqueMenuItemList. However, the removal of a menu item uses MenuItem#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see MenuItem#isSameMenuItem(MenuItem)
@@ -26,8 +26,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class UniqueMenuItemList {
 
     private final ObservableList<MenuItem> internalList = FXCollections.observableArrayList();
-    private final ObservableList<MenuItem> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<MenuItem> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -61,11 +60,11 @@ public class UniqueMenuItemList {
         if (index == -1) {
             throw new MenuItemNotFoundException();
         }
-        
+
         if (!target.isSameMenuItem(editedItem) && contains(editedItem)) {
             throw new DuplicateMenuItemException();
         }
-        
+
         internalList.set(index, editedItem);
     }
 
@@ -94,7 +93,7 @@ public class UniqueMenuItemList {
         if (!menuItemsAreUnique(items)) {
             throw new DuplicateMenuItemException();
         }
-        
+
         internalList.setAll(items);
     }
 
@@ -105,7 +104,7 @@ public class UniqueMenuItemList {
         return internalUnmodifiableList;
     }
 
-//    @Override
+    //    @Override
     public Iterator<MenuItem> iterator() {
         return internalList.iterator();
     }

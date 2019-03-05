@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.Orders;
 import seedu.address.model.order.ReadOnlyOrders;
-import seedu.address.model.order.OrderItem;
 
 /**
  * An Immutable order list that is serializable to JSON format.
@@ -37,8 +37,7 @@ class JsonSerializableOrders {
      * @param source future changes to this will not affect the created {@code JsonSerializableOrders}.
      */
     public JsonSerializableOrders(ReadOnlyOrders source) {
-        orderItems.addAll(source.getOrderItemList().stream().map(JsonAdaptedOrderItem::new)
-            .collect(Collectors.toList()));
+        orderItems.addAll(source.getOrderItemList().stream().map(JsonAdaptedOrderItem::new).collect(Collectors.toList()));
     }
 
     /**

@@ -2,8 +2,6 @@ package seedu.address.model.order;
 
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
-import seedu.address.model.order.OrderItem;
-import seedu.address.model.person.Person;
 
 /**
  * Unmodifiable view of RestOrRant's orders

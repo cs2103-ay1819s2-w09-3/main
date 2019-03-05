@@ -24,11 +24,7 @@ class JsonAdaptedBill {
      * Constructs a {@code JsonAdaptedBill} with the given bill details.
      */
     @JsonCreator
-    public JsonAdaptedBill(@JsonProperty("tableNumber") String tableNumber,
-                                @JsonProperty("day") String day,
-                           @JsonProperty("month") String month,
-                           @JsonProperty("year") String year,
-                           @JsonProperty("totalBill") String totalBill) {
+    public JsonAdaptedBill(@JsonProperty("tableNumber") String tableNumber, @JsonProperty("day") String day, @JsonProperty("month") String month, @JsonProperty("year") String year, @JsonProperty("totalBill") String totalBill) {
         this.tableNumber = tableNumber;
         this.day = day;
         this.month = month;
@@ -70,12 +66,12 @@ class JsonAdaptedBill {
         //    throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         //}
         final int modelDay = Integer.parseInt(day); // TODO: handle NumberFormatException
-  
+
         final int modelMonth = Integer.parseInt(month);
         final int modelYear = Integer.parseInt(year);
         final int modelBill = Integer.parseInt(totalBill); // TODO: change to MenuItem object
 
         return new Bill(modelTableNumber, modelDay, modelMonth, modelYear);
     }
-    
+
 }

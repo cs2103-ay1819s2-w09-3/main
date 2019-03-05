@@ -1,6 +1,7 @@
 package seedu.address.model.statistics;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
 import javafx.beans.InvalidationListener;
@@ -23,12 +24,12 @@ public class Statistics implements ReadOnlyStatistics {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-   {
+     */ {
         billList = new BillList();
     }
 
-    public Statistics() {}
+    public Statistics() {
+    }
 
     /**
      * Creates an RestOrRant using the Persons in the {@code toBeCopied}
@@ -58,7 +59,7 @@ public class Statistics implements ReadOnlyStatistics {
     public void setBills(List<Bill> billList) {
         this.billList.setBillList(billList);
         indicateModified();
-    }    
+    }
 
     /**
      * Resets the existing data of this RestOrRant's {@code statistics} with {@code newData}.

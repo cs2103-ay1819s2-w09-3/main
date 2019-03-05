@@ -48,8 +48,7 @@ public class JsonTablesStorage implements TablesStorage {
     public Optional<ReadOnlyTables> readTables(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableTables> jsonTables = JsonUtil.readJsonFile(
-                filePath, JsonSerializableTables.class);
+        Optional<JsonSerializableTables> jsonTables = JsonUtil.readJsonFile(filePath, JsonSerializableTables.class);
         if (!jsonTables.isPresent()) {
             return Optional.empty();
         }

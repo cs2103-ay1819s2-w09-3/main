@@ -17,14 +17,14 @@ public class AddTableCommandParser implements Parser<AddTableCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddTableCommand
      * and returns an AddTableCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTableCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         String[] numberOfSeatsInString = trimmedArgs.split("\\s+");
         if (trimmedArgs.isEmpty() || numberOfSeatsInString.length == 0) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTableCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTableCommand.MESSAGE_USAGE));
         }
 
         List<TableStatus> numberOfSeatsList = new ArrayList<>();

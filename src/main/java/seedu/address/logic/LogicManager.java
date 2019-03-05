@@ -74,7 +74,7 @@ public class LogicManager implements Logic {
         } finally {
             history.add(commandText);
         }
-        
+
         if (modeModified) {
             logger.info("Application mode modified, changing UI");
             changeMode(commandResult.newModeStatus());
@@ -127,7 +127,7 @@ public class LogicManager implements Logic {
     public ReadOnlyRestOrRant getRestOrRant() {
         return model.getRestOrRant();
     }
-  
+
     @Override
     public ObservableList<MenuItem> getFilteredMenuItemList() {
         return model.getFilteredMenuItemList();
@@ -136,7 +136,7 @@ public class LogicManager implements Logic {
     public ObservableList<OrderItem> getFilteredOrderItemList() {
         return model.getFilteredOrderItemList();
     }
-    
+
     @Override
     public ObservableList<Table> getFilteredTableList() {
         return model.getFilteredTableList();
@@ -197,7 +197,7 @@ public class LogicManager implements Logic {
     public void setSelectedOrderItem(OrderItem orderItem) {
         model.setSelectedOrderItem(orderItem);
     }
-    
+
     @Override
     public ReadOnlyProperty<Table> selectedTableProperty() {
         return model.selectedTableProperty();

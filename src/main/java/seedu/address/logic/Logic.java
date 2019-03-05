@@ -21,10 +21,11 @@ import seedu.address.model.table.Table;
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
-     * @throws ParseException If an error occurs during parsing.
+     * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
@@ -35,16 +36,24 @@ public interface Logic {
      */
     ReadOnlyRestOrRant getRestOrRant();
 
-    /** Returns an unmodifiable view of the filtered list of menu items */
+    /**
+     * Returns an unmodifiable view of the filtered list of menu items
+     */
     ObservableList<MenuItem> getFilteredMenuItemList();
 
-    /** Returns an unmodifiable view of the filtered list of order items */
+    /**
+     * Returns an unmodifiable view of the filtered list of order items
+     */
     ObservableList<OrderItem> getFilteredOrderItemList();
 
-    /** Returns an unmodifiable view of the filtered list of tables */
+    /**
+     * Returns an unmodifiable view of the filtered list of tables
+     */
     ObservableList<Table> getFilteredTableList();
 
-    /** Returns an unmodifiable view of the filtered list of bills */
+    /**
+     * Returns an unmodifiable view of the filtered list of bills
+     */
     ObservableList<Bill> getFilteredBillList();
 
     /**
@@ -86,8 +95,8 @@ public interface Logic {
     /**
      * Selected menu item in the filtered menu item list.
      * null if no person is selected.
-     * 
-     * @see Model#selectedMenuItemProperty() 
+     *
+     * @see Model#selectedMenuItemProperty()
      */
     ReadOnlyProperty<MenuItem> selectedMenuItemProperty();
 
@@ -114,14 +123,14 @@ public interface Logic {
      * @see seedu.address.model.Model#selectedBillProperty()
      */
     ReadOnlyProperty<Bill> selectedBillProperty();
-    
+
     /**
      * Sets the selected menu item in the filtered menu item list.
-     * 
+     *
      * @see seedu.address.model.Model#setSelectedMenuItem(MenuItem)
      */
     void setSelectedMenuItem(MenuItem menuItem);
-    
+
     /**
      * Sets the selected order item in the filtered order item list.
      *

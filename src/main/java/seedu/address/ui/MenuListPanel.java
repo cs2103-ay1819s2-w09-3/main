@@ -19,28 +19,27 @@ import seedu.address.model.menu.MenuItem;
 public class MenuListPanel extends UiPart<Region> {
     private static final String FXML = "MenuListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(MenuListPanel.class);
-    
+
     @FXML
     private ListView<MenuItem> menuItemListView;
-    
-    public MenuListPanel(ObservableList<MenuItem> menuItemList, ObservableValue<MenuItem> selectedMenuItem,
-                     Consumer<MenuItem> onSelectedMenuItemChange) {
+
+    public MenuListPanel(ObservableList<MenuItem> menuItemList, ObservableValue<MenuItem> selectedMenuItem, Consumer<MenuItem> onSelectedMenuItemChange) {
         super(FXML);
         menuItemListView.setItems(menuItemList);
         menuItemListView.setCellFactory(listView -> new MenuItemListViewCell());
         menuItemListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            logger.fine("Selection in list panel changed to : '" + newValue +"'");
+            logger.fine("Selection in list panel changed to : '" + newValue + "'");
             onSelectedMenuItemChange.accept(newValue);
         });
         selectedMenuItem.addListener(((observable, oldValue, newValue) -> {
             logger.fine("Selected item changed to: " + newValue);
-            
+
             // Don't modify selection if we are already selecting the selected item,
             // otherwise we would have an infinite loop.
             if (Objects.equals(menuItemListView.getSelectionModel().getSelectedItem(), newValue)) {
                 return;
             }
-            
+
             if (newValue == null) {
                 menuItemListView.getSelectionModel().clearSelection();
             } else {
@@ -50,7 +49,7 @@ public class MenuListPanel extends UiPart<Region> {
             }
         }));
     }
-    
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code ItemCard}.
      */
@@ -58,7 +57,7 @@ public class MenuListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(MenuItem item, boolean empty) {
             super.updateItem(item, empty);
-            
+
             if (empty || item == null) {
                 setGraphic(null);
                 setText(null);

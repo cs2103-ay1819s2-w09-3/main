@@ -15,13 +15,12 @@ public class UpdateTableCommand extends Command {
 
     public static final String COMMAND_WORD = "updateTable";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the status of the table."
-            + "Parameters: TABLE_NUMBER NEW_STATUS\n"
-            + "Example: " + COMMAND_WORD + " 2 0";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the status of the table." + "Parameters: TABLE_NUMBER NEW_STATUS\n" + "Example: " + COMMAND_WORD + " 2 0";
 
     public static final String MESSAGE_SUCCESS = "Table status updated: \nTable%1$s: %2$s";
 
     private final String newTableStatus;
+
     /**
      * Creates an UpdateTableCommand to update the status of the table specified by the table number.
      */
@@ -37,14 +36,11 @@ public class UpdateTableCommand extends Command {
         Table updatedTable = model.getSelectedTable();
         updatedTable.setTableStatus(newTableStatus);
         model.setTable(selectedTable, updatedTable);
-        return new CommandResult(String.format(MESSAGE_SUCCESS,
-                updatedTable.getTableNumber(),selectedTable.getTableStatus()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedTable.getTableNumber(), selectedTable.getTableStatus()));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof UpdateTableCommand
-                && newTableStatus.equals(((UpdateTableCommand) other).newTableStatus));
+        return other == this || (other instanceof UpdateTableCommand && newTableStatus.equals(((UpdateTableCommand) other).newTableStatus));
     }
 }

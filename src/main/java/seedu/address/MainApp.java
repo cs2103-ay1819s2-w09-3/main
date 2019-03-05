@@ -17,13 +17,13 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.table.ReadOnlyTables;
-import seedu.address.model.statistics.ReadOnlyStatistics;
-import seedu.address.model.order.ReadOnlyOrders;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RestOrRant;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.menu.ReadOnlyMenu;
+import seedu.address.model.order.ReadOnlyOrders;
+import seedu.address.model.statistics.ReadOnlyStatistics;
+import seedu.address.model.table.ReadOnlyTables;
 import seedu.address.storage.JsonMenuStorage;
 import seedu.address.storage.JsonOrdersStorage;
 import seedu.address.storage.JsonStatisticsStorage;
@@ -73,7 +73,7 @@ public class MainApp extends Application {
         StatisticsStorage statisticsStorage = new JsonStatisticsStorage(userPrefs.getStatisticsFilePath());
         TablesStorage tablesStorage = new JsonTablesStorage(userPrefs.getTablesFilePath());
         storage = new StorageManager(userPrefsStorage, ordersStorage, menuStorage, statisticsStorage, tablesStorage);
-        
+
 
         initLogging(config);
 
@@ -93,7 +93,7 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyOrders> ordersOptional;
         Optional<ReadOnlyMenu> menuOptional;
-        Optional<ReadOnlyTables> tablesOptional; 
+        Optional<ReadOnlyTables> tablesOptional;
         Optional<ReadOnlyStatistics> statisticsOptional;
         RestOrRant initialData;
         try {
@@ -115,8 +115,7 @@ public class MainApp extends Application {
                 logger.info("Statistics data file not found. Will be starting with an empty RestOrRant");
                 initialData = new RestOrRant();
             } else {
-                initialData = new RestOrRant(ordersOptional.get(), menuOptional.get(), 
-                        tablesOptional.get(), statisticsOptional.get());
+                initialData = new RestOrRant(ordersOptional.get(), menuOptional.get(), tablesOptional.get(), statisticsOptional.get());
             }
 
             // initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
@@ -157,8 +156,7 @@ public class MainApp extends Application {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
-            logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+            logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. " + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -185,8 +183,7 @@ public class MainApp extends Application {
             Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
-            logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+            logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. " + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty RestOrRant");

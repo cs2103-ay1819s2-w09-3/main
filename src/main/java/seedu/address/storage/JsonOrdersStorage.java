@@ -48,8 +48,7 @@ public class JsonOrdersStorage implements OrdersStorage {
     public Optional<ReadOnlyOrders> readOrders(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableOrders> jsonOrders = JsonUtil.readJsonFile(
-                filePath, JsonSerializableOrders.class);
+        Optional<JsonSerializableOrders> jsonOrders = JsonUtil.readJsonFile(filePath, JsonSerializableOrders.class);
         if (!jsonOrders.isPresent()) {
             return Optional.empty();
         }

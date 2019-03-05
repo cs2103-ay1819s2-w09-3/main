@@ -18,7 +18,7 @@ import seedu.address.model.order.exceptions.OrderItemNotFoundException;
  * the order item being added or updated is unique in terms of identity in the UniqueOrderItemList. However, the removal
  * of an order item uses OrderItem#equals so as to ensure that the order item with exactly the same
  * fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see OrderItem#isSameOrderItem(OrderItem)
@@ -26,8 +26,7 @@ import seedu.address.model.order.exceptions.OrderItemNotFoundException;
 public class UniqueOrderItemList implements Iterable<OrderItem> {
 
     private final ObservableList<OrderItem> internalList = FXCollections.observableArrayList();
-    private final ObservableList<OrderItem> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<OrderItem> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent order item as the given argument.
@@ -115,7 +114,7 @@ public class UniqueOrderItemList implements Iterable<OrderItem> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueOrderItemList // instanceof handles nulls
-                        && internalList.equals(((UniqueOrderItemList) other).internalList));
+                && internalList.equals(((UniqueOrderItemList) other).internalList));
     }
 
     @Override

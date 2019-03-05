@@ -19,28 +19,27 @@ import seedu.address.model.order.OrderItem;
 public class OrderItemListPanel extends UiPart<Region> {
     private static final String FXML = "OrderItemListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(OrderItemListPanel.class);
-    
+
     @FXML
     private ListView<OrderItem> orderItemListView;
-    
-    public OrderItemListPanel(ObservableList<OrderItem> orderItemList, ObservableValue<OrderItem> selectedOrderItem,
-                              Consumer<OrderItem> onSelectedOrderItemChange) {
+
+    public OrderItemListPanel(ObservableList<OrderItem> orderItemList, ObservableValue<OrderItem> selectedOrderItem, Consumer<OrderItem> onSelectedOrderItemChange) {
         super(FXML);
         orderItemListView.setItems(orderItemList);
         orderItemListView.setCellFactory(listView -> new OrderItemListViewCell());
         orderItemListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            logger.fine("Selection in list panel changed to : '" + newValue +"'");
+            logger.fine("Selection in list panel changed to : '" + newValue + "'");
             onSelectedOrderItemChange.accept(newValue);
         });
         selectedOrderItem.addListener(((observable, oldValue, newValue) -> {
             logger.fine("Selected item changed to: " + newValue);
-            
+
             // Don't modify selection if we are already selecting the selected item,
             // otherwise we would have an infinite loop.
             if (Objects.equals(orderItemListView.getSelectionModel().getSelectedItem(), newValue)) {
                 return;
             }
-            
+
             if (newValue == null) {
                 orderItemListView.getSelectionModel().clearSelection();
             } else {
@@ -50,7 +49,7 @@ public class OrderItemListPanel extends UiPart<Region> {
             }
         }));
     }
-    
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code ItemCard}.
      */
@@ -58,7 +57,7 @@ public class OrderItemListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(OrderItem item, boolean empty) {
             super.updateItem(item, empty);
-            
+
             if (empty || item == null) {
                 setGraphic(null);
                 setText(null);

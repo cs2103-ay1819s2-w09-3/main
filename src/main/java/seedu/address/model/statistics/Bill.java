@@ -44,7 +44,7 @@ public class Bill {
     public int getTotalBill() {
         return totalBill;
     }
-    
+
     public int getDay() {
         return day;
     }
@@ -66,17 +66,7 @@ public class Bill {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("[Table ")
-                .append(getTableNumber())
-                .append("] [Date: ")
-                .append(getDay())
-                .append("/")
-                .append(getMonth())
-                .append("/")
-                .append(getYear())
-                .append("] [Total Cost of the Bill: $")
-                .append(getTotalBill())
-                .append("] ");
+        builder.append("[Table ").append(getTableNumber()).append("] [Date: ").append(getDay()).append("/").append(getMonth()).append("/").append(getYear()).append("] [Total Cost of the Bill: $").append(getTotalBill()).append("] ");
         return builder.toString();
     }
 

@@ -62,9 +62,7 @@ public class MenuItem {
             return true;
         }
 
-        return otherItem != null
-                && otherItem.getName().equals(getName())
-                && (otherItem.getCode().equals(getCode()));
+        return otherItem != null && otherItem.getName().equals(getName()) && (otherItem.getCode().equals(getCode()));
     }
 
     /**
@@ -82,9 +80,7 @@ public class MenuItem {
         }
 
         MenuItem otherItem = (MenuItem) other;
-        return otherItem.getName().equals(getName())
-                && otherItem.getCode().equals(getCode())
-                && otherItem.getPrice().equals(getPrice());
+        return otherItem.getName().equals(getName()) && otherItem.getCode().equals(getCode()) && otherItem.getPrice().equals(getPrice());
     }
 
     @Override
@@ -96,11 +92,7 @@ public class MenuItem {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Code: ")
-                .append(getCode())
-                .append(" Price: ")
-                .append(getPrice());
+        builder.append(getName()).append(" Code: ").append(getCode()).append(" Price: ").append(getPrice());
         return builder.toString();
     }
 

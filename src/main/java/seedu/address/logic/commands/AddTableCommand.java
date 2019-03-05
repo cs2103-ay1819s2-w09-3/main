@@ -6,9 +6,7 @@ import java.util.List;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.Mode;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.table.Table;
 import seedu.address.model.table.TableNumber;
 import seedu.address.model.table.TableStatus;
 
@@ -19,9 +17,7 @@ public class AddTableCommand extends Command {
 
     public static final String COMMAND_WORD = "addTable";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds table(s) to the RestOrRant application."
-            + "Parameters: NUMBER_OF_SEATS [NUMBER_OF_SEATS]...\n"
-            + "Example: " + COMMAND_WORD + " 2 1 4";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds table(s) to the RestOrRant application." + "Parameters: NUMBER_OF_SEATS [NUMBER_OF_SEATS]...\n" + "Example: " + COMMAND_WORD + " 2 1 4";
 
     public static final String MESSAGE_SUCCESS = "New table added:\nTable%1$s: %2$s";
 
@@ -47,11 +43,10 @@ public class AddTableCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, addedTableNumber.toString(), tableStatusList)); // TODO: Beautify resultDisplay
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddTableCommand
-                && tableStatusList.equals(((AddTableCommand) other).tableStatusList));
+                || (other instanceof AddTableCommand && tableStatusList.equals(((AddTableCommand) other).tableStatusList));
     }
 }

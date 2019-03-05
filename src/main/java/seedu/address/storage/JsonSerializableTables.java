@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.table.ReadOnlyTables;
-import seedu.address.model.table.Tables;
 import seedu.address.model.table.Table;
+import seedu.address.model.table.Tables;
 
 /**
  * An Immutable Tables that is serializable to JSON format.
@@ -21,6 +21,7 @@ class JsonSerializableTables {
 
     public static final String MESSAGE_DUPLICATE_TABLE = "Table list contains duplicate table(s).";
     private final List<JsonAdaptedTable> tableList = new ArrayList<>();
+
     /**
      * Constructs a {@code JsonSerializableRestOrRant} with the given tables.
      */

@@ -23,12 +23,12 @@ public class Orders implements ReadOnlyOrders {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         orderItems = new UniqueOrderItemList();
     }
 
-    public Orders() {}
+    public Orders() {
+    }
 
     /**
      * Creates a new instance of RestOrRant orders using the order items in the {@code toBeCopied}

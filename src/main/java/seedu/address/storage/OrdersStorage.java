@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.order.ReadOnlyOrders;
 import seedu.address.model.order.Orders;
+import seedu.address.model.order.ReadOnlyOrders;
 
 /**
  * Represents a storage for RestOrRant's {@link Orders}.
@@ -20,9 +20,10 @@ public interface OrdersStorage {
 
     /**
      * Returns order data as part of a {@link ReadOnlyOrders}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws IOException             if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyOrders> readOrders() throws DataConversionException, IOException;
 
@@ -33,6 +34,7 @@ public interface OrdersStorage {
 
     /**
      * Saves the given {@link ReadOnlyOrders} to the storage.
+     *
      * @param orders cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

@@ -15,16 +15,15 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.statistics.Bill;
-import seedu.address.model.statistics.exception.BillNotFoundException;
 import seedu.address.model.menu.MenuItem;
 import seedu.address.model.menu.exceptions.MenuItemNotFoundException;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.exceptions.OrderItemNotFoundException;
+import seedu.address.model.statistics.Bill;
+import seedu.address.model.statistics.exception.BillNotFoundException;
 import seedu.address.model.table.Table;
 import seedu.address.model.table.TableNumber;
 import seedu.address.model.table.TableStatus;
-
 import seedu.address.model.table.exceptions.TableNotFoundException;
 
 /**
@@ -72,14 +71,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -97,13 +96,25 @@ public class ModelManager implements Model {
     public Path getOrdersFilePath() {
         return userPrefs.getOrdersFilePath();
     }
-    
+
+    @Override
+    public void setOrdersFilePath(Path ordersFilePath) {
+        requireNonNull(ordersFilePath);
+        userPrefs.setOrdersFilePath(ordersFilePath);
+    }
+
     @Override
     public Path getMenuFilePath() {
-        return userPrefs.getMenuFilePath(); 
+        return userPrefs.getMenuFilePath();
     }
-    
-    @Override 
+
+    @Override
+    public void setMenuFilePath(Path menuFilePath) {
+        requireNonNull(menuFilePath);
+        userPrefs.setMenuFilePath(menuFilePath);
+    }
+
+    @Override
     public Path getTablesFilePath() {
         return userPrefs.getTablesFilePath();
     }
@@ -111,18 +122,6 @@ public class ModelManager implements Model {
     @Override
     public Path getStatisticsFilePath() {
         return userPrefs.getStatisticsFilePath();
-    }
-
-    @Override
-    public void setOrdersFilePath(Path ordersFilePath) {
-        requireNonNull(ordersFilePath);
-        userPrefs.setOrdersFilePath(ordersFilePath);
-    }
-    
-    @Override
-    public void setMenuFilePath(Path menuFilePath) {
-        requireNonNull(menuFilePath);
-        userPrefs.setMenuFilePath(menuFilePath); 
     }
 
     @Override
@@ -134,27 +133,27 @@ public class ModelManager implements Model {
     //=========== RestOrRant ================================================================================
 
     @Override
-    public void setRestOrRant(ReadOnlyRestOrRant restOrRant) {
-        this.restOrRant.resetData(restOrRant.getOrders(), restOrRant.getMenu(), restOrRant.getTables(), restOrRant.getStatistics());
+    public ReadOnlyRestOrRant getRestOrRant() {
+        return restOrRant;
     }
 
     @Override
-    public ReadOnlyRestOrRant getRestOrRant() {
-        return restOrRant;
+    public void setRestOrRant(ReadOnlyRestOrRant restOrRant) {
+        this.restOrRant.resetData(restOrRant.getOrders(), restOrRant.getMenu(), restOrRant.getTables(), restOrRant.getStatistics());
     }
 
     @Override
     public void updateRestOrRant() { // change mode
         restOrRant.indicateModified();
     }
-    
+
     @Override
     public void changeMode() {
         restOrRant.changeMode();
     }
 
     //=========== Tables =====================================================================================
-    
+
     @Override
     public boolean hasTable(Table table) {
         requireNonNull(table);
@@ -165,7 +164,7 @@ public class ModelManager implements Model {
     public void deleteTable(Table table) {
         restOrRant.getTables().removeTable(table);
     }
-    
+
     @Override
     public void addTable(Table table) {
         restOrRant.getTables().addTable(table);
@@ -182,7 +181,7 @@ public class ModelManager implements Model {
     @Override
     public void setTable(Table target, Table editedTable) {
         requireAllNonNull(target, editedTable);
-        
+
         restOrRant.getTables().setTable(target, editedTable);
     }
 
@@ -204,7 +203,7 @@ public class ModelManager implements Model {
 
 
     //=========== Selected table =============================================================================
-    
+
     @Override
     public ReadOnlyProperty<Table> selectedTableProperty() {
         return selectedTable;
@@ -233,8 +232,7 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedTableReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedTable.getValue());
+            boolean wasSelectedTableReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedTable.getValue());
             if (wasSelectedTableReplaced) {
                 //Update selectedTable to its new value.
                 int index = change.getRemoved().indexOf(selectedTable.getValue());
@@ -242,8 +240,7 @@ public class ModelManager implements Model {
                 continue;
             }
 
-            boolean wasSelectedTableRemoved = change.getRemoved().stream()
-                    .anyMatch(removedTable -> selectedTable.getValue().isSameTable(removedTable));
+            boolean wasSelectedTableRemoved = change.getRemoved().stream().anyMatch(removedTable -> selectedTable.getValue().isSameTable(removedTable));
             if (wasSelectedTableRemoved) {
                 // Select the table that came before it in the list,
                 // or clear the selection if there is no such table.
@@ -276,7 +273,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedOrderItem);
         restOrRant.getOrders().setOrderItem(target, editedOrderItem);
     }
-    
+
     //=========== Filtered Order Item List Accessors =============================================================
 
     /**
@@ -293,7 +290,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredOrderItems.setPredicate(predicate);
     }
-    
+
     //=========== Selected order item ===========================================================================
 
     @Override
@@ -313,29 +310,29 @@ public class ModelManager implements Model {
         }
         selectedOrderItem.setValue(orderItem);
     }
-    
+
     //=========== Menu ======================================================================================
     @Override
     public boolean hasMenuItem(MenuItem menuItem) {
         requireNonNull(menuItem);
         return restOrRant.getMenu().hasMenuItem(menuItem);
     }
-    
+
     @Override
     public void deleteMenuItem(MenuItem target) {
         restOrRant.getMenu().removeMenuItem(target);
     }
-    
+
     @Override
     public void addMenuItem(MenuItem menuItem) {
         restOrRant.getMenu().addMenuItem(menuItem);
         updateFilteredMenuItemList(PREDICATE_SHOW_ALL_MENU_ITEMS);
     }
-    
+
     @Override
     public void setMenuItem(MenuItem target, MenuItem editedItem) {
         requireAllNonNull(target, editedItem);
-        
+
         restOrRant.getMenu().setMenuItem(target, editedItem);
     }
 
@@ -343,9 +340,9 @@ public class ModelManager implements Model {
     public void updateOrders() {
         restOrRant.getOrders().indicateModified();
     }
-    
+
     //=========== Filtered MenuItem List Accessors =============================================================
-    
+
     /**
      * Returns an unmodifiable view of the list of {@code MenuItem} backed by the internal list of
      * {@code restOrRant}
@@ -354,7 +351,7 @@ public class ModelManager implements Model {
     public ObservableList<MenuItem> getFilteredMenuItemList() {
         return filteredMenuItems;
     }
-    
+
     @Override
     public void updateFilteredMenuItemList(Predicate<MenuItem> predicate) {
         requireNonNull(predicate);
@@ -362,17 +359,17 @@ public class ModelManager implements Model {
     }
 
     //=========== Selected menu item ===========================================================================
-    
+
     @Override
     public ReadOnlyProperty<MenuItem> selectedMenuItemProperty() {
         return selectedMenuItem;
     }
-    
+
     @Override
     public MenuItem getSelectedMenuItem() {
         return selectedMenuItem.getValue();
     }
-    
+
     @Override
     public void setSelectedMenuItem(MenuItem menuItem) {
         if (menuItem != null && !filteredMenuItems.contains(menuItem)) {
@@ -391,8 +388,7 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedOrderItemReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedOrderItem.getValue());
+            boolean wasSelectedOrderItemReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedOrderItem.getValue());
             if (wasSelectedOrderItemReplaced) {
                 // Update selectedOrderItem to its new value.
                 int index = change.getRemoved().indexOf(selectedOrderItem.getValue());
@@ -400,8 +396,7 @@ public class ModelManager implements Model {
                 continue;
             }
 
-            boolean wasSelectedOrderItemRemoved = change.getRemoved().stream()
-                    .anyMatch(removedOrderItem -> selectedOrderItem.getValue().isSameOrderItem(removedOrderItem));
+            boolean wasSelectedOrderItemRemoved = change.getRemoved().stream().anyMatch(removedOrderItem -> selectedOrderItem.getValue().isSameOrderItem(removedOrderItem));
             if (wasSelectedOrderItemRemoved) {
                 // Select the order item that came before it in the list,
                 // or clear the selection if there is no such order item.
@@ -413,24 +408,22 @@ public class ModelManager implements Model {
     /**
      * Ensures {@code selectedMenuItem} is a valid menu item in {@code filteredMenuItems}.
      */
-    private void ensureSelectedMenuItemIsValid(ListChangeListener.Change<? extends  MenuItem> change) {
+    private void ensureSelectedMenuItemIsValid(ListChangeListener.Change<? extends MenuItem> change) {
         while (change.next()) {
             if (selectedMenuItem.getValue() == null) {
                 // null is always a valid selected menu item, so we do not need to check that it is valid anymore.
                 return;
             }
-            
-            boolean wasSelectedMenuItemReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedMenuItem.getValue());
+
+            boolean wasSelectedMenuItemReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedMenuItem.getValue());
             if (wasSelectedMenuItemReplaced) {
                 // Update selectedMenuItem to its new value.
                 int index = change.getRemoved().indexOf(selectedMenuItem.getValue());
                 selectedMenuItem.setValue(change.getAddedSubList().get(index));
                 continue;
             }
-            
-            boolean wasSelectedMenuItemRemoved = change.getRemoved().stream()
-                    .anyMatch(removedMenuItem -> selectedMenuItem.getValue().isSameMenuItem(removedMenuItem));
+
+            boolean wasSelectedMenuItemRemoved = change.getRemoved().stream().anyMatch(removedMenuItem -> selectedMenuItem.getValue().isSameMenuItem(removedMenuItem));
             if (wasSelectedMenuItemRemoved) {
                 // Select the menu item that came before it in the list,
                 // or clear the selection if there is no such menu item.
@@ -446,19 +439,19 @@ public class ModelManager implements Model {
         requireNonNull(bill);
         restOrRant.getStatistics().addBill(bill);
     }
-    
+
     @Override
-    public ObservableList<Bill> getBillList () {
+    public ObservableList<Bill> getBillList() {
         return restOrRant.getStatistics().getBillList();
     }
-    
+
     @Override
     public void setBill(Bill target, Bill editedItem) {
         requireAllNonNull(target, editedItem);
 
         restOrRant.getStatistics().setBills(target, editedItem);
     }
-    
+
     //=========== Filtered Bill List Accessors ==============================================================
 
     /**
@@ -474,7 +467,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredBillList.setPredicate(predicate);
     }
-    
+
     //=========== Selected bill =============================================================================
 
     @Override
@@ -505,8 +498,7 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedBillReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedBill.getValue());
+            boolean wasSelectedBillReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize() && change.getRemoved().contains(selectedBill.getValue());
             if (wasSelectedBillReplaced) {
                 //Update selectedBill to its new value.
                 int index = change.getRemoved().indexOf(selectedBill.getValue());
@@ -529,15 +521,6 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return restOrRant.equals(other.restOrRant)
-                && userPrefs.equals(other.userPrefs)
-                && filteredOrderItems.equals(other.filteredOrderItems)
-                && Objects.equals(selectedOrderItem.get(), other.selectedOrderItem.get())
-                && filteredMenuItems.equals(other.filteredMenuItems)
-                && Objects.equals(selectedMenuItem.get(), other.selectedMenuItem.get())
-                && filteredTableList.equals(other.filteredTableList)
-                && Objects.equals(selectedTable.get(), other.selectedTable.get())
-                && filteredBillList.equals(other.filteredBillList)
-                && Objects.equals(selectedBill.get(), other.selectedBill.get());
+        return restOrRant.equals(other.restOrRant) && userPrefs.equals(other.userPrefs) && filteredOrderItems.equals(other.filteredOrderItems) && Objects.equals(selectedOrderItem.get(), other.selectedOrderItem.get()) && filteredMenuItems.equals(other.filteredMenuItems) && Objects.equals(selectedMenuItem.get(), other.selectedMenuItem.get()) && filteredTableList.equals(other.filteredTableList) && Objects.equals(selectedTable.get(), other.selectedTable.get()) && filteredBillList.equals(other.filteredBillList) && Objects.equals(selectedBill.get(), other.selectedBill.get());
     }
 }

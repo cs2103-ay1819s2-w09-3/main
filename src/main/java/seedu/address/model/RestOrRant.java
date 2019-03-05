@@ -6,12 +6,12 @@ import java.util.Objects;
 
 import javafx.beans.InvalidationListener;
 import seedu.address.commons.util.InvalidationListenerManager;
-import seedu.address.model.statistics.ReadOnlyStatistics;
-import seedu.address.model.statistics.Statistics;
 import seedu.address.model.menu.Menu;
 import seedu.address.model.menu.ReadOnlyMenu;
 import seedu.address.model.order.Orders;
 import seedu.address.model.order.ReadOnlyOrders;
+import seedu.address.model.statistics.ReadOnlyStatistics;
+import seedu.address.model.statistics.Statistics;
 import seedu.address.model.table.ReadOnlyTables;
 import seedu.address.model.table.Tables;
 
@@ -33,15 +33,15 @@ public class RestOrRant implements ReadOnlyRestOrRant {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         menu = new Menu();
         orders = new Orders();
         tables = new Tables();
         statistics = new Statistics();
     }
 
-    public RestOrRant() {}
+    public RestOrRant() {
+    }
 
     /**
      * Creates an RestOrRant using the data in the {@code toBeCopied}
@@ -50,7 +50,7 @@ public class RestOrRant implements ReadOnlyRestOrRant {
         this();
         resetData(toBeCopied.getOrders(), toBeCopied.getMenu(), toBeCopied.getTables(), toBeCopied.getStatistics());
     }
-    
+
     /**
      * Creates an RestOrRant using the data specified in {@code copyOrders, copyMenu, copyTables} // TODO: add more parameters
      */
@@ -60,7 +60,7 @@ public class RestOrRant implements ReadOnlyRestOrRant {
     }
 
     /**
-     * Resets the existing data of this {@code RestOrRant} with new data from {@code newOrders, newMenu, newTables}. //TODO: add more parameters 
+     * Resets the existing data of this {@code RestOrRant} with new data from {@code newOrders, newMenu, newTables}. //TODO: add more parameters
      */
     public void resetData(ReadOnlyOrders newOrders, ReadOnlyMenu newMenu, ReadOnlyTables newTables, ReadOnlyStatistics newStatistics) {
         requireAllNonNull(newOrders, newMenu, newTables, newStatistics);
@@ -95,9 +95,7 @@ public class RestOrRant implements ReadOnlyRestOrRant {
 
     @Override
     public String toString() {
-        return orders.getOrderItemList().size() + " order items" + "\n" +
-                menu.getMenuItemList().size() + " menu items" + "\n" +
-                statistics.getBillList().size() + " bills";
+        return orders.getOrderItemList().size() + " order items" + "\n" + menu.getMenuItemList().size() + " menu items" + "\n" + statistics.getBillList().size() + " bills";
         // TODO: refine later
     }
 
@@ -108,7 +106,7 @@ public class RestOrRant implements ReadOnlyRestOrRant {
     public Menu getMenu() {
         return menu;
     }
-    
+
     public Statistics getStatistics() {
         return statistics;
     }
@@ -122,9 +120,7 @@ public class RestOrRant implements ReadOnlyRestOrRant {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RestOrRant // instanceof handles nulls
-                && orders.equals(((RestOrRant) other).orders)
-                && menu.equals(((RestOrRant) other).menu)
-                && tables.equals(((RestOrRant) other).tables));
+                && orders.equals(((RestOrRant) other).orders) && menu.equals(((RestOrRant) other).menu) && tables.equals(((RestOrRant) other).tables));
     }
 
     @Override

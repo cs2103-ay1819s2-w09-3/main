@@ -5,11 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.table.ReadOnlyTables;
-import seedu.address.model.order.ReadOnlyOrders;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.menu.ReadOnlyMenu;
+import seedu.address.model.order.ReadOnlyOrders;
+import seedu.address.model.table.ReadOnlyTables;
 
 /**
  * API of the Storage component
@@ -46,9 +46,9 @@ public interface Storage extends UserPrefsStorage, OrdersStorage, MenuStorage, T
     @Override
     Optional<ReadOnlyTables> readTables() throws DataConversionException, IOException;
 
-    @Override 
+    @Override
     void saveTables(ReadOnlyTables tables) throws IOException;
-    
+
     @Override
     void backupTables(ReadOnlyTables tables) throws IOException;
 

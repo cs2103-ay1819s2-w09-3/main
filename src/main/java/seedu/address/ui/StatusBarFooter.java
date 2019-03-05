@@ -1,14 +1,11 @@
 package seedu.address.ui;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Clock;
 import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.address.model.ReadOnlyRestOrRant;
 
 /**
  * A ui for the status bar that is displayed at the footer of the application.
@@ -17,19 +14,16 @@ public class StatusBarFooter extends UiPart<Region> {
 
     public static final String SYNC_STATUS_INITIAL = "Not updated yet in this session";
     public static final String SYNC_STATUS_UPDATED = "Last Updated: %s";
-
+    private static final String FXML = "StatusBarFooter.fxml";
     /**
      * Used to generate time stamps.
-     *
+     * <p>
      * TODO: change clock to an instance variable.
      * We leave it as a static variable because manual dependency injection
      * will require passing down the clock reference all the way from MainApp,
      * but it should be easier once we have factories/DI frameworks.
      */
     private static Clock clock = Clock.systemDefaultZone();
-
-    private static final String FXML = "StatusBarFooter.fxml";
-
     @FXML
     private Label syncStatus;
     @FXML
@@ -43,16 +37,16 @@ public class StatusBarFooter extends UiPart<Region> {
         //syncStatus.setText(SYNC_STATUS_INITIAL);
         //saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
     }
-    
+
     public StatusBarFooter() {
         super(FXML);
     }
 
     /**
-     * Updates the current mode display to the specified mode.
+     * Returns the clock currently in use.
      */
-    public void updateMode(String newMode) {
-        currentMode.setText(newMode);
+    public static Clock getClock() {
+        return clock;
     }
 
     /**
@@ -63,10 +57,10 @@ public class StatusBarFooter extends UiPart<Region> {
     }
 
     /**
-     * Returns the clock currently in use.
+     * Updates the current mode display to the specified mode.
      */
-    public static Clock getClock() {
-        return clock;
+    public void updateMode(String newMode) {
+        currentMode.setText(newMode);
     }
 
     /**
