@@ -30,9 +30,13 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#update-table-feature">3.2. Update Table feature</a></li>
+<li><a href="#changing-to-table-mode">3.3. Changing to Table Mode</a></li>
+<li><a href="#bill-feature">3.4. Bill feature</a></li>
+<li><a href="#code-addtomenu-code-feature">3.5. <code>AddToMenu</code> feature</a></li>
+<li><a href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -547,7 +551,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in json format and read it back.</p>
+<p>can save the RestOrRant data in json format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -769,20 +773,382 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="update-table-feature"><a class="link" href="#update-table-feature">3.2. Update Table feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The update table mechanism is facilitated by <code>UniqueTableList</code>. It stores the all tables currently in the system and ensures that there are no duplicated tables. Additionally, it implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UniqueTableList#contains(targetTable)</code>&#8201;&#8212;&#8201;Checks if the target table exists within the unique list of tables.</p>
+</li>
+<li>
+<p><code>UniqueTableList#setTable(targetTable, editedTable)</code>&#8201;&#8212;&#8201;Replaces the target table in the list with the new table with the updated <code>TableStatus</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the Model interface as <code>Model#setTable(targetTable, editedTable)</code> and <code>Model#hasTable(targetTable)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the update table mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>UniqueTableList</code> will be initialised to be empty.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UpdateTableStartingStateListDiagram.png" alt="UpdateTableStartingStateListDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>addTable 4</code> command to add a table to the RestOrRant application. Since it is the first new table, it will be labelled table <code>1</code> and not be occupied thus having a table status of <code>0/4</code>. The <code>UniqueTableList</code> will now contain 1 table.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UpdateTableAddTableStateListDiagram.png" alt="UpdateTableAddTableStateListDiagram" width=""800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 3. The user then has 4 customers enter his/her restaurant and executes <code>updateTable 1 4</code> command to update the table labelled 1 with 4 customers. The <code>updateTable</code> command calls <code>Model#setTable(targeTable, editedTable)</code>, causing the RestOrRant to create a new table with the updated <code>TableStatus</code> and replace the current target table in the UniqueTableList. At this point, the UniqueTableList still has only 1 table the original table was replaced by the updated table. The <code>Storage</code> detects this change in the UniqueTableList and also updates itself.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UpdateTableUpdateTableStateListDiagram.png" alt="UpdateTableUpdateTableStateListDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the update table operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UpdateTableSequenceDiagram.png" alt="UpdateTableSequenceDiagram" width="800">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the table to be edited does not exist in the <code>UniqueTableList</code>, the application returns an error to the user rather than attempting to replace the non existent table.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises what happens when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UpdateTableActivityDiagram.png" alt="UpdateTableActivityDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-update-table-executes"><a class="link" href="#aspect-how-update-table-executes">Aspect: How update table executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Replace the entire table with an updated table.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Maintains abstraction of <code>Table</code> and <code>TableStatus</code> and reduce errors from abusing the editability of <code>TableStatus</code> in <code>Table</code>.</p>
+</li>
+<li>
+<p>Cons: May have efficiency issues when creating a whole new object whenever part of it needs to be changed.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Directly edit the <code>TableStatus</code> of the tables.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Potentially more efficient as there is no need to create new object and replace items in a list.</p>
+</li>
+<li>
+<p>Cons: Breaks abstraction to a certain extent and allows future developers to abuse the object.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-to-table-mode"><a class="link" href="#changing-to-table-mode">3.3. Changing to Table Mode</a></h3>
+<div class="sect3">
+<h4 id="modes"><a class="link" href="#modes">3.3.1. Modes</a></h4>
+<div class="paragraph">
+<p>The modes of the application are defined using a <code>Mode</code> enum instead of declaring integer constants. This is to make the code more readable as the enum values explicitly state the name of the mode (eg. <code>TABLE_MODE</code>, <code>MENU_MODE</code>) and to easily identify incorrect modes since the set of valid modes is restricted to the enum values.</p>
+</div>
+<div class="paragraph">
+<p>The current mode of the application is stored as a private attribute <code>Mode mode</code> in <code>LogicManager</code>. It is stored in the <code>Logic</code> component rather than the <code>Model</code> component because modes are used to organise the available commands into their respective features, and the check for which a command is valid in a particular mode is done in <code>Logic</code>. With this implementation, <code>Model</code> does not need to know what the current mode is at all and this reduces coupling.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changing-mode"><a class="link" href="#changing-mode">3.3.2. Changing mode</a></h4>
+<div class="paragraph">
+<p>When the mode of the application is changed, we need to update the:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Logic</code> component so that the <code>mode</code> attribute in <code>LogicManager</code> reflects the new current mode, since this is used to check if a command can be executed,</p>
+</li>
+<li>
+<p><code>UI</code> component so that the panels display the information that is relevant to the mode.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When the user wants to perform order-related operations (eg. add an item to the table&#8217;s order), the user will first have to switch to Table Mode by typing the <code>tableMode</code> command (or its shortcut command <code>TM</code>) followed by the table number of the table that the user wants to update.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>tableMode</code> command can be used from any mode, even in Table Mode of a different table number. If the application is already in Table Mode of the same table number, an error message will be shown to the user.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows the relevant parts of what happens when a user executes the <code>tableMode 3</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/TableModeSequenceDiagram.png" alt="TableModeSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>LogicManager</code> will receive the command from the UI and parse the command to obtain the <code>TableModeCommand</code> object to be executed. The <code>TableModeCommand</code> contains a <code>TableNumber</code> attribute that indicates the table number of the target table to switch to. In this case, it will represent table number 3.</p>
+</div>
+<div class="paragraph">
+<p>The <code>TableModeCommand</code> is then executed. It first retrieves the <code>Table</code> that corresponds to its <code>TableNumber</code> attribute. This is done by going through <code>Model#getRestOrRant()</code> to obtain the <code>ReadOnlyRestOrRant</code>, whose <code>getTables()</code> method can be called to retrieve <code>ReadOnlyTables</code> that contains the list of all the tables in the restaurant. The <code>Table</code> can then be retrieved by passing <code>TableNumber</code> into <code>ReadOnlyTables#getTableFromNumber()</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Table</code> is then set as the selected table in <code>Model</code> using <code>Model#setSelectedTable()</code>. This is to keep track of the current table so that the Table Mode commands like <code>addToOrder</code> and <code>bill</code> can easily perform their operations by getting the table from <code>Model#getSelectedTable()</code>.</p>
+</div>
+<div class="paragraph">
+<p>After which, <code>Model#updateFilteredOrderItemList()</code> is called to update the filtered list such that it only contains order items ordered by the chosen table. This will then update the item list panel in the UI to display only the order items that were ordered by the chosen table, since the UI retrieves its information from the filtered list.</p>
+</div>
+<div class="paragraph">
+<p><code>TableModeCommand</code> then calls <code>Model#updateMode()</code> to trigger the listener so that <code>LogicManager</code> knows that there has been a change in mode. When that is done, it generates a <code>CommandResult</code> whose <code>toMode</code> attribute is set to <code>TABLE_MODE</code> and this is returned to the <code>LogicManager</code>. Since the listener has set <code>modeModified</code> to true, <code>LogicManager</code> calls <code>changeMode()</code> to update its <code>mode</code> attribute to <code>TABLE_MODE</code>.</p>
+</div>
+<div class="paragraph">
+<p>Finally, the <code>CommandResult</code> is returned to <code>MainWindow</code> in the UI and since the <code>CommandResult</code> contains a non-null <code>toMode</code> attribute, it will call <code>handleChangeMode()</code> to update the panels on display.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bill-feature"><a class="link" href="#bill-feature">3.4. Bill feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The Bill mechanism can only be executed under the <code>TableMode</code>. After which, it switches to <code>BillMode</code> which changes the UI to display a receipt of the bill specific to the table selected in TableMode.</p>
+</div>
+<div class="paragraph">
+<p>The main crust of Bill mechanism is implemented in <code>BillCommand</code>. <code>BillCommand#execute()</code> overrides <code>Command#execcute()</code> which is called in <code>LogicManger</code>. It takes in the current mode, model and command history which will provide the necessary functions it will need to execute the command properly.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, it implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BillCommand#calculateBill()</code>&#8201;&#8212;&#8201;Calculates the total bill from the order list that is unique to a table.</p>
+</li>
+<li>
+<p><code>BillCommand#updateDailyRevenue()</code>&#8201;&#8212;&#8201;Either saves the bill as a new <code>DailyRevenue</code>  or updates the <code>DailyRevenue</code> that is existing in its Statistics storage.</p>
+</li>
+<li>
+<p><code>BillCommand#updateStatusOfTable()</code>&#8201;&#8212;&#8201;Updates the status of the table to indicate that it is empty.</p>
+</li>
+<li>
+<p><code>BillCommand#updateOrderList()</code>&#8201;&#8212;&#8201;Clears the order list to prepare for the next customer.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>bill</code> or <code>b</code> command is executed in 2 simple steps. Given below is an example usage scenario and how the bill mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. Users are only allowed to use the <code>bill/b</code> command in <strong>TableMode</strong>. When they enter the <code>TableMode 1</code> command, the program calls for <code>Model#setselectedTable()</code> to set the current table to Table 1 and change the UI display to the menu and the table’s list of orders as shown below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/TableMode.png" alt="TableMode" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>bill</code> command to bill the orders of the current Table. The <code>bill</code> command gets the details of the current table using <code>Model#getSelectedTable()</code> and checks that the table exists. If it is true that the table exists, it calls both <code>Model#getFilteredOrderItemList</code> and <code>ReadOnlyRestOrRant#geMenu()</code> to obtain the table’s list of orders and the restaurant’s menu to pass into <code>BillCommand#calculateBill()</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>BillCommand#calculateBill()</code> will iterate through the <code>orderItemList</code> to obtain individual <code>orderItems</code> and execute the following in each iteration:
+* Obtain the <code>menuItem</code> by passing the code of the OrderItem into <code>Menu#getItemFromCode</code>.
+* Create a <code>Receipt</code> that appends the <code>MenuItem#getCode()</code>, <code>MenuItem#getName()</code>, <code>MenuItem#getPrice()</code> and <code>OrderItem#getQuantity()</code>.
+* Add the price of each dish multiplied by the quantity ordered to the bill.</p>
+</div>
+<div class="paragraph">
+<p>After the iterating through the <code>orderItemList</code>, the receipt will append the final calculation of the total bill and the function will return a new Bill that contains the updated <code>tableNumber</code>, <code>totalBill</code> and <code>receipt</code>. This new Bill will be assigned as the recent bill that was created via <code>Model#setRecentBill()</code>. Format of the receipt should be as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/BillReceipt.png" alt="BillReceipt" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>Now that the bill is calculated, the <code>BillCommand</code> has to store the calculated data in the <code>Statistics</code> storage. If a <code>DailyRevenue</code> with the same <code>Day</code>, <code>Month</code> and <code>Year</code> exists in the <code>DailyRevenueList</code>, the program calls <code>BillCommand#updateDailyRevenue()</code> to add the total bill to the recorded total daily revenue. On the other hand, if no matching Daily Revenue is found, the program will create a new Daily Revenue from the details o the new bill and store it in the statistics storage using <code>Model#addDailyRevenue</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>BillCommand#updateStatusOfTable()</code> takes in the <code>Model</code> as an argument and creates a new Table with the updated <code>TableStatus</code>. This is done by calling <code>TableStatus#changeOccupancy(). After which, `Model#setTable()</code> is called to replace the current <code>Table</code> with the new <code>Table</code> that has the updated <code>TableStatus</code>.</p>
+</div>
+<div class="paragraph">
+<p>Lastly, <code>BillCommand#updateOrderList</code> is called to empty the order list of the current <code>Table</code>. Below is illustrates the final result that derived from executing the <code>bill</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/BillMode.png" alt="BillMode" width="650">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 3. Once the user is in BillMode, they can change their execute any commands that are related to StatisticsMode or manually change their mode to <code>RestaurantMode</code>, <code>TableMode</code> and <code>MenuMode</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The command will not execute the functions stated above until it has confirmed that the user is in <code>TableMode</code> and the current table exists.
+* If the user is in the wrong mode, the program will return a <code>CommandException</code> with the message “Incorrect Mode, unable to execute command. Enter tableMode.”.
+* If the current table does not exist, the program will return a <code>CommandException</code> with the message “This table does not exist.”.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a the <code>bill</code> command:</p>
+</div>
+<div class="paragraph">
+<p>To add: BillActivityDiagram.png[width="650"]</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-addtomenu-code-feature"><a class="link" href="#code-addtomenu-code-feature">3.5. <code>AddToMenu</code> feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.5.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The menu items in the menu are stored as a list. Adding a new menu item to the menu is done by adding to the existing list.</p>
+</div>
+<div class="paragraph">
+<p>The command is read as a text string from the command box and then is executed by calling <code>executeCommand</code>, which passes this string to the Logic component by calling <code>execute</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>execute</code> method in the logic component then creates a command from the text string input by parsing the string to identify the command word (done by the <code>parse</code> method in the <code>RestOrRantParser</code> class) and other parameters, in this case the details of the menu item (done by the <code>parse</code> method in the <code>AddToMenuCommandParser</code> class). The text string is then converted to Name, Code, and Price after parsing and then passed to Model component.</p>
+</div>
+<div class="paragraph">
+<p>In the model component, the validity of the name, code and price of the menu item is checked, and the menu item is only added to the current menu items list if all three parameters are valid (i.e. in the specified format). The new menu item is added to the list in the Model component after ensuring that the menu item does not already exist in the list and that it does not have the same name and code as another menu item already in the list.</p>
+</div>
+<div class="paragraph">
+<p>After adding to the list in the Model component, the <code>indicateModified</code> method is called, which then triggers the Logic component to save the menu, by calling <code>saveMenu</code> in the Storage Component.</p>
+</div>
+<div class="paragraph">
+<p>The User Interface also updated by adding the new menu item to the list panel.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This action can only be done in Menu Mode. If not in Menu Mode currently , users can first change mode by typing <code>MenuMode</code> or <code>MM</code> in the command box.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the <code>addToMenu</code> mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user executes the <code>addToMenu</code> command by typing the name, code and price of the menu item (e.g.: <code>addToMenu n/French Fries c/W12 p/2.50</code>).</p>
+</div>
+<div class="paragraph">
+<p>Step 2. After ensuring that all parameters is valid and that the new menu item is unique, the change is reflected in the User Interface, where the list panel displays the newly added menu item. A success message is also displayed to the users at the result display box.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.5.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-saving-changes-from-code-addtomenu-code-command"><a class="link" href="#aspect-saving-changes-from-code-addtomenu-code-command">Aspect: Saving changes from <code>AddToMenu</code> command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Saves only the menu.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Uses less memory as any update to the menu will only save the menu. This is implemented by adding a listener to menu, which detects any changes to the menu when the <code>indicateModified</code> method is called. This then triggers Storage component to save the state of the menu.</p>
+</li>
+<li>
+<p>Cons: An increase in the number of variables during runtime, as every feature will need a listener and a boolean (for instance, menu feature would have a listener and a boolean <code>menuModified</code> to trigger call storage#saveMenu() when the boolean evaluates to true).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Save the whole restaurant instance.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Fewer variables during runtime, easier to call just one boolean upon any change to restaurant features.</p>
+</li>
+<li>
+<p>Cons: There is no need to save another feature if only menu is being updated, may cause lagging instead of improving performance.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The pros outweighs the cons as despite the number of variables during runtime, in the long run saving every instance of the restaurant would cause bigger performance issues such as lagging especially if there are constant and multiple changes to every feature of the restaurant. This implementation is also more scalable for future developments.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -813,7 +1179,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1990,14 +2356,14 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">waiter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">view the status of the tables</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">know which tables are free/occupied and which tables are waiting for orders/has received their orders</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view the status of the tableList</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">know which tableList are free/occupied and which tableList are waiting for orders/has received their orders</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">waiter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">change status of tables</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">update the availability of tables</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">change status of tableList</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">update the availability of tableList</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -2044,8 +2410,8 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">waiter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">reserve tables</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see which tables can be provided to other subsequent customers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reserve tableList</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see which tableList can be provided to other subsequent customers</p></td>
 </tr>
 </tbody>
 </table>
@@ -2060,17 +2426,105 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is <code>RestOrRant</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-checking-for-available-tables" class="discrete">Use case: Checking for available tables</h3>
+<h3 id="use-case-switching-to-restaurant-mode" class="discrete">Use case: Switching to Restaurant Mode</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User enters command to list all tables in the restaurant.</p>
+<p>User enters command to change to Restaurant Mode.</p>
 </li>
 <li>
-<p>RestOrRant Program returns the status (number of customers at the table/number of seats at the table) of all tables in the restaurant.</p>
+<p>RestOrRant programs changes mode and indicates the mode it has changed to.</p>
+<div class="paragraph">
+<p>User case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The program is already in Restaurant Mode.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. RestOrRant Program returns an error message that it is already in Restaurant Mode.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-switching-to-menu-mode" class="discrete">Use case: Switching to Menu Mode</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enters the menuMode command to switch mode to menu mode</p>
+</li>
+<li>
+<p>RestOrRant Program changes the UI to show the menu in the list panel, and allows addToMenu command.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. The program mode is already in Menu Mode.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. RestOrRant Program returns an message that program is already in menu mode.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-adding-tables-to-the-restorrant-program" class="discrete">Use case: Adding tables to the RestOrRant Program</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enters command to add a table to the restaurant</p>
+</li>
+<li>
+<p>RestOrRant Program returns success message that the table is added, providing the table number and table status.</p>
+</li>
+</ol>
+</div>
+<h3 id="use-case-checking-for-available-tablelist" class="discrete">Use case: Checking for available tableList</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enters command to list all tableList in the restaurant.</p>
+</li>
+<li>
+<p>RestOrRant Program returns the status (number of customers at the table/number of seats at the table) of all tableList in the restaurant.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2087,7 +2541,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. RestOrRant Program returns an error message that there are no tables in the restaurant.</p>
+<p>2a1. RestOrRant Program returns an error message that there are no tableList in the restaurant.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2136,7 +2590,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <h3 id="use-case-adding-items-to-menu" class="discrete">Use case: Adding Items to Menu</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> Item to be added cannot exist in the menu.</p>
+<p><strong>Preconditions:</strong> Program mode should be in Menu Mode. Item to be added cannot exist in the menu.</p>
 </div>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2467,4 +2921,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-01 11:23:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-19 15:47:15 UTC</div></div></div></body></html>
