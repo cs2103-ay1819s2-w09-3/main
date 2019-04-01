@@ -21,7 +21,15 @@
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
-<li><a href="#command-summary">5. Command Summary</a></li>
+<li><a href="#command-summary">5. Command Summary</a>
+<ul class="sectlevel2">
+<li><a href="#general-2">5.1. General</a></li>
+<li><a href="#restaurant-mode-2">5.2. Restaurant Mode</a></li>
+<li><a href="#table-mode-2">5.3. Table Mode</a></li>
+<li><a href="#menu-mode-2">5.4. Menu Mode</a></li>
+<li><a href="#statistics-mode-2">5.5. Statistics Mode</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -376,9 +384,9 @@ Format: <code>addToOrder ITEM_CODE QUANTITY [ITEM_CODE QUANTITY]…</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-note-to-an-item-in-an-order-code-addnote-code"><a class="link" href="#adding-a-note-to-an-item-in-an-order-code-addnote-code">3.3.2. Adding a note to an item in an order: <code>addNote</code></a></h4>
+<h4 id="adding-a-note-to-an-item-in-an-order-code-addnote-code-em-coming-in-v2-0-em"><a class="link" href="#adding-a-note-to-an-item-in-an-order-code-addnote-code-em-coming-in-v2-0-em">3.3.2. Adding a note to an item in an order: <code>addNote</code> <em>(coming in v2.0)</em></a></h4>
 <div class="paragraph">
-<p>Adds a note to an item in the order of the specified table.<br>
+<p>Adds a note to an item in the order of the current selected table.<br>
 Format: <code>addNote ITEM_CODE NOTE</code></p>
 </div>
 <div class="sidebarblock">
@@ -386,7 +394,7 @@ Format: <code>addNote ITEM_CODE NOTE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Item has to exist both in the menu (i.e. item code has to be valid) and order before the note is added.</p>
+<p>Item has to exist both in the menu (i.e. item code has to be valid) and order (i.e. item has been ordered) before the note can be added.</p>
 </li>
 </ul>
 </div>
@@ -398,7 +406,7 @@ Format: <code>addNote ITEM_CODE NOTE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addNote 1 W09 Less spicy</code></p>
+<p><code>addNote W09 Less spicy</code></p>
 </li>
 </ul>
 </div>
@@ -406,7 +414,7 @@ Format: <code>addNote ITEM_CODE NOTE</code></p>
 <div class="sect3">
 <h4 id="deleting-an-item-from-an-order-code-deletefromorder-code"><a class="link" href="#deleting-an-item-from-an-order-code-deletefromorder-code">3.3.3. Deleting an item from an order: <code>deleteFromOrder</code></a></h4>
 <div class="paragraph">
-<p>Deletes a specified item from the order of the specified table.<br>
+<p>Deletes a specified item from the order of the current selected table.<br>
 Format: <code>deleteFromOrder ITEM_CODE</code></p>
 </div>
 <div class="sidebarblock">
@@ -414,7 +422,7 @@ Format: <code>deleteFromOrder ITEM_CODE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Item has to exist both in the menu (i.e. item code has to be valid) and order before it is deleted from the order.</p>
+<p>Item has to exist both in the menu (i.e. item code has to be valid) and order (i.e. item has been ordered) before it can be deleted from the order.</p>
 </li>
 </ul>
 </div>
@@ -426,8 +434,8 @@ Format: <code>deleteFromOrder ITEM_CODE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>deleteFromOrder 1 W09</code><br>
-Deletes W09 Chicken Wings from table 1’s order.</p>
+<p><code>deleteFromOrder W09</code><br>
+Deletes W09 Chicken Wings from the current table&#8217;s order.</p>
 </li>
 </ul>
 </div>
@@ -435,8 +443,8 @@ Deletes W09 Chicken Wings from table 1’s order.</p>
 <div class="sect3">
 <h4 id="clearing-all-the-items-in-an-order-code-clearorder-code"><a class="link" href="#clearing-all-the-items-in-an-order-code-clearorder-code">3.3.4. Clearing all the items in an order: <code>clearOrder</code></a></h4>
 <div class="paragraph">
-<p>Deletes all the items ordered by the specified table.<br>
-Format: <code>clearOrder TABLE_NUMBER</code></p>
+<p>Deletes all the items ordered by the current selected table.<br>
+Format: <code>clearOrder</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -444,15 +452,15 @@ Format: <code>clearOrder TABLE_NUMBER</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>clearOrder 1</code></p>
+<p><code>clearOrder</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-an-item-in-an-order-as-served-code-serve-code"><a class="link" href="#marking-an-item-in-an-order-as-served-code-serve-code">3.3.5. Marking an item in an order as served: <code>serve</code></a></h4>
+<h4 id="marking-an-item-in-an-order-as-served-code-serve-code-em-coming-in-v1-4-em"><a class="link" href="#marking-an-item-in-an-order-as-served-code-serve-code-em-coming-in-v1-4-em">3.3.5. Marking an item in an order as served: <code>serve</code> <em>(coming in v1.4)</em></a></h4>
 <div class="paragraph">
-<p>Marks the specified item as served for the specified table.<br>
+<p>Marks the specified item as served for the current selected table.<br>
 Format: <code>serve ITEM_CODE [QUANTITY]</code></p>
 </div>
 <div class="sidebarblock">
@@ -460,10 +468,10 @@ Format: <code>serve ITEM_CODE [QUANTITY]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Item has to exist in both the menu (i.e. item code has to be valid) and order before it is marked as served.</p>
+<p>Item has to exist in both the menu (i.e. item code has to be valid) and order (i.e. item has to be ordered) before it can be marked as served.</p>
 </li>
 <li>
-<p>The quantity served cannot be greater than the ordered quantity of the item.</p>
+<p>The quantity served cannot be greater than the unserved quantity of the item.</p>
 </li>
 <li>
 <p>If quantity is not specified, the default quantity is 1.</p>
@@ -478,49 +486,20 @@ Format: <code>serve ITEM_CODE [QUANTITY]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>serve 1 W09</code><br>
-Updates the status of table 1’s order with 1 W09 Chicken Wings served.</p>
+<p><code>serve W09</code><br>
+Updates the status of the current table&#8217;s order with 1 W09 Chicken Wings served.</p>
 </li>
 <li>
-<p><code>serve 5 C04 2</code><br>
-Updates the status of table 5’s order with 2 C04 Shrimp Fried Rice served.</p>
+<p><code>serve C04 2</code><br>
+Updates the status of the current table&#8217;s order with 2 C04 Shrimp Fried Rice served.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="checking-if-table-is-served-code-istableserved-code"><a class="link" href="#checking-if-table-is-served-code-istableserved-code">3.3.6. Checking if table is served : <code>isTableServed</code></a></h4>
+<h4 id="calculating-the-bill-of-an-order-code-bill-code"><a class="link" href="#calculating-the-bill-of-an-order-code-bill-code">3.3.6. Calculating the bill of an order : <code>bill</code></a></h4>
 <div class="paragraph">
-<p>Checks if all menu items on the order has been served.<br>
-Format: <code>isTableServed</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Checks if the table exists.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>isTableServed</code><br>
-Returns <code>Table is fully served</code>, <code>Table is not fully served</code> or <code>Table is empty</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="calculating-the-bill-of-an-order-code-bill-code"><a class="link" href="#calculating-the-bill-of-an-order-code-bill-code">3.3.7. Calculating the bill of an order : <code>bill</code></a></h4>
-<div class="paragraph">
-<p>Calculates the bill of an order from the specified table and displays the receipt.<br>
+<p>Calculates the bill of an order from the current selected table and displays the receipt.<br>
 Format: <code>bill</code></p>
 </div>
 <div class="paragraph">
@@ -529,8 +508,8 @@ Format: <code>bill</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>TableMode 1</code> then <code>bill</code><br>
-Returns the total price of the order from table 1.</p>
+<p><code>bill</code><br>
+Returns the total price of the order from the current table.</p>
 </li>
 </ul>
 </div>
@@ -616,6 +595,11 @@ Checks if item with code A02 exists in the menu.</p>
 <h3 id="statistics-mode"><a class="link" href="#statistics-mode">3.5. Statistics Mode</a></h3>
 <div class="paragraph">
 <p>In Statistics Mode, you can obtain statistics related to your restaurant, such as daily revenue and the popularity of dishes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SMUi.png" alt="SMUi" width="790">
+</div>
 </div>
 <div class="sect3">
 <h4 id="getting-the-most-popular-item-ordered-code-getmostpopularitem-code"><a class="link" href="#getting-the-most-popular-item-ordered-code-getmostpopularitem-code">3.5.1. Getting the most popular item ordered: <code>getMostPopularItem</code></a></h4>
@@ -800,82 +784,216 @@ Returns All the statistics it has computed.
 <div class="sect1">
 <h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Changing to RestaurantMode</strong> : <code>restaurantMode</code></p>
-</li>
-<li>
-<p><strong>Add tables</strong> : <code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS] &#8230;&#8203;</code><br>
-e.g. <code>addTables 2 4 6 8</code></p>
-</li>
-<li>
-<p><strong>Remove table</strong> : <code>removeTable TABLE_NUMBER</code><br>
-e.g. <code>removeTable 3</code></p>
-</li>
-<li>
-<p><strong>Update table</strong> : <code>updateTable TABLE_NUMBER NEW_OCCUPANCY</code><br>
-e.g. <code>updateTable 3 2</code></p>
-</li>
-<li>
-<p><strong>Add items to order</strong> : <code>addToOrder TABLE_NUMBER ITEM_CODE QUANTITY [ITEM_CODE QUANTITY] …</code><br>
-e.g. <code>addToOrder 5 W09 1 N01 1 C04 2</code></p>
-</li>
-<li>
-<p><strong>Add note to order</strong> : <code>addNote TABLE_NUMBER ITEM_CODE NOTE</code><br>
-e.g. <code>addNote 1 W09 Less spicy</code></p>
-</li>
-<li>
-<p><strong>Delete item from order</strong> : <code>deleteFromOrder TABLE_NUMBER ITEM_CODE [QUANTITY]</code><br>
-e.g. <code>deleteFromOrder 1 W09 1</code></p>
-</li>
-<li>
-<p><strong>Clear order</strong> : <code>clearOrder TABLE_NUMBER</code><br>
-e.g. <code>clearOrder 1</code></p>
-</li>
-<li>
-<p><strong>Update item served status</strong> : <code>serve TABLE_NUMBER ITEM_CODE [QUANTITY]</code><br>
-e.g. <code>serve 5 C04 2</code></p>
-</li>
-<li>
-<p><strong>Table serve status</strong> : <code>isTableServed</code></p>
-</li>
-<li>
-<p><strong>Add item to menu</strong> : <code>addToMenu</code><br>
-e.g. <code>addToMenu c/A02 n/French Fries p/2.00</code></p>
-</li>
-<li>
-<p><strong>Remove item from menu</strong> : <code>removeFromMenu</code><br>
-e.g. <code>removeFromMenu c/A02 n/French Fries</code></p>
-</li>
-<li>
-<p><strong>Check if item exists in the menu</strong> : <code>itemExists</code><br>
-e.g. <code>itemExists ITEM_CODE</code></p>
-</li>
-<li>
-<p><strong>Calculate bill of an order</strong> : <code>bill</code><br>
-e.g. <code>bill TABLE_NUMBER</code></p>
-</li>
-<li>
-<p><strong>Get most popular item</strong> : <code>getMostPopularItem</code><br>
-e.g. <code>getMostPopularItem</code></p>
-</li>
-<li>
-<p><strong>Get total number of customers</strong> : <code>getTotalCustomers</code><br>
-e.g. <code>getTotalCustomers [YEAR] [MONTH] [DAY]</code></p>
-</li>
-<li>
-<p><strong>Get total revenue</strong> : <code>getTotalRevenue</code><br>
-e.g. <code>getTotalRevenue [YEAR] [MONTH] [DAY]</code></p>
-</li>
-<li>
-<p><strong>Get all statistics</strong> : <code>getStatistics</code><br>
-e.g. <code>getStatistics</code></p>
-</li>
-<li>
-<p><strong>Help</strong> : <code>help</code></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Here is our reference sheet so that you can have all of RestOrRant&#8217;s commands and features at your fingertips!</p>
+</div>
+<div class="sect2">
+<h3 id="general-2"><a class="link" href="#general-2">5.1. General</a></h3>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 15%;">
+<col style="width: 30%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Shortcut</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>help</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kbt:[F1]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>help</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows the user guide</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>restaurantMode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>RM</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>restaurantMode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Switches to Restaurant Mode</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tableMode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>TM</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tableMode TABLE_NUMBER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tableMode 1</code><br>
+Switches to Table Mode for Table 1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>menuMode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>MM</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>menuMode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Switches to Menu Mode</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>statisticsMode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>SM</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>statisticsMode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Switches to Statistics Mode</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exits RestOrRant</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="restaurant-mode-2"><a class="link" href="#restaurant-mode-2">5.2. Restaurant Mode</a></h3>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 15%;">
+<col style="width: 30%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Shortcut</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addTable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS] &#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addTable 2 4 6 8</code><br>
+Adds 4 tables with 2, 4, 6 and 8 seats</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>editPax</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>editPax TABLE_NUMBER NEW_OCCUPANCY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>editPax 1 2</code><br>
+Updates Table 1 to have 2 diners</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>editSeats</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>editSeats TABLE_NUMBER NUMBER_OF_SEATS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>editSeats 1 5</code><br>
+Updates Table 1 to have 5 seats</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clearTable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clearTable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clears all the tables in RestOrRant</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="table-mode-2"><a class="link" href="#table-mode-2">5.3. Table Mode</a></h3>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 15%;">
+<col style="width: 30%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Shortcut</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addToOrder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addToOrder ITEM_CODE QUANTITY [ITEM_CODE QUANTITY] …</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addToOrder W09 1 W12 2</code><br>
+Adds 1 W09 and 2 W12 to the current table&#8217;s order</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deleteFromOrder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deleteFromOrder ITEM_CODE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deleteFromOrder W09</code><br>
+Removes W09 from the current table&#8217;s order</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clearOrder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clearOrder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clears all the items from the current table&#8217;s order</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bill</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>b</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bill</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the bill for the current table&#8217;s order</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="menu-mode-2"><a class="link" href="#menu-mode-2">5.4. Menu Mode</a></h3>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 15%;">
+<col style="width: 30%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Shortcut</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addToMenu</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addToMenu c/ITEM_CODE n/ITEM_NAME p/ITEM_PRICE …</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addToMenu c/A02 n/French Fries p/2.00</code><br>
+Adds A02 to the menu</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="statistics-mode-2"><a class="link" href="#statistics-mode-2">5.5. Statistics Mode</a></h3>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 15%;">
+<col style="width: 30%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Shortcut</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>command</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shortcut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>usage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>example</code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 16:52:51 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 17:03:34 UTC</div></div></div></body></html>
