@@ -10,7 +10,7 @@
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#setting-up">2. Setting up</a>
+<li><a href="#setting-up">2. Setting Up</a>
 <ul class="sectlevel2">
 <li><a href="#prerequisites">2.1. Prerequisites</a></li>
 <li><a href="#setting-up-ror-in-your-computer">2.2. Setting up ROR in your computer</a></li>
@@ -30,8 +30,8 @@
 </li>
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#update-table-feature">4.1. Update Table feature</a></li>
-<li><a href="#changing-to-table-mode">4.2. Changing to Table Mode</a></li>
+<li><a href="#changing-mode-feature">4.1. Changing Mode feature</a></li>
+<li><a href="#update-table-feature">4.2. Update Table feature</a></li>
 <li><a href="#bill-feature">4.3. Bill feature</a></li>
 <li><a href="#adding-to-menu-feature">4.4. Adding To Menu feature</a></li>
 <li><a href="#logging">4.5. Logging</a></li>
@@ -80,8 +80,12 @@
 <li><a href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
-<li><a href="#adding-a-table">H.2. Adding a table</a></li>
-<li><a href="#saving-data">H.3. Saving data</a></li>
+<li><a href="#changing-modes">H.2. Changing Modes</a></li>
+<li><a href="#tables">H.3. Tables</a></li>
+<li><a href="#menu">H.4. Menu</a></li>
+<li><a href="#orders">H.5. Orders</a></li>
+<li><a href="#statistics">H.6. Statistics</a></li>
+<li><a href="#saving-data">H.7. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -102,7 +106,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#Setting Up">Setting Up</a> - Provides instructions to set up ROR in your computer</p>
+<p><a href="#setting-up">Setting Up</a> - Provides instructions to set up ROR in your computer</p>
 </li>
 <li>
 <p><a href="#design">Design</a> - Provides an overview of the architecture and components of ROR</p>
@@ -126,28 +130,32 @@
 </div>
 <table class="tableblock frame-all grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 30%;">
-<col style="width: 70%;">
+<col style="width: 20%;">
+<col style="width: 80%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HelloWorld</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>HelloWorld</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Code in the codebase</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:information_source:</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">kbt:[ENTER]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keyboard key</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">:information_source:</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Notes that provides additional information</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">:bulb:</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tips and tricks</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:warning:</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">:warning:</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Warnings</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:computer:</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">:computer: <code>menuMode</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Commands to input in the CLI</p></td>
 </tr>
 </tbody>
@@ -155,7 +163,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
+<h2 id="setting-up"><a class="link" href="#setting-up">2. Setting Up</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section will guide you along the process of setting up ROR in your computer.</p>
@@ -163,7 +171,7 @@
 <div class="sect2">
 <h3 id="prerequisites"><a class="link" href="#prerequisites">2.1. Prerequisites</a></h3>
 <div class="paragraph">
-<p>Before you proceed, there are two prerequisites you will need to fulfill</p>
+<p>Before you proceed, there are two prerequisites you will need to fulfill:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -266,9 +274,17 @@ This will generate all resources required by the application and tests.</p>
 <div class="sect2">
 <h3 id="verifying-the-setup"><a class="link" href="#verifying-the-setup">2.3. Verifying the setup</a></h3>
 <div class="paragraph">
-<p>To make sure that your ROR is properly set up:
-. Run the <code>seedu.address.MainApp</code> and try a few commands
-. <a href="#Testing">Run the tests</a> to ensure they all pass.</p>
+<p>To make sure that your ROR is properly set up:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run the <code>seedu.address.MainApp</code> and try a few commands</p>
+</li>
+<li>
+<p><a href="#Testing">Run the tests</a> to ensure they all pass.</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
@@ -391,9 +407,13 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <div class="sect2">
 <h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">3.1. Architecture</a></h3>
 <div class="paragraph">
-<p>The <strong><em>Architecture Diagram</em></strong> given below (Figure 1) explains the high-level design of ROR.
-.Architecture Diagram
-image::Architecture.png[width="600"]</p>
+<p>The <strong><em>Architecture Diagram</em></strong> given below (Figure 1) explains the high-level design of the ROR App.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Architecture.png" alt="Architecture" width="600">
+</div>
+<div class="title">Figure 1. Architecture Diagram</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -467,23 +487,23 @@ The following class plays an important role at the architecture level:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, the <code>Logic</code> component (see the class diagram given below) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
+<p>For example, the <code>Logic</code> component (see the class diagram given below in Figure 2) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
 </div>
-<div class="title">Figure 1. Class Diagram of the Logic Component</div>
+<div class="title">Figure 2. Class Diagram of the Logic Component</div>
 </div>
 <h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>delete 1</code>.</p>
+<p>The <em>Sequence Diagram</em> below (Figure 3) shows how the components interact with each other for the scenario where the user issues the command <code>delete 1</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
+<img src="images/SDforAddTable.png" alt="SDforAddTable" width="800">
 </div>
-<div class="title">Figure 2. Component interactions for <code>delete 1</code> command</div>
+<div class="title">Figure 3. Component interactions for :computer: <code>addTable 2</code> command</div>
 </div>
 <div class="paragraph">
 <p>The sections below give more details of each component.</p>
@@ -492,9 +512,13 @@ The following class plays an important role at the architecture level:</p>
 <div class="sect2">
 <h3 id="Design-Ui"><a class="link" href="#Design-Ui">3.2. UI component</a></h3>
 <div class="paragraph">
-<p>The UI component handles the User Interface of ROR.
-.Structure of the UI Component
-image::UiClassDiagram.png[width="800"]</p>
+<p>The UI component (Figure 4) handles the User Interface of ROR.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
+</div>
+<div class="title">Figure 4. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
@@ -503,10 +527,10 @@ image::UiClassDiagram.png[width="800"]</p>
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts such as <code>CommandBox</code>, <code>ResultDisplay</code>, <code>TableFlowPanel</code>, <code>MenuFlowPanel</code>, <code>OrdersListPanel</code>, <code>MenuListPanel</code> and <code>StatusBarFooter</code>. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class, and are not used at the same time.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component,</p>
+<p>The <code>UI</code> component:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -522,20 +546,20 @@ image::UiClassDiagram.png[width="800"]</p>
 <div class="sect2">
 <h3 id="Design-Logic"><a class="link" href="#Design-Logic">3.3. Logic component</a></h3>
 <div class="paragraph">
-<p>The Logic component deals with the logic behind the execution of commands.</p>
+<p>The Logic component (Figure 5) deals with the logic behind the execution of commands.</p>
 </div>
 <div id="fig-LogicClassDiagram" class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
 </div>
-<div class="title">Figure 3. Structure of the Logic Component</div>
+<div class="title">Figure 5. Structure of the Logic Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
 <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
 <p><code>Logic</code> uses the <code>RestOrRantParser</code> class to parse the user command.</p>
 </li>
@@ -543,7 +567,7 @@ image::UiClassDiagram.png[width="800"]</p>
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person).</p>
+<p>The command execution can affect the <code>Model</code> (e.g. adding a table).</p>
 </li>
 <li>
 <p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
@@ -551,30 +575,34 @@ image::UiClassDiagram.png[width="800"]</p>
 <li>
 <p>In addition, the <code>CommandResult</code> object can also instruct the <code>Ui</code> to perform certain actions, such as displaying help to the user.</p>
 </li>
-</ol>
+</ul>
 </div>
 <div class="paragraph">
 <p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/DeletePersonSdForLogic.png" alt="DeletePersonSdForLogic" width="800">
+<img src="images/AddTableSdForLogic.png" alt="AddTableSdForLogic" width="800">
 </div>
-<div class="title">Figure 4. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
+<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>addTable 2</code> Command</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="Design-Model"><a class="link" href="#Design-Model">3.4. Model component</a></h3>
 <div class="paragraph">
-<p>The Model component keeps a model of the current state of ROR.
-.Structure of the Model Component
-image::ModelClassDiagram.png[width="800"]</p>
+<p>The Model component keeps a model of the current state of ROR in memory.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
+</div>
+<div class="title">Figure 7. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Model</code>,</p>
+<p>The <code>Model</code>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -585,7 +613,7 @@ image::ModelClassDiagram.png[width="800"]</p>
 <p>stores the RestOrRant data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Table&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code>ObservableList&lt;Table&gt;</code>, <code>ObservableList&lt;OrderItem&gt;</code>, <code>ObservableList&lt;MenuItem&gt;</code> and <code>ObservableList&lt;DailyRevenue&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -596,15 +624,19 @@ image::ModelClassDiagram.png[width="800"]</p>
 <div class="sect2">
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.5. Storage component</a></h3>
 <div class="paragraph">
-<p>The Storage component manages the storing and retrieving of data on local files.
-.Structure of the Storage Component
-image::StorageClassDiagram.png[width="800"]</p>
+<p>The Storage component manages the storing and retrieving of data on local files.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
+</div>
+<div class="title">Figure 8. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Storage</code> component,</p>
+<p>The <code>Storage</code> component:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -612,7 +644,7 @@ image::StorageClassDiagram.png[width="800"]</p>
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Tables, Orders, Menu and Statistics data in json format and read it back.</p>
+<p>can save the <code>Tables</code>, <code>Orders</code>, <code>Menu</code> and <code>Statistics</code> data in json format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -632,9 +664,181 @@ image::StorageClassDiagram.png[width="800"]</p>
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="update-table-feature"><a class="link" href="#update-table-feature">4.1. Update Table feature</a></h3>
+<h3 id="changing-mode-feature"><a class="link" href="#changing-mode-feature">4.1. Changing Mode feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">4.1.1. Current Implementation</a></h4>
+<h4 id="modes"><a class="link" href="#modes">4.1.1. Modes</a></h4>
+<div class="paragraph">
+<p>As ROR contains many features, users may find it complicated to handle all the features at one go with so many commands to use. Furthermore, users may be overwhelmed if all the restaurant&#8217;s information were to be displayed together in one screen.</p>
+</div>
+<div class="paragraph">
+<p>As such, we have decided to implement a mode system for ROR to organise the available commands into their respective features. ROR contains 4 different modes, each displaying a different set of panels that are relevant to the mode:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Restaurant Mode - perform table-related operations across the entire restaurant</p>
+</li>
+<li>
+<p>Table Mode - perform order-related operations for a specific table</p>
+</li>
+<li>
+<p>Menu Mode - perform menu-related operations for the restaurant&#8217;s menu</p>
+</li>
+<li>
+<p>Statistics Mode - perform queries to retrieve the restaurant&#8217;s statistics</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">4.1.2. Current Implementation</a></h4>
+<div class="sect4">
+<h5 id="changing-modes-in-general"><a class="link" href="#changing-modes-in-general">Changing modes in general</a></h5>
+<div class="paragraph">
+<p>The modes of the application are defined using a <code>Mode</code> enum and the current mode of the application is stored as a private attribute <code>Mode mode</code> in <code>LogicManager</code>. Users can switch between modes in ROR using the <code>{XXX}Mode</code> command. When the mode of the application is changed, we need to update the:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Logic</code> component so that the <code>mode</code> attribute in <code>LogicManager</code> reflects the new current mode, since this is used to check if a command can be executed,</p>
+</li>
+<li>
+<p><code>UI</code> component so that the panels display the information that is relevant to the mode.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For all the mode-changing commands, these updates are done using a new <code>toMode</code> attribute added to the <code>CommandResult</code> object. As an example, Figure 9 below shows the sequence diagram for when a user executes the <code>menuMode</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MenuModeSequenceDiagram.png" alt="MenuModeSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 9. Component interactions for :computer: <code>menuMode</code> command</div>
+</div>
+<div class="paragraph">
+<p>Upon execution of the <code>menuMode</code> command, <code>MenuModeCommand#generateCommandResult()</code> will generate a <code>CommandResult</code> whose <code>toMode</code> attribute is set to <code>MENU_MODE</code> and return it to the <code>LogicManager</code>. Now, the updates can be done for the respective components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Logic</code> component: <code>LogicManager</code> calls <code>CommandResult#newModeStatus()</code> to retrieve the mode to be changed to and updates the current mode stored in its <code>mode</code> attribute by calling <code>LogicManager#changeMode()</code>. The <code>CommandResult</code> is passed to <code>MainWindow</code> in UI.</p>
+</li>
+<li>
+<p><code>UI</code> component: <code>MainWindow</code> calls <code>CommandResult#newModeStatus()</code> to retrieve the mode to be changed to and updates the display panels by calling <code>MainWindow#handleChangeMode()</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For commands that do not involve a change in mode, <code>CommandResult#newModeStatus()</code> will return <code>null</code> and no updates to the current mode or display will be done.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="changing-to-table-mode-for-a-specific-table"><a class="link" href="#changing-to-table-mode-for-a-specific-table">Changing to Table Mode for a specific table</a></h5>
+<div class="paragraph">
+<p>All the mode-changing commands take no parameters except for Table Mode. When the user wants to perform order-related operations (eg. add an item to the table&#8217;s order), the user will first have to switch to Table Mode by typing the <code>tableMode</code> command (or its shortcut command <code>TM</code>) followed by the table number of the table that the user wants to perform actions on.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>tableMode</code> command can be used from any mode, even in Table Mode of a different table number. If the application is already in Table Mode of the same table number, or if the table specified by the table number is unoccupied, an error message will be shown to the user.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram (Figure 10) shows the relevant parts of what happens when a user executes the <code>tableMode 3</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/TableModeSequenceDiagram.png" alt="TableModeSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 10. Component interactions for :computer: <code>tableMode 3</code> command</div>
+</div>
+<div class="paragraph">
+<p>The <code>Logic</code> and <code>UI</code> component interactions work in a similar way to the other mode-changing commands and the implementation is mentioned above. The only difference is the parsing of the argument <code>3</code> into a <code>TableNumber</code> object that indicates the table number of the target table to switch to. This <code>TableNumber</code> object is stored as an attribute in <code>TableModeCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s focus on what happens to the Model component when the <code>TableModeCommand</code> is executed. It first retrieves the <code>Table</code> that corresponds to its <code>TableNumber</code> attribute. This is done by going through <code>Model#getRestOrRant()</code> to obtain the <code>ReadOnlyRestOrRant</code>, whose <code>getTables()</code> method can be called to retrieve <code>ReadOnlyTables</code> that contains the list of all the tables in the restaurant. The <code>Table</code> can then be retrieved by passing <code>TableNumber</code> into <code>ReadOnlyTables#getTableFromNumber()</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Table</code> is then set as the selected table in <code>Model</code> using <code>Model#setSelectedTable()</code>. This is to keep track of the current table so that the Table Mode commands like <code>addToOrder</code> and <code>bill</code> can easily perform their operations by getting the table from <code>Model#getSelectedTable()</code>.</p>
+</div>
+<div class="paragraph">
+<p>After which, <code>Model#updateFilteredOrderItemList()</code> is called to update the filtered list such that it only contains order items ordered by the chosen table. This will then update the item list panel in the UI to display only the order items that were ordered by the chosen table, since the UI retrieves its information from the filtered list.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.3. Design Considerations</a></h4>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defining of modes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modes are defined using a <code>Mode</code> enum.<br>
+- <strong>Pros</strong>: Easily identify incorrect modes since the set of valid modes is restricted to the enum values.<br>
+- <strong>Cons</strong>: Need to create a new class and increases coupling between Logic and UI components.</p>
+<p class="tableblock">We decided to choose this option as the enum is an abstraction over the possible modes. Apart from being less prone to errors,
+it also makes the code more readable as the enum values explicitly state the name of the mode (eg. <code>TABLE_MODE</code>, <code>MENU_MODE</code>) and are stored
+in <code>Mode</code> variables, making it clear that it refers to a mode and not just any string.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modes can be defined with strings (eg. "TableMode") or integers.<br>
+- <strong>Pros</strong>: Easy to implement.<br>
+- <strong>Cons</strong>: May be prone to errors (eg. mistyping a string) that causes bugs in the code.<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Storing of current mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mode stored in the Logic component (<code>LogicManager</code>).<br>
+- <strong>Pros</strong>: Easy to access the current mode to check whether a command is valid to execute in a particular mode.<br>
+- <strong>Cons</strong>: Slightly breaks abstraction since mode is not purely related to command execution.</p>
+<p class="tableblock">We decided to store the current mode in Logic because we note that most of the work that requires access to the current mode is done here, so providing a quick access will be more efficient.
+The Model component does not need to know what the current mode is at all, so it would be better to keep the coupling low to facilitate integration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mode stored in the Model component (<code>ModelManager</code>).<br>
+- <strong>Pros</strong>: Maintains abstraction as the mode is part of the current state of the application, which is maintained in Model.<br>
+- <strong>Cons</strong>: Increases coupling among the Model, Logic and UI components.<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifying table number for Table Mode commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified once when switching to Table Mode, then retrieved from <code>Model#getSelectedTable()</code> for future commands.<br>
+- <strong>Pros</strong>: Convenient to retrieve table number without having to explicitly specify it in every command.<br>
+- <strong>Cons</strong>: Non-standardized mode-changing commands since the others do not have any parameters.</p>
+<p class="tableblock">We decided to go ahead with this implementation as we feel that from a user&#8217;s point of view, it would be more convenient to be able to just specify the table number once and then perform a series of operations afterwards. Furthermore, having to parse the table number for every command will also do more work.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified for every command (eg. <code>deleteOrder 3 1</code>).<br>
+- <strong>Pros</strong>: All mode-changing commands are simple and similar.<br>
+- <strong>Cons</strong>: Makes the commands longer to type.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="update-table-feature"><a class="link" href="#update-table-feature">4.2. Update Table feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The update table mechanism is facilitated by <code>UniqueTableList</code>. It stores the all tables currently in the system and ensures that there are no duplicated tables. Additionally, it implements the following operations:</p>
 </div>
@@ -708,7 +912,7 @@ If the table to be edited does not exist in the <code>UniqueTableList</code>, th
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-update-table-executes"><a class="link" href="#aspect-how-update-table-executes">Aspect: How update table executes</a></h5>
 <div class="ulist">
@@ -745,78 +949,9 @@ If the table to be edited does not exist in the <code>UniqueTableList</code>, th
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-to-table-mode"><a class="link" href="#changing-to-table-mode">4.2. Changing to Table Mode</a></h3>
-<div class="sect3">
-<h4 id="modes"><a class="link" href="#modes">4.2.1. Modes</a></h4>
-<div class="paragraph">
-<p>The modes of the application are defined using a <code>Mode</code> enum instead of declaring integer constants. This is to make the code more readable as the enum values explicitly state the name of the mode (eg. <code>TABLE_MODE</code>, <code>MENU_MODE</code>) and to easily identify incorrect modes since the set of valid modes is restricted to the enum values.</p>
-</div>
-<div class="paragraph">
-<p>The current mode of the application is stored as a private attribute <code>Mode mode</code> in <code>LogicManager</code>. It is stored in the <code>Logic</code> component rather than the <code>Model</code> component because modes are used to organise the available commands into their respective features, and the check for which a command is valid in a particular mode is done in <code>Logic</code>. With this implementation, <code>Model</code> does not need to know what the current mode is at all and this reduces coupling.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="changing-mode"><a class="link" href="#changing-mode">4.2.2. Changing mode</a></h4>
-<div class="paragraph">
-<p>When the mode of the application is changed, we need to update the:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Logic</code> component so that the <code>mode</code> attribute in <code>LogicManager</code> reflects the new current mode, since this is used to check if a command can be executed,</p>
-</li>
-<li>
-<p><code>UI</code> component so that the panels display the information that is relevant to the mode.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>When the user wants to perform order-related operations (eg. add an item to the table&#8217;s order), the user will first have to switch to Table Mode by typing the <code>tableMode</code> command (or its shortcut command <code>TM</code>) followed by the table number of the table that the user wants to update.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>tableMode</code> command can be used from any mode, even in Table Mode of a different table number. If the application is already in Table Mode of the same table number, an error message will be shown to the user.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows the relevant parts of what happens when a user executes the <code>tableMode 3</code> command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/TableModeSequenceDiagram.png" alt="TableModeSequenceDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>The <code>LogicManager</code> will receive the command from the UI and parse the command to obtain the <code>TableModeCommand</code> object to be executed. The <code>TableModeCommand</code> contains a <code>TableNumber</code> attribute that indicates the table number of the target table to switch to. In this case, it will represent table number 3.</p>
-</div>
-<div class="paragraph">
-<p>The <code>TableModeCommand</code> is then executed. It first retrieves the <code>Table</code> that corresponds to its <code>TableNumber</code> attribute. This is done by going through <code>Model#getRestOrRant()</code> to obtain the <code>ReadOnlyRestOrRant</code>, whose <code>getTables()</code> method can be called to retrieve <code>ReadOnlyTables</code> that contains the list of all the tables in the restaurant. The <code>Table</code> can then be retrieved by passing <code>TableNumber</code> into <code>ReadOnlyTables#getTableFromNumber()</code>.</p>
-</div>
-<div class="paragraph">
-<p>The <code>Table</code> is then set as the selected table in <code>Model</code> using <code>Model#setSelectedTable()</code>. This is to keep track of the current table so that the Table Mode commands like <code>addToOrder</code> and <code>bill</code> can easily perform their operations by getting the table from <code>Model#getSelectedTable()</code>.</p>
-</div>
-<div class="paragraph">
-<p>After which, <code>Model#updateFilteredOrderItemList()</code> is called to update the filtered list such that it only contains order items ordered by the chosen table. This will then update the item list panel in the UI to display only the order items that were ordered by the chosen table, since the UI retrieves its information from the filtered list.</p>
-</div>
-<div class="paragraph">
-<p><code>TableModeCommand</code> then calls <code>Model#updateMode()</code> to trigger the listener so that <code>LogicManager</code> knows that there has been a change in mode. When that is done, it generates a <code>CommandResult</code> whose <code>toMode</code> attribute is set to <code>TABLE_MODE</code> and this is returned to the <code>LogicManager</code>. Since the listener has set <code>modeModified</code> to true, <code>LogicManager</code> calls <code>changeMode()</code> to update its <code>mode</code> attribute to <code>TABLE_MODE</code>.</p>
-</div>
-<div class="paragraph">
-<p>Finally, the <code>CommandResult</code> is returned to <code>MainWindow</code> in the UI and since the <code>CommandResult</code> contains a non-null <code>toMode</code> attribute, it will call <code>handleChangeMode()</code> to update the panels on display.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="bill-feature"><a class="link" href="#bill-feature">4.3. Bill feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The Bill mechanism can only be executed under the <code>TableMode</code>. After which, it switches to <code>BillMode</code> which changes the UI to display a receipt of the bill specific to the table selected in TableMode.</p>
 </div>
@@ -912,7 +1047,7 @@ The command will not execute the functions stated above until it has confirmed t
 <div class="sect2">
 <h3 id="adding-to-menu-feature"><a class="link" href="#adding-to-menu-feature">4.4. Adding To Menu feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The menu items in the menu are stored as a list. Adding a new menu item to the menu is done by adding to the existing list.</p>
 </div>
@@ -954,7 +1089,7 @@ This action can only be done in Menu Mode. If not in Menu Mode currently , users
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-saving-changes-from-code-addtomenu-code-command"><a class="link" href="#aspect-saving-changes-from-code-addtomenu-code-command">Aspect: Saving changes from <code>AddToMenu</code> command</a></h5>
 <div class="ulist">
@@ -1098,7 +1233,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 5. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 11. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2212,14 +2347,14 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">waiter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">view the status of the tableList</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">know which tableList are free/occupied and which tableList are waiting for orders/has received their orders</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view the status of the tables</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">know which tables are free/occupied and which tables are waiting for orders/has received their orders</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">waiter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">change status of tableList</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">update the availability of tableList</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">change status of tables</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">update the availability of tables</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -2266,14 +2401,11 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">waiter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">reserve tableList</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see which tableList can be provided to other subsequent customers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reserve tables</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see which tables can be provided to other subsequent customers</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -2282,17 +2414,17 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is <code>RestOrRant</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-switching-to-restaurant-mode" class="discrete">Use case: Switching to Restaurant Mode</h3>
+<h3 id="use-case-uc1-switching-to-restaurant-mode" class="discrete">Use case: UC1 - Switching to Restaurant Mode</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User enters command to change to Restaurant Mode.</p>
+<p>User enters command to switch to Restaurant Mode.</p>
 </li>
 <li>
-<p>RestOrRant programs changes mode and indicates the mode it has changed to.</p>
+<p>RestOrRant displays a grid of all the tables in the restaurant with their statuses in the main panel, as well as a list of all the orders from all tables in the side panel.</p>
 <div class="paragraph">
 <p>User case ends.</p>
 </div>
@@ -2305,11 +2437,11 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. The program is already in Restaurant Mode.</p>
+<p>1a. RestOrRant is already in Restaurant Mode.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. RestOrRant Program returns an error message that it is already in Restaurant Mode.</p>
+<p>1a1. RestOrRant returns an error message saying that it is already in the mode.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2319,17 +2451,17 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-switching-to-menu-mode" class="discrete">Use case: Switching to Menu Mode</h3>
+<h3 id="use-case-uc2-switching-to-menu-mode" class="discrete">Use case: UC2 - Switching to Menu Mode</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User enters the menuMode command to switch mode to menu mode</p>
+<p>User enters command to switch to Menu Mode.</p>
 </li>
 <li>
-<p>RestOrRant Program changes the UI to show the menu in the list panel, and allows addToMenu command.</p>
+<p>RestOrRant displays a grid of all the items on the restaurant menu with their code, name and price on the side panel.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2342,11 +2474,11 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. The program mode is already in Menu Mode.</p>
+<p>1a. RestOrRant is already in Menu Mode.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. RestOrRant Program returns an message that program is already in menu mode.</p>
+<p>1a1. RestOrRant returns an error message saying that it is already in the mode.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2356,21 +2488,92 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-adding-tables-to-the-restorrant-program" class="discrete">Use case: Adding tables to the RestOrRant Program</h3>
+<h3 id="use-case-uc3-switching-to-table-mode" class="discrete">Use case: UC3 - Switching to Table Mode</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User enters command to add a table to the restaurant</p>
+<p>User enters command to switch to Table Mode and specifies the table number of the target table.</p>
+</li>
+<li>
+<p>RestOrRant displays a grid of all the items on the restaurant menu with their code, name and price on the side panel.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. RestOrRant is already in Table Mode of the same table number.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. RestOrRant returns an error message saying that it is already in the mode.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b. The specified table number is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1ab. RestOrRant returns an error message saying that the table number is invalid.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c. The table with the specified table number is unoccupied.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c1. RestOrRant returns an error message saying that the table is unoccupied.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-uc4-adding-new-tables" class="discrete">Use case: UC4 - Adding new tables</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enters command to add a table to the restaurant.</p>
 </li>
 <li>
 <p>RestOrRant Program returns success message that the table is added, providing the table number and table status.</p>
 </li>
 </ol>
 </div>
-<h3 id="use-case-checking-for-available-tables" class="discrete">Use case: Checking for available tables</h3>
+<h3 id="use-case-uc5-checking-for-available-tables" class="discrete">Use case: UC5 - Checking for available tables</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2397,7 +2600,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. RestOrRant Program returns an error message that there are no tableList in the restaurant.</p>
+<p>2a1. RestOrRant Program returns an error message that there are no tables in the restaurant.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2407,17 +2610,23 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-taking-an-order" class="discrete">Use case: Taking an order</h3>
+<h3 id="use-case-uc6-taking-an-order" class="discrete">Use case: UC6 - Taking an order</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User enters the table number, along with item codes and quantities of the menu items.</p>
+<p>User <span class="underline">switches to Table Mode (UC3)</span>.</p>
 </li>
 <li>
-<p>RestOrRant Program updates the specified table&#8217;s order with the menu items and displays the new order list.</p>
+<p>RestOrRant switches to Table Mode.</p>
+</li>
+<li>
+<p>User enters a list of item codes and quantities of the items to be added to the table&#8217;s order.</p>
+</li>
+<li>
+<p>RestOrRant updates the list of order items in the side panel to include the newly added order items.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2430,13 +2639,13 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. The item code(s) is/are invalid.</p>
+<p>3a. The item code(s) is/are invalid.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. RestOrRant Program displays the item codes that are invalid and remove them from the list of item codes to add to the order.</p>
+<p>3a1. RestOrRant displays the first invalid item code in the result display and stops adding new items to the order.</p>
 <div class="paragraph">
-<p>Use case resumes from step 2.</p>
+<p>Use case resumes from step 4.</p>
 </div>
 </li>
 </ul>
@@ -2444,7 +2653,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-adding-items-to-menu" class="discrete">Use case: Adding Items to Menu</h3>
+<h3 id="use-case-uc7-adding-items-to-menu" class="discrete">Use case: UC7 - Adding items to menu</h3>
 <div class="paragraph">
 <p><strong>Preconditions:</strong> Program mode should be in Menu Mode. Item to be added cannot exist in the menu.</p>
 </div>
@@ -2518,14 +2727,14 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-check-statistics" class="discrete">Use case: Check Statistics</h3>
+<h3 id="use-case-uc8-check-statistics" class="discrete">Use case: UC8 - Check statistics</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User enters the statistic command with specific optional arguements (year, month and date).</p>
+<p>User enters the statistic command with specific optional arguments (year, month and date).</p>
 </li>
 <li>
 <p>RestOrRant Program collates data from the stated period, calculates all the statistics and prints out the calculated data in a neat presentation for the user to refer to.</p>
@@ -2545,7 +2754,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. RestOrRant Program prints out "Invalid arguments. All arguments should be a numercial number. Format: getStatistics [Year] [Month] [Date]".</p>
+<p>1a1. RestOrRant Program prints out "Invalid arguments. All arguments should be a numerical number. Format: getStatistics [Year] [Month] [Date]".</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2613,7 +2822,7 @@ for <code>RemarkCommandParser</code>.</p>
 </dd>
 <dt class="hdlist1"><a id="order"></a> Order</dt>
 <dd>
-<p>The list of menu items ordered by dining customers ata table</p>
+<p>The list of items ordered by dining customers at a table</p>
 </dd>
 <dt class="hdlist1"><a id="menu"></a> Menu</dt>
 <dd>
@@ -2695,11 +2904,11 @@ These instructions only provide a starting point for testers to work on; testers
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Download the jar file and copy into an empty folder</p>
+<p>Download the jar file and copy into an empty folder.</p>
 </li>
 <li>
-<p>Double-click the jar file<br>
-Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
+<p>Double-click the jar file.<br>
+Expected: Shows the GUI without any data. The window size may not be optimum.</p>
 </li>
 </ol>
 </div>
@@ -2718,6 +2927,28 @@ Expected: The most recent window size and location is retained.</p>
 </ol>
 </div>
 </li>
+<li>
+<p>Exiting the application</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add some data into RestOrRant (eg. <code>addTable 4 4 2 2</code>).</p>
+</li>
+<li>
+<p>Exit RestOrRant by clicking the <code>File</code> &gt; <code>Exit</code> button, then re-launch the app.<br>
+Expected: The application closes upon exit. All data remains intact upon re-launch.</p>
+</li>
+<li>
+<p>Exit RestOrRant by typing the <code>exit</code> command, then re-launch the app.<br>
+Expected: Similar to previous.</p>
+</li>
+<li>
+<p>Exit RestOrRant by clicking the Close button on the window, then re-launch the app.<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
 </ol>
 </div>
 <div class="paragraph">
@@ -2725,7 +2956,85 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-table"><a class="link" href="#adding-a-table">H.2. Adding a table</a></h3>
+<h3 id="changing-modes"><a class="link" href="#changing-modes">H.2. Changing Modes</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Restaurant Mode</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In Restaurant Mode, switch to Restaurant Mode with <code>restaurantMode</code> or <code>RM</code>.<br>
+Expected: Mode is not changed. Error message is shown in the result display.</p>
+</li>
+<li>
+<p>In any other mode, switch to Restaurant Mode with <code>restaurantMode</code> or <code>RM</code>.<br>
+Expected: Status bar indicates "Restaurant Mode". Success message is shown in the result display. Main panel will display a grid of tables with their statuses and side panel will display a list of order items across all tables.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Menu Mode</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In Menu Mode, switch to Menu Mode with <code>menuMode</code> or <code>MM</code>.<br>
+Expected: Mode is not changed. Error message is shown in the result display.</p>
+</li>
+<li>
+<p>In any other mode, switch to Menu Mode with <code>menuMode</code> or <code>MM</code>.<br>
+Expected: Status bar indicates "Menu Mode". Success message is shown in the result display. Main panel will be empty and side panel will display a list of menu items with their code, name and price.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Table Mode</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In Restaurant Mode, create three tables and set Tables 1 and 2 to be occupied, leaving Table 3 to be unoccupied.</p>
+</li>
+<li>
+<p>In Table Mode for Table 1, switch to Table Mode with <code>tableMode 1</code> or <code>TM 1</code>.<br>
+Expected: Mode is not changed. Error message is shown in the result display.</p>
+</li>
+<li>
+<p>In Table Mode for Table 2 or in any other mode, switch to Table Mode with <code>tableMode 1</code> or <code>TM 1</code>.<br>
+Expected: Status bar indicates "Table Mode: Table 1". Success message is shown in the result display. Main panel will display a grid of menu items with their code, name and price and side panel will display a list of order items from Table 1.</p>
+</li>
+<li>
+<p>Test case for unoccupied table: In any mode, switch to Table Mode with <code>tableMode 3</code> or <code>TM 3</code>.<br>
+Expected: Mode is not changed. Error message is shown in the result display.</p>
+</li>
+<li>
+<p>Test case for invalid table number: In any mode, switch to Table Mode with <code>tableMode 4</code> or <code>TM 4</code>.<br>
+Expected: Mode is not changed. Error message is shown in the result display.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Statistics Mode</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In Statistics Mode, switch to Statistics Mode with <code>statisticsMode</code> or <code>SM</code>.<br>
+Expected: Mode is not changed. Error message is shown in the result display.</p>
+</li>
+<li>
+<p>In any other mode, switch to Statistics Mode with <code>statisticsMode</code> or <code>SM</code>.<br>
+Expected: Status bar indicates "Statistics Mode". Success message is shown in the result display. Main panel will display a grid of dates with their revenues and side panel will be empty.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tables"><a class="link" href="#tables">H.3. Tables</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2737,8 +3046,8 @@ Expected: The most recent window size and location is retained.</p>
 Expected: Adds a table with table status of 0/1.</p>
 </li>
 <li>
-<p>Test case: <code>delete 0</code><br>
-Expected: No table is added. Error details shown in the status message. Status bar remains the same.</p>
+<p>Test case: <code>addTable</code><br>
+Expected: No tables are added. Error message is shown in the result display. Status bar remains the same.</p>
 </li>
 <li>
 <p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
@@ -2754,7 +3063,51 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">H.3. Saving data</a></h3>
+<h3 id="menu"><a class="link" href="#menu">H.4. Menu</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="orders"><a class="link" href="#orders">H.5. Orders</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding an order</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Table Mode for Table 1. Tables and menu items should have been populated from the Table and Menu tests above.</p>
+</li>
+<li>
+<p>Test case: <code>addToOrder W09 2</code> or <code>add W09 2</code><br>
+Expected: Adds an order item "W09 Chicken Wings" with quantity of 2 to Table 1&#8217;s order.</p>
+</li>
+<li>
+<p>Test case: <code>addToOrder W12 2 A05 1</code> or <code>add W12 2 A05 1</code><br>
+Expected: Adds order items "W12 French Fries" with quantity of 2 and "A05 Salad" with quantity of 1 to Table 1&#8217;s order.</p>
+</li>
+<li>
+<p>Test case: <code>addToOrder W09 1</code> or <code>add W09 1</code><br>
+Expected: Updates the order item "W09 Chicken Wings" in Table 1&#8217;s order with quantity of 3.</p>
+</li>
+<li>
+<p>Test case: <code>addToOrder W09</code> or <code>add W09</code><br>
+Expected: No order items are added. Error message is shown in the result display.</p>
+</li>
+<li>
+<p>Other invalid test cases: <code>addToOrder 3</code>, <code>addToOrder W99 1</code>, <code>addToOrder W09 0</code>, <code>addToOrder W09 1 W12</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="statistics"><a class="link" href="#statistics">H.6. Statistics</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">H.7. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2774,4 +3127,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 15:15:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 16:26:23 UTC</div></div></div></body></html>
