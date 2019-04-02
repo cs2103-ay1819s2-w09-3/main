@@ -75,7 +75,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>addTables 2 1 4</code></strong> (in Restaurant Mode): adds 3 tables to the restaurant with 2, 1 and 4 seats respectively.</p>
+<p><strong><code>addTable 2 1 4</code></strong> (in Restaurant Mode): adds 3 tables to the restaurant with 2, 1 and 4 seats respectively.</p>
 </li>
 <li>
 <p><strong><code>menuMode</code></strong>: switches RestOrRant to Menu Mode and displays the list of menu items for the restaurant.</p>
@@ -113,7 +113,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>addTables NUMBER_OF_SEATS</code>, <code>NUMBER_OF_SEATS</code> is a parameter which can be used as <code>addTables 4</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>addTable NUMBER_OF_SEATS</code>, <code>NUMBER_OF_SEATS</code> is a parameter which can be used as <code>addTable 4</code>.</p>
 </li>
 <li>
 <p>Items in square brackets are optional e.g <code>ITEM_CODE QUANTITY [ITEM_CODE QUANTITY]</code> can be used as <code>W09 3 A02 4</code> or as <code>W09 3</code>.</p>
@@ -147,7 +147,7 @@ Format: <code>restaurantMode</code> (or <code>RM</code>)</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The RestOrRant application&#8217;s default mode is Restaurant Mode. At start up, the application is already in Restaurant Mode.</p>
+<p>At start up, the application is already in Restaurant Mode.</p>
 </li>
 </ul>
 </div>
@@ -237,17 +237,17 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-tables-code-addtables-code"><a class="link" href="#adding-tables-code-addtables-code">3.2.1. Adding tables : <code>addTables</code></a></h4>
+<h4 id="adding-tables-code-addtable-code"><a class="link" href="#adding-tables-code-addtable-code">3.2.1. Adding tables : <code>addTable</code></a></h4>
 <div class="paragraph">
 <p>Adds tables to the restaurant.<br>
-Format: <code>addTables NUMBER_OF_SEATS [NUMBER_OF_SEATS]&#8230;&#8203;</code></p>
+Format: <code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Table number increases from the last added table number.</p>
+<p>Table number increases sequentially starting from 1.</p>
 </li>
 <li>
 <p>There is no limit to the number of tables that can be added.</p>
@@ -262,26 +262,26 @@ Format: <code>addTables NUMBER_OF_SEATS [NUMBER_OF_SEATS]&#8230;&#8203;</code></
 <div class="ulist">
 <ul>
 <li>
-<p><code>addTables 4</code></p>
+<p><code>addTable 4</code></p>
 </li>
 <li>
-<p><code>addTables 4 2 4</code></p>
+<p><code>addTable 4 2 4</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="updating-the-table-code-updatetable-code"><a class="link" href="#updating-the-table-code-updatetable-code">3.2.2. Updating the table: <code>updateTable</code></a></h4>
+<h4 id="editing-the-occupancy-code-editpax-code"><a class="link" href="#editing-the-occupancy-code-editpax-code">3.2.2. Editing the Occupancy: <code>editPax</code></a></h4>
 <div class="paragraph">
-<p>Updates the status of the table.<br>
-Format: <code>updateTable TABLE_NUMBER NEW_OCCUPANCY</code></p>
+<p>Edits the occupancy of the table.<br>
+Format: <code>editPax TABLE_NUMBER NEW_OCCUPANCY</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Checks if the specified table exists before updating.</p>
+<p>Checks if the specified table exists before editing.</p>
 </li>
 <li>
 <p>Checks if the specified <code>NEW_OCCUPANCY</code> is greater than 0 and not more than the capacity of the table.</p>
@@ -296,19 +296,19 @@ Format: <code>updateTable TABLE_NUMBER NEW_OCCUPANCY</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>updateTable 2 0</code></p>
+<p><code>editPax 2 0</code></p>
 </li>
 <li>
-<p><code>updateTable 1 4</code></p>
+<p><code>editPax 1 4</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="removing-a-table-code-removetable-code"><a class="link" href="#removing-a-table-code-removetable-code">3.2.3. Removing a table : <code>removeTable</code></a></h4>
+<h4 id="editing-the-available-seats-code-editseats-code"><a class="link" href="#editing-the-available-seats-code-editseats-code">3.2.3. Editing the Available Seats : <code>editSeats</code></a></h4>
 <div class="paragraph">
-<p>Removes an existing table in the restaurant.<br>
-Format: <code>removeTable TABLE_NUMBER</code></p>
+<p>Edits the number of available seats at a table.<br>
+Format: <code>editSeats TABLE_NUMBER NEW_NUMBER_OF_SEATS</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -318,7 +318,7 @@ Format: <code>removeTable TABLE_NUMBER</code></p>
 <p>Checks that the table exists.</p>
 </li>
 <li>
-<p>Checks that the table is not occupied.</p>
+<p>Checks that the new number of seats is not less than the current number of customers at the table.</p>
 </li>
 </ul>
 </div>
@@ -330,7 +330,56 @@ Format: <code>removeTable TABLE_NUMBER</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>removeTable 3</code></p>
+<p><code>editSeats 3 4</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clears-the-tables-code-cleartable-code"><a class="link" href="#clears-the-tables-code-cleartable-code">3.2.4. Clears the Tables : <code>clearTable</code></a></h4>
+<div class="paragraph">
+<p>Clears the RestOrRant of all tables.<br>
+Format: <code>clearTable</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Checks that all tables are unoccupied before clearing the tables.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="getting-available-tables-for-customers-code-spacefor-code-em-coming-in-v2-0-em"><a class="link" href="#getting-available-tables-for-customers-code-spacefor-code-em-coming-in-v2-0-em">3.2.5. Getting Available tables for customers : <code>spaceFor</code> <em>(Coming in v2.0)</em></a></h4>
+<div class="paragraph">
+<p>Searches the restaurant for the table that best fits the number of customers to be seated.<br>
+Format: <code>spaceFor NUMBER_OF_CUSTOMERS</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Returns the best fit table with the smallest table number.</p>
+</li>
+<li>
+<p>Best fit is determined by the smallest table size able to accommodate the number of customers.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spaceFor 5</code></p>
 </li>
 </ul>
 </div>
@@ -384,7 +433,7 @@ Format: <code>addToOrder ITEM_CODE QUANTITY [ITEM_CODE QUANTITY]…</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-note-to-an-item-in-an-order-code-addnote-code-em-coming-in-v2-0-em"><a class="link" href="#adding-a-note-to-an-item-in-an-order-code-addnote-code-em-coming-in-v2-0-em">3.3.2. Adding a note to an item in an order: <code>addNote</code> <em>(coming in v2.0)</em></a></h4>
+<h4 id="adding-a-note-to-an-item-in-an-order-code-addnote-code-em-coming-in-v2-0-em"><a class="link" href="#adding-a-note-to-an-item-in-an-order-code-addnote-code-em-coming-in-v2-0-em">3.3.2. Adding a note to an item in an order: <code>addNote</code> <em>(Coming in v2.0)</em></a></h4>
 <div class="paragraph">
 <p>Adds a note to an item in the order of the current selected table.<br>
 Format: <code>addNote ITEM_CODE NOTE</code></p>
@@ -458,7 +507,7 @@ Format: <code>clearOrder</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-an-item-in-an-order-as-served-code-serve-code-em-coming-in-v1-4-em"><a class="link" href="#marking-an-item-in-an-order-as-served-code-serve-code-em-coming-in-v1-4-em">3.3.5. Marking an item in an order as served: <code>serve</code> <em>(coming in v1.4)</em></a></h4>
+<h4 id="marking-an-item-in-an-order-as-served-code-serve-code-em-coming-in-v1-4-em"><a class="link" href="#marking-an-item-in-an-order-as-served-code-serve-code-em-coming-in-v1-4-em">3.3.5. Marking an item in an order as served: <code>serve</code> <em>(Coming in v1.4)</em></a></h4>
 <div class="paragraph">
 <p>Marks the specified item as served for the current selected table.<br>
 Format: <code>serve ITEM_CODE [QUANTITY]</code></p>
@@ -996,4 +1045,4 @@ Adds A02 to the menu</p></td>
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 17:03:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 01:17:24 UTC</div></div></div></body></html>

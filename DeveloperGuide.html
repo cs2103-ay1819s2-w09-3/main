@@ -31,7 +31,7 @@
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#changing-mode-feature">4.1. Changing Mode feature</a></li>
-<li><a href="#update-table-feature">4.2. Update Table feature</a></li>
+<li><a href="#edit-pax-feature">4.2. Edit Pax feature</a></li>
 <li><a href="#bill-feature">4.3. Bill feature</a></li>
 <li><a href="#adding-to-menu-feature">4.4. Adding To Menu feature</a></li>
 <li><a href="#logging">4.5. Logging</a></li>
@@ -836,11 +836,11 @@ The Model component does not need to know what the current mode is at all, so it
 </div>
 </div>
 <div class="sect2">
-<h3 id="update-table-feature"><a class="link" href="#update-table-feature">4.2. Update Table feature</a></h3>
+<h3 id="edit-pax-feature"><a class="link" href="#edit-pax-feature">4.2. Edit Pax feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.2.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The update table mechanism is facilitated by <code>UniqueTableList</code>. It stores the all tables currently in the system and ensures that there are no duplicated tables. Additionally, it implements the following operations:</p>
+<p>The edit pax mechanism is facilitated by <code>UniqueTableList</code>. It stores the all tables currently in the system and ensures that there are no duplicated tables. Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -856,14 +856,14 @@ The Model component does not need to know what the current mode is at all, so it
 <p>These operations are exposed in the Model interface as <code>Model#setTable(targetTable, editedTable)</code> and <code>Model#hasTable(targetTable)</code>.</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the update table mechanism behaves at each step.</p>
+<p>Given below is an example usage scenario and how the edit pax mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application for the first time. The <code>UniqueTableList</code> will be initialised to be empty.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UpdateTableStartingStateListDiagram.png" alt="UpdateTableStartingStateListDiagram" width="800">
+<img src="images/EditPaxStartingStateListDiagram.png" alt="EditPaxStartingStateListDiagram" width="800">
 </div>
 </div>
 <div class="paragraph">
@@ -871,23 +871,23 @@ The Model component does not need to know what the current mode is at all, so it
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UpdateTableAddTableStateListDiagram.png" alt="UpdateTableAddTableStateListDiagram" width=""800">
+<img src="images/EditPaxAddTableStateListDiagram.png" alt="EditPaxAddTableStateListDiagram" width=""800">
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user then has 4 customers enter his/her restaurant and executes <code>updateTable 1 4</code> command to update the table labelled 1 with 4 customers. The <code>updateTable</code> command calls <code>Model#setTable(targeTable, editedTable)</code>, causing the RestOrRant to create a new table with the updated <code>TableStatus</code> and replace the current target table in the UniqueTableList. At this point, the UniqueTableList still has only 1 table the original table was replaced by the updated table. The <code>Storage</code> detects this change in the UniqueTableList and also updates itself.</p>
+<p>Step 3. The user then has 4 customers enter his/her restaurant and executes <code>editPax 1 4</code> command to update the table labelled 1 with 4 customers. The <code>editPax</code> command calls <code>Model#setTable(targeTable, editedTable)</code>, causing the RestOrRant to create a new table with the updated <code>TableStatus</code> and replace the current target table in the UniqueTableList. At this point, the UniqueTableList still has only 1 table the original table was replaced by the updated table. The <code>Storage</code> detects this change in the UniqueTableList and also updates itself.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UpdateTableUpdateTableStateListDiagram.png" alt="UpdateTableUpdateTableStateListDiagram" width="800">
+<img src="images/EditPaxEditPaxStateListDiagram.png" alt="EditPaxEditPaxStateListDiagram" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the update table operation works:</p>
+<p>The following sequence diagram shows how the edit pax operation works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UpdateTableSequenceDiagram.png" alt="UpdateTableSequenceDiagram" width="800">
+<img src="images/EditPaxSequenceDiagram.png" alt="EditPaxSequenceDiagram" width="800">
 </div>
 </div>
 <div class="admonitionblock note">
@@ -907,14 +907,14 @@ If the table to be edited does not exist in the <code>UniqueTableList</code>, th
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UpdateTableActivityDiagram.png" alt="UpdateTableActivityDiagram" width="800">
+<img src="images/EditPaxActivityDiagram.png" alt="EditPaxActivityDiagram" width="800">
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-update-table-executes"><a class="link" href="#aspect-how-update-table-executes">Aspect: How update table executes</a></h5>
+<h5 id="aspect-how-edit-number-of-customers-executes"><a class="link" href="#aspect-how-edit-number-of-customers-executes">Aspect: How edit number of customers executes</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1020,7 +1020,7 @@ If the table to be edited does not exist in the <code>UniqueTableList</code>, th
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. Once the user is in BillMode, they can change their execute any commands that are related to StatisticsMode or manually change their mode to <code>RestaurantMode</code>, <code>TableMode</code> and <code>MenuMode</code>.</p>
+<p>Step 3. Once the user is in BillMode, they can change their execute any commands that are related to StatisticsMode or manually change their mode to <code>Restaurant Mode</code>, <code>TableMode</code> and <code>MenuMode</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1613,7 +1613,7 @@ Do take a look at <a href="#Design-Logic">Section 3.3, &#8220;Logic component&#8
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a shorthand equivalent alias for each of the individual commands. For example, besides typing <code>clear</code>, the user can also type <code>c</code> to remove all persons in the list.</p>
+<p>Add a shorthand equivalent alias for each of the individual commands. For example, besides typing <code>clearTable</code>, the user can also type <code>clear</code> to remove all tables when they are in Restaurant Mode.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -1623,7 +1623,7 @@ Do take a look at <a href="#Design-Logic">Section 3.3, &#8220;Logic component&#8
 <div class="ulist">
 <ul>
 <li>
-<p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/commands/ClearOrderCommand.java"><code>FindCommand#COMMAND_WORD</code></a>, <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/commands/DeleteFromOrderCommand.java"><code>DeleteCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>FindCommand#COMMAND_ALIAS</code>).</p>
+<p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/commands/AddTableCommand.java"><code>AddTableCommand#COMMAND_WORD</code></a>, <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/commands/AddToOrderCommand.java"><code>AddToOrderCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>AddTableCommand#COMMAND_ALIAS</code>).</p>
 </li>
 <li>
 <p><a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/parser/RestOrRantParser.java"><code>RestOrRantParser</code></a> is responsible for analyzing command words.</p>
@@ -2666,7 +2666,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User enters the addToMenu command along with the item&#8217;s code, name and price.</p>
 </li>
 <li>
-<p>RestOrRant Program updates the menu to include the added menu item.</p>
+<p>RestOrRant updates the menu to include the added menu item.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2683,7 +2683,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. RestOrRant Program prints out "Invalid arguments, item already exists in the menu!".</p>
+<p>1a1. RestOrRant prints out "Invalid arguments, item already exists in the menu!".</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2700,7 +2700,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b1. RestOrRant Program prints out "Invalid arguments, item code exists in the menu!".</p>
+<p>1b1. RestOrRant prints out "Invalid arguments, item code exists in the menu!".</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2717,7 +2717,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1c1. RestOrRant Program prints out "Invalid code. Please use an alphanumeric code. Example: W09".</p>
+<p>1c1. RestOrRant prints out "Invalid code. Please use an alphanumeric code. Example: W09".</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2754,7 +2754,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. RestOrRant Program prints out "Invalid arguments. All arguments should be a numerical number. Format: getStatistics [Year] [Month] [Date]".</p>
+<p>1a1. RestOrRant prints out "Invalid arguments. All arguments should be a numercial number. Format: getStatistics [Year] [Month] [Date]".</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2771,7 +2771,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. RestOrRant Program prints out "No available data recorded."</p>
+<p>2a1. RestOrRant prints out "No available data recorded."</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2787,7 +2787,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>2b. Not all arguments were keyed in.</p>
 </li>
 <li>
-<p>2b1. RestOrRant Program returns the statistical data based on the year if only 1 argument was specified; and the month if only 2 arguments were specified.</p>
+<p>2b1. RestOrRant returns the statistical data based on the year if only 1 argument was specified; and the month if only 2 arguments were specified.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3127,4 +3127,4 @@ Expected: No order items are added. Error message is shown in the result display
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 17:03:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 01:17:24 UTC</div></div></div></body></html>
