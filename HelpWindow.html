@@ -651,7 +651,86 @@ Checks if item with code A02 exists in the menu.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="getting-the-most-popular-item-ordered-code-getmostpopularitem-code"><a class="link" href="#getting-the-most-popular-item-ordered-code-getmostpopularitem-code">3.5.1. Getting the most popular item ordered: <code>getMostPopularItem</code></a></h4>
+<h4 id="getting-the-total-revenue-code-revenue-code"><a class="link" href="#getting-the-total-revenue-code-revenue-code">3.5.1. Getting the total revenue : <code>revenue</code></a></h4>
+<div class="paragraph">
+<p>Returns the total revenue earned by the restaurant by the stated year, month or day.<br>
+Format: <code>revenue [d/DAY] [m/MONTH] [y/YEAR]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>DAY</code>, <code>MONTH</code>, <code>YEAR</code> have to be valid.</p>
+</li>
+<li>
+<p>If the stated period has no records, it will return $0.</p>
+</li>
+<li>
+<p>If <strong>no arguments</strong> are included, by default it returns the total revenue for the <strong>current day</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>revenue</code><br>
+Returns the total revenue of the current day <code>$45</code></p>
+</li>
+<li>
+<p><code>revenue y/2019 m/01 d/01</code><br>
+Returns the total revenue on the specific day 01/01/2019 <code>$45</code></p>
+</li>
+<li>
+<p><code>revenue y/2019 m/02</code><br>
+Returns the total revenue of the month February 2019 <code>$7000</code></p>
+</li>
+<li>
+<p><code>revenue y/2019</code><br>
+Returns the total revenue of the year 2019 <code>15000</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="getting-the-daily-revenue-code-daily-code-em-coming-in-v1-4-em"><a class="link" href="#getting-the-daily-revenue-code-daily-code-em-coming-in-v1-4-em">3.5.2. Getting the daily revenue : <code>daily</code> <em>(coming in v1.4)</em></a></h4>
+<div class="paragraph">
+<p>Change the interface to display the statistical dailyly revenue.<br>
+Format: <code>daily</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>This is the default page for Statistics Mode.<br></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="getting-the-monthly-revenue-code-monthly-code-em-coming-in-v1-4-em"><a class="link" href="#getting-the-monthly-revenue-code-monthly-code-em-coming-in-v1-4-em">3.5.3. Getting the monthly revenue : <code>monthly</code> <em>(coming in v1.4)</em></a></h4>
+<div class="paragraph">
+<p>Change the interface to display the statistical monthly revenue.<br>
+Format: <code>monthly</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="getting-the-yearly-revenue-code-yearly-code-em-coming-in-v1-4-em"><a class="link" href="#getting-the-yearly-revenue-code-yearly-code-em-coming-in-v1-4-em">3.5.4. Getting the yearly revenue : <code>yearly</code> <em>(coming in v1.4)</em></a></h4>
+<div class="paragraph">
+<p>Change the interface to display the statistical yearly revenue.<br>
+Format: <code>yearly</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="getting-the-most-popular-item-ordered-code-getmostpopularitem-code-em-coming-in-v1-4-em"><a class="link" href="#getting-the-most-popular-item-ordered-code-getmostpopularitem-code-em-coming-in-v1-4-em">3.5.5. Getting the most popular item ordered : <code>getMostPopularItem</code> <em>(coming in v1.4)</em></a></h4>
 <div class="paragraph">
 <p>Returns the item on the menu that has the most orders.<br>
 Format: <code>getMostPopularItem</code></p>
@@ -669,7 +748,7 @@ Returns the most popular item <code>W09 Chicken Wings</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="getting-the-total-number-of-customers-code-gettotalcustomers-code"><a class="link" href="#getting-the-total-number-of-customers-code-gettotalcustomers-code">3.5.2. Getting the total number of customers : <code>getTotalCustomers</code></a></h4>
+<h4 id="getting-the-total-number-of-customers-code-gettotalcustomers-code-em-coming-in-v2-0-em"><a class="link" href="#getting-the-total-number-of-customers-code-gettotalcustomers-code-em-coming-in-v2-0-em">3.5.6. Getting the total number of customers : <code>getTotalCustomers</code> <em>(coming in v2.0)</em></a></h4>
 <div class="paragraph">
 <p>Returns the total number of customer for the stated day, month or year.<br>
 Format: <code>getTotalCustomers [YEAR] [MONTH] [DAY]</code></p>
@@ -716,54 +795,7 @@ Returns the total number of customers of the year 2019 <code>1200</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="getting-the-total-revenue-code-gettotalrevenue-code"><a class="link" href="#getting-the-total-revenue-code-gettotalrevenue-code">3.5.3. Getting the total revenue : <code>getTotalRevenue</code></a></h4>
-<div class="paragraph">
-<p>Returns the total revenue earned by the restaurant by the stated year, month or day.<br>
-Format: <code>getTotalRevenue [YEAR] [MONTH] [DAY]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>YEAR</code>, <code>MONTH</code>, <code>DAY</code> has to be valid.</p>
-</li>
-<li>
-<p>If the stated period has no records, it will inform the user that there is no record.</p>
-</li>
-<li>
-<p>If <strong>no arguments</strong> are included, by default it returns the total revenue for the <strong>current day</strong>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>getTotalRevenue</code><br>
-Returns the total revenue of the current day <code>$45</code></p>
-</li>
-<li>
-<p><code>getTotalCustomers y/2019 m/01 d/01</code><br>
-Returns the total revenue on the specific day 01/01/2019 <code>$45</code></p>
-</li>
-<li>
-<p><code>getTotalCustomers y/2019 m/02</code><br>
-Returns the total revenue of the month February 2019 <code>$7000</code></p>
-</li>
-<li>
-<p><code>getTotalCustomers y/2019</code><br>
-Returns the total revenue of the year 2019 <code>15000</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="getting-all-the-statistics-code-getstatistics-code"><a class="link" href="#getting-all-the-statistics-code-getstatistics-code">3.5.4. Getting all the statistics : <code>getStatistics</code></a></h4>
+<h4 id="getting-all-the-statistics-code-getstatistics-code-em-coming-in-v2-0-em"><a class="link" href="#getting-all-the-statistics-code-getstatistics-code-em-coming-in-v2-0-em">3.5.7. Getting all the statistics : <code>getStatistics</code> <em>(coming in v2.0)</em></a></h4>
 <div class="paragraph">
 <p>Returns all the calculated statistics.<br>
 Format: <code>getStatistics</code></p>
@@ -1036,13 +1068,35 @@ Adds A02 to the menu</p></td>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>command</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shortcut</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>usage</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>example</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>revenue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>r</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>revenue [d/DAY] [m/MONTH] [y/YEAR]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>revenue d/1 m/1 y/2019</code><br>
+Returns the revenue earned on 01 January 2019.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>daily</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>d</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>daily</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>daily</code><br>
+Changes the interface to display the statistical daily revenue.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>monthly</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>m</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>monthly</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>monthly</code><br>
+Changes the interface to display the statistical monthly revenue.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>yearly</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>y</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>yearly</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>yearly</code><br>
+Changes the interface to display the statistical yearly revenue.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 03:42:24 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 04:20:33 UTC</div></div></div></body></html>

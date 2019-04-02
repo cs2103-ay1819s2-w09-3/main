@@ -3104,7 +3104,60 @@ Expected: No order items are added. Error message is shown in the result display
 </div>
 <div class="sect2">
 <h3 id="statistics"><a class="link" href="#statistics">H.6. Statistics</a></h3>
-
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Bill order</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Table Mode of the selected table. Orders should have been populated from the Order tests above.</p>
+</li>
+<li>
+<p>Test case: <code>bill</code> or <code>b</code><br>
+Expected: Mode change to Bill Mode where a receipt of the orders will be shown. The total bill is calculated and
+recorded. If Bill is the first bill of the day, a new daily revenue card will appear in the default display of
+Statistics Mode. Otherwise, it just updates the daily revenue by adding the total bill to the current revenue of the
+current date.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Retrieve revenue of specified day, month or year</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Statistics Mode. Daily revenue should have been populated from the Bill test.</p>
+</li>
+<li>
+<p>Test case: <code>revenue</code> or <code>r</code><br>
+Expected: Revenue of the current date will be calculated.</p>
+</li>
+<li>
+<p>Test case: <code>revenue d/1 m/1 y/2019</code> or <code>r d/1 m/1 y/2019</code><br>
+Expected: Revenue of 1-Jan-2019 will be calculated.</p>
+</li>
+<li>
+<p>Test case: <code>revenue m/1 y/2019</code> or <code>r m/1 y/2019</code><br>
+Expected: Revenue of Jan-2019 will be calculated.</p>
+</li>
+<li>
+<p>Test case: <code>revenue y/2019</code> or <code>y/2019</code><br>
+Expected: Revenue of year 2019 will be calculated.</p>
+</li>
+<li>
+<p>Test case: <code>revenue d/1 y/2019</code> or <code>r d/1 y/2019</code><br>
+Expected: No revenue are calculated. Error message is shown in the result display.</p>
+</li>
+<li>
+<p>Other invalid test cases: <code>revenue d/1</code>, <code>revenue d/29 m/2 y/2019</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect2">
 <h3 id="saving-data"><a class="link" href="#saving-data">H.7. Saving data</a></h3>
@@ -3127,4 +3180,4 @@ Expected: No order items are added. Error message is shown in the result display
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 03:42:24 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 04:20:33 UTC</div></div></div></body></html>
