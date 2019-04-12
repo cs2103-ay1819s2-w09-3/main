@@ -1,0 +1,1016 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Phua Yue Jun - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">RestOrRant</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819s2-w09-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Phua Yue Jun - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-restorrant"><a class="link" href="#project-restorrant">PROJECT: RestOrRant</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RestOrRant is a command line interface (CLI) restaurant management application that my team and I designed for the CS2103T Software Engineering module in NUS School of Computing.
+For our module project, we morphed RestOrRant from an address book application into one that allows restaurant managers and waiters to perform front-end operations efficiently.
+This includes allocating tables to customers, handling orders, tracking item availability and calculating bills. Managers can also view revenue and order statistics to determine how the restaurant is faring.</p>
+</div>
+<div class="paragraph">
+<p>We split the application into four main features: Tables, Orders, Menu and Statistics. Each team member was in charge of one feature and mine was the Orders feature.
+I also conceptualised and implemented the Mode system alongside my team members.</p>
+</div>
+<div class="paragraph">
+<p>I will be sharing more about the Orders and Modes features in the following sections, as well as extracting the relevant parts of the User Guide and Developer Guide that I wrote for these features.</p>
+</div>
+<div class="paragraph">
+<p>You may refer to the table below for the symbols and formatting used in this portfolio.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 70%;">
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 85%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><code>code</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A grey highlight with monospaced font indicates a command that can be typed into the command box of the application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="icon icon-note"><i class="fa fa-info-circle fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A blue information symbol indicates additional information for that section that is good to know.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In this section, I will provide a summary of the contributions that I have made to the team project. These contributions include the features that I implemented, as well as other project-related contributions.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement added (Orders feature)</strong>: I added the Orders feature and all of its related commands.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: It allows restaurant front-end staff to take orders from customers using the <code>addToOrder</code> command, as well as remove incorrectly inputted orders using the <code>deleteFromOrder</code> or <code>clearOrder</code> commands. They can track the current list of items ordered for each table (in Table Mode) or across all tables (in Restaurant Mode) and update their serving statuses with the <code>serve</code> command.</p>
+</li>
+<li>
+<p>Justification: Restaurant front-end staff will need this core feature as keeping track of orders is one of the crucial front-end operations that restaurants have to manage. This feature allow orders to be handled more efficiently so that customers can be promptly attended to and served.</p>
+</li>
+<li>
+<p>Highlights: -</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Other enhancement added (Modes feature)</strong>: I conceptualised the Mode system and added features related to the changing of modes.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: RestOrRant has four modes for each of the four features. Users can switch between modes using commands to use the other features, such as the <code>restaurantMode</code> and <code>tableMode</code> commands that I implemented.</p>
+</li>
+<li>
+<p>Justification: Translating our main features into different application modes provides a functional and visual distinction between the features and makes RestOrRant more organised and clear for its users. The Mode system also allows us to provide users with only the relevant displays for each feature instead of overwhelming users with all the information at one shot.</p>
+</li>
+<li>
+<p>Highlights: -</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&amp;search=whyjayxp">Project Code Dashboard</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Charted the direction and progress of the project and facilitated weekly project meetings as the team lead</p>
+</li>
+<li>
+<p>Set up the issues tracker on GitHub for our project</p>
+</li>
+<li>
+<p>Managed the integration of code by ensuring the compatibility of merged Pull Requests</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI colour scheme and implemented the ability to switch between colour schemes for the different modes</p>
+</li>
+<li>
+<p>Wrote additional tests for existing features</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Did tweaks to existing contents of the User Guide</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reorganised and rewrote the Introduction and Quick Start section</p>
+</li>
+<li>
+<p>Split commands into their respective modes to present a clearer structure</p>
+</li>
+<li>
+<p>Revamped Command Summary into table form for ease of reference</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tools:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up GitHub, Travis, AppVeyor and Coveralls for our project</p>
+</li>
+<li>
+<p>Set up auto-publishing of docs</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This section shows the additions that I have made to the User Guide to provide information about how the Modes and Orders features work.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="changing-modes"><a class="link" href="#changing-modes">Changing Modes</a></h3>
+<div class="paragraph">
+<p>The commands in this section allow you to switch between modes to use the features that each mode provides.
+You can use these commands in any mode except if you are already in the mode that you are trying to switch to.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You may find out more information about RestOrRant&#8217;s Mode system <a href="#Understanding the Mode system">here</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="RM"><a class="link" href="#RM">Switching to Restaurant Mode : <code>restaurantMode</code></a></h4>
+<div class="paragraph">
+<p>You can use this command to switch over to Restaurant Mode to manage the occupancy of the tables in the restaurant.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>restaurantMode</code><br>
+<strong>Shortcut</strong>: <code>RM</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Restaurant Mode is the default application mode when first starting up RestOrRant.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>The user interface switches to <a href="#Restaurant Mode">Restaurant Mode</a>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="TM"><a class="link" href="#TM">Switching to Table Mode : <code>tableMode</code></a></h4>
+<div class="paragraph">
+<p>You can use this command to switch over to Table Mode for the specified table number to handle the orders of that table.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>tableMode TABLE_NUMBER</code><br>
+<strong>Shortcut</strong>: <code>TM</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can only access Table Mode for tables that exist in the restaurant and are currently occupied. The tables can be updated in <a href="#Restaurant Mode">Restaurant Mode</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can use this command in Table Mode if you are switching to a different table number.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>The user interface switches to <a href="#table-mode">Table Mode</a>.
+The specified table number is also indicated in the Results Display and as part of the Current Mode in the status bar.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, after executing <code>tableMode 5</code>, the Results Display shows the table number of the current table, as seen in the image below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/TableMode_RD.png" alt="TableMode RD">
+</div>
+</div>
+<div class="paragraph">
+<p>The table number will also be displayed in the Current Mode portion of the status bar until you change the mode, as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/TableMode_CM.png" alt="TableMode CM">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="MM"><a class="link" href="#MM">Switching to Menu Mode : <code>menuMode</code></a></h4>
+<div class="paragraph">
+<p>You can use this command to switch over to Menu Mode to modify the menu stored in RestOrRant.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>menuMode</code><br>
+<strong>Shortcut</strong>: <code>MM</code></p>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>The user interface switches to <a href="#Menu Mode">Menu Mode</a>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="SM"><a class="link" href="#SM">Switching to Statistics Mode : <code>statisticsMode</code></a></h4>
+<div class="paragraph">
+<p>You can use this command to switch over to Statistics Mode to view revenue and order statistics for your restaurant.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>statisticsMode</code><br>
+<strong>Shortcut</strong>: <code>SM</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The default Revenue Panel view is Daily when you first switch over to Statistics Mode. You can find out more about the different views <a href="#Statistics Mode">here</a>.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>The user interface switches to <a href="#Statistics Mode">Statistics Mode</a>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="table-mode"><a class="link" href="#table-mode">Table Mode</a></h3>
+<div class="paragraph">
+<p>In Table Mode, you can handle orders from the current table, which is given by the table number that was specified in the <a href="#TM"><code>tableMode</code></a> command.
+You can take orders, track the serving status of the items ordered, and calculate the bill for that table in this mode.</p>
+</div>
+<div class="paragraph">
+<p>The user interface for Table Mode (on Table 5) is shown in the image below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/TMUi.png" alt="TMUi" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>The function of the side and main panels are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Order Panel</strong>: This panel shows you the list of items ordered by the current table, arranged in chronological order. It also indicates the quantity left to serve for each item, and the background turns dark when the item is fully served.</p>
+</li>
+<li>
+<p><strong>Menu Panel</strong>: This panel displays the items on the menu along with their item codes for you to conveniently refer to when taking orders.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here are the commands that you can use in this mode to efficiently handle the orders in your restaurant.</p>
+</div>
+<div class="sect3">
+<h4 id="AddToOrder"><a class="link" href="#AddToOrder">Adding item(s) to an order : <code>addToOrder</code></a></h4>
+<div class="paragraph">
+<p>As you are taking an order from customers, this command allows you to record down the items that were ordered by the table by specifying the item code and quantity for each item that was ordered.
+You may also add more quantities to an item that has already been previously ordered by the table if customers choose to order more.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The maximum quantity of an item that can be ordered by a table is 2,000,000.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The item codes for each item on the menu can be easily found from the Menu Panel.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>addToOrder ITEM_CODE QUANTITY [ITEM_CODE QUANTITY]…</code><br>
+<strong>Shortcut</strong>: <code>add</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can only add item codes that exist in the menu. You may add items to the menu using the <a href="#AddToMenu"><code>addToMenu</code></a> command in Menu Mode.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can add multiple or duplicate order items in a single command! If any of the item codes do not exist in the menu or if the new quantity exceeds 2,000,000, then that item and subsequent items will not be added to the order.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the updated order items will be displayed in the Order Panel.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, Table 5 initially has 4 items in the Order Panel as shown below. Note that the quantity of Coke ordered is 1.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Order_Before.png" alt="Order Before">
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose the customers at Table 5 want to order 1 more Cheeseburger and 1 more Coke. After executing <code>addToOrder W07 1 W13 1</code>, you will see a success message in the Results Display, as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddToOrder_RD.png" alt="AddToOrder RD">
+</div>
+</div>
+<div class="paragraph">
+<p>The Order Panel will also be updated and you will now see 5 items displayed. As seen in the image below, 1 portion of Cheeseburger has been added as the 5th item, while the quantity of Coke ordered has been updated from 1 to 2.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddToOrder_After.png" alt="AddToOrder After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="AddNote"><a class="link" href="#AddNote">Adding a note to an order item : <code>addNote</code> <em>(Coming in v2.0)</em></a></h4>
+<div class="paragraph">
+<p>Sometimes, customers may have special requests for their orders, such as reducing the level of spicyness or removing certain ingredients from their meal.
+You can easily add all these special requests and more to the order item with this command.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>addNote ITEM_CODE NOTE</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can only add notes to item codes that have already been ordered by the table. You can add items to the order using the <a href="#AddToOrder"><code>addToOrder</code></a> command.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the note will appear in a tag beside the item name in the Order Panel.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, after executing <code>addNote W09 Less spicy</code>, a "Less spicy" tag will appear beside "Chicken Wings" in the Order Panel.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="DeleteFromOrder"><a class="link" href="#DeleteFromOrder">Deleting an item from an order : <code>deleteFromOrder</code></a></h4>
+<div class="paragraph">
+<p>If you have accidentally keyed in an incorrect order or if the customer decides not to order a particular item anymore, you can remove that item from the table&#8217;s order with this command.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>deleteFromOrder ITEM_CODE</code><br>
+<strong>Shortcut</strong>: <code>del</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can only delete item codes that have already been ordered by the table.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the deleted order item will no longer be displayed in the Order Panel.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, Table 5 initially has 4 items in the Order Panel as shown below. Note that Coke has been ordered by the table.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Order_Before.png" alt="Order Before">
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose the customers at Table 5 decide not to order Coke anymore. After executing <code>deleteFromOrder W13</code>, you will see a success message in the Results Display, as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteFromOrder_RD.png" alt="DeleteFromOrder RD">
+</div>
+</div>
+<div class="paragraph">
+<p>The Order Panel will also be updated and you will now only see 3 items displayed. As seen in the image below, Coke has been removed from the order.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteFromOrder_After.png" alt="DeleteFromOrder After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="ClearOrder"><a class="link" href="#ClearOrder">Clearing all the items in an order : <code>clearOrder</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to clear all the items ordered by a table so that you can take orders from scratch.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is irreversible and will not save the order under restaurant statistics. If the customers are done with the meal, use the <a href="#Bill"><code>bill</code></a> command instead, which will automatically clear the orders from the table.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>clearOrder</code><br>
+<strong>Shortcut</strong>: <code>clear</code></p>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the Order Panel will be empty.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, Table 5 initially has 4 items in the Order Panel as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Order_Before.png" alt="Order Before">
+</div>
+</div>
+<div class="paragraph">
+<p>After executing <code>clearOrder</code>, you will see a success message in the Results Display, as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ClearOrder_RD.png" alt="ClearOrder RD">
+</div>
+</div>
+<div class="paragraph">
+<p>The Order Panel will now be empty, as seen in the image below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ClearOrder_After.png" alt="ClearOrder After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="Serve"><a class="link" href="#Serve">Marking an item in an order as served : <code>serve</code></a></h4>
+<div class="paragraph">
+<p>Once you have served items to the table, you can update the serving status of those items by using this command so that you can easily keep track of what has and has not been served.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>serve ITEM_CODE [QUANTITY]</code><br>
+<strong>Shortcut</strong>: <code>s</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can only serve item codes and quantities that have not already been served for the table. You can add items to the order using the <a href="#AddToOrder"><code>addToOrder</code></a> command.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If the quantity is not specified, the default quantity served is 1.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the order item&#8217;s quantity to serve in the Order Panel will be updated. The background of the order item also turns dark once it is fully served.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, Table 5 initially has 4 items in the Order Panel as shown below. Note that there are still 2 Prawn Burgers that have yet to be served.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Order_Before.png" alt="Order Before">
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose the Prawn Burgers have been served and you want to update their serving status in RestOrRant. After executing <code>serve W03 2</code>, you will see a success message in the Results Display, as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Serve_RD.png" alt="Serve RD">
+</div>
+</div>
+<div class="paragraph">
+<p>The Order Panel will also be updated and you can see from the image below that there are no more quantities of Prawn Burger to serve. Since it is fully served, the background of the Prawn Burger item has turned dark.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Serve_After.png" alt="Serve After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="Bill"><a class="link" href="#Bill">Calculating the bill of an order : <code>bill</code></a></h4>
+<div class="paragraph">
+<p>Calculates the bill of an order from the current selected table and displays the receipt.<br>
+Format: <code>bill</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bill</code><br>
+Returns the total price of the order from the current table.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This section shows the additions that I have made to the Developer Guide to show the implementation and design considerations for the Modes feature.
+As the implementation for the Orders feature is similar to the basic add, delete and clear commands across the features, I have left the explanation to the other team members to avoid repetition.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="changing-mode-feature"><a class="link" href="#changing-mode-feature">Changing Mode feature</a></h3>
+<div class="sect3">
+<h4 id="modes"><a class="link" href="#modes">Modes</a></h4>
+<div class="paragraph">
+<p>As ROR contains many features, users may find it complicated to handle all the features at one go with so many commands to use. Furthermore, users may be overwhelmed if all the restaurant&#8217;s information were to be displayed together in one screen.</p>
+</div>
+<div class="paragraph">
+<p>As such, we have decided to implement a mode system for ROR to organise the available commands into their respective features. ROR contains 4 different modes, each displaying a different set of panels that are relevant to the mode:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Restaurant Mode - perform table-related operations across the entire restaurant</p>
+</li>
+<li>
+<p>Table Mode - perform order-related operations for a specific table</p>
+</li>
+<li>
+<p>Menu Mode - perform menu-related operations for the restaurant&#8217;s menu</p>
+</li>
+<li>
+<p>Statistics Mode - perform queries to retrieve the restaurant&#8217;s statistics</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="sect4">
+<h5 id="changing-modes-in-general"><a class="link" href="#changing-modes-in-general">Changing modes in general</a></h5>
+<div class="paragraph">
+<p>The modes of the application are defined using a <code>Mode</code> enum and the current mode of the application is stored as a private attribute <code>Mode mode</code> in <code>LogicManager</code>. Users can switch between modes in ROR using the <code>{XXX}Mode</code> command. When the mode of the application is changed, we need to update the:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Logic</code> component so that the <code>mode</code> attribute in <code>LogicManager</code> reflects the new current mode, since this is used to check if a command can be executed,</p>
+</li>
+<li>
+<p><code>UI</code> component so that the panels display the information that is relevant to the mode.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For all the mode-changing commands, these updates are done using a new <code>toMode</code> attribute added to the <code>CommandResult</code> object. As an example, Figure 9 below shows the sequence diagram for when a user executes the <code>menuMode</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/MenuModeSequenceDiagram.png" alt="MenuModeSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 1. Component interactions for :computer: <code>menuMode</code> command</div>
+</div>
+<div class="paragraph">
+<p>Upon execution of the <code>menuMode</code> command, <code>MenuModeCommand#generateCommandResult()</code> will generate a <code>CommandResult</code> whose <code>toMode</code> attribute is set to <code>MENU_MODE</code> and return it to the <code>LogicManager</code>. Now, the updates can be done for the respective components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Logic</code> component: <code>LogicManager</code> calls <code>CommandResult#newModeStatus()</code> to retrieve the mode to be changed to and updates the current mode stored in its <code>mode</code> attribute by calling <code>LogicManager#changeMode()</code>. The <code>CommandResult</code> is passed to <code>MainWindow</code> in UI.</p>
+</li>
+<li>
+<p><code>UI</code> component: <code>MainWindow</code> calls <code>CommandResult#newModeStatus()</code> to retrieve the mode to be changed to and updates the display panels by calling <code>MainWindow#handleChangeMode()</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For commands that do not involve a change in mode, <code>CommandResult#newModeStatus()</code> will return <code>null</code> and no updates to the current mode or display will be done.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="changing-to-table-mode-for-a-specific-table"><a class="link" href="#changing-to-table-mode-for-a-specific-table">Changing to Table Mode for a specific table</a></h5>
+<div class="paragraph">
+<p>All the mode-changing commands take no parameters except for Table Mode. When the user wants to perform order-related operations (eg. add an item to the table&#8217;s order), the user will first have to switch to Table Mode by typing the <code>tableMode</code> command (or its shortcut command <code>TM</code>) followed by the table number of the table that the user wants to perform actions on.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>tableMode</code> command can be used from any mode, even in Table Mode of a different table number. If the application is already in Table Mode of the same table number, or if the table specified by the table number is unoccupied, an error message will be shown to the user.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram (Figure 10) shows the relevant parts of what happens when a user executes the <code>tableMode 3</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/TableModeSequenceDiagram.png" alt="TableModeSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 2. Component interactions for :computer: <code>tableMode 3</code> command</div>
+</div>
+<div class="paragraph">
+<p>The <code>Logic</code> and <code>UI</code> component interactions work in a similar way to the other mode-changing commands and the implementation is mentioned above. The only difference is the parsing of the argument <code>3</code> into a <code>TableNumber</code> object that indicates the table number of the target table to switch to. This <code>TableNumber</code> object is stored as an attribute in <code>TableModeCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s focus on what happens to the Model component when the <code>TableModeCommand</code> is executed. It first retrieves the <code>Table</code> that corresponds to its <code>TableNumber</code> attribute. This is done by going through <code>Model#getRestOrRant()</code> to obtain the <code>ReadOnlyRestOrRant</code>, whose <code>getTables()</code> method can be called to retrieve <code>ReadOnlyTables</code> that contains the list of all the tables in the restaurant. The <code>Table</code> can then be retrieved by passing <code>TableNumber</code> into <code>ReadOnlyTables#getTableFromNumber()</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Table</code> is then set as the selected table in <code>Model</code> using <code>Model#setSelectedTable()</code>. This is to keep track of the current table so that the Table Mode commands like <code>addToOrder</code> and <code>bill</code> can easily perform their operations by getting the table from <code>Model#getSelectedTable()</code>.</p>
+</div>
+<div class="paragraph">
+<p>After which, <code>Model#updateFilteredOrderItemList()</code> is called to update the filtered list such that it only contains order items ordered by the chosen table. This will then update the item list panel in the UI to display only the order items that were ordered by the chosen table, since the UI retrieves its information from the filtered list.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defining of modes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modes are defined using a <code>Mode</code> enum.<br>
+- <strong>Pros</strong>: Easily identify incorrect modes since the set of valid modes is restricted to the enum values.<br>
+- <strong>Cons</strong>: Need to create a new class and increases coupling between Logic and UI components.</p>
+<p class="tableblock">We decided to choose this option as the enum is an abstraction over the possible modes. Apart from being less prone to errors,
+it also makes the code more readable as the enum values explicitly state the name of the mode (eg. <code>TABLE_MODE</code>, <code>MENU_MODE</code>) and are stored
+in <code>Mode</code> variables, making it clear that it refers to a mode and not just any string.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modes can be defined with strings (eg. "TableMode") or integers.<br>
+- <strong>Pros</strong>: Easy to implement.<br>
+- <strong>Cons</strong>: May be prone to errors (eg. mistyping a string) that causes bugs in the code.<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Storing of current mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mode stored in the Logic component (<code>LogicManager</code>).<br>
+- <strong>Pros</strong>: Easy to access the current mode to check whether a command is valid to execute in a particular mode.<br>
+- <strong>Cons</strong>: Slightly breaks abstraction since mode is not purely related to command execution.</p>
+<p class="tableblock">We decided to store the current mode in Logic because we note that most of the work that requires access to the current mode is done here, so providing a quick access will be more efficient.
+The Model component does not need to know what the current mode is at all, so it would be better to keep the coupling low to facilitate integration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mode stored in the Model component (<code>ModelManager</code>).<br>
+- <strong>Pros</strong>: Maintains abstraction as the mode is part of the current state of the application, which is maintained in Model.<br>
+- <strong>Cons</strong>: Increases coupling among the Model, Logic and UI components.<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifying table number for Table Mode commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified once when switching to Table Mode, then retrieved from <code>Model#getSelectedTable()</code> for future commands.<br>
+- <strong>Pros</strong>: Convenient to retrieve table number without having to explicitly specify it in every command.<br>
+- <strong>Cons</strong>: Non-standardized mode-changing commands since the others do not have any parameters.</p>
+<p class="tableblock">We decided to go ahead with this implementation as we feel that from a user&#8217;s point of view, it would be more convenient to be able to just specify the table number once and then perform a series of operations afterwards. Furthermore, having to parse the table number for every command will also do more work.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified for every command (eg. <code>deleteOrder 3 1</code>).<br>
+- <strong>Pros</strong>: All mode-changing commands are simple and similar.<br>
+- <strong>Cons</strong>: Makes the commands longer to type.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-12 17:30:17 UTC</div></div></div></body></html>
