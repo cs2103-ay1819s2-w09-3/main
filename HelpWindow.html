@@ -16,7 +16,7 @@
 <li><a href="#first-steps">2.2. First steps</a></li>
 <li><a href="#understanding-the-mode-system">2.3. Understanding the Mode system</a></li>
 <li><a href="#navigating-the-user-interface">2.4. Navigating the user interface</a></li>
-<li><a href="#using-commands">2.5. Using commands</a></li>
+<li><a href="#Command">2.5. Using commands</a></li>
 <li><a href="#using-restorrant-in-your-restaurant">2.6. Using RestOrRant in your restaurant</a></li>
 </ul>
 </li>
@@ -54,7 +54,7 @@
 <li><a href="#DeleteFromOrder">3.4.3. Deleting an item from an order : <code>deleteFromOrder</code></a></li>
 <li><a href="#ClearOrder">3.4.4. Clearing all the items in an order : <code>clearOrder</code></a></li>
 <li><a href="#Serve">3.4.5. Marking an item in an order as served : <code>serve</code></a></li>
-<li><a href="#Bill">3.4.6. Calculating the bill of an order : <code>bill</code></a></li>
+<li><a href="#Bill">3.4.6. Calling the bill of an order : <code>bill</code></a></li>
 </ul>
 </li>
 <li><a href="#menu-mode">3.5. Menu Mode</a>
@@ -66,10 +66,10 @@
 </li>
 <li><a href="#statistics-mode">3.6. Statistics Mode</a>
 <ul class="sectlevel3">
-<li><a href="#Revenue">3.6.1. Getting the total revenue : <code>revenue</code></a></li>
-<li><a href="#Daily">3.6.2. Getting the daily revenue : <code>daily</code></a></li>
-<li><a href="#Monthly">3.6.3. Getting the monthly revenue : <code>monthly</code></a></li>
-<li><a href="#Yearly">3.6.4. Getting the yearly revenue : <code>yearly</code></a></li>
+<li><a href="#Yearly">3.6.1. Changing the Revenue Panel to yearly : <code>yearly</code></a></li>
+<li><a href="#Monthly">3.6.2. Changing the Revenue Panel to monthly : <code>monthly</code></a></li>
+<li><a href="#Daily">3.6.3. Changing the Revenue Panel to daily : <code>daily</code></a></li>
+<li><a href="#Revenue">3.6.4. Getting the total revenue : <code>revenue</code></a></li>
 </ul>
 </li>
 </ul>
@@ -299,7 +299,7 @@ and the different components are labeled in the image below.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="using-commands"><a class="link" href="#using-commands">2.5. Using commands</a></h3>
+<h3 id="Command"><a class="link" href="#Command">2.5. Using commands</a></h3>
 <div class="paragraph">
 <p>You can use the commands described in <a href="#modes-and-commands">Section 3, &#8220;Modes and Commands&#8221;</a> by typing them into the Command Box and pressing <kbd>Enter</kbd> to execute it.
 For example, typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
@@ -371,13 +371,13 @@ e.g. <code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS]&#8230;&#8203;</code> can b
 <p><code>ITEM_PRICE</code> has to be</p>
 </li>
 <li>
-<p><code>DAY</code> has to be</p>
+<p><code>YEAR</code> has to be a 4 digit whole number within 2000 and the current year.</p>
 </li>
 <li>
-<p><code>MONTH</code> has to be</p>
+<p><code>MONTH</code> has to be a whole number within 1 to 12.</p>
 </li>
 <li>
-<p><code>YEAR</code> has to be</p>
+<p><code>DAY</code> has to be a whole number within 1 to 31 provided it exists in the desired month and year.</p>
 </li>
 </ul>
 </div>
@@ -1405,22 +1405,95 @@ If the quantity is not specified, the default quantity served is 1.
 </table>
 </div>
 <div class="sect3">
-<h4 id="Bill"><a class="link" href="#Bill">3.4.6. Calculating the bill of an order : <code>bill</code></a></h4>
+<h4 id="Bill"><a class="link" href="#Bill">3.4.6. Calling the bill of an order : <code>bill</code></a></h4>
 <div class="paragraph">
-<p>Calculates the bill of an order from the current selected table and displays the receipt.<br>
-Format: <code>bill</code></p>
+<p>Now that all the orders have been served and the customer is ready to pay for the meal, you can call the
+bill to obtain the customer&#8217;s receipt.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>bill</code><br>
+<strong>Shortcut</strong>: <code>b</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is irreversible. Once the command is executed, all orders and the table occupancy will be cleared to allow
+new customers to use the table. The money earned from the bill will automatically be added to the RestOrRant&#8217;s revenue statistics.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>bill</code> can only be called when all order items have been served.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the user interface will change its colour scheme and
+display.<br></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>In the new user interface, the order items in the order panel are cleared and the menu panel displays the
+customer&#8217;s receipt.<br>
+The receipt will indicate the price, quantity and type of menu items ordered, along with the time, date and total bill the customer has to pay.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Given that Table 5 has 4 items in the Order Panel as shown below. Note that all items have been
+served.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>bill</code><br>
-Returns the total price of the order from the current table.</p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="images/Bill_AllServed.png" alt="Bill AllServed">
 </div>
+</div>
+<div class="paragraph">
+<p>When bill is called, the user interface changes to display the receipt as shown below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Bill_Receipt.png" alt="Bill Receipt">
+</div>
+</div>
+<div class="paragraph">
+<p>When you switch to Restaurant Mode using <a href="#RM"><code>restaurantMode</code></a> command, you will realise that the table
+has been updated to accomodate new customers.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Bill_UpdatedSeats.png" alt="Bill UpdatedSeats">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -1529,91 +1602,266 @@ Format: <code>clearMenu</code></p>
 <div class="sect2">
 <h3 id="statistics-mode"><a class="link" href="#statistics-mode">3.6. Statistics Mode</a></h3>
 <div class="paragraph">
-<p>In Statistics Mode, you can obtain statistics related to your restaurant, such as daily revenue and the popularity of dishes.</p>
+<p>In Statistics Mode, you can obtain statistics related to your restaurant, such as the popularity of dishes and the
+revenue of a specified year, month or day.</p>
+</div>
+<div class="paragraph">
+<p>The user interface for Statistics Mode is shown in the image below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SMUi.png" alt="SMUi" width="790">
 </div>
 </div>
-<div class="sect3">
-<h4 id="Revenue"><a class="link" href="#Revenue">3.6.1. Getting the total revenue : <code>revenue</code></a></h4>
 <div class="paragraph">
-<p>Returns the total revenue earned by the restaurant by the stated year, month or day.<br>
-Format: <code>revenue [d/DAY] [m/MONTH] [y/YEAR]</code></p>
+<p>The function of the side and main panels are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Item Panel</strong>: This panel shows you the list of menu items sorted by its popularity. This is meant to help you decide
+what ingredients to order to cater to the demands of the popular dishes.</p>
+</li>
+<li>
+<p><strong>Revenue Panel</strong>: This panel displays the revenue from the recent years, months or days, depending on the view that
+you have selected. This allows you to study trends in your restaurant&#8217;s revenue.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default the Statistics Mode displays revenue up to 30 days in the Revenue Panel unless you execute
+<a href="#Yearly"><code>yearly</code></a>, <a href="#Monthly"><code>monthly</code></a> or <a href="#Daily"><code>daily</code></a> commands to change its display respectively.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here are the commands that you can use in this mode to study the statistical data of your restaurant.</p>
+</div>
+<div class="sect3">
+<h4 id="Yearly"><a class="link" href="#Yearly">3.6.1. Changing the Revenue Panel to yearly : <code>yearly</code></a></h4>
+<div class="paragraph">
+<p>This command changes the Revenue Panel to display the statistical yearly revenue for you to study the
+yearly revenue trends.<br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>DAY</code>, <code>MONTH</code>, <code>YEAR</code> have to be valid.</p>
-</li>
-<li>
-<p>If the stated period has no records, it will return $0.</p>
-</li>
-<li>
-<p>If <strong>no arguments</strong> are included, by default it returns the total revenue for the <strong>current day</strong>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 <div class="paragraph">
-<p>Examples:</p>
+<p><strong>Format</strong>: <code>yearly</code><br>
+<strong>Shortcut</strong>: <code>y</code></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>revenue</code><br>
-Returns the total revenue of the current day <code>$45</code></p>
-</li>
-<li>
-<p><code>revenue y/2019 m/01 d/01</code><br>
-Returns the total revenue on the specific day 01/01/2019 <code>$45</code></p>
-</li>
-<li>
-<p><code>revenue y/2019 m/02</code><br>
-Returns the total revenue of the month February 2019 <code>$7000</code></p>
-</li>
-<li>
-<p><code>revenue y/2019</code><br>
-Returns the total revenue of the year 2019 <code>15000</code></p>
-</li>
-</ul>
 </div>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the Revenue Panel changes to display up to 30 yearly
+revenue starting from the most recent record.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Notice that the first yearly revenue is the most recent year recorded. This saves you the trouble of
+scrolling through the rest of the record.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SM_Yearly.png" alt="SM Yearly">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
-<h4 id="Daily"><a class="link" href="#Daily">3.6.2. Getting the daily revenue : <code>daily</code></a></h4>
+<h4 id="Monthly"><a class="link" href="#Monthly">3.6.2. Changing the Revenue Panel to monthly : <code>monthly</code></a></h4>
 <div class="paragraph">
-<p>Change the interface to display the statistical daily revenue.<br>
-Format: <code>daily</code></p>
+<p>This command changes the Revenue Panel to display the statistical monthly revenue for you to study the
+monthly revenue trends.<br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>This is the default page for Statistics Mode.<br></p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Format</strong>: <code>monthly</code><br>
+<strong>Shortcut</strong>: <code>m</code></p>
 </div>
 </div>
 </div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the Revenue Panel changes to display up to 30 monthly
+revenue starting from the most recent record.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Notice that the first monthly revenue is the most recent month recorded. This saves you the trouble of
+scrolling through the rest of the record.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SM_Monthly.png" alt="SM Monthly">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
-<h4 id="Monthly"><a class="link" href="#Monthly">3.6.3. Getting the monthly revenue : <code>monthly</code></a></h4>
+<h4 id="Daily"><a class="link" href="#Daily">3.6.3. Changing the Revenue Panel to daily : <code>daily</code></a></h4>
 <div class="paragraph">
-<p>Change the interface to display the statistical monthly revenue.<br>
-Format: <code>monthly</code></p>
+<p>This command helps you to change the Revenue Panel back to its default display of the statistical daily revenue
+ for you to study the daily revenue trends.<br></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>daily</code><br>
+<strong>Shortcut</strong>: <code>d</code></p>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the Revenue Panel changes to display up to 30 daily
+revenue starting from the most recent record.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Notice that the first daily revenue is the most recent day recorded. This saves you the trouble of
+scrolling through the rest of the record.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SM_Daily.png" alt="SM Daily">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
-<h4 id="Yearly"><a class="link" href="#Yearly">3.6.4. Getting the yearly revenue : <code>yearly</code></a></h4>
+<h4 id="Revenue"><a class="link" href="#Revenue">3.6.4. Getting the total revenue : <code>revenue</code></a></h4>
 <div class="paragraph">
-<p>Change the interface to display the statistical yearly revenue.<br>
-Format: <code>yearly</code></p>
+<p>If you want to obtain the revenue earned in a particular year, month or day, you can obtain it with this command.</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>revenue [ y/YEAR [m/MONTH [d/DAY] ] ]</code><br>
+<strong>Shortcut</strong>: <code>r</code><br>
+<strong>Examples</strong>: <code>r</code>, <code>r y/2019</code>, <code>r y/2019 m/4</code>, <code>r y/2019 m/4 d/6</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Order of the parameters does not matter.<br>
+For example, <code>r y/2019 d/6 m/4</code> will still return the revenue earned on
+6th April 2019.<br>
+If <strong>no arguments</strong> are included, by default the revenue earned from the <strong>current day</strong> will be returned.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If there are no records of the stated period, it will be returned as $0.<br>
+Refer to <a href="#Command">commands</a> to take note of the parameter restrictions of <code>YEAR</code>, <code>MONTH</code> and <code>DAY</code>.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message and the revenue of the specified year, month or day in the Results Display. Examples
+are provided below.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>revenue y/2019</code> will return the revenue for year 2019 as shown:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Revenue_Year.png" alt="Revenue Year">
+</div>
+</div>
+<div class="paragraph">
+<p><code>revenue y/2019 m/4</code> will return the revenue for the month April 2019 as shown:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Revenue_Month.png" alt="Revenue Month">
+</div>
+</div>
+<div class="paragraph">
+<p><code>revenue y/2019 m/4 d/6</code> will return the revenue for the day 6th April 2019 as shown:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Revenue_Day.png" alt="Revenue Day">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -2104,16 +2352,58 @@ Removes A02 from the menu</p>
 <tbody>
 <tr>
 <td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><a href="#Yearly"><code>yearly</code></a></p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><code><strong>y</strong></code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>yearly</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Displays the revenue from up to the past 30 years in the Revenue Panel</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><a href="#Monthly"><code>monthly</code></a></p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><code><strong>m</strong></code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>monthly</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Displays the revenue from up to the past 30 months in the Revenue Panel</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><a href="#Daily"><code>daily</code></a></p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><code><strong>d</strong></code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>daily</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Displays the revenue from up to the past 30 days in the Revenue Panel</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
 <p><a href="#Revenue"><code>revenue</code></a></p>
 </div></div></td>
 <td class="tableblock halign-center valign-top"><div><div class="paragraph">
 <p><code><strong>r</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>revenue [d/DAY] [m/MONTH] [y/YEAR]</code></p>
+<p><code>revenue [y/YEAR [[m/MONTH] [d/DAY]]]</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>revenue d/1 m/1 y/2019</code><br>
+<p><code>revenue y/2019 m/1 d/1</code><br>
 Returns the revenue earned on 01 January 2019</p>
 </div></div></td>
 </tr>
@@ -2121,4 +2411,4 @@ Returns the revenue earned on 01 January 2019</p>
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 11:34:35 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 15:24:57 UTC</div></div></div></body></html>
