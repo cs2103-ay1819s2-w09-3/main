@@ -15,7 +15,14 @@
 <li><a href="#prerequisites">2.1. Prerequisites</a></li>
 <li><a href="#setting-up-ror-in-your-computer">2.2. Setting up ROR in your computer</a></li>
 <li><a href="#verifying-the-setup">2.3. Verifying the setup</a></li>
-<li><a href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a></li>
+<li><a href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a>
+<ul class="sectlevel3">
+<li><a href="#configuring-the-coding-style">2.4.1. Configuring the coding style</a></li>
+<li><a href="#updating-documentation-to-match-your-fork">2.4.2. Updating documentation to match your fork</a></li>
+<li><a href="#setting-up-ci">2.4.3. Setting up CI</a></li>
+<li><a href="#getting-started-with-coding">2.4.4. Getting started with coding</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#design">3. Design</a>
@@ -30,12 +37,63 @@
 </li>
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#changing-mode-feature">4.1. Changing Mode feature</a></li>
-<li><a href="#edit-pax-feature">4.2. Edit Pax feature</a></li>
-<li><a href="#bill-feature">4.3. Bill feature</a></li>
-<li><a href="#adding-to-menu-feature">4.4. Adding To Menu feature</a></li>
-<li><a href="#logging">4.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.6. Configuration</a></li>
+<li><a href="#mode-system">4.1. Mode System</a>
+<ul class="sectlevel3">
+<li><a href="#modes">4.1.1. Modes</a></li>
+<li><a href="#current-implementation">4.1.2. Current Implementation</a>
+<ul class="sectlevel4">
+<li><a href="#changing-modes-in-general">Changing modes in general</a></li>
+<li><a href="#ChangeToTableMode">Changing to Table Mode for a specific table</a></li>
+</ul>
+</li>
+<li><a href="#design-considerations">4.1.3. Design Considerations</a></li>
+</ul>
+</li>
+<li><a href="#tables-feature">4.2. Tables feature</a>
+<ul class="sectlevel3">
+<li><a href="#EditPax">4.2.1. Edit pax at a table</a>
+<ul class="sectlevel4">
+<li><a href="#current-implementation-2">Current Implementation</a></li>
+<li><a href="#design-considerations-2">Design Considerations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orders-feature">4.3. Orders feature</a>
+<ul class="sectlevel3">
+<li><a href="#CurrentTable">4.3.1. Getting the table number</a></li>
+<li><a href="#AddToOrder">4.3.2. Adding to an order</a></li>
+<li><a href="#DeleteFromOrder">4.3.3. Deleting from an order</a></li>
+<li><a href="#ClearOrder">4.3.4. Clearing an order</a>
+<ul class="sectlevel4">
+<li><a href="#current-implementation-3">Current Implementation</a></li>
+<li><a href="#design-considerations-3">Design Considerations</a></li>
+</ul>
+</li>
+<li><a href="#Serve">4.3.5. Serving items in an order</a></li>
+</ul>
+</li>
+<li><a href="#menu-feature">4.4. Menu feature</a>
+<ul class="sectlevel3">
+<li><a href="#AddToMenu">4.4.1. Adding to menu</a>
+<ul class="sectlevel4">
+<li><a href="#current-implementation-4">Current Implementation</a></li>
+<li><a href="#design-considerations-4">Design Considerations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#statistics-feature">4.5. Statistics feature</a>
+<ul class="sectlevel3">
+<li><a href="#Bill">4.5.1. Billing an order</a>
+<ul class="sectlevel4">
+<li><a href="#current-implementation-5">Current Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#logging">4.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -65,27 +123,20 @@
 <li><a href="#managing-dependencies">7.6. Managing Dependencies</a></li>
 </ul>
 </li>
-<li><a href="#GetStartedProgramming">Appendix A: Suggested Programming Tasks to Get Started</a>
+<li><a href="#product-scope">Appendix A: Product Scope</a></li>
+<li><a href="#user-stories">Appendix B: User Stories</a></li>
+<li><a href="#use-cases">Appendix C: Use Cases</a></li>
+<li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
+<li><a href="#glossary">Appendix E: Glossary</a></li>
+<li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
-<li><a href="#GetStartedProgramming-EachComponent">A.1. Improving each component</a></li>
-<li><a href="#GetStartedProgramming-RemarkCommand">A.2. Creating a new command: <code>remark</code></a></li>
-</ul>
-</li>
-<li><a href="#product-scope">Appendix B: Product Scope</a></li>
-<li><a href="#user-stories">Appendix C: User Stories</a></li>
-<li><a href="#use-cases">Appendix D: Use Cases</a></li>
-<li><a href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></li>
-<li><a href="#glossary">Appendix F: Glossary</a></li>
-<li><a href="#product-survey">Appendix G: Product Survey</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a>
-<ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
-<li><a href="#changing-modes">H.2. Changing Modes</a></li>
-<li><a href="#tables">H.3. Tables</a></li>
-<li><a href="#menu">H.4. Menu</a></li>
-<li><a href="#orders">H.5. Orders</a></li>
-<li><a href="#statistics">H.6. Statistics</a></li>
-<li><a href="#saving-data">H.7. Saving data</a></li>
+<li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
+<li><a href="#changing-modes">F.2. Changing Modes</a></li>
+<li><a href="#tables-feature-2">F.3. Tables feature</a></li>
+<li><a href="#menu-feature-2">F.4. Menu feature</a></li>
+<li><a href="#orders-feature-2">F.5. Orders feature</a></li>
+<li><a href="#statistics-feature-2">F.6. Statistics feature</a></li>
+<li><a href="#data-storage">F.7. Data storage</a></li>
 </ul>
 </li>
 </ul>
@@ -126,37 +177,43 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>To help you follow this Developer Guide better, here is the legend of the markups used throughout this document:</p>
+<p>To help you follow this Developer Guide better, here is the legend of the markups and formatting used throughout this document:</p>
 </div>
-<table class="tableblock frame-all grid-all" style="width: 80%;">
+<table class="tableblock frame-all grid-all" style="width: 70%;">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
+<col style="width: 15%;">
+<col style="width: 85%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>HelloWorld</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Code in the codebase</p></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><code>code</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command that can be typed</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><kbd>ENTER</kbd></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Keyboard key</p></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="java">name</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the codebase (such as component, class and method names)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">:information_source:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Notes that provides additional information</p></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="icon icon-tip"><i class="fa fa-lightbulb-o fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tips and tricks that might be useful</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">:bulb:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tips and tricks</p></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="icon icon-note"><i class="fa fa-info-circle fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional information that is good to know</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">:warning:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Warnings</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">:computer: <code>menuMode</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Commands to input in the CLI</p></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="icon icon-important"><i class="fa fa-exclamation-circle fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Important pointers to take note</p></td>
 </tr>
 </tbody>
 </table>
@@ -176,16 +233,16 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>JDK <code>9</code></strong> or later</p>
-<div class="admonitionblock warning">
+<p><strong>JDK 9</strong> or later</p>
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-JDK <code>10</code> on Windows will fail to run tests in <a href="UsingGradle.html#Running-Tests">headless mode</a> due to a <a href="https://github.com/javafxports/openjdk-jfx/issues/66">JavaFX bug</a>.
-Windows developers are highly recommended to use JDK <code>9</code>.
+JDK <strong>10</strong> on Windows will fail to run tests in <a href="UsingGradle.html#Running-Tests">headless mode</a> due to a <a href="https://github.com/javafxports/openjdk-jfx/issues/66">JavaFX bug</a>.
+Windows developers are highly recommended to use JDK <strong>9</strong>.
 </td>
 </tr>
 </table>
@@ -201,7 +258,7 @@ Windows developers are highly recommended to use JDK <code>9</code>.
 </td>
 <td class="content">
 IntelliJ by default has Gradle and JavaFx plugins installed.<br>
-Do not disable them. If you have disabled them, go to <code>File</code> &gt; <code>Settings</code> &gt; <code>Plugins</code> to re-enable them.
+Do not disable them. If you have disabled them, go to <span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Settings</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Plugins</b></span> to re-enable them.
 </td>
 </tr>
 </table>
@@ -221,52 +278,52 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 <p>Fork this repo, and clone the fork to your computer</p>
 </li>
 <li>
-<p>Open IntelliJ (if you are not in the welcome screen, click <code>File</code> &gt; <code>Close Project</code> to close the existing project dialog first)</p>
+<p>Open IntelliJ (if you are not in the welcome screen, click <span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Close Project</b></span> to close the existing project dialog first)</p>
 </li>
 <li>
 <p>Set up the correct JDK version for Gradle</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Click <code>Configure</code> &gt; <code>Project Defaults</code> &gt; <code>Project Structure</code></p>
+<p>Click <span class="menuseq"><b class="menu">Configure</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Project Defaults</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Project Structure</b></span></p>
 </li>
 <li>
-<p>Click <code>New&#8230;&#8203;</code> and find the directory of the JDK</p>
+<p>Click <b class="button">New&#8230;&#8203;</b> and find the directory of the JDK</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>Click <code>Import Project</code></p>
+<p>Click <b class="button">Import Project</b></p>
 </li>
 <li>
-<p>Locate the <code>build.gradle</code> file and select it. Click <code>OK</code></p>
+<p>Locate the <span class="java">build.gradle</span> file and select it. Click <b class="button">OK</b></p>
 </li>
 <li>
-<p>Click <code>Open as Project</code></p>
+<p>Click <b class="button">Open as Project</b></p>
 </li>
 <li>
-<p>Click <code>OK</code> to accept the default settings</p>
+<p>Click <b class="button">OK</b> to accept the default settings</p>
 </li>
 <li>
-<p>Open a console and run the command <code>gradlew processResources</code> (Mac/Linux: <code>./gradlew processResources</code>). It should finish with the <code>BUILD SUCCESSFUL</code> message.<br>
+<p>Open a console and run the command <code>gradlew processResources</code> (Mac/Linux: <code>./gradlew processResources</code>). It should finish with the <strong>BUILD SUCCESSFUL</strong> message.<br>
 This will generate all resources required by the application and tests.</p>
 </li>
 <li>
-<p>Open <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow.java</code></a> and check for any code errors</p>
+<p>Open <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/MainWindow.java"><span class="java">MainWindow.java</span></a> and check for any code errors</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
 <p>Due to an ongoing <a href="https://youtrack.jetbrains.com/issue/IDEA-189060">issue</a> with some of the newer versions of IntelliJ, code errors may be detected even if the project can be built and run successfully</p>
 </li>
 <li>
-<p>To resolve this, place your cursor over any of the code section highlighted in red. Press <span class="keyseq"><kbd>ALT</kbd>+<kbd>ENTER</kbd></span>, and select <code>Add '--add-modules=&#8230;&#8203;' to module compiler options</code> for each error</p>
+<p>To resolve this, place your cursor over any of the code section highlighted in red. Press <span class="keyseq"><kbd>ALT</kbd>+<kbd>ENTER</kbd></span>, and select <b class="button">Add '--add-modules=&#8230;&#8203;' to module compiler options</b> for each error</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>Repeat this for the test folder as well (e.g. check <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/seedu/address/ui/HelpWindowTest.java"><code>HelpWindowTest.java</code></a> for code errors, and if so, resolve it the same way)</p>
+<p>Repeat this for the test folder as well (e.g. check <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/seedu/address/ui/HelpWindowTest.java"><span class="java">HelpWindowTest.java</span></a> for code errors, and if so, resolve it the same way)</p>
 </li>
 </ol>
 </div>
@@ -279,7 +336,7 @@ This will generate all resources required by the application and tests.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Run the <code>seedu.address.MainApp</code> and try a few commands</p>
+<p>Run the <span class="java">seedu.address.MainApp</span> and try a few commands</p>
 </li>
 <li>
 <p><a href="#Testing">Run the tests</a> to ensure they all pass.</p>
@@ -300,20 +357,20 @@ This will generate all resources required by the application and tests.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to <code>File</code> &gt; <code>Settings&#8230;&#8203;</code> (Windows/Linux), or <code>IntelliJ IDEA</code> &gt; <code>Preferences&#8230;&#8203;</code> (macOS)</p>
+<p>Go to <span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Settings&#8230;&#8203;</b></span> (Windows/Linux), or <span class="menuseq"><b class="menu">IntelliJ IDEA</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Preferences&#8230;&#8203;</b></span> (macOS)</p>
 </li>
 <li>
-<p>Select <code>Editor</code> &gt; <code>Code Style</code> &gt; <code>Java</code></p>
+<p>Select <span class="menuseq"><b class="menu">Editor</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Code Style</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Java</b></span></p>
 </li>
 <li>
-<p>Click on the <code>Imports</code> tab to set the order</p>
+<p>Click on the <strong>Imports</strong> tab to set the order</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For <code>Class count to use import with '*'</code> and <code>Names count to use static import with '*'</code>: Set to <code>999</code> to prevent IntelliJ from contracting the import statements</p>
+<p>For <strong>Class count to use import with '*'</strong> and <strong>Names count to use static import with '*'</strong>: Set to <strong>999</strong> to prevent IntelliJ from contracting the import statements</p>
 </li>
 <li>
-<p>For <code>Import Layout</code>: The order is <code>import static all other imports</code>, <code>import java.*</code>, <code>import javax.*</code>, <code>import org.*</code>, <code>import com.*</code>, <code>import all other imports</code>. Add a <code>&lt;blank line&gt;</code> between each <code>import</code></p>
+<p>For <strong>Import Layout</strong>: The order is <b class="button">import static all other imports</b>, <b class="button">import java.*</b>, <b class="button">import javax.*</b>, <b class="button">import org.*</b>, <b class="button">import com.*</b>, <b class="button">import all other imports</b>. Add a blank line between each import</p>
 </li>
 </ul>
 </div>
@@ -327,18 +384,18 @@ This will generate all resources required by the application and tests.</p>
 <div class="sect3">
 <h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">2.4.2. Updating documentation to match your fork</a></h4>
 <div class="paragraph">
-<p>After forking the repo, the documentation will still have the SE-EDU branding and refer to the <code>se-edu/addressbook-level4</code> repo.</p>
+<p>After forking the repo, the documentation will still have the SE-EDU branding and refer to the <strong>se-edu/addressbook-level4</strong> repo.</p>
 </div>
 <div class="paragraph">
-<p>If you plan to develop this fork as a separate product (i.e. instead of contributing to <code>se-edu/addressbook-level4</code>), you should do the following:</p>
+<p>If you plan to develop this fork as a separate product (i.e. instead of contributing to <strong>se-edu/addressbook-level4</strong>), you should do the following:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Configure the <a href="#Docs-SiteWideDocSettings">site-wide documentation settings</a> in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/build.gradle"><code>build.gradle</code></a>, such as the <code>site-name</code>, to suit your own project.</p>
+<p>Configure the <a href="#Docs-SiteWideDocSettings">site-wide documentation settings</a> in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/build.gradle"><span class="java">build.gradle</span></a>, such as the <span class="java">site-name</span>, to suit your own project.</p>
 </li>
 <li>
-<p>Replace the URL in the attribute <code>repoURL</code> in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/DeveloperGuide.adoc"><code>DeveloperGuide.adoc</code></a> and <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/UserGuide.adoc"><code>UserGuide.adoc</code></a> with the URL of your fork.</p>
+<p>Replace the URL in the attribute <span class="java">repoURL</span> in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/DeveloperGuide.adoc"><span class="java">DeveloperGuide.adoc</span></a> and <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/UserGuide.adoc"><span class="java">UserGuide.adoc</span></a> with the URL of your fork.</p>
 </li>
 </ol>
 </div>
@@ -382,17 +439,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <div class="sect3">
 <h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">2.4.4. Getting started with coding</a></h4>
 <div class="paragraph">
-<p>When you are ready to start coding,</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Get some sense of the overall design by reading <a href="#Design-Architecture">Section 3.1, &#8220;Architecture&#8221;</a>.</p>
-</li>
-<li>
-<p>Take a look at <a href="#GetStartedProgramming">Appendix A, <em>Suggested Programming Tasks to Get Started</em></a>.</p>
-</li>
-</ol>
+<p>When you are ready to start coding, get some sense of the overall design by reading <a href="#Design-Architecture">Section 3.1, &#8220;Architecture&#8221;</a>.</p>
 </div>
 </div>
 </div>
@@ -407,7 +454,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <div class="sect2">
 <h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">3.1. Architecture</a></h3>
 <div class="paragraph">
-<p>The <strong><em>Architecture Diagram</em></strong> given below (Figure 1) explains the high-level design of the ROR App.</p>
+<p>The <em>Architecture Diagram</em> given below explains the high-level design of the ROR App.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -422,7 +469,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
+The <strong>.pptx</strong> files used to create diagrams in this document can be found in the <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <b class="button">Save as picture</b>.
 </td>
 </tr>
 </table>
@@ -431,7 +478,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <p>Given below is a quick overview of each component.</p>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has only one class called <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for:</p>
+<p><span class="java">Main</span> has only one class called <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/MainApp.java"><span class="java">MainApp</span></a>. It is responsible for:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -444,13 +491,13 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="#Design-Commons"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components.
+<p><a href="#Design-Commons"><span class="java">Commons</span></a> represents a collection of classes used by multiple other components.
 The following class plays an important role at the architecture level:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>LogsCenter</code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
+<p><span class="java">LogsCenter</span> : Used by many classes to write log messages to the App&#8217;s log file.</p>
 </li>
 </ul>
 </div>
@@ -460,16 +507,16 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#Design-Ui"><strong><code>UI</code></strong></a> : The UI of the App.</p>
+<p><a href="#Design-Ui"><span class="java">UI</span></a> : The UI of the App.</p>
 </li>
 <li>
-<p><a href="#Design-Logic"><strong><code>Logic</code></strong></a> : The command executor.</p>
+<p><a href="#Design-Logic"><span class="java">Logic</span></a> : The command executor.</p>
 </li>
 <li>
-<p><a href="#Design-Model"><strong><code>Model</code></strong></a> : Holds the data of the App in-memory.</p>
+<p><a href="#Design-Model"><span class="java">Model</span></a> : Holds the data of the App in-memory.</p>
 </li>
 <li>
-<p><a href="#Design-Storage"><strong><code>Storage</code></strong></a> : Reads data from, and writes data to, the hard disk.</p>
+<p><a href="#Design-Storage"><span class="java">Storage</span></a> : Reads data from, and writes data to, the hard disk.</p>
 </li>
 </ul>
 </div>
@@ -479,15 +526,15 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the Component.</p>
+<p>Defines its API in an interface with the same name as the Component.</p>
 </li>
 <li>
-<p>Exposes its functionality using a <code>{Component Name}Manager</code> class.</p>
+<p>Exposes its functionality using a <span class="java">{Component Name}Manager</span> class.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, the <code>Logic</code> component (see the class diagram given below in Figure 2) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
+<p>For example, the <span class="java">Logic</span> component (see the class diagram given below) defines its API in the <span class="java">Logic.java</span> interface and exposes its functionality using the <span class="java">LogicManager.java</span> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -497,13 +544,13 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below (Figure 3) shows how the components interact with each other for the scenario where the user issues the command <code>delete 1</code>.</p>
+<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>addTable 2</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SDforAddTable.png" alt="SDforAddTable" width="800">
 </div>
-<div class="title">Figure 3. Component interactions for :computer: <code>addTable 2</code> command</div>
+<div class="title">Figure 3. Component interactions for <code>addTable 2</code> command</div>
 </div>
 <div class="paragraph">
 <p>The sections below give more details of each component.</p>
@@ -521,24 +568,24 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 4. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/Ui.java"><span class="java">Ui.java</span></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts such as <code>CommandBox</code>, <code>ResultDisplay</code>, <code>TableFlowPanel</code>, <code>MenuFlowPanel</code>, <code>OrdersListPanel</code>, <code>MenuListPanel</code> and <code>StatusBarFooter</code>. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class, and are not used at the same time.</p>
+<p>The UI consists of a <span class="java">MainWindow</span> that is made up of parts such as <span class="java">CommandBox</span>, <span class="java">ResultDisplay</span> and <span class="java">StatusBarFooter</span>. All these, including the <span class="java">MainWindow</span>, inherit from the abstract <span class="java">UiPart</span> class. Not all the parts are displayed to the user at the same time (eg. <span class="java">TableFlowPanel</span> is not shown together with <span class="java">StatisticsFlowPanel</span>). The parts that are shown depends on the <a href="#modes">mode</a>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a>.</p>
+<p>The <span class="java">UI</span> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <strong>.fxml</strong> files that are in the <span class="java">src/main/resources/view</span> folder. For example, the layout of the <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/MainWindow.java"><span class="java">MainWindow</span></a> is specified in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/resources/view/MainWindow.fxml"><span class="java">MainWindow.fxml</span></a>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component:</p>
+<p>The <span class="java">UI</span> component:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Executes user commands using the <code>Logic</code> component.</p>
+<p>Executes user commands using the <span class="java">Logic</span> component.</p>
 </li>
 <li>
-<p>Listens for changes to <code>Model</code> data so that the UI can be updated with the modified data.</p>
+<p>Listens for changes to <span class="java">Model</span> data so that the UI can be updated with the modified data.</p>
 </li>
 </ul>
 </div>
@@ -556,29 +603,29 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/Logic.java"><span class="java">Logic.java</span></a></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Logic</code> uses the <code>RestOrRantParser</code> class to parse the user command.</p>
+<p><span class="java">Logic</span> uses the <span class="java">RestOrRantParser</span> class to parse the user command.</p>
 </li>
 <li>
-<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
+<p>This results in a <span class="java">Command</span> object which is executed by the <span class="java">LogicManager</span>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a table).</p>
+<p>The command execution can affect the <span class="java">Model</span> (e.g. adding a table).</p>
 </li>
 <li>
-<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
+<p>The result of the command execution is encapsulated as a <span class="java">CommandResult</span> object which is passed back to the <span class="java">Ui</span>.</p>
 </li>
 <li>
-<p>In addition, the <code>CommandResult</code> object can also instruct the <code>Ui</code> to perform certain actions, such as displaying help to the user.</p>
+<p>In addition, the <span class="java">CommandResult</span> object can also instruct the <span class="java">Ui</span> to perform certain actions, such as displaying help to the user or changing the <a href="#modes">mode</a> displayed.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+<p>Given below is the Sequence Diagram for interactions within the <span class="java">Logic</span> component for the <span class="java">execute("addTable 2")</span> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -590,7 +637,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="sect2">
 <h3 id="Design-Model"><a class="link" href="#Design-Model">3.4. Model component</a></h3>
 <div class="paragraph">
-<p>The Model component keeps a model of the current state of ROR in memory.</p>
+<p>The Model component (Figure 7) keeps a model of the current state of ROR in memory.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -599,21 +646,21 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/Model.java"><span class="java">Model.java</span></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Model</code> :</p>
+<p>The <span class="java">Model</span> :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+<p>stores a <span class="java">UserPref</span> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
 <p>stores the RestOrRant data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Table&gt;</code>, <code>ObservableList&lt;OrderItem&gt;</code>, <code>ObservableList&lt;MenuItem&gt;</code> and <code>ObservableList&lt;DailyRevenue&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <span class="java">ObservableList&lt;Table&gt;</span>, <span class="java">ObservableList&lt;OrderItem&gt;</span>, <span class="java">ObservableList&lt;MenuItem&gt;</span> and <span class="java">ObservableList&lt;Revenue&gt;</span> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -624,7 +671,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="sect2">
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.5. Storage component</a></h3>
 <div class="paragraph">
-<p>The Storage component manages the storing and retrieving of data on local files.</p>
+<p>The Storage component (Figure 8) manages the storing and retrieving of data on local files.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -633,18 +680,18 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 8. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/storage/Storage.java"><span class="java">Storage.java</span></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Storage</code> component:</p>
+<p>The <span class="java">Storage</span> component:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+<p>can save <span class="java">UserPref</span> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the <code>Tables</code>, <code>Orders</code>, <code>Menu</code> and <code>Statistics</code> data in json format and read it back.</p>
+<p>can save the <span class="java">Tables</span>, <span class="java">Orders</span>, <span class="java">Menu</span> and <span class="java">Statistics</span> data in json format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -652,7 +699,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="sect2">
 <h3 id="Design-Commons"><a class="link" href="#Design-Commons">3.6. Common classes</a></h3>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.address.commons</code> package.</p>
+<p>Classes used by multiple components are in the <span class="java">seedu.address.commons</span> package.</p>
 </div>
 </div>
 </div>
@@ -661,33 +708,51 @@ The following class plays an important role at the architecture level:</p>
 <h2 id="implementation"><a class="link" href="#implementation">4. Implementation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section describes some noteworthy details on how certain features are implemented.</p>
+<p>This section describes some noteworthy details on how our features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="changing-mode-feature"><a class="link" href="#changing-mode-feature">4.1. Changing Mode feature</a></h3>
+<h3 id="mode-system"><a class="link" href="#mode-system">4.1. Mode System</a></h3>
 <div class="sect3">
 <h4 id="modes"><a class="link" href="#modes">4.1.1. Modes</a></h4>
 <div class="paragraph">
 <p>As ROR contains many features, users may find it complicated to handle all the features at one go with so many commands to use. Furthermore, users may be overwhelmed if all the restaurant&#8217;s information were to be displayed together in one screen.</p>
 </div>
 <div class="paragraph">
-<p>As such, we have decided to implement a mode system for ROR to organise the available commands into their respective features. ROR contains 4 different modes, each displaying a different set of panels that are relevant to the mode:</p>
+<p>As such, we have decided to implement a mode system for ROR to organise the available commands into their respective features. ROR provides 4 different modes for the users, each displaying a different set of panels that are relevant to the mode:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Restaurant Mode - perform table-related operations across the entire restaurant</p>
+<p><strong>Restaurant Mode</strong> - perform <a href="#tables-feature">table-related operations</a> across the entire restaurant</p>
 </li>
 <li>
-<p>Table Mode - perform order-related operations for a specific table</p>
+<p><strong>Table Mode</strong> - perform <a href="#orders-feature">order-related operations</a> for a specific table</p>
 </li>
 <li>
-<p>Menu Mode - perform menu-related operations for the restaurant&#8217;s menu</p>
+<p><strong>Menu Mode</strong> - perform <a href="#menu-feature">menu-related operations</a> on the restaurant&#8217;s menu</p>
 </li>
 <li>
-<p>Statistics Mode - perform queries to retrieve the restaurant&#8217;s statistics</p>
+<p><strong>Statistics Mode</strong> - perform <a href="#statistics-feature">queries</a> to retrieve the restaurant&#8217;s statistics</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>To use the different features, we have also implemented mode-changing commands for users to switch between the 4 user modes.</p>
+</div>
+<div class="paragraph">
+<p>There is also a <strong>Bill Mode</strong> available for your use as a developer, although the existence of this mode is not shared with the users. The Bill Mode displays the receipt and is only used after the <code>bill</code> command is executed in RestOrRant.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Although the <code>bill</code> command is used in Table Mode, it is considered a Statistics feature rather than an Orders feature as it involves calculation for the revenue.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -695,37 +760,37 @@ The following class plays an important role at the architecture level:</p>
 <div class="sect4">
 <h5 id="changing-modes-in-general"><a class="link" href="#changing-modes-in-general">Changing modes in general</a></h5>
 <div class="paragraph">
-<p>The modes of the application are defined using a <code>Mode</code> enum and the current mode of the application is stored as a private attribute <code>Mode mode</code> in <code>LogicManager</code>. Users can switch between modes in ROR using the <code>{XXX}Mode</code> command. When the mode of the application is changed, we need to update the:</p>
+<p>The modes of the application are defined using a <span class="java">Mode</span> enum and the current mode of the application is stored as a private attribute <span class="java">Mode mode</span> in <span class="java">LogicManager</span>. Users can switch between modes in ROR using the <code>{XXX}Mode</code> command, such as <code>menuMode</code> and <code>tableMode</code>. When the mode of the application is changed, we need to update the:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Logic</code> component so that the <code>mode</code> attribute in <code>LogicManager</code> reflects the new current mode, since this is used to check if a command can be executed,</p>
+<p><span class="java">Logic</span> component so that the <span class="java">mode</span> attribute in <span class="java">LogicManager</span> reflects the new current mode, since this is used to check if a command can be executed,</p>
 </li>
 <li>
-<p><code>UI</code> component so that the panels display the information that is relevant to the mode.</p>
+<p><span class="java">UI</span> component so that the panels display the information that is relevant to the mode.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For all the mode-changing commands, these updates are done using a new <code>toMode</code> attribute added to the <code>CommandResult</code> object. As an example, Figure 9 below shows the sequence diagram for when a user executes the <code>menuMode</code> command:</p>
+<p>For all the mode-changing commands, these updates are done using a new <span class="java">toMode</span> attribute added to the <span class="java">CommandResult</span> object. As an example, the figure below shows the sequence diagram for when a user executes the <code>menuMode</code> command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/MenuModeSequenceDiagram.png" alt="MenuModeSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 9. Component interactions for :computer: <code>menuMode</code> command</div>
+<div class="title">Figure 9. Component interactions for <code>menuMode</code> command</div>
 </div>
 <div class="paragraph">
-<p>Upon execution of the <code>menuMode</code> command, <code>MenuModeCommand#generateCommandResult()</code> will generate a <code>CommandResult</code> whose <code>toMode</code> attribute is set to <code>MENU_MODE</code> and return it to the <code>LogicManager</code>. Now, the updates can be done for the respective components:</p>
+<p>Upon execution of the <code>menuMode</code> command, <span class="java">MenuModeCommand#generateCommandResult()</span> will generate a <span class="java">CommandResult</span> whose <span class="java">toMode</span> attribute is set to <span class="java">MENU_MODE</span> and return it to the <span class="java">LogicManager</span>. Now, the updates can be done for the respective components:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Logic</code> component: <code>LogicManager</code> calls <code>CommandResult#newModeStatus()</code> to retrieve the mode to be changed to and updates the current mode stored in its <code>mode</code> attribute by calling <code>LogicManager#changeMode()</code>. The <code>CommandResult</code> is passed to <code>MainWindow</code> in UI.</p>
+<p><span class="java">Logic</span> component: <span class="java">LogicManager</span> calls <span class="java">CommandResult#newModeStatus()</span> to retrieve the mode to be changed to and updates the current mode stored in its <span class="java">mode</span> attribute by calling <span class="java">LogicManager#changeMode()</span>. The <span class="java">CommandResult</span> is passed to <span class="java">MainWindow</span> in UI.</p>
 </li>
 <li>
-<p><code>UI</code> component: <code>MainWindow</code> calls <code>CommandResult#newModeStatus()</code> to retrieve the mode to be changed to and updates the display panels by calling <code>MainWindow#handleChangeMode()</code>.</p>
+<p><span class="java">UI</span> component: <span class="java">MainWindow</span> calls <span class="java">CommandResult#newModeStatus()</span> to retrieve the mode to be changed to and updates the display panels by calling <span class="java">MainWindow#handleChangeMode()</span>.</p>
 </li>
 </ul>
 </div>
@@ -736,14 +801,14 @@ The following class plays an important role at the architecture level:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For commands that do not involve a change in mode, <code>CommandResult#newModeStatus()</code> will return <code>null</code> and no updates to the current mode or display will be done.
+For commands that do not involve a change in mode, <span class="java">CommandResult#newModeStatus()</span> will return <span class="java">null</span> and no updates to the current mode or display will be done.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect4">
-<h5 id="changing-to-table-mode-for-a-specific-table"><a class="link" href="#changing-to-table-mode-for-a-specific-table">Changing to Table Mode for a specific table</a></h5>
+<h5 id="ChangeToTableMode"><a class="link" href="#ChangeToTableMode">Changing to Table Mode for a specific table</a></h5>
 <div class="paragraph">
 <p>All the mode-changing commands take no parameters except for Table Mode. When the user wants to perform order-related operations (eg. add an item to the table&#8217;s order), the user will first have to switch to Table Mode by typing the <code>tableMode</code> command (or its shortcut command <code>TM</code>) followed by the table number of the table that the user wants to perform actions on.</p>
 </div>
@@ -760,25 +825,34 @@ The <code>tableMode</code> command can be used from any mode, even in Table Mode
 </table>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram (Figure 10) shows the relevant parts of what happens when a user executes the <code>tableMode 3</code> command:</p>
+<p>The following sequence diagram shows the relevant parts of what happens when a user executes the <code>tableMode 3</code> command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/TableModeSequenceDiagram.png" alt="TableModeSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 10. Component interactions for :computer: <code>tableMode 3</code> command</div>
+<div class="title">Figure 10. Component interactions for <code>tableMode 3</code> command</div>
 </div>
 <div class="paragraph">
-<p>The <code>Logic</code> and <code>UI</code> component interactions work in a similar way to the other mode-changing commands and the implementation is mentioned above. The only difference is the parsing of the argument <code>3</code> into a <code>TableNumber</code> object that indicates the table number of the target table to switch to. This <code>TableNumber</code> object is stored as an attribute in <code>TableModeCommand</code>.</p>
+<p>The <span class="java">Logic</span> and <span class="java">UI</span> component interactions work in a similar way to the other mode-changing commands and the implementation is mentioned above. The only difference is the parsing of the argument <strong>3</strong> into a <span class="java">TableNumber</span> object that indicates the table number of the target table to switch to. This <span class="java">TableNumber</span> object is stored as an attribute in <span class="java">`TableModeCommand</span>.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s focus on what happens to the Model component when the <code>TableModeCommand</code> is executed. It first retrieves the <code>Table</code> that corresponds to its <code>TableNumber</code> attribute. This is done by going through <code>Model#getRestOrRant()</code> to obtain the <code>ReadOnlyRestOrRant</code>, whose <code>getTables()</code> method can be called to retrieve <code>ReadOnlyTables</code> that contains the list of all the tables in the restaurant. The <code>Table</code> can then be retrieved by passing <code>TableNumber</code> into <code>ReadOnlyTables#getTableFromNumber()</code>.</p>
+<p>Let&#8217;s focus on what happens to the <span class="java">Model</span> component when the <span class="java">TableModeCommand</span> is executed. The relevant parts of the sequence diagram has been extracted out and shown in the diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/TableModeModelSequenceDiagram.png" alt="TableModeModelSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 11. Interaction between Logic and Model components for <code>tableMode 3</code> command</div>
 </div>
 <div class="paragraph">
-<p>The <code>Table</code> is then set as the selected table in <code>Model</code> using <code>Model#setSelectedTable()</code>. This is to keep track of the current table so that the Table Mode commands like <code>addToOrder</code> and <code>bill</code> can easily perform their operations by getting the table from <code>Model#getSelectedTable()</code>.</p>
+<p>It first retrieves the <span class="java">Table</span> that corresponds to its <span class="java">TableNumber</span> attribute. This is done by going through <span class="java">Model#getRestOrRant()</span> to obtain the <span class="java">ReadOnlyRestOrRant</span>, whose <span class="java">getTables()</span> method can be called to retrieve <span class="java">ReadOnlyTables</span> that contains the list of all the tables in the restaurant. The <span class="java">Table</span> can then be retrieved by passing <span class="java">TableNumber</span> into <span class="java">ReadOnlyTables#getTableFromNumber()</span>.</p>
 </div>
 <div class="paragraph">
-<p>After which, <code>Model#updateFilteredOrderItemList()</code> is called to update the filtered list such that it only contains order items ordered by the chosen table. This will then update the item list panel in the UI to display only the order items that were ordered by the chosen table, since the UI retrieves its information from the filtered list.</p>
+<p>The <span class="java">Table</span> is then set as the selected table in <span class="java">Model</span> using <span class="java">Model#setSelectedTable()</span>. This is to keep track of the current table so that the Table Mode commands like <code>addToOrder</code> and <code>bill</code> can easily perform their operations by getting the table from <span class="java">Model#getSelectedTable()</span>.</p>
+</div>
+<div class="paragraph">
+<p>After which, <span class="java">Model#updateFilteredOrderItemList()</span> is called to update the filtered list such that it only contains order items ordered by the chosen table. This will then update the item list panel in the UI to display only the order items that were ordered by the chosen table.</p>
 </div>
 </div>
 </div>
@@ -800,34 +874,34 @@ The <code>tableMode</code> command can be used from any mode, even in Table Mode
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defining of modes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Modes are defined using a <code>Mode</code> enum.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modes are defined using a <span class="java">Mode</span> enum.<br>
 - <strong>Pros</strong>: Easily identify incorrect modes since the set of valid modes is restricted to the enum values.<br>
 - <strong>Cons</strong>: Need to create a new class and increases coupling between Logic and UI components.</p>
 <p class="tableblock">We decided to choose this option as the enum is an abstraction over the possible modes. Apart from being less prone to errors,
-it also makes the code more readable as the enum values explicitly state the name of the mode (eg. <code>TABLE_MODE</code>, <code>MENU_MODE</code>) and are stored
-in <code>Mode</code> variables, making it clear that it refers to a mode and not just any string.</p></td>
+it also makes the code more readable as the enum values explicitly state the name of the mode (eg. <span class="java">TABLE_MODE</span>, <span class="java">MENU_MODE</span>) and are stored
+in <span class="java">Mode</span> variables, making it clear that it refers to a mode and not just any string.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Modes can be defined with strings (eg. "TableMode") or integers.<br>
 - <strong>Pros</strong>: Easy to implement.<br>
 - <strong>Cons</strong>: May be prone to errors (eg. mistyping a string) that causes bugs in the code.<br></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Storing of current mode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mode stored in the Logic component (<code>LogicManager</code>).<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mode stored in the Logic component (<span class="java">LogicManager</span>).<br>
 - <strong>Pros</strong>: Easy to access the current mode to check whether a command is valid to execute in a particular mode.<br>
 - <strong>Cons</strong>: Slightly breaks abstraction since mode is not purely related to command execution.</p>
 <p class="tableblock">We decided to store the current mode in Logic because we note that most of the work that requires access to the current mode is done here, so providing a quick access will be more efficient.
 The Model component does not need to know what the current mode is at all, so it would be better to keep the coupling low to facilitate integration.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mode stored in the Model component (<code>ModelManager</code>).<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mode stored in the Model component (<span class="java">ModelManager</span>).<br>
 - <strong>Pros</strong>: Maintains abstraction as the mode is part of the current state of the application, which is maintained in Model.<br>
 - <strong>Cons</strong>: Increases coupling among the Model, Logic and UI components.<br></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifying table number for Table Mode commands</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified once when switching to Table Mode, then retrieved from <code>Model#getSelectedTable()</code> for future commands.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified once when switching to Table Mode, then retrieved from <span class="java">Model#getSelectedTable()</span> for future commands.<br>
 - <strong>Pros</strong>: Convenient to retrieve table number without having to explicitly specify it in every command.<br>
 - <strong>Cons</strong>: Non-standardized mode-changing commands since the others do not have any parameters.</p>
 <p class="tableblock">We decided to go ahead with this implementation as we feel that from a user&#8217;s point of view, it would be more convenient to be able to just specify the table number once and then perform a series of operations afterwards. Furthermore, having to parse the table number for every command will also do more work.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified for every command (eg. <code>deleteOrder 3 1</code>).<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified for every command (eg. <code>addToOrder 3 W09 1</code> to add 1x W09 to table 3).<br>
 - <strong>Pros</strong>: All mode-changing commands are simple and similar.<br>
 - <strong>Cons</strong>: Makes the commands longer to type.</p></td>
 </tr>
@@ -836,9 +910,11 @@ The Model component does not need to know what the current mode is at all, so it
 </div>
 </div>
 <div class="sect2">
-<h3 id="edit-pax-feature"><a class="link" href="#edit-pax-feature">4.2. Edit Pax feature</a></h3>
+<h3 id="tables-feature"><a class="link" href="#tables-feature">4.2. Tables feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.2.1. Current Implementation</a></h4>
+<h4 id="EditPax"><a class="link" href="#EditPax">4.2.1. Edit pax at a table</a></h4>
+<div class="sect4">
+<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The edit pax mechanism is facilitated by <code>UniqueTableList</code>. It stores the all tables currently in the system and ensures that there are no duplicated tables. Additionally, it implements the following operations:</p>
 </div>
@@ -911,10 +987,10 @@ If the table to be edited does not exist in the <code>UniqueTableList</code>, th
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-edit-number-of-customers-executes"><a class="link" href="#aspect-how-edit-number-of-customers-executes">Aspect: How edit number of customers executes</a></h5>
+<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
+<div class="sect5">
+<h6 id="aspect-how-edit-number-of-customers-executes"><a class="link" href="#aspect-how-edit-number-of-customers-executes">Aspect: How edit number of customers executes</a></h6>
 <div class="ulist">
 <ul>
 <li>
@@ -948,10 +1024,257 @@ If the table to be edited does not exist in the <code>UniqueTableList</code>, th
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="bill-feature"><a class="link" href="#bill-feature">4.3. Bill feature</a></h3>
+<h3 id="orders-feature"><a class="link" href="#orders-feature">4.3. Orders feature</a></h3>
+<div class="paragraph">
+<p>The Orders feature allows restaurant front-end staff to take orders from customers using the <a href="#AddToOrder"><code>addToOrder</code></a> command,
+as well as remove incorrectly inputted orders using the <a href="#DeleteFromOrder"><code>deleteFromOrder</code></a> or <a href="#ClearOrder"><code>clearOrder</code></a> commands.
+They can track the current list of items ordered for each table (in Table Mode) or across all tables (in Restaurant Mode) and update their serving statuses with the <a href="#Serve"><code>serve</code></a> command.</p>
+</div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.3.1. Current Implementation</a></h4>
+<h4 id="CurrentTable"><a class="link" href="#CurrentTable">4.3.1. Getting the table number</a></h4>
+<div class="paragraph">
+<p>The Orders feature allows users to perform order-related operations for a specific table. The table number was specified when <a href="#ChangeToTableMode">switching over to Table Mode</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The table number is stored so that users do not need to keep specifying it when typing the commands.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Hence, all the commands in the Orders feature will have to retrieve the table number from <span class="java">Model</span> first before they can perform their functions. The current table is stored as a <span class="java">Table</span> object in <span class="java">Model</span>, which is retrieved by calling <span class="java">Model#getSelectedTable()</span>.
+The <span class="java">TableNumber</span> can then be retrieved from that <span class="java">Table</span>. The sequence diagram for this operation is shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CurrentTableSequenceDiagram.png" alt="CurrentTableSequenceDiagram" width="500">
+</div>
+<div class="title">Figure 12. Sequence diagram for retrieving the table number</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="AddToOrder"><a class="link" href="#AddToOrder">4.3.2. Adding to an order</a></h4>
+<div class="paragraph">
+<p>The interaction between the components for this function is similar to <a href="#AddToMenu">adding to menu</a>. A key difference in function is that <code>addToMenu</code> only adds 1 menu item each time, but <code>addToOrder</code> allows multiple and duplicate items to be added in a single command.</p>
+</div>
+<div class="paragraph">
+<p>Order items are stored in a list. When <code>addToOrder W09 3 W12 1</code> is keyed in, the command is parsed by <span class="java">AddToOrderCommandParser</span> to check if the arguments are in valid format. They are then converted into a list of <span class="java">Code</span> item codes and a list of <span class="java">Integer</span> quantities, which are stored in the <span class="java">AddToOrderCommand</span> object returned by the parser.</p>
+</div>
+<div class="paragraph">
+<p>When <span class="java">AddToOrderCommand#execute()</span> is called, the item codes in the <span class="java">Code</span> list are processed one by one.
+For each item code, the <span class="java">MenuItem</span> with the <span class="java">Code</span> will be retrieved from the <span class="java">Model</span> component to check if it exists in the menu. Otherwise, an error is returned and the subsequent item codes in the list are not processed.</p>
+</div>
+<div class="paragraph">
+<p>If the item is found in the menu, it will then attempt to find an <span class="java">OrderItem</span> with the same <span class="java">Code</span> in the current table. If an order of that item already exists, the quantity will be updated in the list using <span class="java">Model#setOrderItem()</span>. Otherwise, the new item will be added to the list using <span class="java">Model#addOrderItem()</span>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="DeleteFromOrder"><a class="link" href="#DeleteFromOrder">4.3.3. Deleting from an order</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="ClearOrder"><a class="link" href="#ClearOrder">4.3.4. Clearing an order</a></h4>
+<div class="sect4">
+<h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
+<div class="paragraph">
+<p>When the user enters the <code>clearOrder</code> command, the command is parsed and a <span class="java">ClearOrderCommand</span> object is created.</p>
+</div>
+<div class="paragraph">
+<p><span class="java">ClearOrderCommand#execute()</span> is then called, which in turn calls <span class="java">Model#clearOrderItemsFrom()</span> with the <a href="#CurrentTable">current table number</a>.
+In fact, <span class="java">Model</span> acts as a facade and forwards the call to <span class="java">Orders#clearOrderItemsFrom()</span>. That method&#8217;s source code is replicated below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> clearOrderItemsFrom(TableNumber tableNumber) {
+        <span class="predefined-type">ArrayList</span>&lt;OrderItem&gt; itemsToDelete = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
+        <span class="keyword">for</span> (OrderItem orderItem : orderItems) { <i class="conum" data-value="1"></i><b>(1)</b>
+            <span class="keyword">if</span> (orderItem.getTableNumber().equals(tableNumber)) {
+                itemsToDelete.add(orderItem);
+            }
+        }
+        <span class="keyword">for</span> (OrderItem item : itemsToDelete) { <i class="conum" data-value="2"></i><b>(2)</b>
+            orderItems.remove(item);
+        }
+        indicateModified(); <i class="conum" data-value="3"></i><b>(3)</b>
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the method above, <span class="java">orderItems</span> is a <span class="java">UniqueOrderItemList</span> that contains all the order items from all the tables. Let&#8217;s walk through this method to see how the main functionality of <code>clearOrder</code> is implemented:</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>It first loops through all the items in the <span class="java">UniqueOrderItemList</span> and retrieves the items with the current table number.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>It then deletes these items from the <span class="java">UniqueOrderItemList</span>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Finally, it triggers the listener in <span class="java">Orders</span> to indicate that the order item list has been modified. This signals to the <span class="java">LogicManager</span> to update the storage data files by calling <span class="java">Storage#saveOrders()</span>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The sequence diagram for when a user executes the <code>clearOrder</code> command is shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ClearOrderSequenceDiagram.png" alt="ClearOrderSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 13. Component interactions for <code>clearOrder</code> command</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Storing of order items</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The order items from all the tables in RestOrRant can be stored in a single <span class="java">UniqueOrderItemList</span>.<br>
+- <strong>Pros</strong>: Easier to handle a single list.<br>
+- <strong>Cons</strong>: <code>clearOrder</code> needs to iterate through the entire list to delete the order items from the specific table.</p>
+<p class="tableblock">We decided to choose this option because we realise that customers are unlikely to order a large number of items in a single table, so it would not be space efficient to create so many <span class="java">UniqueOrderItemList</span>.
+Furthermore, it also provides the benefit of arranging the order items across all the tables based on when they were ordered without keeping an extra time attribute. This provides the useful functionality of seeing which orders should be fulfilled first in Restaurant Mode.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Each table has its own <span class="java">UniqueOrderItemList</span> to store the order items for that table.<br>
+- <strong>Pros</strong>: <code>clearOrder</code> will just need to create a new empty <span class="java">UniqueOrderItemList</span> to replace the existing one.<br>
+- <strong>Cons</strong>: Difficult to keep track of so many lists. May be space inefficient to create multiple <span class="java">UniqueOrderItemList</span> if each list only has a few items.<br></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Serve"><a class="link" href="#Serve">4.3.5. Serving items in an order</a></h4>
+<div class="paragraph">
+<p>The interaction between the components for this function is similar to <a href="#EditPax">editing the occupancy at a table</a>.</p>
+</div>
+<div class="paragraph">
+<p>Suppose 3 "W09 Chicken Wings" has been ordered by the current table. When <code>serve W09 2</code> is keyed in, the command is parsed by <span class="java">ServeCommandParser</span> to check if the arguments are in valid format. The valid <span class="java">Code</span> item code and <span class="java">Integer</span> quantity are then stored in the <span class="java">ServeCommand</span> object returned by the parser.</p>
+</div>
+<div class="paragraph">
+<p>When <span class="java">ServeCommand#execute()</span> is called, it will use the item code to check whether the item code exists in the menu and in the current table&#8217;s order.
+If the order item is found and the quantity served is valid, a new <span class="java">OrderItem</span> object will be created with a new <span class="java">OrderItemStatus</span> that reflects the new quantities.
+<span class="java">Model#setOrderItem()</span> is then used to replace the old <span class="java">OrderItem</span> object with the new one.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="menu-feature"><a class="link" href="#menu-feature">4.4. Menu feature</a></h3>
+<div class="sect3">
+<h4 id="AddToMenu"><a class="link" href="#AddToMenu">4.4.1. Adding to menu</a></h4>
+<div class="sect4">
+<h5 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The menu items in the menu are stored as a list. Adding a new menu item to the menu is done by adding to the existing list.</p>
+</div>
+<div class="paragraph">
+<p>The command is read as a text string from the command box and then is executed by calling <code>executeCommand</code>, which passes this string to the Logic component by calling <code>execute</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>execute</code> method in the logic component then creates a command from the text string input by parsing the string to identify the command word (done by the <code>parse</code> method in the <code>RestOrRantParser</code> class) and other parameters, in this case the details of the menu item (done by the <code>parse</code> method in the <code>AddToMenuCommandParser</code> class). The text string is then converted to Name, Code, and Price after parsing and then passed to Model component.</p>
+</div>
+<div class="paragraph">
+<p>In the model component, the validity of the name, code and price of the menu item is checked, and the menu item is only added to the current menu items list if all three parameters are valid (i.e. in the specified format). The new menu item is added to the list in the Model component after ensuring that the menu item does not already exist in the list and that it does not have the same name and code as another menu item already in the list.</p>
+</div>
+<div class="paragraph">
+<p>After adding to the list in the Model component, the <code>indicateModified</code> method is called, which then triggers the Logic component to save the menu, by calling <code>saveMenu</code> in the Storage Component.</p>
+</div>
+<div class="paragraph">
+<p>The User Interface also updated by adding the new menu item to the list panel.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This action can only be done in Menu Mode. If not in Menu Mode currently , users can first change mode by typing <code>MenuMode</code> or <code>MM</code> in the command box.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the <code>addToMenu</code> mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user executes the <code>addToMenu</code> command by typing the name, code and price of the menu item (e.g.: <code>addToMenu n/French Fries c/W12 p/2.50</code>).</p>
+</div>
+<div class="paragraph">
+<p>Step 2. After ensuring that all parameters is valid and that the new menu item is unique, the change is reflected in the User Interface, where the list panel displays the newly added menu item. A success message is also displayed to the users at the Results Display box.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-4"><a class="link" href="#design-considerations-4">Design Considerations</a></h5>
+<div class="sect5">
+<h6 id="aspect-saving-changes-from-code-addtomenu-code-command"><a class="link" href="#aspect-saving-changes-from-code-addtomenu-code-command">Aspect: Saving changes from <code>AddToMenu</code> command</a></h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Saves only the menu.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Uses less memory as any update to the menu will only save the menu. This is implemented by adding a listener to menu, which detects any changes to the menu when the <code>indicateModified</code> method is called. This then triggers Storage component to save the state of the menu.</p>
+</li>
+<li>
+<p>Cons: An increase in the number of variables during runtime, as every feature will need a listener and a boolean (for instance, menu feature would have a listener and a boolean <code>menuModified</code> to trigger call storage#saveMenu() when the boolean evaluates to true).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Save the whole restaurant instance.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Fewer variables during runtime, easier to call just one boolean upon any change to restaurant features.</p>
+</li>
+<li>
+<p>Cons: There is no need to save another feature if only menu is being updated, may cause lagging instead of improving performance.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The pros outweighs the cons as despite the number of variables during runtime, in the long run saving every instance of the restaurant would cause bigger performance issues such as lagging especially if there are constant and multiple changes to every feature of the restaurant. This implementation is also more scalable for future developments.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="statistics-feature"><a class="link" href="#statistics-feature">4.5. Statistics feature</a></h3>
+<div class="sect3">
+<h4 id="Bill"><a class="link" href="#Bill">4.5.1. Billing an order</a></h4>
+<div class="sect4">
+<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The Bill mechanism can only be executed under the <code>TableMode</code>. After which, it switches to <code>BillMode</code> which changes the UI to display a receipt of the bill specific to the table selected in TableMode.</p>
 </div>
@@ -1044,105 +1367,22 @@ The command will not execute the functions stated above until it has confirmed t
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="adding-to-menu-feature"><a class="link" href="#adding-to-menu-feature">4.4. Adding To Menu feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.4.1. Current Implementation</a></h4>
-<div class="paragraph">
-<p>The menu items in the menu are stored as a list. Adding a new menu item to the menu is done by adding to the existing list.</p>
-</div>
-<div class="paragraph">
-<p>The command is read as a text string from the command box and then is executed by calling <code>executeCommand</code>, which passes this string to the Logic component by calling <code>execute</code>.</p>
-</div>
-<div class="paragraph">
-<p>The <code>execute</code> method in the logic component then creates a command from the text string input by parsing the string to identify the command word (done by the <code>parse</code> method in the <code>RestOrRantParser</code> class) and other parameters, in this case the details of the menu item (done by the <code>parse</code> method in the <code>AddToMenuCommandParser</code> class). The text string is then converted to Name, Code, and Price after parsing and then passed to Model component.</p>
-</div>
-<div class="paragraph">
-<p>In the model component, the validity of the name, code and price of the menu item is checked, and the menu item is only added to the current menu items list if all three parameters are valid (i.e. in the specified format). The new menu item is added to the list in the Model component after ensuring that the menu item does not already exist in the list and that it does not have the same name and code as another menu item already in the list.</p>
-</div>
-<div class="paragraph">
-<p>After adding to the list in the Model component, the <code>indicateModified</code> method is called, which then triggers the Logic component to save the menu, by calling <code>saveMenu</code> in the Storage Component.</p>
-</div>
-<div class="paragraph">
-<p>The User Interface also updated by adding the new menu item to the list panel.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This action can only be done in Menu Mode. If not in Menu Mode currently , users can first change mode by typing <code>MenuMode</code> or <code>MM</code> in the command box.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the <code>addToMenu</code> mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user executes the <code>addToMenu</code> command by typing the name, code and price of the menu item (e.g.: <code>addToMenu n/French Fries c/W12 p/2.50</code>).</p>
-</div>
-<div class="paragraph">
-<p>Step 2. After ensuring that all parameters is valid and that the new menu item is unique, the change is reflected in the User Interface, where the list panel displays the newly added menu item. A success message is also displayed to the users at the result display box.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-saving-changes-from-code-addtomenu-code-command"><a class="link" href="#aspect-saving-changes-from-code-addtomenu-code-command">Aspect: Saving changes from <code>AddToMenu</code> command</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Saves only the menu.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Uses less memory as any update to the menu will only save the menu. This is implemented by adding a listener to menu, which detects any changes to the menu when the <code>indicateModified</code> method is called. This then triggers Storage component to save the state of the menu.</p>
-</li>
-<li>
-<p>Cons: An increase in the number of variables during runtime, as every feature will need a listener and a boolean (for instance, menu feature would have a listener and a boolean <code>menuModified</code> to trigger call storage#saveMenu() when the boolean evaluates to true).</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Save the whole restaurant instance.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Fewer variables during runtime, easier to call just one boolean upon any change to restaurant features.</p>
-</li>
-<li>
-<p>Cons: There is no need to save another feature if only menu is being updated, may cause lagging instead of improving performance.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The pros outweighs the cons as despite the number of variables during runtime, in the long run saving every instance of the restaurant would cause bigger performance issues such as lagging especially if there are constant and multiple changes to every feature of the restaurant. This implementation is also more scalable for future developments.</p>
-</div>
-</div>
-</div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.6. Logging</a></h3>
 <div class="paragraph">
-<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
+<p>We are using <span class="java">java.util.logging</span> package for logging. The <span class="java">LogsCenter</span> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <span class="java">logLevel</span> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
-<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
+<p>The <span class="java">Logger</span> for a class can be obtained using <span class="java">LogsCenter.getLogger(Class)</span> which will log messages according to the specified logging level</p>
 </li>
 <li>
-<p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
+<p>Currently log messages are output through: <strong>Console</strong> and to a <strong>.log</strong> file.</p>
 </li>
 </ul>
 </div>
@@ -1152,24 +1392,24 @@ This action can only be done in Menu Mode. If not in Menu Mode currently , users
 <div class="ulist">
 <ul>
 <li>
-<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
+<p><span class="java">SEVERE</span> : Critical problem detected which may possibly cause the termination of the application</p>
 </li>
 <li>
-<p><code>WARNING</code> : Can continue, but with caution</p>
+<p><span class="java">WARNING</span> : Can continue, but with caution</p>
 </li>
 <li>
-<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
+<p><span class="java">INFO</span> : Information showing the noteworthy actions by the App</p>
 </li>
 <li>
-<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
+<p><span class="java">FINE</span> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.7. Configuration</a></h3>
 <div class="paragraph">
-<p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
+<p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <span class="java">config.json</span>).</p>
 </div>
 </div>
 </div>
@@ -1195,8 +1435,8 @@ We chose asciidoc over Markdown because asciidoc, although a bit more complex th
 <div class="sect2">
 <h3 id="editing-documentation"><a class="link" href="#editing-documentation">5.1. Editing Documentation</a></h3>
 <div class="paragraph">
-<p>See <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to learn how to render <code>.adoc</code> files locally to preview the end result of your edits.
-Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your <code>.adoc</code> files in real-time.</p>
+<p>See <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to learn how to render <strong>.adoc</strong> files locally to preview the end result of your edits.
+Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your <strong>.adoc</strong> files in real-time.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1216,16 +1456,16 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Follow the instructions in <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to convert the AsciiDoc files in the <code>docs/</code> directory to HTML format.</p>
+<p>Follow the instructions in <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to convert the AsciiDoc files in the <span class="java">docs/</span> directory to HTML format.</p>
 </li>
 <li>
-<p>Go to your generated HTML files in the <code>build/docs</code> folder, right click on them and select <code>Open with</code> &#8594; <code>Google Chrome</code>.</p>
+<p>Go to your generated HTML files in the <span class="java">build/docs</span> folder, right click on them and select <span class="menuseq"><b class="menu">Open with</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Google Chrome</b></span>.</p>
 </li>
 <li>
-<p>Within Chrome, click on the <code>Print</code> option in Chrome&#8217;s menu.</p>
+<p>Within Chrome, click on the <b class="button">Print</b> option in Chrome&#8217;s menu.</p>
 </li>
 <li>
-<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings indicated in the screenshot below.</p>
+<p>Set the destination to <b class="button">Save as PDF</b>, then click <b class="button">Save</b> to save a copy of the file in PDF format. For best results, use the settings indicated in the screenshot below.</p>
 </li>
 </ol>
 </div>
@@ -1233,13 +1473,13 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 11. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 14. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="Docs-SiteWideDocSettings"><a class="link" href="#Docs-SiteWideDocSettings">5.4. Site-wide Documentation Settings</a></h3>
 <div class="paragraph">
-<p>The <a href="https://github.com/cs2103-ay1819s2-w09-3/main/build.gradle"><code>build.gradle</code></a> file specifies some project-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how all documentation files within this project are rendered.</p>
+<p>The <a href="https://github.com/cs2103-ay1819s2-w09-3/main/build.gradle"><span class="java">build.gradle</span></a> file specifies some project-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how all documentation files within this project are rendered.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1248,7 +1488,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Attributes left unset in the <code>build.gradle</code> file will use their <strong>default value</strong>, if any.
+Attributes left unset in the <span class="java">build.gradle</span> file will use their <strong>default value</strong>, if any.
 </td>
 </tr>
 </table>
@@ -1269,7 +1509,7 @@ Attributes left unset in the <code>build.gradle</code> file will use their <stro
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>site-name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="java">site-name</span></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>The name of the website.
 If set, the name will be displayed near the top of the page.</p>
@@ -1277,7 +1517,7 @@ If set, the name will be displayed near the top of the page.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>not set</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>site-githuburl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="java">site-githuburl</span></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>URL to the site&#8217;s repository on <a href="https://github.com">GitHub</a>.
 Setting this will add a "View on GitHub" link in the navigation bar.</p>
@@ -1285,7 +1525,7 @@ Setting this will add a "View on GitHub" link in the navigation bar.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>not set</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>site-seedu</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="java">site-seedu</span></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Define this attribute if the project is an official SE-EDU project.
 This will render the SE-EDU navigation bar at the top of the page, and add some SE-EDU-specific navigation items.</p>
@@ -1298,7 +1538,7 @@ This will render the SE-EDU navigation bar at the top of the page, and add some 
 <div class="sect2">
 <h3 id="Docs-PerFileDocSettings"><a class="link" href="#Docs-PerFileDocSettings">5.5. Per-file Documentation Settings</a></h3>
 <div class="paragraph">
-<p>Each <code>.adoc</code> file may also specify some file-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how the file is rendered.</p>
+<p>Each <strong>.adoc</strong> file may also specify some file-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how the file is rendered.</p>
 </div>
 <div class="paragraph">
 <p>Asciidoctor&#8217;s <a href="https://asciidoctor.org/docs/user-manual/#builtin-attributes">built-in attributes</a> may be specified and used as well.</p>
@@ -1310,7 +1550,7 @@ This will render the SE-EDU navigation bar at the top of the page, and add some 
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Attributes left unset in <code>.adoc</code> files will use their <strong>default value</strong>, if any.
+Attributes left unset in <strong>.adoc</strong> files will use their <strong>default value</strong>, if any.
 </td>
 </tr>
 </table>
@@ -1331,11 +1571,11 @@ Attributes left unset in <code>.adoc</code> files will use their <strong>default
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>site-section</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="java">site-section</span></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Site section that the document belongs to.
 This will cause the associated item in the navigation bar to be highlighted.
-One of: <code>UserGuide</code>, <code>DeveloperGuide</code>, <code>LearningOutcomes</code>*, <code>AboutUs</code>, <code>ContactUs</code></p>
+One of: <span class="java">UserGuide</span>, <span class="java">DeveloperGuide</span>, <span class="java">LearningOutcomes</span>*, <span class="java">AboutUs</span>, <span class="java">ContactUs</span></p>
 </div>
 <div class="paragraph">
 <p><em>* Official SE-EDU projects only</em></p>
@@ -1343,7 +1583,7 @@ One of: <code>UserGuide</code>, <code>DeveloperGuide</code>, <code>LearningOutco
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>not set</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>no-site-header</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="java">no-site-header</span></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Set this attribute to remove the site navigation bar.</p>
 </div></div></td>
@@ -1355,11 +1595,11 @@ One of: <code>UserGuide</code>, <code>DeveloperGuide</code>, <code>LearningOutco
 <div class="sect2">
 <h3 id="site-template"><a class="link" href="#site-template">5.6. Site Template</a></h3>
 <div class="paragraph">
-<p>The files in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/stylesheets"><code>docs/stylesheets</code></a> are the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS stylesheets</a> of the site.
+<p>The files in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/stylesheets"><span class="java">docs/stylesheets</span></a> are the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS stylesheets</a> of the site.
 You can modify them to change some properties of the site&#8217;s design.</p>
 </div>
 <div class="paragraph">
-<p>The files in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/templates"><code>docs/templates</code></a> controls the rendering of <code>.adoc</code> files into HTML5.
+<p>The files in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/templates"><span class="java">docs/templates</span></a> controls the rendering of <strong>.adoc</strong> files into HTML5.
 These template files are written in a mixture of <a href="https://www.ruby-lang.org">Ruby</a> and <a href="http://slim-lang.com">Slim</a>.</p>
 </div>
 <div class="admonitionblock warning">
@@ -1370,7 +1610,7 @@ These template files are written in a mixture of <a href="https://www.ruby-lang.
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Modifying the template files in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/templates"><code>docs/templates</code></a> requires some knowledge and experience with Ruby and Asciidoctor&#8217;s API.
+<p>Modifying the template files in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/templates"><span class="java">docs/templates</span></a> requires some knowledge and experience with Ruby and Asciidoctor&#8217;s API.
 You should only modify them if you need greater control over the site&#8217;s layout than what stylesheets can provide.
 The SE-EDU team does not provide support for modified template files.</p>
 </div>
@@ -1407,10 +1647,10 @@ The most reliable way to run tests is the 3rd one. The first two methods might f
 <div class="ulist">
 <ul>
 <li>
-<p>To run all tests, right-click on the <code>src/test/java</code> folder and choose <code>Run 'All Tests'</code></p>
+<p>To run all tests, right-click on the <span class="java">src/test/java</span> folder and choose <b class="button">Run 'All Tests'</b></p>
 </li>
 <li>
-<p>To run a subset of tests, you can right-click on a test package, test class, or a test and choose <code>Run 'ABC'</code></p>
+<p>To run a subset of tests, you can right-click on a test package, test class, or a test and choose <b class="button">Run 'ABC'</b></p>
 </li>
 </ul>
 </div>
@@ -1458,10 +1698,10 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>System Tests</em> that test the entire App by simulating user actions on the GUI. These are in the <code>systemtests</code> package.</p>
+<p><em>System Tests</em> that test the entire App by simulating user actions on the GUI. These are in the <span class="java">systemtests</span> package.</p>
 </li>
 <li>
-<p><em>Unit tests</em> that test the individual components. These are in <code>seedu.address.ui</code> package.</p>
+<p><em>Unit tests</em> that test the individual components. These are in <span class="java">seedu.address.ui</span> package.</p>
 </li>
 </ol>
 </div>
@@ -1472,15 +1712,15 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <ol class="loweralpha" type="a">
 <li>
 <p><em>Unit tests</em> targeting the lowest level methods/classes.<br>
-e.g. <code>seedu.address.commons.StringUtilTest</code></p>
+e.g. <span class="java">seedu.address.commons.StringUtilTest</span></p>
 </li>
 <li>
 <p><em>Integration tests</em> that are checking the integration of multiple code units (those code units are assumed to be working).<br>
-e.g. <code>seedu.address.storage.StorageManagerTest</code></p>
+e.g. <span class="java">seedu.address.storage.StorageManagerTest</span></p>
 </li>
 <li>
 <p>Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
-e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
+e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 </li>
 </ol>
 </div>
@@ -1491,12 +1731,12 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="sect2">
 <h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></h3>
 <div class="paragraph">
-<p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>NullPointerException</code>.</strong></p>
+<p><strong>Problem: <span class="java">HelpWindowTest</span> fails with a <span class="java">NullPointerException</span>.</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Reason: One of its dependencies, <code>HelpWindow.html</code> in <code>src/main/resources/docs</code> is missing.</p>
+<p>Reason: One of its dependencies, <span class="java">HelpWindow.html</span> in <span class="java">src/main/resources/docs</span> is missing.</p>
 </li>
 <li>
 <p>Solution: Execute Gradle task <code>processResources</code>.</p>
@@ -1541,13 +1781,13 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Update the version number in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/MainApp.java"><code>MainApp.java</code></a>.</p>
+<p>Update the version number in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/MainApp.java"><span class="java">MainApp.java</span></a>.</p>
 </li>
 <li>
 <p>Generate a JAR file <a href="UsingGradle.html#creating-the-jar-file">using Gradle</a>.</p>
 </li>
 <li>
-<p>Tag the repo with the version number. e.g. <code>v0.1</code></p>
+<p>Tag the repo with the version number. e.g. <strong>v0.1</strong></p>
 </li>
 <li>
 <p><a href="https://help.github.com/articles/creating-releases/">Create a new release using GitHub</a> and upload the JAR file you created.</p>
@@ -1574,723 +1814,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="GetStartedProgramming"><a class="link" href="#GetStartedProgramming">Appendix A: Suggested Programming Tasks to Get Started</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Suggested path for new programmers:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>First, add small local-impact (i.e. the impact of the change does not go beyond the component) enhancements to one component at a time. Some suggestions are given in <a href="#GetStartedProgramming-EachComponent">Section A.1, &#8220;Improving each component&#8221;</a>.</p>
-</li>
-<li>
-<p>Next, add a feature that touches multiple components to learn how to implement an end-to-end feature across all components. <a href="#GetStartedProgramming-RemarkCommand">Section A.2, &#8220;Creating a new command: <code>remark</code>&#8221;</a> explains how to go about adding such a feature.</p>
-</li>
-</ol>
-</div>
-<div class="sect2">
-<h3 id="GetStartedProgramming-EachComponent"><a class="link" href="#GetStartedProgramming-EachComponent">A.1. Improving each component</a></h3>
-<div class="paragraph">
-<p>Each individual exercise in this section is component-based (i.e. you would not need to modify the other components to get it to work).</p>
-</div>
-<h4 id="code-logic-code-component" class="discrete"><code>Logic</code> component</h4>
-<div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>logic</code>. During dog-fooding, your team realize that it is troublesome for the user to type the whole command in order to execute a command. Your team devise some strategies to help cut down the amount of typing necessary, and one of the suggestions was to implement aliases for the command words. Your job is to implement such aliases.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Do take a look at <a href="#Design-Logic">Section 3.3, &#8220;Logic component&#8221;</a> before attempting to modify the <code>Logic</code> component.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a shorthand equivalent alias for each of the individual commands. For example, besides typing <code>clearTable</code>, the user can also type <code>clear</code> to remove all tables when they are in Restaurant Mode.</p>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hints</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/commands/AddTableCommand.java"><code>AddTableCommand#COMMAND_WORD</code></a>, <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/commands/AddToOrderCommand.java"><code>AddToOrderCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>AddTableCommand#COMMAND_ALIAS</code>).</p>
-</li>
-<li>
-<p><a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/parser/RestOrRantParser.java"><code>RestOrRantParser</code></a> is responsible for analyzing command words.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Modify the switch statement in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/parser/RestOrRantParser.java"><code>RestOrRantParser#parseCommand(String)</code></a> such that both the proper command word and alias can be used to execute the same intended command.</p>
-</li>
-<li>
-<p>Add new tests for each of the aliases that you have added.</p>
-</li>
-<li>
-<p>Update the user guide to document the new aliases.</p>
-</li>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/785">PR</a> for the full solution.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<h4 id="code-model-code-component" class="discrete"><code>Model</code> component</h4>
-<div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>model</code>. One day, the <code>logic</code>-in-charge approaches you for help. He wants to implement a command such that the user is able to remove a particular tag from everyone in the address book, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Do take a look at <a href="#Design-Model">Section 3.4, &#8220;Model component&#8221;</a> before attempting to modify the <code>Model</code> component.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a <code>removeTag(Tag)</code> method. The specified tag will be removed from everyone in the address book.</p>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hints</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/Model.java"><code>Model</code></a> and the <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/RestOrRant.java"><code>RestOrRant</code></a> API need to be updated.</p>
-</li>
-<li>
-<p>Think about how you can use SLAP to design the method. Where should we place the main logic of deleting tags?</p>
-</li>
-<li>
-<p>Find out which of the existing API methods in  <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/RestOrRant.java"><code>RestOrRant</code></a> and <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/person/Table.java"><code>Table</code></a> classes can be used to add tables. <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/RestOrRant.java"><code>RestOrRant</code></a> allows you to update a person, and <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Implement a <code>removeTag(Tag)</code> method in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/RestOrRant.java"><code>RestOrRant</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
-</li>
-<li>
-<p>Add a new API method <code>deleteTag(Tag)</code> in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a>. Your <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a> should call <code>AddressBook#removeTag(Tag)</code>.</p>
-</li>
-<li>
-<p>Add new tests for each of the new public methods that you have added.</p>
-</li>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/790">PR</a> for the full solution.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<h4 id="code-ui-code-component" class="discrete"><code>Ui</code> component</h4>
-<div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>ui</code>. During a beta testing session, your team is observing how the users use your address book application. You realize that one of the users occasionally tries to delete non-existent tags from a contact, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn&#8217;t prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last person in the list. Your job is to implement improvements to the UI to solve all these problems.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</a> before attempting to modify the <code>UI</code> component.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Use different colors for different tags inside person cards. For example, <code>friends</code> tags can be all in brown, and <code>colleagues</code> tags can be all in yellow.</p>
-<div class="paragraph">
-<p><strong>Before</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-tag-before.png" alt="getting started ui tag before" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>After</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-tag-after.png" alt="getting started ui tag after" width="300">
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hints</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The tag labels are created inside <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/PersonCard.java">the <code>PersonCard</code> constructor</a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
-</li>
-<li>
-<p>Use the .css attribute <code>-fx-background-color</code> to add a color.</p>
-</li>
-<li>
-<p>You may wish to modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/resources/view/DarkTheme.css"><code>DarkTheme.css</code></a> to include some pre-defined colors using css, especially if you have experience with web-based css.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>You can modify the existing test methods for <code>PersonCard</code> 's to include testing the tag&#8217;s color as well.</p>
-</li>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/798">PR</a> for the full solution.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The PR uses the hash code of the tag names to generate a color. This is deliberately designed to ensure consistent colors each time the application runs. You may wish to expand on this design to include additional features, such as allowing users to set their own tag colors, and directly saving the colors to storage, so that tags retain their colors even if the hash code algorithm changes.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors).</p>
-<div class="paragraph">
-<p><strong>Before</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-result-before.png" alt="getting started ui result before" width="200">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>After</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-result-after.png" alt="getting started ui result after" width="200">
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hints</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> is raised by <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> which also knows whether the result is a success or failure, and is caught by <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> which is where we want to change the style to.</p>
-</li>
-<li>
-<p>Refer to <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> for an example on how to display an error.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> 's constructor so that users of the event can indicate whether an error has occurred.</p>
-</li>
-<li>
-<p>Modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay#handleNewResultAvailableEvent(NewResultAvailableEvent)</code></a> to react to this event appropriately.</p>
-</li>
-<li>
-<p>You can write two different kinds of tests to ensure that the functionality works:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The unit tests for <code>ResultDisplay</code> can be modified to include verification of the color.</p>
-</li>
-<li>
-<p>The system tests <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/systemtests/AddressBookSystemTest.java"><code>AddressBookSystemTest#assertCommandBoxShowsDefaultStyle() and AddressBookSystemTest#assertCommandBoxShowsErrorStyle()</code></a> to include verification for <code>ResultDisplay</code> as well.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/799">PR</a> for the full solution.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Do read the commits one at a time if you feel overwhelmed.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Modify the <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book.</p>
-<div class="paragraph">
-<p><strong>Before</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-status-before.png" alt="getting started ui status before" width="500">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>After</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-status-after.png" alt="getting started ui status after" width="500">
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hints</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/resources/view/StatusBarFooter.fxml"><code>StatusBarFooter.fxml</code></a> will need a new <code>StatusBar</code>. Be sure to set the <code>GridPane.columnIndex</code> properly for each <code>StatusBar</code> to avoid misalignment!</p>
-</li>
-<li>
-<p><a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the address book is updated.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Modify the constructor of <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of persons when the application just started.</p>
-</li>
-<li>
-<p>Use <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the addressbook.</p>
-</li>
-<li>
-<p>For tests, modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/guitests/guihandles/StatusBarFooterHandle.java"><code>StatusBarFooterHandle</code></a> by adding a state-saving functionality for the total number of people status, just like what we did for save location and sync status.</p>
-</li>
-<li>
-<p>For system tests, modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/systemtests/AddressBookSystemTest.java"><code>AddressBookSystemTest</code></a> to also verify the new total number of persons status bar.</p>
-</li>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/803">PR</a> for the full solution.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<h4 id="code-storage-code-component" class="discrete"><code>Storage</code> component</h4>
-<div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>storage</code>. For your next project milestone, your team plans to implement a new feature of saving the tables, menu, orders and statistics to the cloud. However, the current implementation of the application constantly saves the tables, menu, orders and statistics after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for the storage.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Do take a look at <a href="#Design-Storage">Section 3.5, &#8220;Storage component&#8221;</a> before attempting to modify the <code>Storage</code> component.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a new method <code>backupMenu(ReadOnlyMenu)</code>, so that the menu can be saved in a fixed temporary location.</p>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hint</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Add the API method in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/storage/MenuStorage.java"><code>MenuStorage</code></a> interface.</p>
-</li>
-<li>
-<p>Implement the logic in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/storage/StorageManager.java"><code>StorageManager</code></a> and <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/storage/JsonMenuStorage.java"><code>JsonMenuStorage</code></a> class.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/594">PR</a> for the full solution.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="GetStartedProgramming-RemarkCommand"><a class="link" href="#GetStartedProgramming-RemarkCommand">A.2. Creating a new command: <code>remark</code></a></h3>
-<div class="paragraph">
-<p>By creating this command, you will get a chance to learn how to implement a feature end-to-end, touching all major components of the app.</p>
-</div>
-<div class="paragraph">
-<p><strong>Scenario:</strong> You are a software maintainer for <code>addressbook</code>, as the former developer team has moved on to new projects. The current users of your application have a list of new feature requests that they hope the software will eventually have. The most popular request is to allow adding additional comments/notes about a particular contact, by providing a flexible <code>remark</code> field for each contact, rather than relying on tags alone. After designing the specification for the <code>remark</code> command, you are convinced that this feature is worth implementing. Your job is to implement the <code>remark</code> command.</p>
-</div>
-<div class="sect3">
-<h4 id="description"><a class="link" href="#description">A.2.1. Description</a></h4>
-<div class="paragraph">
-<p>Edits the remark for a person specified in the <code>INDEX</code>.<br>
-Format: <code>remark INDEX r/[REMARK]</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>remark 1 r/Likes to drink coffee.</code><br>
-Edits the remark for the first person to <code>Likes to drink coffee.</code></p>
-</li>
-<li>
-<p><code>remark 1 r/</code><br>
-Removes the remark for the first person.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="step-by-step-instructions"><a class="link" href="#step-by-step-instructions">A.2.2. Step-by-step Instructions</a></h4>
-<div class="sect4">
-<h5 id="step-1-logic-teach-the-app-to-accept-remark-which-does-nothing"><a class="link" href="#step-1-logic-teach-the-app-to-accept-remark-which-does-nothing">[Step 1] Logic: Teach the app to accept 'remark' which does nothing</a></h5>
-<div class="paragraph">
-<p>Let&#8217;s start by teaching the application how to parse a <code>remark</code> command. We will add the logic of <code>remark</code> later.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a <code>RemarkCommand</code> that extends <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/commands/Command.java"><code>Command</code></a>. Upon execution, it should just throw an <code>Exception</code>.</p>
-</li>
-<li>
-<p>Modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to accept a <code>RemarkCommand</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add <code>RemarkCommandTest</code> that tests that <code>execute()</code> throws an Exception.</p>
-</li>
-<li>
-<p>Add new test method to <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-2-logic-teach-the-app-to-accept-remark-arguments"><a class="link" href="#step-2-logic-teach-the-app-to-accept-remark-arguments">[Step 2] Logic: Teach the app to accept 'remark' arguments</a></h5>
-<div class="paragraph">
-<p>Let&#8217;s teach the application to parse arguments that our <code>remark</code> command will accept. E.g. <code>1 r/Likes to drink coffee.</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modify <code>RemarkCommand</code> to take in an <code>Index</code> and <code>String</code> and print those two parameters as the error message.</p>
-</li>
-<li>
-<p>Add <code>RemarkCommandParser</code> that knows how to parse two arguments, one index and one with prefix 'r/'.</p>
-</li>
-<li>
-<p>Modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modify <code>RemarkCommandTest</code> to test the <code>RemarkCommand#equals()</code> method.</p>
-</li>
-<li>
-<p>Add <code>RemarkCommandParserTest</code> that tests different boundary values
-for <code>RemarkCommandParser</code>.</p>
-</li>
-<li>
-<p>Modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a> to test that the correct command is generated according to the user input.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code"><a class="link" href="#step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code">[Step 3] Ui: Add a placeholder for remark in <code>PersonCard</code></a></h5>
-<div class="paragraph">
-<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a <code>Label</code> with any random text inside <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/resources/view/PersonListCard.fxml"><code>PersonListCard.fxml</code></a>.</p>
-</li>
-<li>
-<p>Add FXML annotation in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> to tie the variable to the actual label.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/guitests/guihandles/PersonCardHandle.java"><code>PersonCardHandle</code></a> so that future tests can read the contents of the remark label.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-4-model-add-code-remark-code-class"><a class="link" href="#step-4-model-add-code-remark-code-class">[Step 4] Model: Add <code>Remark</code> class</a></h5>
-<div class="paragraph">
-<p>We have to properly encapsulate the remark in our <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
-</li>
-<li>
-<p>Modify <code>RemarkCommand</code> to now take in a <code>Remark</code> instead of a <code>String</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add test for <code>Remark</code>, to test the <code>Remark#equals()</code> method.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-5-model-modify-code-person-code-to-support-a-code-remark-code-field"><a class="link" href="#step-5-model-modify-code-person-code-to-support-a-code-remark-code-field">[Step 5] Model: Modify <code>Person</code> to support a <code>Remark</code> field</a></h5>
-<div class="paragraph">
-<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add <code>getRemark()</code> in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
-</li>
-<li>
-<p>You may assume that the user will not be able to use the <code>add</code> and <code>edit</code> commands to modify the remarks field (i.e. the person will be created without a remark).</p>
-</li>
-<li>
-<p>Modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/util/SampleDataUtil.java/"><code>SampleDataUtil</code></a> to add remarks for the sample data (delete your <code>data/addressbook.json</code> so that the application will load the sample data when you launch it.)</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-6-storage-add-code-remark-code-field-to-code-jsonadaptedperson-code-class"><a class="link" href="#step-6-storage-add-code-remark-code-field-to-code-jsonadaptedperson-code-class">[Step 6] Storage: Add <code>Remark</code> field to <code>JsonAdaptedPerson</code> class</a></h5>
-<div class="paragraph">
-<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/storage/JsonAdaptedPerson.java"><code>JsonAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a new JSON field for <code>Remark</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Fix <code>invalidAndValidPersonAddressBook.json</code>, <code>typicalPersonsAddressBook.json</code>, <code>validAddressBook.json</code> etc., such that the JSON tests will not fail due to a missing <code>remark</code> field.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-6b-test-add-withremark-for-code-personbuilder-code"><a class="link" href="#step-6b-test-add-withremark-for-code-personbuilder-code">[Step 6b] Test: Add withRemark() for <code>PersonBuilder</code></a></h5>
-<div class="paragraph">
-<p>Since <code>Person</code> can now have a <code>Remark</code>, we should add a helper method to <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/seedu/address/testutil/PersonBuilder.java"><code>PersonBuilder</code></a>, so that users are able to create remarks when building a <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a new method <code>withRemark()</code> for <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/seedu/address/testutil/PersonBuilder.java"><code>PersonBuilder</code></a>. This method will create a new <code>Remark</code> for the person that it is currently building.</p>
-</li>
-<li>
-<p>Try and use the method on any sample <code>Person</code> in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/seedu/address/testutil/TypicalPersons.java"><code>TypicalPersons</code></a>.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-7-ui-connect-code-remark-code-field-to-code-personcard-code"><a class="link" href="#step-7-ui-connect-code-remark-code-field-to-code-personcard-code">[Step 7] Ui: Connect <code>Remark</code> field to <code>PersonCard</code></a></h5>
-<div class="paragraph">
-<p>Our remark label in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a>'s constructor to bind the <code>Remark</code> field to the <code>Person</code> 's remark.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modify <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a> so that it will compare the now-functioning remark label.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-8-logic-implement-code-remarkcommand-execute-code-logic"><a class="link" href="#step-8-logic-implement-code-remarkcommand-execute-code-logic">[Step 8] Logic: Implement <code>RemarkCommand#execute()</code> logic</a></h5>
-<div class="paragraph">
-<p>We now have everything set up&#8230;&#8203; but we still can&#8217;t modify the remarks. Let&#8217;s finish it up by adding in actual logic for our <code>remark</code> command.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Replace the logic in <code>RemarkCommand#execute()</code> (that currently just throws an <code>Exception</code>), with the actual logic to modify the remarks of a person.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Update <code>RemarkCommandTest</code> to test that the <code>execute()</code> logic works.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="full-solution"><a class="link" href="#full-solution">A.2.3. Full Solution</a></h4>
-<div class="paragraph">
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/599">PR</a> for the step-by-step solution.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="product-scope"><a class="link" href="#product-scope">Appendix B: Product Scope</a></h2>
+<h2 id="product-scope"><a class="link" href="#product-scope">Appendix A: Product Scope</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Target user profile</strong>:</p>
@@ -2301,7 +1825,10 @@ for <code>RemarkCommandParser</code>.</p>
 <p>has a need to manage the front-end operations of a restaurant (customers, orders, menu)</p>
 </li>
 <li>
-<p>wants to easily keep track of restaurant statistics (customers, revenue, dishes’ popularity)</p>
+<p>still uses outdated front-end restaurant management systems like pen and paper</p>
+</li>
+<li>
+<p>wants to easily keep track of restaurant statistics (revenue, dishes’ popularity)</p>
 </li>
 <li>
 <p>prefer desktop apps over other types</p>
@@ -2318,12 +1845,12 @@ for <code>RemarkCommandParser</code>.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Value proposition</strong>: RestOrRant manages the customers, orders, menu and restaurant statistics with a speed faster than a typical mouse/GUI driven application. This allows the user to have a clear idea of the current arrangement of the customers and status of the restaurant without the need to physically check out the space. This is especially useful for busy restaurants with unorganised front-end managing systems.</p>
+<p><strong>Value proposition</strong>: RestOrRant manages the customers, orders, menu and restaurant statistics with a speed faster than a typical mouse/GUI driven application. This allows the user to have a clear idea of the current status of the restaurant without the need to physically check out the space. This is especially useful for busy restaurants with unorganised or slow front-end management systems.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="user-stories"><a class="link" href="#user-stories">Appendix C: User Stories</a></h2>
+<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
@@ -2378,7 +1905,7 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cashier</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">retrieve the bill for each table</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">easily process their bill when they&#8217;re done eating</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily process their bill when they are done eating</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2393,12 +1920,6 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">suggest the best dishes to the customer</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">chef</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">review the statistics of the dishes' popularity</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">determine how much ingredients to allocate to the popular dishes</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">waiter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">reserve tables</p></td>
@@ -2409,7 +1930,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="use-cases"><a class="link" href="#use-cases">Appendix D: Use Cases</a></h2>
+<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is <code>RestOrRant</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
@@ -2639,13 +2160,64 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a. The item code(s) is/are invalid.</p>
+<p>3a. The item code(s) are not present in the menu.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. RestOrRant displays the first invalid item code in the result display and stops adding new items to the order.</p>
+<p>3a1. RestOrRant displays the first invalid item code in the Results Display and stops adding new items to the order.</p>
 <div class="paragraph">
 <p>Use case resumes from step 4.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b. The item code(s) do not follow the standard alphanumeric format.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. RestOrRant returns an error message saying that the item code is in invalid format.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3c. The quantity of an item exceeds the limit after the user tries to add the specified quantity.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3c1. RestOrRant displays the item code of that item in the Results Display and stops adding new items to the order.</p>
+<div class="paragraph">
+<p>Use case resumes from step 4.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3d. The quantities provided are not in valid format or exceed the limit.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3d1. RestOrRant returns an error message saying that the quantity is in invalid format.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
 </div>
 </li>
 </ul>
@@ -2797,22 +2369,40 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></h2>
+<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>9</code> or higher installed.</p>
+<p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java 9 or higher installed.</p>
+</li>
+<li>
+<p>Should work on both 32-bit and 64-bit machines.</p>
 </li>
 <li>
 <p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
+</li>
+<li>
+<p>Should be able to handle any kind of input, including invalid ones.</p>
+</li>
+<li>
+<p>Should be able to respond within two seconds, even with a large number of tables and order items.</p>
+</li>
+<li>
+<p>Number of tables in the restaurant will not be greater than 400.</p>
+</li>
+<li>
+<p>Quantity of an item ordered by a table will not be greater than 2,000,000,000.</p>
+</li>
+<li>
+<p>Not required to handle the printing of receipts.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="glossary"><a class="link" href="#glossary">Appendix F: Glossary</a></h2>
+<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
@@ -2832,53 +2422,16 @@ for <code>RemarkCommandParser</code>.</p>
 <dd>
 <p>The amount of money that dining customers have to pay based on their order</p>
 </dd>
-<dt class="hdlist1"><a id="statistics"></a> Statistics</dt>
+<dt class="hdlist1"><a id="revenue"></a> Revenue</dt>
 <dd>
-<p>The record of the revenue earned, number of customers and number of menu items purchased</p>
+<p>The amount of money earned based on the bills</p>
 </dd>
 </dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix G: Product Survey</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Product Name</strong></p>
-</div>
-<div class="paragraph">
-<p>Author: &#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>Pros:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Cons:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a></h2>
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
@@ -2896,7 +2449,7 @@ These instructions only provide a starting point for testers to work on; testers
 </table>
 </div>
 <div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">H.1. Launch and Shutdown</a></h3>
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">F.1. Launch and Shutdown</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2908,7 +2461,7 @@ These instructions only provide a starting point for testers to work on; testers
 </li>
 <li>
 <p>Double-click the jar file.<br>
-Expected: Shows the GUI without any data. The window size may not be optimum.</p>
+Expected: Shows the GUI with sample data. The window size may not be optimum.</p>
 </li>
 </ol>
 </div>
@@ -2935,7 +2488,7 @@ Expected: The most recent window size and location is retained.</p>
 <p>Add some data into RestOrRant (eg. <code>addTable 4 4 2 2</code>).</p>
 </li>
 <li>
-<p>Exit RestOrRant by clicking the <code>File</code> &gt; <code>Exit</code> button, then re-launch the app.<br>
+<p>Exit RestOrRant by clicking the <span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Exit</b></span> button, then re-launch the app.<br>
 Expected: The application closes upon exit. All data remains intact upon re-launch.</p>
 </li>
 <li>
@@ -2956,7 +2509,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-modes"><a class="link" href="#changing-modes">H.2. Changing Modes</a></h3>
+<h3 id="changing-modes"><a class="link" href="#changing-modes">F.2. Changing Modes</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2965,11 +2518,11 @@ Expected: Similar to previous.</p>
 <ol class="loweralpha" type="a">
 <li>
 <p>In Restaurant Mode, switch to Restaurant Mode with <code>restaurantMode</code> or <code>RM</code>.<br>
-Expected: Mode is not changed. Error message is shown in the result display.</p>
+Expected: Mode is not changed. Error message is shown in the Results Display.</p>
 </li>
 <li>
 <p>In any other mode, switch to Restaurant Mode with <code>restaurantMode</code> or <code>RM</code>.<br>
-Expected: Status bar indicates "Restaurant Mode". Success message is shown in the result display. Main panel will display a grid of tables with their statuses and side panel will display a list of order items across all tables.</p>
+Expected: Status bar indicates "Restaurant Mode". Success message is shown in the Results Display. Main panel will display a grid of tables with their statuses and side panel will display a list of order items across all tables.</p>
 </li>
 </ol>
 </div>
@@ -2980,11 +2533,11 @@ Expected: Status bar indicates "Restaurant Mode". Success message is shown in th
 <ol class="loweralpha" type="a">
 <li>
 <p>In Menu Mode, switch to Menu Mode with <code>menuMode</code> or <code>MM</code>.<br>
-Expected: Mode is not changed. Error message is shown in the result display.</p>
+Expected: Mode is not changed. Error message is shown in the Results Display.</p>
 </li>
 <li>
 <p>In any other mode, switch to Menu Mode with <code>menuMode</code> or <code>MM</code>.<br>
-Expected: Status bar indicates "Menu Mode". Success message is shown in the result display. Main panel will be empty and side panel will display a list of menu items with their code, name and price.</p>
+Expected: Status bar indicates "Menu Mode". Success message is shown in the Results Display. Main panel will be empty and side panel will display a list of menu items with their code, name and price.</p>
 </li>
 </ol>
 </div>
@@ -2994,23 +2547,23 @@ Expected: Status bar indicates "Menu Mode". Success message is shown in the resu
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>In Restaurant Mode, create three tables and set Tables 1 and 2 to be occupied, leaving Table 3 to be unoccupied.</p>
+<p>Pre-requisite: Tables should have been populated with sample data. Table 1 is unoccupied while Tables 2 and 3 are occupied.</p>
 </li>
 <li>
-<p>In Table Mode for Table 1, switch to Table Mode with <code>tableMode 1</code> or <code>TM 1</code>.<br>
-Expected: Mode is not changed. Error message is shown in the result display.</p>
+<p>In Table Mode for Table 2, switch to Table Mode with <code>tableMode 2</code> or <code>TM 2</code>.<br>
+Expected: Mode is not changed. Error message is shown in the Results Display.</p>
 </li>
 <li>
-<p>In Table Mode for Table 2 or in any other mode, switch to Table Mode with <code>tableMode 1</code> or <code>TM 1</code>.<br>
-Expected: Status bar indicates "Table Mode: Table 1". Success message is shown in the result display. Main panel will display a grid of menu items with their code, name and price and side panel will display a list of order items from Table 1.</p>
+<p>In Table Mode for Table 2 or in any other mode, switch to Table Mode with <code>tableMode 3</code> or <code>TM 3</code>.<br>
+Expected: Status bar indicates "Table Mode: Table 3". Success message is shown in the Results Display. Main panel will display a grid of menu items with their code, name and price and side panel will display a list of order items from Table 3.</p>
 </li>
 <li>
-<p>Test case for unoccupied table: In any mode, switch to Table Mode with <code>tableMode 3</code> or <code>TM 3</code>.<br>
-Expected: Mode is not changed. Error message is shown in the result display.</p>
+<p>Test case for unoccupied table: In any mode, switch to Table Mode with <code>tableMode 1</code> or <code>TM 1</code>.<br>
+Expected: Mode is not changed. Error message is shown in the Results Display.</p>
 </li>
 <li>
-<p>Test case for invalid table number: In any mode, switch to Table Mode with <code>tableMode 4</code> or <code>TM 4</code>.<br>
-Expected: Mode is not changed. Error message is shown in the result display.</p>
+<p>Test case for invalid table number: In any mode, switch to Table Mode with <code>tableMode 100</code> or <code>TM 100</code>.<br>
+Expected: Mode is not changed. Error message is shown in the Results Display.</p>
 </li>
 </ol>
 </div>
@@ -3021,11 +2574,11 @@ Expected: Mode is not changed. Error message is shown in the result display.</p>
 <ol class="loweralpha" type="a">
 <li>
 <p>In Statistics Mode, switch to Statistics Mode with <code>statisticsMode</code> or <code>SM</code>.<br>
-Expected: Mode is not changed. Error message is shown in the result display.</p>
+Expected: Mode is not changed. Error message is shown in the Results Display.</p>
 </li>
 <li>
 <p>In any other mode, switch to Statistics Mode with <code>statisticsMode</code> or <code>SM</code>.<br>
-Expected: Status bar indicates "Statistics Mode". Success message is shown in the result display. Main panel will display a grid of dates with their revenues and side panel will be empty.</p>
+Expected: Status bar indicates "Statistics Mode". Success message is shown in the Results Display. Main panel will display a grid of dates with their revenues and side panel will be empty.</p>
 </li>
 </ol>
 </div>
@@ -3034,7 +2587,7 @@ Expected: Status bar indicates "Statistics Mode". Success message is shown in th
 </div>
 </div>
 <div class="sect2">
-<h3 id="tables"><a class="link" href="#tables">H.3. Tables</a></h3>
+<h3 id="tables-feature-2"><a class="link" href="#tables-feature-2">F.3. Tables feature</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3047,7 +2600,7 @@ Expected: Adds a table with table status of 0/1.</p>
 </li>
 <li>
 <p>Test case: <code>addTable</code><br>
-Expected: No tables are added. Error message is shown in the result display. Status bar remains the same.</p>
+Expected: No tables are added. Error message is shown in the Results Display. Status bar remains the same.</p>
 </li>
 <li>
 <p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
@@ -3063,38 +2616,143 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="menu"><a class="link" href="#menu">H.4. Menu</a></h3>
+<h3 id="menu-feature-2"><a class="link" href="#menu-feature-2">F.4. Menu feature</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="orders"><a class="link" href="#orders">H.5. Orders</a></h3>
+<h3 id="orders-feature-2"><a class="link" href="#orders-feature-2">F.5. Orders feature</a></h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Pre-requisite: Tables and menu items should have been populated with sample data in order for the test cases below to work.
+You can restore the original sample data by deleting the json files in the data folder and restarting the application.</p>
+</div>
+</div>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Adding an order</p>
+<p>Adding to an order</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Switch to Table Mode for Table 1. Tables and menu items should have been populated from the Table and Menu tests above.</p>
+<p>Switch to Table Mode for Table 10 (<code>tableMode 10</code>).</p>
 </li>
 <li>
-<p>Test case: <code>addToOrder W09 2</code> or <code>add W09 2</code><br>
-Expected: Adds an order item "W09 Chicken Wings" with quantity of 2 to Table 1&#8217;s order.</p>
+<p>For the following test cases, <code>addToOrder</code> can be replaced with the shortcut <code>add</code>.</p>
 </li>
 <li>
-<p>Test case: <code>addToOrder W12 2 A05 1</code> or <code>add W12 2 A05 1</code><br>
-Expected: Adds order items "W12 French Fries" with quantity of 2 and "A05 Salad" with quantity of 1 to Table 1&#8217;s order.</p>
+<p>Test case: <code>addToOrder W09 2</code><br>
+Expected: Adds an order item "W09 Chicken Wings" with quantity of 2/2 to Table 10&#8217;s order.</p>
 </li>
 <li>
-<p>Test case: <code>addToOrder W09 1</code> or <code>add W09 1</code><br>
-Expected: Updates the order item "W09 Chicken Wings" in Table 1&#8217;s order with quantity of 3.</p>
+<p>Test case: <code>addToOrder W12 2 W13 1</code><br>
+Expected: Adds order items "W12 French Fries" with quantity of 2/2 and "W13 Coke" with quantity of 1/1 to Table 10&#8217;s order.</p>
 </li>
 <li>
-<p>Test case: <code>addToOrder W09</code> or <code>add W09</code><br>
-Expected: No order items are added. Error message is shown in the result display.</p>
+<p>Test case: <code>addToOrder W09 1</code><br>
+Expected: Updates the order item "W09 Chicken Wings" in Table 10&#8217;s order from quantity of 2/2 to quantity of 3/3.</p>
 </li>
 <li>
-<p>Other invalid test cases: <code>addToOrder 3</code>, <code>addToOrder W99 1</code>, <code>addToOrder W09 0</code>, <code>addToOrder W09 1 W12</code></p>
+<p>Test case for invalid command format: <code>addToOrder W09</code><br>
+Expected: No order items are added. Error message is shown in the Results Display.</p>
+</li>
+<li>
+<p>Test case for invalid item code format: <code>addToOrder 2A 2</code><br>
+Expected: Similar to previous.</p>
+</li>
+<li>
+<p>Test case for item code not in menu: <code>addToOrder W35 2</code><br>
+Expected: Similar to previous.</p>
+</li>
+<li>
+<p>Test case for invalid quantity: <code>addToOrder W09 3000000000</code><br>
+Expected: Similar to previous.</p>
+</li>
+<li>
+<p>Other invalid test cases: <code>addToOrder</code>, <code>addToOrder 3</code>, <code>addToOrder W99 1</code>, <code>addToOrder W09 1 W12</code>, <code>addToOrder W09 -2</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting from an order</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Table Mode for Table 22 (<code>tableMode 22</code>).</p>
+</li>
+<li>
+<p>For the following test cases, <code>deleteFromOrder</code> can be replaced with the shortcut <code>del</code>.</p>
+</li>
+<li>
+<p>Test case: <code>deleteFromOrder W09</code><br>
+Expected: Deletes the order item "W09 Chicken Wings" from Table 22&#8217;s order.</p>
+</li>
+<li>
+<p>Test case for invalid command format: <code>deleteFromOrder W09 3</code><br>
+Expected: No order items are deleted. Error message is shown in the Results Display.</p>
+</li>
+<li>
+<p>Test case for invalid item code format: <code>deleteFromOrder 2A</code><br>
+Expected: Similar to previous.</p>
+</li>
+<li>
+<p>Test case for item code not in order: <code>deleteFromOrder W14</code><br>
+Expected: Similar to previous.</p>
+</li>
+<li>
+<p>Other invalid test cases: <code>deleteFromOrder</code>, <code>deleteFromOrder W01</code>, <code>deleteFromOrder W35</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Clearing an order</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Table Mode for Table 5 (<code>tableMode 5</code>).</p>
+</li>
+<li>
+<p>Test case: <code>clearOrder</code> or <code>clear</code><br>
+Expected: All the order items from Table 5&#8217;s order are deleted.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Serving items in an order</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Table Mode for Table 24 (<code>tableMode 24</code>).</p>
+</li>
+<li>
+<p>For the following test cases, <code>serve</code> can be replaced with the shortcut <code>s</code>.</p>
+</li>
+<li>
+<p>Test case: <code>serve W01 3</code><br>
+Expected: Updates the order item "W01 Chicken Burger" in Table 24&#8217;s order from quantity of 3/3 to quantity of 0/3.</p>
+</li>
+<li>
+<p>Test case: <code>serve W12</code><br>
+Expected: Updates the order item "W12 French Fries" in Table 24&#8217;s order from quantity of 3/3 to quantity of 2/3.</p>
+</li>
+<li>
+<p>Test case for invalid item code format: <code>serve 2A</code><br>
+Expected: No order items are updated. Error message is shown in the Results Display.</p>
+</li>
+<li>
+<p>Test case for item code not in order: <code>serve W02</code><br>
+Expected: Similar to previous.</p>
+</li>
+<li>
+<p>Test case for item already fully served: <code>serve W01 2</code><br>
+Expected: Similar to previous.</p>
+</li>
+<li>
+<p>Other invalid test cases: <code>serve</code>, <code>serve W12 4</code>, <code>serve W03 2</code></p>
 </li>
 </ol>
 </div>
@@ -3103,11 +2761,11 @@ Expected: No order items are added. Error message is shown in the result display
 </div>
 </div>
 <div class="sect2">
-<h3 id="statistics"><a class="link" href="#statistics">H.6. Statistics</a></h3>
+<h3 id="statistics-feature-2"><a class="link" href="#statistics-feature-2">F.6. Statistics feature</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Bill order</p>
+<p>Billing an order</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3124,7 +2782,7 @@ current date.</p>
 </div>
 </li>
 <li>
-<p>Retrieve revenue of specified day, month or year</p>
+<p>Retrieving revenue for a specified day, month or year</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3148,7 +2806,7 @@ Expected: Revenue of year 2019 will be calculated.</p>
 </li>
 <li>
 <p>Test case: <code>revenue d/1 y/2019</code> or <code>r d/1 y/2019</code><br>
-Expected: No revenue are calculated. Error message is shown in the result display.</p>
+Expected: No revenue are calculated. Error message is shown in the Results Display.</p>
 </li>
 <li>
 <p>Other invalid test cases: <code>revenue d/1</code>, <code>revenue d/29 m/2 y/2019</code></p>
@@ -3160,24 +2818,39 @@ Expected: No revenue are calculated. Error message is shown in the result displa
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">H.7. Saving data</a></h3>
+<h3 id="data-storage"><a class="link" href="#data-storage">F.7. Data storage</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Dealing with missing/corrupted data files</p>
+<p>Missing data files</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
+<p>Open the data folder inside your RestOrRant home folder and delete one or more of the json files.</p>
+</li>
+<li>
+<p>Launch RestOrRant by double-clicking the jar file.<br>
+Expected: Shows the GUI with sample data restored.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Corrupted data files</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Open any of the json files in the data folder and delete all its contents.</p>
+</li>
+<li>
+<p>Launch RestOrRant by double-clicking the jar file.<br>
+Expected: Shows the GUI with no data.</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-12 18:03:42 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 11:34:35 UTC</div></div></div></body></html>
