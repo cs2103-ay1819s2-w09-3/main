@@ -61,16 +61,17 @@
 </li>
 <li><a href="#orders-feature">4.3. Orders feature</a>
 <ul class="sectlevel3">
-<li><a href="#CurrentTable">4.3.1. Getting the table number</a></li>
-<li><a href="#AddToOrder">4.3.2. Adding to an order</a></li>
-<li><a href="#DeleteFromOrder">4.3.3. Deleting from an order</a></li>
-<li><a href="#ClearOrder">4.3.4. Clearing an order</a>
+<li><a href="#OrdersClasses">4.3.1. Classes for Orders feature in Model</a></li>
+<li><a href="#CurrentTable">4.3.2. Getting the table number</a></li>
+<li><a href="#AddToOrder">4.3.3. Adding to an order</a></li>
+<li><a href="#DeleteFromOrder">4.3.4. Deleting from an order</a></li>
+<li><a href="#ClearOrder">4.3.5. Clearing an order</a>
 <ul class="sectlevel4">
 <li><a href="#current-implementation-3">Current Implementation</a></li>
 <li><a href="#design-considerations-3">Design Considerations</a></li>
 </ul>
 </li>
-<li><a href="#Serve">4.3.5. Serving items in an order</a></li>
+<li><a href="#Serve">4.3.6. Serving items in an order</a></li>
 </ul>
 </li>
 <li><a href="#menu-feature">4.4. Menu feature</a>
@@ -749,7 +750,7 @@ The following class plays an important role at the architecture level:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Although the <code>bill</code> command is used in Table Mode, it is considered a Statistics feature rather than an Orders feature as it involves calculation for the revenue.
+Although the <code>bill</code> command is used in Table Mode, it is considered a <a href="#statistics-feature">Statistics feature</a> rather than an Orders feature as it involves calculation for the revenue.
 </td>
 </tr>
 </table>
@@ -760,7 +761,7 @@ Although the <code>bill</code> command is used in Table Mode, it is considered a
 <div class="sect4">
 <h5 id="changing-modes-in-general"><a class="link" href="#changing-modes-in-general">Changing modes in general</a></h5>
 <div class="paragraph">
-<p>The modes of the application are defined using a <span class="java">Mode</span> enum and the current mode of the application is stored as a private attribute <span class="java">Mode mode</span> in <span class="java">LogicManager</span>. Users can switch between modes in ROR using the <code>{XXX}Mode</code> command, such as <code>menuMode</code> and <code>tableMode</code>. When the mode of the application is changed, we need to update the:</p>
+<p>The modes of the application are defined using a <span class="java">Mode</span> enum and the current mode of the application is stored as a private attribute <span class="java">mode</span> in <span class="java">LogicManager</span>. Users can switch between modes in ROR using the <code>{XXX}Mode</code> command, such as <code>menuMode</code> and <code>tableMode</code>. When the mode of the application is changed, we need to update the:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -810,19 +811,7 @@ For commands that do not involve a change in mode, <span class="java">CommandRes
 <div class="sect4">
 <h5 id="ChangeToTableMode"><a class="link" href="#ChangeToTableMode">Changing to Table Mode for a specific table</a></h5>
 <div class="paragraph">
-<p>All the mode-changing commands take no parameters except for Table Mode. When the user wants to perform order-related operations (eg. add an item to the table&#8217;s order), the user will first have to switch to Table Mode by typing the <code>tableMode</code> command (or its shortcut command <code>TM</code>) followed by the table number of the table that the user wants to perform actions on.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>tableMode</code> command can be used from any mode, even in Table Mode of a different table number. If the application is already in Table Mode of the same table number, or if the table specified by the table number is unoccupied, an error message will be shown to the user.
-</td>
-</tr>
-</table>
+<p>All the mode-changing commands take no parameters except for Table Mode. When the user wants to perform order-related operations (eg. add an item to the table&#8217;s order), the user will first have to switch to Table Mode by typing the <code>tableMode</code> command (or its shortcut <code>TM</code>) followed by the table number of the table that the user wants to perform actions on.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows the relevant parts of what happens when a user executes the <code>tableMode 3</code> command:</p>
@@ -834,10 +823,10 @@ The <code>tableMode</code> command can be used from any mode, even in Table Mode
 <div class="title">Figure 10. Component interactions for <code>tableMode 3</code> command</div>
 </div>
 <div class="paragraph">
-<p>The <span class="java">Logic</span> and <span class="java">UI</span> component interactions work in a similar way to the other mode-changing commands and the implementation is mentioned above. The only difference is the parsing of the argument <strong>3</strong> into a <span class="java">TableNumber</span> object that indicates the table number of the target table to switch to. This <span class="java">TableNumber</span> object is stored as an attribute in <span class="java">`TableModeCommand</span>.</p>
+<p>The <span class="java">Logic</span> and <span class="java">UI</span> component interactions work in a similar way to the other mode-changing commands and the implementation is mentioned above. The only difference is the parsing of the argument <strong>3</strong> into a <span class="java">TableNumber</span> object that indicates the table number of the target table to switch to. This <span class="java">TableNumber</span> object is stored as an attribute in <span class="java">TableModeCommand</span>.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s focus on what happens to the <span class="java">Model</span> component when the <span class="java">TableModeCommand</span> is executed. The relevant parts of the sequence diagram has been extracted out and shown in the diagram below.</p>
+<p>Let&#8217;s focus on what happens to the <span class="java">Model</span> component when <span class="java">TableModeCommand#execute()</span> is called. The relevant parts of the sequence diagram has been extracted out and shown in the diagram below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -846,13 +835,26 @@ The <code>tableMode</code> command can be used from any mode, even in Table Mode
 <div class="title">Figure 11. Interaction between Logic and Model components for <code>tableMode 3</code> command</div>
 </div>
 <div class="paragraph">
-<p>It first retrieves the <span class="java">Table</span> that corresponds to its <span class="java">TableNumber</span> attribute. This is done by going through <span class="java">Model#getRestOrRant()</span> to obtain the <span class="java">ReadOnlyRestOrRant</span>, whose <span class="java">getTables()</span> method can be called to retrieve <span class="java">ReadOnlyTables</span> that contains the list of all the tables in the restaurant. The <span class="java">Table</span> can then be retrieved by passing <span class="java">TableNumber</span> into <span class="java">ReadOnlyTables#getTableFromNumber()</span>.</p>
+<p>It first retrieves the <span class="java">Table</span> in RestOrRant that corresponds to its <span class="java">TableNumber</span> attribute.
+The list of tables are stored within the <span class="java">Tables</span> object in <span class="java">RestOrRant</span>. The read only versions of these objects can be obtained from <span class="java">Model#getRestOrRant()</span> and then <span class="java">ReadOnlyRestOrRant#getTables()</span>. The desired <span class="java">Table</span> object can then be retrieved by passing <span class="java">TableNumber</span> into <span class="java">ReadOnlyTables#getTableFromNumber()</span>.</p>
 </div>
 <div class="paragraph">
-<p>The <span class="java">Table</span> is then set as the selected table in <span class="java">Model</span> using <span class="java">Model#setSelectedTable()</span>. This is to keep track of the current table so that the Table Mode commands like <code>addToOrder</code> and <code>bill</code> can easily perform their operations by getting the table from <span class="java">Model#getSelectedTable()</span>.</p>
+<p>The <span class="java">Table</span> is then set as the selected table in <span class="java">Model</span> using <span class="java">Model#setSelectedTable()</span>. This is to keep track of the current table so that the Table Mode commands like <code>addToOrder</code> and <code>bill</code> can easily perform their operations by <a href="#CurrentTable">getting the table from <span class="java">Model#getSelectedTable()</span></a>.</p>
 </div>
 <div class="paragraph">
 <p>After which, <span class="java">Model#updateFilteredOrderItemList()</span> is called to update the filtered list such that it only contains order items ordered by the chosen table. This will then update the item list panel in the UI to display only the order items that were ordered by the chosen table.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<span class="java">TableModeCommand#execute()</span> also checks to ensure that the application is not already in Table Mode of the same table number, the table number specified is valid, and the desired table is occupied.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1033,9 +1035,47 @@ as well as remove incorrectly inputted orders using the <a href="#DeleteFromOrde
 They can track the current list of items ordered for each table (in Table Mode) or across all tables (in Restaurant Mode) and update their serving statuses with the <a href="#Serve"><code>serve</code></a> command.</p>
 </div>
 <div class="sect3">
-<h4 id="CurrentTable"><a class="link" href="#CurrentTable">4.3.1. Getting the table number</a></h4>
+<h4 id="OrdersClasses"><a class="link" href="#OrdersClasses">4.3.1. Classes for Orders feature in Model</a></h4>
 <div class="paragraph">
-<p>The Orders feature allows users to perform order-related operations for a specific table. The table number was specified when <a href="#ChangeToTableMode">switching over to Table Mode</a>.</p>
+<p>The Orders feature was implemented with the introduction of a new set of classes to <span class="java">Model</span>.
+A new <span class="java">Orders</span> class encapsulates all the methods and classes related to this feature. It also contains a listener that is used to update the storage when any modification is made to the orders. The <span class="java">Orders</span> object is stored in <span class="java">RestOrRant</span> and it exposes a read-only interface <span class="java">ReadOnlyOrders</span> to allow the other components to retrieve order-related information while maintaining data integrity.</p>
+</div>
+<div class="paragraph">
+<p><span class="java">Orders</span> contains a <span class="java">UniqueOrderItemList</span>, which contains a list of all the items ordered across all the tables in the restaurant, represented by <span class="java">OrderItem</span> objects. Each <span class="java">OrderItem</span> object consists of 4 objects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="java">TableNumber</span> indicates the table number of the table that ordered the item</p>
+</li>
+<li>
+<p><span class="java">OrderItemStatus</span> tracks the quantity ordered and the quantity that has yet to be served</p>
+</li>
+<li>
+<p><span class="java">Code</span> indicates the item code and is used to identify the item ordered</p>
+</li>
+<li>
+<p><span class="java">Name</span> indicates the item name and is used for display in the UI</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="java">OrderItem</span> objects are uniquely identified by <span class="java">TableNumber</span>, <span class="java">Code</span> and <span class="java">Name</span> as each table can only have one order entry for each item.</p>
+</div>
+<div class="paragraph">
+<p>The Orders Class Diagram below shows the relationship between the classes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/OrdersModelClassDiagram.png" alt="OrdersModelClassDiagram" width="800">
+</div>
+<div class="title">Figure 12. Orders Class Diagram in the Model component</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="CurrentTable"><a class="link" href="#CurrentTable">4.3.2. Getting the table number</a></h4>
+<div class="paragraph">
+<p>The Orders feature allows users to perform order-related operations for a specific table. The table number of that table is specified when <a href="#ChangeToTableMode">switching over to Table Mode</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1050,46 +1090,70 @@ The table number is stored so that users do not need to keep specifying it when 
 </table>
 </div>
 <div class="paragraph">
-<p>Hence, all the commands in the Orders feature will have to retrieve the table number from <span class="java">Model</span> first before they can perform their functions. The current table is stored as a <span class="java">Table</span> object in <span class="java">Model</span>, which is retrieved by calling <span class="java">Model#getSelectedTable()</span>.
-The <span class="java">TableNumber</span> can then be retrieved from that <span class="java">Table</span>. The sequence diagram for this operation is shown below.</p>
+<p>As a result, all the commands in the Orders feature will have to retrieve the table number from <span class="java">Model</span> first before they can perform their functions. The current table is stored as a <span class="java">Table</span> object in <span class="java">Model</span>, which is retrieved by calling <span class="java">Model#getSelectedTable()</span>.
+The table number, which is represented by a <span class="java">TableNumber</span> object, can then be retrieved from that <span class="java">Table</span>. The sequence diagram for this operation is shown below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CurrentTableSequenceDiagram.png" alt="CurrentTableSequenceDiagram" width="500">
+<img src="images/CurrentTableSequenceDiagram.png" alt="CurrentTableSequenceDiagram" width="400">
 </div>
-<div class="title">Figure 12. Sequence diagram for retrieving the table number</div>
+<div class="title">Figure 13. Sequence diagram for retrieving the table number</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="AddToOrder"><a class="link" href="#AddToOrder">4.3.2. Adding to an order</a></h4>
+<h4 id="AddToOrder"><a class="link" href="#AddToOrder">4.3.3. Adding to an order</a></h4>
+<div class="paragraph">
+<p>The user may want to add new order items to a specific table&#8217;s order and this can be done with the <code>addToOrder</code> command.</p>
+</div>
 <div class="paragraph">
 <p>The interaction between the components for this function is similar to <a href="#AddToMenu">adding to menu</a>. A key difference in function is that <code>addToMenu</code> only adds 1 menu item each time, but <code>addToOrder</code> allows multiple and duplicate items to be added in a single command.</p>
 </div>
 <div class="paragraph">
-<p>Order items are stored in a list. When <code>addToOrder W09 3 W12 1</code> is keyed in, the command is parsed by <span class="java">AddToOrderCommandParser</span> to check if the arguments are in valid format. They are then converted into a list of <span class="java">Code</span> item codes and a list of <span class="java">Integer</span> quantities, which are stored in the <span class="java">AddToOrderCommand</span> object returned by the parser.</p>
+<p>Suppose the user wants to add 3 "W09 Chicken Wings" and 1 "W12 French Fries" to the order. When <code>addToOrder W09 3 W12 1</code> is keyed in, the command is parsed by <span class="java">AddToOrderCommandParser</span> to check if the arguments are in valid format. They are then converted into a list of <span class="java">Code</span> item codes and a list of <span class="java">Integer</span> quantities, which are stored in the <span class="java">AddToOrderCommand</span> object returned by the parser.</p>
 </div>
 <div class="paragraph">
-<p>When <span class="java">AddToOrderCommand#execute()</span> is called, the item codes in the <span class="java">Code</span> list are processed one by one.
-For each item code, the <span class="java">MenuItem</span> with the <span class="java">Code</span> will be retrieved from the <span class="java">Model</span> component to check if it exists in the menu. Otherwise, an error is returned and the subsequent item codes in the list are not processed.</p>
+<p>When <span class="java">AddToOrderCommand#execute()</span> is called, the <span class="java">Code</span> objects in the list are processed one by one. For each <span class="java">Code</span>:</p>
 </div>
-<div class="paragraph">
-<p>If the item is found in the menu, it will then attempt to find an <span class="java">OrderItem</span> with the same <span class="java">Code</span> in the current table. If an order of that item already exists, the quantity will be updated in the list using <span class="java">Model#setOrderItem()</span>. Otherwise, the new item will be added to the list using <span class="java">Model#addOrderItem()</span>.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It attempts to retrieve a <span class="java">MenuItem</span> object that contains the given <span class="java">Code</span> from <span class="java">Model</span> to check if the item exists in the menu. If it does not exist, an error is returned and the subsequent item codes in the list are not processed.</p>
+</li>
+<li>
+<p>It thens attempt to find an <span class="java">OrderItem</span> object with the given <span class="java">Code</span> and the <a href="#CurrentTable">current <span class="java">TableNumber</span></a> to see if that item has already been ordered by the table. If it already exists, the quantity will be updated in the <span class="java">UniqueOrderItemList</span> using <span class="java">Model#setOrderItem()</span>. A new <span class="java">OrderItem</span> with a new <span class="java">OrderItemStatus</span> will be created to replace the existing one. Otherwise, a new <span class="java">OrderItem</span> will be added to the <span class="java">UniqueOrderItemList</span> using <span class="java">Model#addOrderItem()</span>.</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect3">
-<h4 id="DeleteFromOrder"><a class="link" href="#DeleteFromOrder">4.3.3. Deleting from an order</a></h4>
-
+<h4 id="DeleteFromOrder"><a class="link" href="#DeleteFromOrder">4.3.4. Deleting from an order</a></h4>
+<div class="paragraph">
+<p>The user may want to remove an order item from a specific table&#8217;s order and this can be done with the <code>deleteFromOrder</code> command.</p>
+</div>
+<div class="paragraph">
+<p>The interaction between the components for this function is similar to <a href="#DeleteFromMenu">deleting from menu</a>.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the user wants to delete "W09 Chicken Wings" from the order. When <code>deleteFromOrder W09</code> is keyed in, the command is parsed by <span class="java">DeleteFromOrderCommandParser</span> to check if the item code is in valid format. It is then converted into a <span class="java">Code</span> object which is stored in the <span class="java">DeleteFromOrderCommand</span> object returned by the parser.</p>
+</div>
+<div class="paragraph">
+<p>When <span class="java">DeleteFromOrderCommand#execute()</span> is called, it will use the <span class="java">Code</span> to check whether the item exists in the menu and whether the current table has ordered the item.
+If the <span class="java">OrderItem</span> is found, it will be deleted from the <span class="java">UniqueOrderItemList</span> using <span class="java">Model#deleteOrderItem()</span>.</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="ClearOrder"><a class="link" href="#ClearOrder">4.3.4. Clearing an order</a></h4>
+<h4 id="ClearOrder"><a class="link" href="#ClearOrder">4.3.5. Clearing an order</a></h4>
+<div class="paragraph">
+<p>The user may want to remove all the order items from a specific table&#8217;s order and this can be done with the <code>clearOrder</code> command.</p>
+</div>
 <div class="sect4">
 <h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
 <div class="paragraph">
 <p>When the user enters the <code>clearOrder</code> command, the command is parsed and a <span class="java">ClearOrderCommand</span> object is created.</p>
 </div>
 <div class="paragraph">
-<p><span class="java">ClearOrderCommand#execute()</span> is then called, which in turn calls <span class="java">Model#clearOrderItemsFrom()</span> with the <a href="#CurrentTable">current table number</a>.
-In fact, <span class="java">Model</span> acts as a facade and forwards the call to <span class="java">Orders#clearOrderItemsFrom()</span>. That method&#8217;s source code is replicated below.</p>
+<p><span class="java">ClearOrderCommand#execute()</span> is then called, which in turn calls <span class="java">Model#clearOrderItemsFrom()</span> with the <a href="#CurrentTable">current TableNumber</a>.
+<span class="java">Model</span> acts as a facade and forwards the call to <span class="java">Orders#clearOrderItemsFrom()</span>, and that method&#8217;s source code is replicated below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1114,11 +1178,11 @@ In fact, <span class="java">Model</span> acts as a facade and forwards the call 
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>It first loops through all the items in the <span class="java">UniqueOrderItemList</span> and retrieves the items with the current table number.</td>
+<td>It first loops through all the items in the <span class="java">UniqueOrderItemList</span> and stores the <span class="java">OrderItem</span> objects with the current <span class="java">TableNumber</span> into a new list.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>It then deletes these items from the <span class="java">UniqueOrderItemList</span>.</td>
+<td>It then deletes the items in this list from the <span class="java">UniqueOrderItemList</span>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -1133,7 +1197,7 @@ In fact, <span class="java">Model</span> acts as a facade and forwards the call 
 <div class="content">
 <img src="images/ClearOrderSequenceDiagram.png" alt="ClearOrderSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 13. Component interactions for <code>clearOrder</code> command</div>
+<div class="title">Figure 14. Component interactions for <code>clearOrder</code> command</div>
 </div>
 </div>
 <div class="sect4">
@@ -1168,17 +1232,20 @@ Furthermore, it also provides the benefit of arranging the order items across al
 </div>
 </div>
 <div class="sect3">
-<h4 id="Serve"><a class="link" href="#Serve">4.3.5. Serving items in an order</a></h4>
+<h4 id="Serve"><a class="link" href="#Serve">4.3.6. Serving items in an order</a></h4>
 <div class="paragraph">
-<p>The interaction between the components for this function is similar to <a href="#EditPax">editing the occupancy at a table</a>.</p>
+<p>The user may want to mark order items from a specific table&#8217;s order as served and this can be done with the <code>serve</code> command.</p>
 </div>
 <div class="paragraph">
-<p>Suppose 3 "W09 Chicken Wings" has been ordered by the current table. When <code>serve W09 2</code> is keyed in, the command is parsed by <span class="java">ServeCommandParser</span> to check if the arguments are in valid format. The valid <span class="java">Code</span> item code and <span class="java">Integer</span> quantity are then stored in the <span class="java">ServeCommand</span> object returned by the parser.</p>
+<p>The interaction between the components for this function is similar to <a href="#EditPax">editing the occupancy of a table</a>.</p>
 </div>
 <div class="paragraph">
-<p>When <span class="java">ServeCommand#execute()</span> is called, it will use the item code to check whether the item code exists in the menu and in the current table&#8217;s order.
-If the order item is found and the quantity served is valid, a new <span class="java">OrderItem</span> object will be created with a new <span class="java">OrderItemStatus</span> that reflects the new quantities.
-<span class="java">Model#setOrderItem()</span> is then used to replace the old <span class="java">OrderItem</span> object with the new one.</p>
+<p>Suppose 3 "W09 Chicken Wings" have been ordered by the table and the user wants to mark 2 of them as served. When <code>serve W09 2</code> is keyed in, the command is parsed by <span class="java">ServeCommandParser</span> to check if the arguments are in valid format. The valid <span class="java">Code</span> item code and <span class="java">Integer</span> quantity are then stored in the <span class="java">ServeCommand</span> object returned by the parser.</p>
+</div>
+<div class="paragraph">
+<p>When <span class="java">ServeCommand#execute()</span> is called, it will use the <span class="java">Code</span> to check whether the item exists in the menu and whether the current table has ordered the item.
+If the <span class="java">OrderItem</span> is found and the quantity served is valid, a new <span class="java">OrderItem</span> object will be created with a new <span class="java">OrderItemStatus</span> that reflects the new quantities.
+<span class="java">Model#setOrderItem()</span> is then used to replace the old <span class="java">OrderItem</span> object in the <span class="java">UniqueOrderItemList</span> with the new one.</p>
 </div>
 </div>
 </div>
@@ -1473,7 +1540,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 14. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 15. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2853,4 +2920,4 @@ Expected: Shows the GUI with no data.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 15:24:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 17:53:04 UTC</div></div></div></body></html>
