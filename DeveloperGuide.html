@@ -51,12 +51,17 @@
 </li>
 <li><a href="#tables-feature">4.2. Tables feature</a>
 <ul class="sectlevel3">
-<li><a href="#EditPax">4.2.1. Edit pax at a table</a>
+<li><a href="#TablesClasses">4.2.1. Classes for Tables feature in Model</a></li>
+<li><a href="#AddTable">4.2.2. Adding a table to ROR</a></li>
+<li><a href="#EditPax">4.2.3. Edit pax at a table</a>
 <ul class="sectlevel4">
 <li><a href="#current-implementation">Current Implementation</a></li>
 <li><a href="#design-considerations-2">Design Considerations</a></li>
 </ul>
 </li>
+<li><a href="#EditSeats">4.2.4. Edit seats at a table</a></li>
+<li><a href="#ClearTables">4.2.5. Clear all tables in ROR</a></li>
+<li><a href="#SpaceFor">4.2.6. Getting an available table for customers</a></li>
 </ul>
 </li>
 <li><a href="#orders-feature">4.3. Orders feature</a>
@@ -171,7 +176,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>RestOrRant (ROR) is a restaurant management application for restaurant managers, waiters and cashiers. ROR is designed for them to perform front-end operations more conveniently and efficiently. ROR allows them to manage tables, orders, menu and statistical data using the Command Line Interface (CLI).</p>
+<p>RestOrRant (ROR) is a restaurant management application for restaurant managers, waiters and cashiers. ROR is designed for them to perform front-end operations more conveniently and efficiently. It allows them to manage tables, orders, menu and statistical data using the Command Line Interface (CLI).</p>
 </div>
 <div class="paragraph">
 <p>This Developer Guide allows you as a developer to understand the implementation and design principles used in ROR. This guide serves as a reference for you to set up and further contribute to ROR’s development.</p>
@@ -497,7 +502,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The <strong>.pptx</strong> files used to create diagrams in this document can be found in the <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <b class="button">Save as picture</b>.
+The <strong>.pptx</strong> files used to create diagrams in this document can be found in the <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <b class="button">Save as picture</b> and save your new diagram into the <a href="https://github.com/cs2103-ay1819s2-w09-3/main/docs/images/">images</a> folder.
 </td>
 </tr>
 </table>
@@ -506,7 +511,7 @@ The <strong>.pptx</strong> files used to create diagrams in this document can be
 <p>Given below is a quick overview of each component.</p>
 </div>
 <div class="paragraph">
-<p><span class="java">Main</span> has only one class called <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/MainApp.java"><span class="java">MainApp</span></a>. It is responsible for:</p>
+<p><span class="java">Main</span> has only one class called <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/MainApp.java"><span class="java">MainApp</span></a>. It has two functions:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -514,7 +519,7 @@ The <strong>.pptx</strong> files used to create diagrams in this document can be
 <p>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</p>
 </li>
 <li>
-<p>At shut down: Shuts down the components and invokes cleanup method where necessary.</p>
+<p>At shut down: Shuts down the components and invokes cleanup method(s) where necessary.</p>
 </li>
 </ul>
 </div>
@@ -566,7 +571,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
+<img src="images/LogicComponentClassDiagram.png" alt="LogicComponentClassDiagram" width="800">
 </div>
 <div class="title">Figure 2. Class Diagram of the Logic Component</div>
 </div>
@@ -625,7 +630,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div id="fig-LogicClassDiagram" class="imageblock">
 <div class="content">
-<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
+<img src="images/LogicComponentClassDiagram.png" alt="LogicComponentClassDiagram" width="800">
 </div>
 <div class="title">Figure 5. Structure of the Logic Component</div>
 </div>
@@ -944,51 +949,93 @@ The Model component does not need to know what the current mode is at all, so it
 <div class="sect2">
 <h3 id="tables-feature"><a class="link" href="#tables-feature">4.2. Tables feature</a></h3>
 <div class="sect3">
-<h4 id="EditPax"><a class="link" href="#EditPax">4.2.1. Edit pax at a table</a></h4>
-<div class="sect4">
-<h5 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h5>
+<h4 id="TablesClasses"><a class="link" href="#TablesClasses">4.2.1. Classes for Tables feature in Model</a></h4>
 <div class="paragraph">
-<p>The edit pax mechanism is facilitated by <code>UniqueTableList</code>. It stores the all tables currently in the system and ensures that there are no duplicated tables. Additionally, it implements the following operations:</p>
+<p>The Tables feature was implemented with the introduction of a new set of classes to <span class="java">Model</span>.
+A new <span class="java">Orders</span> class encapsulates all the methods and classes related to this feature. It also contains a listener that is used to update the storage when any modification is made to the orders. The <span class="java">Orders</span> object is stored in <span class="java">RestOrRant</span> and it exposes a read-only interface <span class="java">ReadOnlyOrders</span> to allow the other components to retrieve order-related information while maintaining data integrity.</p>
+</div>
+<div class="paragraph">
+<p><span class="java">Tables</span> contains a <span class="java">UniqueTableList</span>, which contains a list of all the tables. Each <span class="java">Table</span> object consists of 2 objects:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>UniqueTableList#contains(targetTable)</code>&#8201;&#8212;&#8201;Checks if the target table exists within the unique list of tables.</p>
+<p><span class="java">TableNumber</span> indicates the table number of the table</p>
 </li>
 <li>
-<p><code>UniqueTableList#setTable(targetTable, editedTable)</code>&#8201;&#8212;&#8201;Replaces the target table in the list with the new table with the updated <code>TableStatus</code>.</p>
+<p><span class="java">TableStatus</span> indicates the occupancy of the table</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the Model interface as <code>Model#setTable(targetTable, editedTable)</code> and <code>Model#hasTable(targetTable)</code>.</p>
+<p><span class="java">Table</span> objects are uniquely identified by <span class="java">TableNumber</span> as all tables in a restaurant are uniquely labelled by their table numbers.</p>
+</div>
+<div class="paragraph">
+<p>The Tables Class Diagram below shows the relationship between the classes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/TablesModelClassDiagram.png" alt="TablesModelClassDiagram" width="800">
+</div>
+<div class="title">Figure 12. Tables Class Diagram in the Model component</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="AddTable"><a class="link" href="#AddTable">4.2.2. Adding a table to ROR</a></h4>
+<div class="paragraph">
+<p>The interaction between the components for this function is similar to <a href="#AddToMenu">adding to menu</a>. A key difference in function is that <code>addToMenu</code> only adds 1 menu item each time, but <code>addTable</code> allows multiple tables to be added in a single command.</p>
+</div>
+<div class="paragraph">
+<p>Tables are stored in a list. When <code>addTable 4</code> is keyed in, the command is parsed by <span class="java">AddTableCommandParser</span> to check if the arguments are in valid format. They are then converted into a list of <span class="java">String</span> table statuses, which are stored in the <span class="java">AddTableCommand</span> object returned by the parser.</p>
+</div>
+<div class="paragraph">
+<p>When <span class="java">AddTableCommand#execute()</span> is called, the table statuses in the <span class="java">String</span> list are processed one by one. For each table status, a <span class="java">Table</span> with the appropriate <span class="java">TableStatus</span> and <span class="java">TableNumber</span> is created and stored in the <span class="java">Model</span>.</p>
+</div>
+<div class="paragraph">
+<p>The <span class="java">TableNumber</span> runs sequentially and is kept track of by the <span class="java">Tables</span> class. This means that there users are not allowed specify the table number for their tables and hence will not in any case add duplicate tables to ROR.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="EditPax"><a class="link" href="#EditPax">4.2.3. Edit pax at a table</a></h4>
+<div class="sect4">
+<h5 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The edit pax mechanism is facilitated by <span class="java">UniqueTableList</span>. It stores all tables currently in ROR and ensures that there are no duplicated tables. Additionally, it implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="java">UniqueTableList#contains(targetTable)</span>&#8201;&#8212;&#8201;Checks if the target table exists within the unique list of tables.</p>
+</li>
+<li>
+<p><span class="java">UniqueTableList#setTable(targetTable, editedTable)</span>&#8201;&#8212;&#8201;Replaces the target table in the list with the new table with the updated <span class="java">TableStatus</span>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the Model interface as <span class="java">Model#setTable(targetTable, editedTable)</span> and <span class="java">Model#hasTable(targetTable)</span>.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the edit pax mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>UniqueTableList</code> will be initialised to be empty.</p>
+<p>Step 1. Suppose the user launches the application for the first time, the sample data has 35 tables and are stored in the <span class="java">UniqueTableList</span> as shown below. Focus your attention on the <span class="java">Table</span> orange markup as this will be our target table in this example.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/EditPaxStartingStateListDiagram.png" alt="EditPaxStartingStateListDiagram" width="800">
+<img src="images/EditPaxStateListDiagram_Before.png" alt="EditPaxStateListDiagram Before" width=""800">
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>addTable 4</code> command to add a table to the RestOrRant application. Since it is the first new table, it will be labelled table <code>1</code> and not be occupied thus having a table status of <code>0/4</code>. The <code>UniqueTableList</code> will now contain 1 table.</p>
+<p>Step 2. Suppose the user decides to have 2 customers sit at table 2 and executes <code>editPax 2 2</code> command to update the table labelled 2 with 2 customers. The <code>editPax</code> command calls <span class="java">Model#setTable(targeTable, editedTable)</span>, causing the ROR to create a new table with the updated <span class="java">TableStatus</span> and replace the current target table in the <span class="java">UniqueTableList</span>. As shown below, the index of the replaced table now points to a new <span class="java">Table</span> which is highlighted orange.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/EditPaxAddTableStateListDiagram.png" alt="EditPaxAddTableStateListDiagram" width=""800">
+<img src="images/EditPaxStateListDiagram_After.png" alt="EditPaxStateListDiagram After" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user then has 4 customers enter his/her restaurant and executes <code>editPax 1 4</code> command to update the table labelled 1 with 4 customers. The <code>editPax</code> command calls <code>Model#setTable(targeTable, editedTable)</code>, causing the RestOrRant to create a new table with the updated <code>TableStatus</code> and replace the current target table in the UniqueTableList. At this point, the UniqueTableList still has only 1 table the original table was replaced by the updated table. The <code>Storage</code> detects this change in the UniqueTableList and also updates itself.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/EditPaxEditPaxStateListDiagram.png" alt="EditPaxEditPaxStateListDiagram" width="800">
-</div>
+<p>The <span class="java">Storage</span> detects the above change in the <span class="java">UniqueTableList</span> and also updates itself.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the edit pax operation works:</p>
@@ -1021,39 +1068,102 @@ If the table to be edited does not exist in the <code>UniqueTableList</code>, th
 </div>
 <div class="sect4">
 <h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
-<div class="sect5">
-<h6 id="aspect-how-edit-number-of-customers-executes"><a class="link" href="#aspect-how-edit-number-of-customers-executes">Aspect: How edit number of customers executes</a></h6>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Replace the entire table with an updated table.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Maintains abstraction of <code>Table</code> and <code>TableStatus</code> and reduce errors from abusing the editability of <code>TableStatus</code> in <code>Table</code>.</p>
-</li>
-<li>
-<p>Cons: May have efficiency issues when creating a whole new object whenever part of it needs to be changed.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Directly edit the <code>TableStatus</code> of the tables.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Potentially more efficient as there is no need to create new object and replace items in a list.</p>
-</li>
-<li>
-<p>Cons: Breaks abstraction to a certain extent and allows future developers to abuse the object.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Editing the tables in <span class="java">UniqueTableList</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace the entire table with  an updated table.<br>
+- <strong>Pros</strong>: Maintains abstraction of <span class="java">Table</span> and <span class="java">TableStatus</span> and reduce errors from abusing the editability of <span class="java">TableStatus</span> in <span class="java">Table</span>.<br>
+- <strong>Cons</strong>: May have efficiency issues when creating a whole new object whenever part of it needs to be changed.</p>
+<p class="tableblock">We decided to choose this option because we realise that if we were to edit the tables directly, we would need a listener for each <span class="java">Table</span> in the <span class="java">UniqueTableList</span> to detect changes, which is not an efficient design. Furthermore, the tables can only be edited one at a time. Hence, the space efficiency issue would not be significant.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directly edit the <span class="java">TableStatus</span> of the tables.<br>
+- <strong>Pros</strong>: Potentially more efficient as there is no need to create new object and replace items in a list.<br>
+- <strong>Cons</strong>: Breaks abstraction to a certain extent and allows future developers to abuse the object.<br></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
+<div class="sect3">
+<h4 id="EditSeats"><a class="link" href="#EditSeats">4.2.4. Edit seats at a table</a></h4>
+<div class="paragraph">
+<p>The interaction between the components for this function is similar to <a href="#EditPax">editing pax at a table</a>. A key difference in function is that <code>editPax</code> changes the occupancy of the <code>Table</code> by changing the number of customers seated at the table while <code>editSeats</code> changes the number of seats at the table.</p>
+</div>
+<div class="paragraph">
+<p>One thing to note is that the <code>editSeats</code> command can be called on not just unoccupied tables but also occupied tables. Hence, there is a different set of checks in place to ensure the integrity of tables are intact.</p>
+</div>
+<div class="paragraph">
+<p>An example would be, suppose <code>editSeats</code> is called on an occupied table, we do not allow the user to change the number of seats at the table to less than the current number of customers seated at the same table. Hence, if table 1 already has 4 customers, <code>editSeats 1 2</code> would return and error.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ClearTables"><a class="link" href="#ClearTables">4.2.5. Clear all tables in ROR</a></h4>
+<div class="paragraph">
+<p>The interaction between the components for this function is similar to <a href="#ClearOrder">clearing an order</a>. The key difference is that <code>clearTables</code> requires ROR to be completely empty before the command can be successfully executed.</p>
+</div>
+<div class="paragraph">
+<p>This means that all of the tables in ROR have to be unoccupied and this is checked in the ClearTablesCommand#execute() method as shown in the code snippet below.</p>
+</div>
+<div id="source" class="listingblock">
+<div class="content">
+<pre>public CommandResult execute(Mode mode, Model model, CommandHistory history) throws CommandException {
+        requireNonNull(model);
+        StringBuilder sbFinalOutput = new StringBuilder(MESSAGE_SUCCESS);
+        if (model.getRestOrRant().getTables().getTableList().isEmpty()) { <i class="conum" data-value="1"></i><b>(1)</b>
+            throw new CommandException(MESSAGE_FAILURE);
+        }
+        if (!model.isRestaurantEmpty()) { <i class="conum" data-value="2"></i><b>(2)</b>
+            throw new CommandException(INVALID_RESTAURANT_STATE);
+        }
+
+        model.setTables(new ArrayList&lt;&gt;()); <i class="conum" data-value="3"></i><b>(3)</b>
+
+        return new CommandResult(sbFinalOutput.toString());
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the method above, <span class="java">Model#isRestaurantEmpty()</span> loops through all the tables in the <span class="java">UniqueTableList</span> and checks if they are  occupied. Let&#8217;s walk through this method to see how the main functionality of <code>clearTables</code> is implemented:</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>It first checks if ROR already has no tables. If it does not, an error is returned as we cannot clear an empty ROR.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Then, as mentioned above, it checks if ROR is completely unoccupied by using the <span class="java">Model#isRestaurantEmpty()</span> method.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Lastly, it replaces the current list of tables in <span class="java">UniqueTableList</span> with an empty <span class="java">List</span> which effectively removes all record of any tables from ROR.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="SpaceFor"><a class="link" href="#SpaceFor">4.2.6. Getting an available table for customers</a></h4>
+<div class="paragraph">
+<p>This command&#8217;s interaction with the components is very similar to <a href="#EditPax">editing pax at a table</a>. The key difference is that it searches for the best fit table automatically instead of having the table specified by the user.</p>
+</div>
+<div class="paragraph">
+<p>This functionality uses the <code>spaceFor</code> command and is facilitated by the [.java]Model#isOccupied(Table)# method. This method checks if the specified table has any customers seated at the table. The <code>spaceFor</code> command works like a request and takes in 1 argument specifying the number of customers to be seated in ROR.</p>
+</div>
+<div class="paragraph">
+<p><span class="java">SpaceForCommand#execute()</span> is then called which searches through the <span class="java">UniqueTableList</span> for the best fit table. In this case, the best fit <span class="java">Table</span> is the smallest available one that can accommodate the specified number of customers. If there is more than 1 <span class="java">Table</span> that fits those criterions, the <span class="java">Table</span> with the smallest <span class="java">TableNumber</span> is chosen.</p>
 </div>
 </div>
 </div>
@@ -1099,7 +1209,7 @@ A new <span class="java">Orders</span> class encapsulates all the methods and cl
 <div class="content">
 <img src="images/OrdersModelClassDiagram.png" alt="OrdersModelClassDiagram" width="800">
 </div>
-<div class="title">Figure 12. Orders Class Diagram in the Model component</div>
+<div class="title">Figure 13. Orders Class Diagram in the Model component</div>
 </div>
 </div>
 <div class="sect3">
@@ -1127,7 +1237,7 @@ The table number, which is represented by a <span class="java">TableNumber</span
 <div class="content">
 <img src="images/CurrentTableSequenceDiagram.png" alt="CurrentTableSequenceDiagram" width="400">
 </div>
-<div class="title">Figure 13. Sequence diagram for retrieving the table number</div>
+<div class="title">Figure 14. Sequence diagram for retrieving the table number</div>
 </div>
 </div>
 <div class="sect3">
@@ -1227,7 +1337,7 @@ If the <span class="java">OrderItem</span> is found, it will be deleted from the
 <div class="content">
 <img src="images/ClearOrderSequenceDiagram.png" alt="ClearOrderSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 14. Component interactions for <code>clearOrder</code> command</div>
+<div class="title">Figure 15. Component interactions for <code>clearOrder</code> command</div>
 </div>
 </div>
 <div class="sect4">
@@ -1330,7 +1440,7 @@ available items in the menu (with the UI displays in Table Mode and Menu Mode).<
 <div class="content">
 <img src="images/MenuModelClassDiagram.png" alt="MenuModelClassDiagram" width="800">
 </div>
-<div class="title">Figure 15. Menu Class Diagram in the Model component</div>
+<div class="title">Figure 16. Menu Class Diagram in the Model component</div>
 </div>
 </div>
 <div class="sect3">
@@ -1353,7 +1463,7 @@ available items in the menu (with the UI displays in Table Mode and Menu Mode).<
 <div class="content">
 <img src="images/AddToMenuSequenceDiagram.png" alt="AddToMenuSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 16. Component interactions for <code>addToMenu</code> command</div>
+<div class="title">Figure 17. Component interactions for <code>addToMenu</code> command</div>
 </div>
 <div class="paragraph">
 <p>The <span class="java">Logic#execute()</span> method then creates a command from the text string input
@@ -1590,7 +1700,7 @@ Similarly, <span class="java">Date</span> and <span class="java">Bill</span> als
 <div class="content">
 <img src="images/Statistics_ModelClassDiagram.png" alt="Statistics ModelClassDiagram" width="700">
 </div>
-<div class="title">Figure 17. Statistics Class diagram in Model component</div>
+<div class="title">Figure 18. Statistics Class diagram in Model component</div>
 </div>
 </div>
 <div class="sect3">
@@ -1690,7 +1800,7 @@ zero pax and resets the selected table to null.</p>
 <div class="content">
 <img src="images/Bill_SequenceDiagram.png" alt="Bill SequenceDiagram" width="700">
 </div>
-<div class="title">Figure 18. Sequence diagram for executing the bill command</div>
+<div class="title">Figure 19. Sequence diagram for executing the bill command</div>
 </div>
 <div class="paragraph">
 <p>To give you a better understanding of the sequence diagram, the following is a usage scenario and how the bill
@@ -1720,7 +1830,7 @@ refer to the function&#8217;s sequence diagram below.</p>
 <div class="content">
 <img src="images/Bill_CalculateBill.png" alt="Bill CalculateBill" width="700">
 </div>
-<div class="title">Figure 19. Sequence diagram for calculating the bill</div>
+<div class="title">Figure 20. Sequence diagram for calculating the bill</div>
 </div>
 <div class="paragraph">
 <p><span class="java">BillCommand#calculateBill()</span> calls both <span class="java">Model#getFilteredOrderItemList</span> and <span class="java">ReadOnlyRestOrRant#getMenu()</span> to obtain the table’s list of orders and the restaurant’s menu.
@@ -1758,7 +1868,7 @@ bill and the function returns a new <span class="java">Bill</span> that contains
 <div class="content">
 <img src="images/Bill_CreateOrUpdateRevenue.png" alt="Bill CreateOrUpdateRevenue" width="550">
 </div>
-<div class="title">Figure 20. Sequence diagram for creating or updating revenue in the Statistics revenue list</div>
+<div class="title">Figure 21. Sequence diagram for creating or updating revenue in the Statistics revenue list</div>
 </div>
 <div class="paragraph">
 <p>As shown above, <span class="java">BillCommand#createOrUpdateRevenue()</span> creates a <span class="java">DailyRevenue</span> with the bill&#8217;s year, month and day.
@@ -1777,7 +1887,7 @@ new customers.</p>
 <div class="content">
 <img src="images/Bill_UpdateStatusOfTable.png" alt="Bill UpdateStatusOfTable" width="550">
 </div>
-<div class="title">Figure 21. Sequence diagram for updating the status of the table</div>
+<div class="title">Figure 22. Sequence diagram for updating the status of the table</div>
 </div>
 <div class="paragraph">
 <p><span class="java">BillCommand#updateStatusOfTable()</span> updates the table status by creating a new <span class="java">Table</span> with an updated
@@ -1861,7 +1971,7 @@ actions in the <span class="java">Statistics Mode</span> user interface.</p>
 <div class="content">
 <img src="images/Trend_ActivityDiagram.png" alt="Trend ActivityDiagram">
 </div>
-<div class="title">Figure 22. Yearly, Monthly and Daily Activity Diagram</div>
+<div class="title">Figure 23. Yearly, Monthly and Daily Activity Diagram</div>
 </div>
 <div class="paragraph">
 <p>Since these commands changes the user interface, a huge portion of their mechanism is dependent on <span class="java">StatisitcsFlowPanel</span>. It determines the layout and arrangement of the revenue cards displayed.</p>
@@ -1961,7 +2071,7 @@ The activity diagram illustrates the cause of actions for different argument inp
 <div class="content">
 <img src="images/Revenue_ActivityDiagram.png" alt="Revenue ActivityDiagram">
 </div>
-<div class="title">Figure 23. Revenue Activity Diagram</div>
+<div class="title">Figure 24. Revenue Activity Diagram</div>
 </div>
 <div class="paragraph">
 <p>The above activity diagram summarizes the overall implementation of <span class="java">RevenueCommand</span>. Depending on the user
@@ -2165,7 +2275,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 24. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 25. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -3759,4 +3869,4 @@ Expected: Shows the GUI with no data.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 03:10:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 04:02:17 UTC</div></div></div></body></html>

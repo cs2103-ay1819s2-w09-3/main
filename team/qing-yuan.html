@@ -1,0 +1,900 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Siew Qing Yuan - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">RestOrRant</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819s2-w09-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Siew Qing Yuan - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-restorrant"><a class="link" href="#project-restorrant">PROJECT: RestOrRant</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="about-restorrant"><a class="link" href="#about-restorrant">About RestOrRant</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RestOrRant is a command line application that is morphed from an addressbook application. This is a Software Engineering project that required us to use their code as a base and we decided to morph it into a restaurant management system. This application enables restaurant front-end operators to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Manage the occupancy of the tables in their restaurant</p>
+</li>
+<li>
+<p>Keep track of the orders for each table</p>
+</li>
+<li>
+<p>Refer to the menu with ease</p>
+</li>
+<li>
+<p>Tabulate statistics of the restaurant</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>RestOrRant has 4 different modes: <code><span class="blue"><strong>RestaurantMode</strong></span></code>, <code><span class="blue"><strong>TableMode</strong></span></code>, <code><span class="blue"><strong>MenuMode</strong></span></code> and <code><span class="blue"><strong>StatisticsMode</strong></span></code>. These modes are meant to handle the 4 features mentioned above.</p>
+</div>
+<div class="paragraph">
+<p>The part of RestOrRant that I implemented is the tables feature which takes place in only the <code><span class="blue"><strong>RestaurantMode</strong></span></code>. Also, I handled the API and implementation of the <code><span class="blue"><strong>Logic</strong></span></code> component. More details about these features will be elaborated below including documentation of it in the user and developer guide.</p>
+</div>
+<div class="paragraph">
+<p>Please take note some of the symbols that will be commonly used in this document:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This symbol indicates important information.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>addTable</code> : A grey highlight (called a markup) indicates that this is a command that can be input into the command line and executed by the application.</p>
+</div>
+<div class="paragraph">
+<p><code><span class="blue"><strong>Table</strong></span></code> : A grey highlight with blue text represents a component, a class or an object in the architecture of the application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, all of my contributions will be listed in detail including my code and documentations.</p>
+</div>
+<div class="paragraph">
+<p>Within the table feature, you will find many commands implemented to create and manipulate the tables. These include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#addTables">Adding tables to RestOrRant</a></p>
+</li>
+<li>
+<p><a href="#editPax">Changing the occupancy of the table</a></p>
+</li>
+<li>
+<p><a href="#editSeats">Changing the number of seats at the table</a></p>
+</li>
+<li>
+<p><a href="#clearTable">Clearing all tables from RestOrRant</a></p>
+</li>
+<li>
+<p><a href="#spaceFor">Searching for a table to accommodate the customers</a></p>
+</li>
+<li>
+<p><a href="#minorEnhancements">Minor Enhancements</a></p>
+</li>
+</ul>
+</div>
+<div id="addTables" class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Adding Tables</strong>: added <strong>the ability to add tables to RestOrRant</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>What it does</em>: It adds a table to RestOrRant with the specified number of seats at the table. This table is also stored in <code><span class="blue"><strong>Storage</strong></span></code> component and displayed on the User Interface.</p>
+</li>
+<li>
+<p><em>Justification</em>: This command is a fundamental feature to allow the user to begin using RestOrRant.</p>
+</li>
+<li>
+<p><em>Highlights</em>: This command allows the addition of multiple tables at once, specifying each table&#8217;s number of seats individually.
+<a id="editPax"></a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Changing the occupancy</strong>: added *the ability to change the number of customers seated at a table</p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>What it does</em>: It updates the table in RestOrRant with the new occupancy of the table to reflect the current state of the physical restaurant.</p>
+</li>
+<li>
+<p><em>Justification</em>: This command is important in allowing the user to keep track of the exact number of customers at each table.</p>
+</li>
+<li>
+<p><em>Highlights</em>: The number of customers seated at the table will not be allowed to exceed the number of seats at the table.
+<a id="editSeats"></a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Changing the number of seats</strong>: added <strong>the ability to edit the number of seats at a table after it has been created</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>What it does</em>: It updates the table in RestOrRant with the new number of seats.</p>
+</li>
+<li>
+<p><em>Justification</em>: In the event that more chairs are pulled to a table or a table as has been replaced by one of different size, this command would enable the user to update RestOrRant to match its current physical state.</p>
+</li>
+<li>
+<p><em>Highlights</em>: This command is allowed to be use while customers are already seated at the table but will not allow the number of seats to be less than the current number of customers seated at the table.
+<a id="clearTable"></a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Clearing all tables</strong>: added <strong>the ability to delete all tables</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>What it does</em>: It removes all tables from RestOrRant.</p>
+</li>
+<li>
+<p><em>Justification</em>: In the event that the restaurant is being renovated or tables are re-numbered, this command would allow the user to quickly remove all tables so that they can create new tables with the correct table number and number of seats.</p>
+</li>
+<li>
+<p><em>Highlights</em>: This command has a safety mechanism to only be executed when the restaurant has no customers at all.
+<a id="spaceFor"></a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Checking for space</strong>: added <strong>the ability to search for available tables</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>What it does</em>: It checks RestOrRant for the next available table for a given number of customers.</p>
+</li>
+<li>
+<p><em>Justification</em>: Often users would have to physically check the restaurant or eyeball RestOrRant for available tables. In the event that there are large numbers of tables, that would be very inefficient. Hence, this command is menat to alleviate that problem by automating that process to quickly find the best available table.</p>
+</li>
+<li>
+<p><em>Highlights</em>: This command searches for smallest table to fit the given number of customers with the smallest table number.
+<a id="minorEnhancements"></a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: implemented the <code><span class="blue"><strong>RestaurantMode</strong></span></code> to only accept commands for the table features only and morphed the <code><span class="blue"><strong>Logic</strong></span></code> component to be compatible with RestOrRant&#8217;s features.</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Encourage discussion during group meetings to ensure decisions considers all aspects</p>
+</li>
+<li>
+<p>Enforced standardised coding styles throughout the project</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+</li>
+<li>
+<p>Wrote tests for table features (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Wrote up the READme for the project: <a href="https://github.com">#14</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This section shows the updates that I made to the <strong>RestOrRant User Guide</strong> for table features to ensure that it accurately documents the current features in the application.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="restaurant-mode"><a class="link" href="#restaurant-mode">Restaurant Mode</a></h3>
+<div class="paragraph">
+<p>In Restaurant Mode, which is the default mode, you can perform table-related operations and view the order items across all tables.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RMUi.png" alt="RMUi" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>The function of the order and table panels are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Order Panel</strong>: This panel shows you the list of items ordered by all tables in RstOrRant, arranged in chronological order. This means that items that were ordered first appears at the top of the list. It also indicates the quantity left to serve for each item, and the background turns dark when the item is fully served.</p>
+</li>
+<li>
+<p><strong>Table  Panel</strong>: This panel gives you an overview of all tables in ROR with their table numbers and respective occupancies.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The light coloured tables represent unoccupied tables.<br>
+The slightly darker coloured tables represent occupied tables.<br>
+The very dark coloured tables represent unusable tables.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here are the commands that you can use in this mode to efficiently manage the tables in your restaurant.</p>
+</div>
+<div class="sect3">
+<h4 id="AddTable"><a class="link" href="#AddTable">Adding tables : <code>addTable</code></a></h4>
+<div class="paragraph">
+<p>As you set up ROR to reflect your physical restaurant or add tables in the event that there are new tables in your restaurant, this command allows you to add tables in ROR by specifying the number of seats at each table.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The maximum number of tables that can be added is 400.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Format</strong>: <code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS]&#8230;&#8203;</code></p>
+</li>
+<li>
+<p><strong>Shortcut</strong>: <code>add</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Table number increases sequentially starting from 1.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can add multiple tables at once. This means all of your tables can be added with a single command!
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the new tables will be displayed in the table panel.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, ROR initially has 35 tables when you open it for the first time as shown in the image below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddTable_Before.png" alt="AddTable Before">
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose you decide to open 10 more tables in your restaurant to accommodate more customers, with the number of seats of the first 5 tables be 2, the number of seats for the next 3 tables be 4, and the number of seats at  the last 2 tables be 8.<br>
+Simply execute the command <code>addTable 2 2 2 2 2 4 4 4 8 8</code>. You will see the success message of all the tables added and their table occupancies as seen in the image below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddTable_RD.png" alt="AddTable RD">
+</div>
+</div>
+<div class="paragraph">
+<p>The Table Panel will also be updated and if you were to scroll down on the table panel, you will see tables 36 to 45 added as shown in  the image below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddTable_After.png" alt="AddTable After">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Alternatively, you can add also add just one table at a time. For example, you can use the command <code>addTable 4</code> to add one table with 4 seats.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="EditPax"><a class="link" href="#EditPax">Editing the occupancy : <code>editPax</code></a></h4>
+<div class="paragraph">
+<p>During the operation of your restaurant, this command helps you to update the occupancies of the tables in ROR when customers enter your restaurant.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Changing the table&#8217;s occupancy to 0 will automatically clear all records of its orders which will not be included in ROR&#8217;s statistics.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Format</strong>: <code>editPax TABLE_NUMBER NUMBER_OF_CUSTOMERS</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The specified table has to exist in ROR and your specified number of customers cannot be greater than the number of seats available at the table.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the updated table will be displayed in the table panel.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, Table 1 in ROR is initially unoccupied as shown below where the table&#8217;s status is 0/2.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditPax_Before.png" alt="EditPax Before">
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose, two customers now enter your restaurant and you would like to seat them at table 1.<br>
+Simply execute the command <code>editPax 1 2</code>. You will see the success message of the updated table in the result display as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditPax_RD.png" alt="EditPax RD">
+</div>
+</div>
+<div class="paragraph">
+<p>The Table Panel will also be updated where table 1 shows an updated table status as well as a change to a slightly darker colour to represent an occupied table.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditPax_After.png" alt="EditPax After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="EditSeats"><a class="link" href="#EditSeats">Editing the available seats : <code>editSeats</code></a></h4>
+<div class="paragraph">
+<p>In the event that there are changes to any table in your restaurant in terms of the number of seats at the table, this command can help you make sure ROR is updated to reflect your physical restaurant.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can use this command to change the number of seats at a table to 0 to represent an unusable table. This would be useful if a table is broken or you decide to remove a table without re-numbering all the other tables.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Format</strong>: <code>editSeats TABLE_NUMBER NUMBER_OF_SEATS</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The specified table has to exist in ROR and the specified number of seats has to be more than the number of customers already seated at the table.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the updated table will be displayed in the table panel.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, Table 2 in ROR is initially occupied as shown below where the table&#8217;s status is 2/2.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditSeats_Before.png" alt="EditSeats Before">
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose, the customers at this table inform you that 2 other friends are joining them and they would like to pull chairs over.<br>
+Now, you can simply execute the command <code>editSeats 2 4</code> and you will see the success message of the updated table in the results display as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditSeats_RD.png" alt="EditSeats RD">
+</div>
+</div>
+<div class="paragraph">
+<p>Table 2 in the table panel will then display the updated table information as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditSeats_After.png" alt="EditSeats After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="ClearTables"><a class="link" href="#ClearTables">Clearing all the tables : <code>clearTables</code></a></h4>
+<div class="paragraph">
+<p>In the event that you have undergone massive changes in the restaurant, you can use this command to remove all tables in ROR.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command checks if the restaurant is completely unoccupied before clearing the tables so you don&#8217;t have to worry about any accidents.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Clearing all the tables and adding them back using the <a href="#AddTable">addTable</a> command is way faster than editing the tables if there are a lot of changes.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is irreversible! In the event that you accidentally cleared your tables, you have to use the <code>addTable</code> command to add all the tables back.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Format</strong>: <code>clearTables</code></p>
+</li>
+<li>
+<p><strong>Shortcut</strong>: <code>clear</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and all tables will be removed from the table panel.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, when all the customers have left the restaurant, all the tables in ROR will be unoccupied as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ClearTables_Before.png" alt="ClearTables Before">
+</div>
+</div>
+<div class="paragraph">
+<p>After you enter the command <code>clearTables</code>, a success message will be displayed and the table panel will become completely empty as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ClearTables_After.png" alt="ClearTables After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="SpaceFor"><a class="link" href="#SpaceFor">Getting available tables for customers : <code>spaceFor</code></a></h4>
+<div class="paragraph">
+<p>To speed up your management of customers, this command can help you look for available tables to accommodate your customers.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command finds the smallest table able to accommodate the specified customers with the smallest table number.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Format</strong>: <code>spaceFor NUMBER_OF_CUSTOMERS</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the chosen table will be updated with the specified number of customers.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, in the sample layout we provided, the next available table that can fit 3 customers is table 25 since it is the smallest unoccupied table that can accommodate 3 customers with the smallest table number as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SpaceFor_Before.png" alt="SpaceFor Before">
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose, 3 customers enter your restaurant and you want to quickly locate an available table for them, you can simply use the <code>spaceFor 3</code> command. A success message will be displayed if there is an available table for 3 as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SpaceFor_RD.png" alt="SpaceFor RD">
+</div>
+</div>
+<div class="paragraph">
+<p>In the table panel, you will see that table 25 will have been updated to the correct table&#8217;s occupancy and changed to a slightly darker colour to indicate that it is occupied.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SpaceFor_After.png" alt="SpaceFor After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="Reserve"><a class="link" href="#Reserve">Making a reservation : <code>reserve</code> <em>(Coming in v2.0)</em></a></h4>
+<div class="paragraph">
+<p>Another key features that many restaurants have is the ability to make reservations. Hence, a reserve function would be a necessary next step to make management of tables and customers more efficient.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Format</strong>: reserve c/NUMBER_OF_CUSTOMERS n/NAME d/DAY m/MONTH y/YEAR t/TIME</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+ROR will check for other reservations and availabilities of tables before allowing the user to make a reservation.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, after executing <code>reserve c/5 n/John Doe d/28 m/2 y/2019 t/1900</code>, the following confirmation message will appear:
+"Table 4 is available and has been reserved for John Doe at 1900H on 28/2/2019."</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This section shows the updates that I made to the <strong>RestOrRant Developer Guide</strong> for table features to demonstrate the technical details of how they are implemented.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="EditPax"><a class="link" href="#EditPax">Edit pax at a table</a></h4>
+<div class="sect4">
+<h5 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The edit pax mechanism is facilitated by <span class="java">UniqueTableList</span>. It stores all tables currently in ROR and ensures that there are no duplicated tables. Additionally, it implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="java">UniqueTableList#contains(targetTable)</span>&#8201;&#8212;&#8201;Checks if the target table exists within the unique list of tables.</p>
+</li>
+<li>
+<p><span class="java">UniqueTableList#setTable(targetTable, editedTable)</span>&#8201;&#8212;&#8201;Replaces the target table in the list with the new table with the updated <span class="java">TableStatus</span>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the Model interface as <span class="java">Model#setTable(targetTable, editedTable)</span> and <span class="java">Model#hasTable(targetTable)</span>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the edit pax mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. Suppose the user launches the application for the first time, the sample data has 35 tables and are stored in the <span class="java">UniqueTableList</span> as shown below. Focus your attention on the <span class="java">Table</span> orange markup as this will be our target table in this example.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditPaxStateListDiagram_Before.png" alt="EditPaxStateListDiagram Before" width=""800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2. Suppose the user decides to have 2 customers sit at table 2 and executes <code>editPax 2 2</code> command to update the table labelled 2 with 2 customers. The <code>editPax</code> command calls <span class="java">Model#setTable(targeTable, editedTable)</span>, causing the ROR to create a new table with the updated <span class="java">TableStatus</span> and replace the current target table in the <span class="java">UniqueTableList</span>. As shown below, the index of the replaced table now points to a new <span class="java">Table</span> which is highlighted orange.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditPaxStateListDiagram_After.png" alt="EditPaxStateListDiagram After" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The <span class="java">Storage</span> detects the above change in the <span class="java">UniqueTableList</span> and also updates itself.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the edit pax operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditPaxSequenceDiagram.png" alt="EditPaxSequenceDiagram" width="800">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the table to be edited does not exist in the <code>UniqueTableList</code>, the application returns an error to the user rather than attempting to replace the non existent table.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises what happens when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditPaxActivityDiagram.png" alt="EditPaxActivityDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Editing the tables in <span class="java">UniqueTableList</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace the entire table with  an updated table.<br>
+- <strong>Pros</strong>: Maintains abstraction of <span class="java">Table</span> and <span class="java">TableStatus</span> and reduce errors from abusing the editability of <span class="java">TableStatus</span> in <span class="java">Table</span>.<br>
+- <strong>Cons</strong>: May have efficiency issues when creating a whole new object whenever part of it needs to be changed.</p>
+<p class="tableblock">We decided to choose this option because we realise that if we were to edit the tables directly, we would need a listener for each <span class="java">Table</span> in the <span class="java">UniqueTableList</span> to detect changes, which is not an efficient design. Furthermore, the tables can only be edited one at a time. Hence, the space efficiency issue would not be significant.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directly edit the <span class="java">TableStatus</span> of the tables.<br>
+- <strong>Pros</strong>: Potentially more efficient as there is no need to create new object and replace items in a list.<br>
+- <strong>Cons</strong>: Breaks abstraction to a certain extent and allows future developers to abuse the object.<br></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 04:02:17 UTC</div></div></div></body></html>
