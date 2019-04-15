@@ -3470,12 +3470,22 @@ according to its popularity.</p>
 </div>
 <div class="sect2">
 <h3 id="tables-feature"><a class="link" href="#tables-feature">F.3. Tables feature</a></h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>You can restore the original sample data by deleting the json files in the data folder and restarting the application.</p>
+</div>
+</div>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Adding a table</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
+<li>
+<p>Switch to Restaurant Mode (<code>restaurantMode</code>).</p>
+</li>
 <li>
 <p>Test case: <code>addTable 1</code><br>
 Expected: Adds a table with table status of 0/1.</p>
@@ -3485,16 +3495,113 @@ Expected: Adds a table with table status of 0/1.</p>
 Expected: No tables are added. Error message is shown in the Results Display. Status bar remains the same.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
-Expected: Similar to previous.</p>
+<p>Test case: <code>addTable 4 4 8</code><br>
+Expected: Adds 3 tables with table statuses 0/4, 0/4 and 0/8 for tables 1, 2 and 3 respectively.</p>
+</li>
+<li>
+<p>Test case: <code>addTable @</code><br>
+Expected: No tables are added. Error message is shown in the Results Display.</p>
+</li>
+<li>
+<p>Test case: <code>addTable 1 2 3 $</code><br>
+Expected: No tables are added. Error message is shown in the Results Display.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Editing pax in a table</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Restaurant Mode (<code>restaurantMode</code>).</p>
+</li>
+<li>
+<p>Test case: <code>editPax 2 2</code><br>
+Expected: Edits Table 2 to have 2 customers.</p>
+</li>
+<li>
+<p>Test case: <code>editPax @ 2</code><br>
+Expected: No tables are edited. Error message is shown in the Results Display.</p>
+</li>
+<li>
+<p>Test case: <code>editPax 2 @</code><br>
+Expected: No tables are edited. Error message is shown in the Results Display.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Editing seats in a table</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Restaurant Mode (<code>restaurantMode</code>).</p>
+</li>
+<li>
+<p>Test case: <code>editSeats 2 4</code><br>
+Expected: Edits Table 2 to have 4 seats.</p>
+</li>
+<li>
+<p>Test case: <code>editSeats @ 2</code><br>
+Expected: No tables are edited. Error message is shown in the Results Display.</p>
+</li>
+<li>
+<p>Test case: <code>editSeats 2 @</code><br>
+Expected: No tables are edited. Error message is shown in the Results Display.</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+<p>You should restore all data in between every test for this section. After restoring, use <code>editPax</code> command to remove all customers from all the tables.</p>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clear tables</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Restaurant Mode (<code>restaurantMode</code>).</p>
+</li>
+<li>
+<p>Test case: <code>clearTables</code><br>
+Expected: All tables have been cleared.</p>
+</li>
+<li>
+<p>Test case: <code>clearTables 2</code><br>
+Expected: All tables have been cleared.</p>
+</li>
+<li>
+<p>Test case: <code>clearTables @</code><br>
+Expected: All tables have been cleared</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Space for specified number of customers</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>spaceFor 3</code><br>
+Expected: A table has been allocated for the customers.</p>
+</li>
+<li>
+<p>Test case: <code>spaceFor @</code><br>
+Expected: No tables have been allocated. Error message is shown in the Results Display.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
@@ -3516,7 +3623,7 @@ Expected: Similar to previous.</p>
 <p>Switch to Menu Mode (<code>menuMode</code>).</p>
 </li>
 <li>
-<p>For the following tst cases, <code>addToMenu</code> can be replaced with the shortcut <code>add</code>.</p>
+<p>For the following test cases, <code>addToMenu</code> can be replaced with the shortcut <code>add</code>.</p>
 </li>
 <li>
 <p>Test case: <code>addToMenu c/W09 n/Chicken Wings p/4.50</code><br>
@@ -3829,4 +3936,4 @@ Expected: Shows the GUI with no data.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:28:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:34:22 UTC</div></div></div></body></html>
