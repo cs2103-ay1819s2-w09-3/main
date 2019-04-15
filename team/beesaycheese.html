@@ -22,11 +22,10 @@ Given a basic code for an address book, we had the choice of enhancing or morphi
 </div>
 <div class="paragraph">
 <p>RestOrRant is split into 4 main features: Tables, Orders, Menu and Statistics. To cater to needs of the user, modes
-are created to make the application user-friendly. <strong>Restaurant Mode</strong>, <strong>Table Mode</strong>, <strong>Menu Mode</strong> and <strong>Statistics Mode</strong>
- are modes meant to handle these 4 features respectively. Each of my teammates are in charge of one feature and mine
- was Statistics. In the following sections, I will elaborate on my
-contributions and extract relevant parts from the User Guide and Developer Guide that I wrote for the Statistics
-feature.+</p>
+were created to make the application user-friendly.<strong>Restaurant Mode</strong>, <strong>Table Mode</strong>, <strong>Menu Mode</strong> and <strong>Statistics Mode</strong>
+ are modes meant to handle these 4 features respectively. Each of my teammates are in
+charge of one feature and mine was Statistics. In the following sections, I will be elaborating more on my
+contributions and extract relevant parts from the User and Developer Guides that I wrote for the Statistics feature.+</p>
 </div>
 <div class="paragraph">
 <p>You may find it useful to refer to the table below for the different symbols and formatting used in this portfolio.</p>
@@ -69,69 +68,65 @@ feature.+</p>
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Overall, my role in this project encompasses managing the documentation of the project, keeping track the
-deadlines and deliverable, enhancing and cleaning up the UI components and Statistics feature.
- You may refer below for a detailed summary of the coding, documentation and other helpful
+<p>Overall, my role in this project encompasses managing the <strong>UI components</strong>, <strong>Statistics feature</strong>, <strong>documentation</strong>, <strong>project
+deadline</strong> and <strong>deliverable</strong>. The following provides a detailed summary of the coding, documentation and other helpful
 contributions I have contributed to the team project.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Major enhancements:</strong> I add <strong><em>Statistics feature</em></strong> and its relevant commands.</p>
+<p><strong>Major Commands implemented</strong></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><strong>Calling for bill</strong>: <code>bill</code> command</p>
+<p><strong>Calling for bill</strong>: added the ability to <strong>calculate and record the bill</strong> of a specific table.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><em>What it does:</em> It allows users to <strong>calculate and record the total bill</strong> accumulated from the table&#8217;s order.</p>
+<p>What it does: allows users to calculate and record the total bill accumulated from the table&#8217;s orders.</p>
 </li>
 <li>
-<p><em>Justification:</em> This feature is necessary to update the restaurant&#8217;s revenue, status of the specified table and the
-quantity of the menu items that were ordered.</p>
+<p>Justification: This feature is necessary to update the restaurant revenue, status of the specified tables and the
+popularity of the menu items that were ordered.</p>
 </li>
 <li>
-<p><em>Highlights:</em> This command is only usable in Table Mode.</p>
+<p>Highlights: This command is only usable in Table Mode.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Changing the Statistics Mode display</strong>: <code>yearly</code>, <code>monthly</code>, <code>daily</code> commands</p>
+<p><strong>Calling for revenue</strong>: added <strong>the ability to get revenue from the specified year, month and date</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><em>What it does:</em> Changes the display to show yearly, monthly and daily <strong>trends of the restaurant&#8217;s earnings</strong> as
-well as the <strong>popularity of the menu items</strong>.</p>
+<p>What it does: allows the user to get the required revenue the user specifies.</p>
 </li>
 <li>
-<p><em>Justification:</em> This feature allows the restaurant manager to study the restaurant performance.<br>
-These makes it easier for the manager to make essential back-end and front-end management arrangements to cater to the days and
-months that receives more customers.<br>
-The popularity of the menu items also helps the manager decide what kind of
-prior preparations are needed to cater to the popular dishes.</p>
-</li>
-<li>
-<p><em>Highlights:</em> At most 30 year, months or days along with its revenue are displayed to prevent overflow of data.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Calling for revenue</strong>: <code>revenue</code>, <code>revenue y/YEAR</code>, <code>revenue y/YEAR m/MONTH</code>, <code>revenue y/YEAR m/MONTH d/DAY</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>What it does: It allows users to <strong>retrieve the required yearly, monthly, daily revenue</strong> the user specifies.</p>
-</li>
-<li>
-<p>Justification: This feature allows the restaurant manager to conveniently calculate and obtain the revenue
+<p>Justification: This feature allows the restaurent manager to conveniently calculate and obtain the revenue
 he/she wants. It also eliminates the possibility of human errors when calculating the revenue.</p>
 </li>
 <li>
-<p>Highlights: This command is only usable for day, month, year that are valid and dates that exists in the calendar.
-In the case where no day, month and year are specified, the current day&#8217;s revenue will be returned.</p>
+<p>Highlights: This command is only usable for dates, months and years that are valid. In the case where no
+date, month or year is specified, the current day&#8217;s revenue will be returned.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Calling for yearly, monthly and daily</strong>: added <strong>the ability to get revenue from the specified year, month and date</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to get the required revenue the user specifies.</p>
+</li>
+<li>
+<p>Justification: This feature allows the restaurent manager to conveniently calculate and obtain the revenue
+he/she wants. It also eliminates the possibility of human errors when calculating the revenue.</p>
+</li>
+<li>
+<p>Highlights: This command is only usable for dates, months and years that are valid. In the case where no
+date, month or year is specified, the current day&#8217;s revenue will be returned.</p>
 </li>
 </ul>
 </div>
@@ -143,9 +138,10 @@ In the case where no day, month and year are specified, the current day&#8217;s 
 <p><strong>Minor enhancement</strong>: Create a Bill Mode that displays a receipt for the user.</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: Please refer to these links to view my code<br>
+<p><strong>Code contributed</strong>: Please refer to theses links to view my code<br>
 [<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&amp;search=beesaycheese">Project
-Code Dashboard</a>]</p>
+Code Dashboard</a>]
+ [<a href="https://github.com">Test code</a>]</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -162,7 +158,7 @@ Code Dashboard</a>]</p>
 <p>Documents essential discussion pointers during meetings and share them with the team.</p>
 </li>
 <li>
-<p>Use buffers to set deadlines and ensure everyone are informed and on task.</p>
+<p>Informs team about the deadlines.</p>
 </li>
 </ul>
 </div>
@@ -172,10 +168,10 @@ Code Dashboard</a>]</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>)</p>
+<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
 </li>
 <li>
-<p>Wrote tests for bill and statistics features</p>
+<p>Wrote tests for bill and statistics features (Pull requests <a href="https://github.com">#36</a>)</p>
 </li>
 </ul>
 </div>
@@ -195,7 +191,9 @@ Code Dashboard</a>]</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Reported bugs for other teams in the class [Examples: <a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/827">1</a>, <a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/791">2</a>]</p>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/cs2103-ay1819s2-w09-3/main/pull/167">#167</a>,
+<a href="https://github.comcs2103-ay1819s2-w09-3/main/pull/121">#121</a>, <a href="https://github" class="bare">https://github</a>
+.comcs2103-ay1819s2-w09-3/main/pull/121[#108]</p>
 </li>
 </ul>
 </div>
@@ -210,17 +208,13 @@ Code Dashboard</a>]</p>
 <div class="sect1">
 <h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>This section shows the contributions that I have made to the User Guide. I have included information about how
-the bill and Statistics features work.</p>
-</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Even though <code>bill</code> is used in Table Mode, its implementation is under the Statistics feature.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -310,202 +304,19 @@ has been updated to accomodate new customers.<br></p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>You may refer to <a href="#DG">contributions to Developer Guide</a> to have a better understanding of <code>bill</code> command.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="statistics-mode"><a class="link" href="#statistics-mode">Statistics Mode</a></h3>
-<div class="paragraph">
-<p>In Statistics Mode, you can obtain statistics related to your restaurant, such as the popularity of dishes and the
-revenue of a specified year, month or day.</p>
-</div>
-<div class="paragraph">
-<p>The user interface for Statistics Mode is shown in the image below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/SMUi.png" alt="SMUi" width="790">
-</div>
-</div>
-<div class="paragraph">
-<p>The function of the side and main panels are as follows:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Item Panel</strong>: This panel shows you the list of menu items sorted by its popularity. This is meant to help you decide
-what ingredients to order to cater to the demands of the popular dishes.</p>
-</li>
-<li>
-<p><strong>Revenue Panel</strong>: This panel displays the revenue from the recent years, months or days, depending on the view that
-you have selected. This allows you to study trends in your restaurant&#8217;s revenue.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-By default the Statistics Mode displays revenue up to 30 days in the Revenue Panel unless you execute
-<a href="#Yearly"><code>yearly</code></a>, <a href="#Monthly"><code>monthly</code></a> or <a href="#Daily"><code>daily</code></a> commands to change its display.
-Here are the commands that you can use in this mode to study the statistical data of your restaurant.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="Daily"><a class="link" href="#Daily">Changing the Revenue Panel to daily view : <code>daily</code></a></h4>
-<div class="paragraph">
-<p>This command helps you to change the Revenue Panel back to its default display of the statistical daily revenue
- for you to study its trends.<br></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Format</strong>: <code>daily</code><br>
-<strong>Shortcut</strong>: <code>d</code></p>
-</div>
-</div>
-</div>
-<table class="tableblock frame-all grid-none spread">
-<colgroup>
-<col style="width: 5%;">
-<col style="width: 95%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message in the Results Display and the Revenue Panel changes to display the daily
-revenue for up to the past 30 days, starting from the most recent record.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Notice that the first revenue is the most recent day recorded. This saves you the trouble of
-scrolling through the rest of the record.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/SM_Daily.png" alt="SM Daily" width="700">
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p><code>monthly</code> and <code>yearly</code> commands also work similarly.<br></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="Revenue"><a class="link" href="#Revenue">Getting the total revenue : <code>revenue</code></a></h4>
-<div class="paragraph">
-<p>If you want to obtain the revenue earned in a particular year, month or day, you can obtain it with this command.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Format</strong>: <code>revenue</code> or <code>revenue y/YEAR</code> or <code>revenue y/YEAR m/MONTH</code> or <code>revenue y/YEAR m/MONTH d/DAY</code><br>
-<strong>Shortcut</strong>: <code>r</code></p>
-</div>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Order of the parameters does not matter.<br>
-For example, <code>r y/2019 d/6 m/4</code> will still return the revenue earned on
-6th April 2019.<br>
-If <strong>no arguments</strong> are included, the revenue earned from the <strong>current day</strong> will be returned by default.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If there are no records of the stated period, it will be returned as $0.00.<br>
-Refer to <a href="#Command">commands</a> to take note of the parameter restrictions of <code>YEAR</code>, <code>MONTH</code> and <code>DAY</code>.
-</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-none spread">
-<colgroup>
-<col style="width: 5%;">
-<col style="width: 95%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message and the revenue of the specified year, month or day in the Results Display.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>revenue y/2019</code> will return the revenue for year 2019 as shown:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/Revenue_Year.png" alt="Revenue Year">
-</div>
-</div>
-<div class="paragraph">
-<p><code>revenue y/2019 m/4</code> will return the revenue for the month April 2019 as shown:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/Revenue_Month.png" alt="Revenue Month">
-</div>
-</div>
-<div class="paragraph">
-<p><code>revenue y/2019 m/4 d/6</code> will return the revenue for the day 6th April 2019 as shown:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/Revenue_Day.png" alt="Revenue Day">
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="DG"><a class="link" href="#DG">Contributions to the Developer Guide</a></h2>
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Given below are sections I contributed to the Developer Guide.</p>
-</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">_ Since <code>bill</code> command is an essential feature in the application, I choose to present it
- in the section below._</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -548,18 +359,6 @@ Similarly, <span class="java">Date</span> and <span class="java">Bill</span> als
 <img src="../images/Statistics_ModelClassDiagram.png" alt="Statistics ModelClassDiagram" width="700">
 </div>
 <div class="title">Figure 1. Statistics Class diagram in Model component</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Before elaborating on the bill feature, we have to understand the design considerations for statistics storage.
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect3">
@@ -808,118 +607,7 @@ items, this design will be impractical.<br></p></td>
 </tr>
 </tbody>
 </table>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>I have decided to include a brief description of the following commands' implementation as they make up the main
-crux of the Statistics Mode.</em></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="Trends"><a class="link" href="#Trends">Changing Statistics Mode display</a></h4>
-<div class="paragraph">
-<p>The following implementation applies for <code>yearly</code>, <code>monthly</code> and <code>daily</code> commands.
-These commands make adjustments to the user interface to display statistical data trends.</p>
-</div>
-<div class="sect4">
-<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
-<div class="paragraph">
-<p>The execution of these commands is similar to <a href="#ChangeMode">changing the mode</a>. The only difference is that <span class="java">isYearly</span>, <span class="java">isMonthly</span> and <span class="java">isDaily</span> boolean variables are used in <span class="java">MainWindow#executeCommand()</span>. These boolean variables are passed into <span class="java">MainWindow#handleChangeMode()</span>
-where it will determine which display to switch to. You may refer to the activity diagram to understand the cause of
-actions in the Statistics Mode user interface.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/Trend_ActivityDiagram.png" alt="Trend ActivityDiagram">
-</div>
-<div class="title">Figure 6. Statistics Mode Display Activity Diagram</div>
-</div>
-<div class="paragraph">
-<p>Since these commands changes the user interface, a huge portion of their mechanism is dependent on <span class="java">StatisticsFlowPanel</span>. It determines the layout and arrangement of the revenue cards displayed.</p>
-</div>
-<div class="paragraph">
-<p>Once the revenue observable list and boolean variables are passed into <span class="java">StatisticsFlowPanel</span>, the function
-checks which boolean variable is true. Lets assume that <span class="java">isDaily</span> is true for <code>daily</code> command. The function
-enters a while loop that iterates through the revenue list until at most 30 <span class="java">DailyRevenue</span> objects are created
-and added to a list of <span class="java">DailyRevenue</span>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The list of <span class="java">DailyRevenue</span> generated is sorted in a reverse chronological order of the date.
-Hence, even if there are no revenue recorded on a specific date, a <span class="java">DailyRevenue</span> object is still created and added to
-the list.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>After which, the list of <span class="java">DailyRevenue</span> is iterated to generate <span class="java">DailyStatisticsCard</span> for each <span class="java">DailyRevenue</span>. These <span class="java">DailyStatisticsCard</span> are added to the <span class="java">StatisticsFlowPanel#statisticsFlowPane</span> to update the user interface.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
-<table class="tableblock frame-all grid-all" style="width: 90%;">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Aspect</th>
-<th class="tableblock halign-left valign-top">Alternative 1</th>
-<th class="tableblock halign-left valign-top">Alternative 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Arrangement of <span class="java">[XXX]StatisticsCard</span><br></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="java">[XXX]StatisticsCard</span> are arranged in descending order.<br>
-- <strong>Pros</strong>: The most recent card is visible to the user without scrolling.<br>
-- <strong>Cons</strong>: Viewing dates in a descending order might make it difficult to study trends.<br></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="java">[XXX]StatisticsCard</span> are arranged in ascending order.<br>
-- <strong>Pros</strong>: Provides a sense of familiarity as the order is similar to that of a calendar.<br>
-- <strong>Cons</strong>: Users have to scroll to the end to view the latest revenue.<br></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Limit the number of <span class="java">[XXX]StatisticsCard</span><br></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum <span class="java">[XXX]StatisticsCard</span> shown is 30.<br>
-- <strong>Pros</strong>: Prevents overflow of data. No longer have to scroll through multiple <span class="java">[XXX]StatisticsCard</span><br>
-- <strong>Cons</strong>: Cannot view revenue from the other dates.<br></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display all <span class="java">[XXX]StatisticsCard</span> created from stored revenue data.<br>
-- <strong>Pros</strong>: All revenue is available in a single page.<br>
-- <strong>Cons</strong>: Might experience overflow of data in the user interface. User might have to scroll to the revenue<br></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Create additional <span class="java">[XXX]StatisticsCard</span> with $0 revenue<br></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display all <span class="java">[XXX]StatisticsCard</span> in chronological order.<br>
-- <strong>Pros</strong>: Gives user a bigger picture of the restaurant&#8217;s recent earning trends.<br>
-- <strong>Cons</strong>: Takes up space. It might be unnecessary information to the user.<br></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Only display all <span class="java">[XXX]StatisticsCard</span> created from stored revenue data.<br>
-- <strong>Pros</strong>: More revenue figures are presented to the user.<br>
-- <strong>Cons</strong>: Might appear too cluttered making it difficult to study revenue trends.<br></p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>The current implementation uses the designs in Alternative 1. However, in version 2.0, the application will take the
-pros of Alternative 2 designs and incorporate them to the current implementation. To help users better study the
-revenue trends, v2.0 will allow users to call the commands with an argument that indicates the month or year that they want.
-The display will arrange the <span class="java">DailyStatisticsCard</span> in a calender view with 7 columns for each day. A limit
-of 31 <span class="java">DailyStatisticsCard</span> will be used to replicate a calendar and prevent overflowing.</p>
 </div>
 </div>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:23:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:26:06 UTC</div></div></div></body></html>
