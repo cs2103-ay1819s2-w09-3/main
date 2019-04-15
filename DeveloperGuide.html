@@ -61,7 +61,12 @@
 </li>
 <li><a href="#EditSeats">4.2.4. Edit seats at a table</a></li>
 <li><a href="#ClearTables">4.2.5. Clear all tables in ROR</a></li>
-<li><a href="#SpaceFor">4.2.6. Getting an available table for customers</a></li>
+<li><a href="#SpaceFor">4.2.6. Getting an available table for customers</a>
+<ul class="sectlevel4">
+<li><a href="#current-implementation-2">Current Implementation</a></li>
+<li><a href="#design-considerations-3">Design Considerations</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#Ordersf">4.3. Orders feature</a>
@@ -72,8 +77,8 @@
 <li><a href="#DeleteFromOrder">4.3.4. Deleting from an order</a></li>
 <li><a href="#ClearOrder">4.3.5. Clearing an order</a>
 <ul class="sectlevel4">
-<li><a href="#current-implementation-2">Current Implementation</a></li>
-<li><a href="#design-considerations-3">Design Considerations</a></li>
+<li><a href="#current-implementation-3">Current Implementation</a></li>
+<li><a href="#design-considerations-4">Design Considerations</a></li>
 </ul>
 </li>
 <li><a href="#Serve">4.3.6. Serving items in an order</a></li>
@@ -84,14 +89,14 @@
 <li><a href="#MenuClasses">4.4.1. Classes for Menu feature in Model</a></li>
 <li><a href="#AddToMenu">4.4.2. Adding to menu</a>
 <ul class="sectlevel4">
-<li><a href="#current-implementation-3">Current Implementation</a></li>
-<li><a href="#design-considerations-4">Design Considerations</a></li>
+<li><a href="#current-implementation-4">Current Implementation</a></li>
+<li><a href="#design-considerations-5">Design Considerations</a></li>
 </ul>
 </li>
 <li><a href="#DeleteFromMenu">4.4.3. Deleting from menu</a>
 <ul class="sectlevel4">
-<li><a href="#current-implementation-4">Current Implementation</a></li>
-<li><a href="#design-considerations-5">Design Considerations</a></li>
+<li><a href="#current-implementation-5">Current Implementation</a></li>
+<li><a href="#design-considerations-6">Design Considerations</a></li>
 </ul>
 </li>
 <li><a href="#ClearMenu">4.4.4. Clearing the menu</a></li>
@@ -103,20 +108,20 @@
 <li><a href="#StatsStorage">4.5.2. Design Considerations for Statistics Storage</a></li>
 <li><a href="#Bill">4.5.3. Billing an order</a>
 <ul class="sectlevel4">
-<li><a href="#current-implementation-5">Current Implementation</a></li>
-<li><a href="#design-considerations-6">Design Considerations</a></li>
-</ul>
-</li>
-<li><a href="#Trends">4.5.4. Changing Statistics Mode display</a>
-<ul class="sectlevel4">
 <li><a href="#current-implementation-6">Current Implementation</a></li>
 <li><a href="#design-considerations-7">Design Considerations</a></li>
 </ul>
 </li>
-<li><a href="#Revenue">4.5.5. Getting the revenue</a>
+<li><a href="#Trends">4.5.4. Changing Statistics Mode display</a>
 <ul class="sectlevel4">
 <li><a href="#current-implementation-7">Current Implementation</a></li>
 <li><a href="#design-considerations-8">Design Considerations</a></li>
+</ul>
+</li>
+<li><a href="#Revenue">4.5.5. Getting the revenue</a>
+<ul class="sectlevel4">
+<li><a href="#current-implementation-8">Current Implementation</a></li>
+<li><a href="#design-considerations-9">Design Considerations</a></li>
 </ul>
 </li>
 </ul>
@@ -1130,7 +1135,7 @@ If the table to be edited does not exist in the <span class="java">UniqueTableLi
         model.setTables(new ArrayList&lt;&gt;()); <i class="conum" data-value="3"></i><b>(3)</b>
 
         return new CommandResult(sbFinalOutput.toString());
-    }</pre>
+}</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1155,6 +1160,8 @@ If the table to be edited does not exist in the <span class="java">UniqueTableLi
 </div>
 <div class="sect3">
 <h4 id="SpaceFor"><a class="link" href="#SpaceFor">4.2.6. Getting an available table for customers</a></h4>
+<div class="sect4">
+<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
 <div class="paragraph">
 <p>This command&#8217;s interaction with the components is very similar to <a href="#EditPax">editing pax at a table</a>. The key difference is that it searches for the best fit table automatically instead of having the table specified by the user.</p>
 </div>
@@ -1163,6 +1170,86 @@ If the table to be edited does not exist in the <span class="java">UniqueTableLi
 </div>
 <div class="paragraph">
 <p><span class="java">SpaceForCommand#execute()</span> is then called which searches through the <span class="java">UniqueTableList</span> for the best fit table. In this case, the best fit <span class="java">Table</span> is the smallest available one that can accommodate the specified number of customers. If there is more than 1 <span class="java">Table</span> that fits those criterions, the <span class="java">Table</span> with the smallest <span class="java">TableNumber</span> is chosen.</p>
+</div>
+<div id="source" class="listingblock">
+<div class="content">
+<pre>public CommandResult execute(Mode mode, Model model, CommandHistory history) throws CommandException {
+        requireNonNull(model);
+        Table bestFitTable = null;
+        int smallestSize = Integer.MAX_VALUE;
+
+        for (Table table : model.getRestOrRant().getTables().getTableList()) {
+            int numberOfSeats = Integer.parseInt(table.getTableStatus().getNumberOfSeats());
+            if (!table.isOccupied() &amp;&amp; numberOfSeats &gt;= size &amp;&amp; numberOfSeats &lt; smallestSize) { <i class="conum" data-value="1"></i><b>(1)</b>
+                bestFitTable = table;
+                smallestSize = numberOfSeats;
+            }
+            if (smallestSize == size) { <i class="conum" data-value="2"></i><b>(2)</b>
+                break;
+            }
+        }
+
+        if (bestFitTable == null) { <i class="conum" data-value="3"></i><b>(3)</b>
+            throw new CommandException(String.format(MESSAGE_NO_AVAILABLE_TABLE, String.valueOf(size)));
+        }
+        model.setTable(bestFitTable, new Table(bestFitTable.getTableNumber(),
+                new TableStatus(String.valueOf(size) + "/" + bestFitTable.getTableStatus().getNumberOfSeats()))); <i class="conum" data-value="4"></i><b>(4)</b>
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, String.valueOf(size), bestFitTable.getTableNumber()));
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the method above, we loop through the tables in the <span class="java">UniqueTableList</span> while checking for the following:</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>It first checks if the table is occupied. If  the table is occupied, the if-statement is short circuited. If the table is not occupied, we check if the table is able to accommodate the specified number of customers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This second if statement checks if we have already found the best fit table. If we have, we can break out of the for loop to make this operation more efficient.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The last if-statement checks if an available table can be found in the <span class="java">UniqueTableList</span>. If the table is not found, an error message is thrown for the user.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <span class="java">smallestSize</span> attribute is meant to facilitate the search for the best fit table.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Choosing the table to allocate to the customers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search for the best fit table (table with the least number of seats that can accommodate the customers)<br>
+- <strong>Pros</strong>: Allows the user to allocate tables in the restaurant more efficiently.<br>
+- <strong>Cons</strong>: May have efficiency issues when as it is more likely to go through the all the tables in the <span class="java">UniqueTableList</span> to search for the table.</p>
+<p class="tableblock">We decided to choose this option because we realise getting the best fit table would be something that our users prefer as it allows them to run their business more efficiently.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Select the first table that is able to accommodate the specified customers.<br>
+- <strong>Pros</strong>: Potentially more efficient as it is less likely to have to go through the entire <span class="java">UniqueTableList</span><br>
+- <strong>Cons</strong>: Brings about inefficiencies in the users' front-end operations which is what our application is designed to improve. This makes them less likely to use the command.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -1286,7 +1373,7 @@ If the <span class="java">OrderItem</span> is found, it will be deleted from the
 <p>The user may want to remove all the order items from a specific table&#8217;s order and this can be done with the <code>clearOrder</code> command.</p>
 </div>
 <div class="sect4">
-<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
+<h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
 <div class="paragraph">
 <p>When the user enters the <code>clearOrder</code> command, the command is parsed and a <span class="java">ClearOrderCommand</span> object is created.</p>
 </div>
@@ -1307,7 +1394,7 @@ If the <span class="java">OrderItem</span> is found, it will be deleted from the
             orderItems.remove(item);
         }
         indicateModified(); <i class="conum" data-value="3"></i><b>(3)</b>
-    }</code></pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1340,7 +1427,7 @@ If the <span class="java">OrderItem</span> is found, it will be deleted from the
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h5>
+<h5 id="design-considerations-4"><a class="link" href="#design-considerations-4">Design Considerations</a></h5>
 <table class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 20%;">
@@ -1448,7 +1535,7 @@ available items in the menu (with the UI displays in Table Mode and Menu Mode).<
 <p>The user may want to add new menu items to the menu and this can be done with the <code>addToMenu</code> command.</p>
 </div>
 <div class="sect4">
-<h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
+<h5 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The menu items in the menu are stored as a list. Adding a new menu item to the menu is done by adding to the existing list.</p>
 </div>
@@ -1491,7 +1578,7 @@ This action can only be done in Menu Mode. If not in Menu Mode currently, users 
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-4"><a class="link" href="#design-considerations-4">Design Considerations</a></h5>
+<h5 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations</a></h5>
 <table class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 20%;">
@@ -1527,7 +1614,7 @@ the long run if we were to save every instance of the restaurant for every updat
 <p>The user may want to remove a menu item from the menu and this can be done using the <code>deleteFromMenu</code> command.</p>
 </div>
 <div class="sect4">
-<h5 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h5>
+<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
 <div class="paragraph">
 <p>As mentioned above, deleting a menu item from the menu is done by removing from the existing list.</p>
 </div>
@@ -1599,7 +1686,7 @@ This action can only be done in Menu Mode. If not in Menu Mode currently, users 
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations</a></h5>
+<h5 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design Considerations</a></h5>
 <div class="paragraph">
 <p>The above design considerations under <a href="#AddToMenu">Adding to Menu</a> on saving changes to the menu also holds when deleting menu items.</p>
 </div>
@@ -1765,7 +1852,7 @@ Hence, we did not see the need to store receipts in the storage and chose this d
 </ul>
 </div>
 <div class="sect4">
-<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
+<h5 id="current-implementation-6"><a class="link" href="#current-implementation-6">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The main crux of Bill mechanism is implemented in <span class="java">BillCommand</span>. Just like any other commands, <span class="java">BillCommand#execute()</span> overrides
 <span class="java">Command#execute()</span> which is called in <span class="java">LogicManager</span>. It takes in the current mode, model and command
@@ -1915,7 +2002,7 @@ confusion.
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design Considerations</a></h5>
+<h5 id="design-considerations-7"><a class="link" href="#design-considerations-7">Design Considerations</a></h5>
 <table class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 20%;">
@@ -1956,7 +2043,7 @@ items, this design will be impractical.<br></p></td>
 These commands make adjustments to the user interface to display statistical data trends.</p>
 </div>
 <div class="sect4">
-<h5 id="current-implementation-6"><a class="link" href="#current-implementation-6">Current Implementation</a></h5>
+<h5 id="current-implementation-7"><a class="link" href="#current-implementation-7">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The execution of these commands is similar to <a href="#ChangeMode">changing the mode</a>. The only difference is that <span class="java">isYearly</span>, <span class="java">isMonthly</span> and <span class="java">isDaily</span> boolean variables are used in <span class="java">MainWindow#executeCommand()</span>. These boolean variables are passed into <span class="java">MainWindow#handleChangeMode()</span>
 where it will determine which display to switch to. You may refer to the activity diagram to understand the cause of
@@ -1996,7 +2083,7 @@ the list.
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-7"><a class="link" href="#design-considerations-7">Design Considerations</a></h5>
+<h5 id="design-considerations-8"><a class="link" href="#design-considerations-8">Design Considerations</a></h5>
 <table class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 20%;">
@@ -2052,7 +2139,7 @@ of 31 <span class="java">DailyStatisticsCard</span> will be used to replicate a 
 <div class="sect3">
 <h4 id="Revenue"><a class="link" href="#Revenue">4.5.5. Getting the revenue</a></h4>
 <div class="sect4">
-<h5 id="current-implementation-7"><a class="link" href="#current-implementation-7">Current Implementation</a></h5>
+<h5 id="current-implementation-8"><a class="link" href="#current-implementation-8">Current Implementation</a></h5>
 <div class="paragraph">
 <p>When the user enters the <code>revenue</code> command, the command is parsed and a <span class="java">RevenueCommand</span> object is created.</p>
 </div>
@@ -2076,7 +2163,7 @@ string where the calculated figure will be returned.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-8"><a class="link" href="#design-considerations-8">Design Considerations</a></h5>
+<h5 id="design-considerations-9"><a class="link" href="#design-considerations-9">Design Considerations</a></h5>
 <table class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 20%;">
@@ -3936,4 +4023,4 @@ Expected: Shows the GUI with no data.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:26:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:44:37 UTC</div></div></div></body></html>
