@@ -463,6 +463,75 @@ If any of the item codes do not exist in the menu or if the new quantity exceeds
 </tbody>
 </table>
 </div>
+<div class="sect3">
+<h4 id="ClearOrder"><a class="link" href="#ClearOrder">Clearing all the items in an order : <code>clearOrder</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to clear all the items ordered by a table so that you can take orders from scratch.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is irreversible and will not save the order under RestOrRant&#8217;s statistics. If the customers are done with the meal, use the <a href="#Bill"><code>bill</code></a> command instead, which will automatically clear the orders from the table.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>clearOrder</code><br>
+<strong>Shortcut</strong>: <code>clear</code></p>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the Order Panel will be empty.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, Table 5 initially has 4 items in the Order Panel as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Order_Before.png" alt="Order Before" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>After executing <code>clearOrder</code>, you will see a success message in the Results Display, as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ClearOrder_RD.png" alt="ClearOrder RD">
+</div>
+</div>
+<div class="paragraph">
+<p>The Order Panel will now be empty, as seen in the image below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ClearOrder_After.png" alt="ClearOrder After" width="300">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -803,4 +872,4 @@ Furthermore, it also provides the benefit of arranging the order items across al
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:27:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:28:19 UTC</div></div></div></body></html>
