@@ -2065,16 +2065,16 @@ of 31 <span class="java">DailyStatisticsCard</span> will be used to replicate a 
 <p><span class="java">RevenueCommand#execute()</span> is then called, which in turn calls <span class="java">Model#getFilteredRevenueList()</span> to
 obtain the list of revenue stored in the Storage. To create convenience and efficiency in the execution of the
 <code>revenue</code> command, 4 different types of argument combinations are provided for the users to obtain the desired revenue.
-The activity diagram illustrates the cause of actions for different argument inputs.</p>
+The diagram below illustrates the internal flow of actions for different argument inputs.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/Revenue_ActivityDiagram.png" alt="Revenue ActivityDiagram">
 </div>
-<div class="title">Figure 24. Revenue Activity Diagram</div>
+<div class="title">Figure 24. Revenue Internal Flow Diagram</div>
 </div>
 <div class="paragraph">
-<p>The above activity diagram summarizes the overall implementation of <span class="java">RevenueCommand</span>. Depending on the user
+<p>The above diagram summarizes the overall implementation of <span class="java">RevenueCommand</span>. Depending on the user
 arguments, the function creates a new <span class="java">Revenue</span> and iterate through the revenue list to search for revenue of
 the same year, month or day. If the revenue is the same as the new [.java#]Revenue#, its total revenue is added to the
 new <span class="java">Revenue</span>. After which, the new <span class="java">Revenue</span> is used to generate the <span class="java">CommandResult</span> output
@@ -3869,4 +3869,4 @@ Expected: Shows the GUI with no data.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 04:02:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 04:43:23 UTC</div></div></div></body></html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Leong Yoke Yi Beatrice - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">RestOrRant</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819s2-w09-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Leong Yoke Yi Beatrice - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-restorrant"><a class="link" href="#project-restorrant">PROJECT: RestOrRant</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="about-the-project"><a class="link" href="#about-the-project">About the project</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RestOrRant is a command line application that my team and I had to work on for a Software Engineering project.
+Given a basic code for an address book, we had the choice of enhancing or morphing it into a desktop application that
+ caters to specific users' needs.</p>
+</div>
+<div class="paragraph">
+<p>We decided to morph it into RestOrRant (ROR), a restaurant management application for restaurant managers,
+ waiters and cashiers. It is designed for them to perform front-end operations more efficiently like
+ managing tables, handling orders, tracking the availability of menu items and calculating statistical data using the
+ Command Line Interface (CLI).</p>
+</div>
+<div class="paragraph">
+<p>RestOrRant is split into 4 main features: Tables, Orders, Menu and Statistics. To cater to needs of the user, modes
+were created to make the application user-friendly.<strong>Restaurant Mode</strong>, <strong>Table Mode</strong>, <strong>Menu Mode</strong> and <strong>Statistics Mode</strong>
+ are modes meant to handle these 4 features respectively. Each of my teammates are in
+charge of one feature and mine was Statistics. In the following sections, I will be elaborating more on my
+contributions and extract relevant parts from the User and Developer Guides that I wrote for the Statistics feature.+</p>
+</div>
+<div class="paragraph">
+<p>You may find it useful to refer to the table below for the different symbols and formatting used in this portfolio.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 70%;">
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 85%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><code>code</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command that can be typed into the command box</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expected result after executing the command</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="icon icon-note"><i class="fa fa-info-circle fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional information that is good to know</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="icon icon-important"><i class="fa fa-exclamation-circle fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Important pointers to take note</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Overall, my role in this project encompasses managing the UI components, Statistics feature, project deadline and
+deliverable. The following provides a detailed summary of the coding, documentation and other helpful contributions
+ I have contributed to the team project.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Major Commands implemented</strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><strong>Calling for bill</strong>: added the ability to <strong>calculate and record the bill</strong> of a specific table.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows users to calculate and record the total bill accumulated from the table&#8217;s orders.</p>
+</li>
+<li>
+<p>Justification: This feature is necessary to update the restaurant revenue, status of the specified tables and the
+popularity of the menu items that were ordered.</p>
+</li>
+<li>
+<p>Highlights: This command is only usable in Table Mode.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Calling for revenue</strong>: added <strong>the ability to get revenue from the specified year, month and date</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to get the required revenue the user specifies.</p>
+</li>
+<li>
+<p>Justification: This feature allows the restaurent manager to conveniently calculate and obtain the revenue
+he/she wants. It also eliminates the possibility of human errors when calculating the revenue.</p>
+</li>
+<li>
+<p>Highlights: This command is only usable for dates, months and years that are valid. In the case where no
+date, month or year is specified, the current day&#8217;s revenue will be returned.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Calling for yearly, monthly and daily</strong>: added <strong>the ability to get revenue from the specified year, month and date</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to get the required revenue the user specifies.</p>
+</li>
+<li>
+<p>Justification: This feature allows the restaurent manager to conveniently calculate and obtain the revenue
+he/she wants. It also eliminates the possibility of human errors when calculating the revenue.</p>
+</li>
+<li>
+<p>Highlights: This command is only usable for dates, months and years that are valid. In the case where no
+date, month or year is specified, the current day&#8217;s revenue will be returned.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Create a Bill Mode that displays a receipt for the user.</p>
+</li>
+<li>
+<p><strong>Code contributed</strong>: Please refer to theses links to view my code<br>
+[<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&amp;search=beesaycheese">Project
+Code Dashboard</a>]
+ [<a href="https://github.com">Test code</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensures that the User Guide and Developer Guide are completed according to what was required.</p>
+</li>
+<li>
+<p>Documents essential discussion pointers during meetings and share them with the team.</p>
+</li>
+<li>
+<p>Informs team about the deadlines.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+</li>
+<li>
+<p>Wrote tests for bill and statistics features (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reorganise the User Guide according to modes: <a href="https://github.com/cs2103-ay1819s2-w09-3/main/pull/123">#123</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/cs2103-ay1819s2-w09-3/main/pull/167">#167</a>,
+<a href="https://github.comcs2103-ay1819s2-w09-3/main/pull/121">#121</a>, <a href="https://github" class="bare">https://github</a>
+.comcs2103-ay1819s2-w09-3/main/pull/121[#108]</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="Bill"><a class="link" href="#Bill">Calling the bill of an order : <code>bill</code></a></h4>
+<div class="paragraph">
+<p>Now that all the orders have been served and the customer is ready to pay for the meal, you can call the
+bill to obtain the customer&#8217;s receipt.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>bill</code><br>
+<strong>Shortcut</strong>: <code>b</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is irreversible. Once the command is executed, all orders and the table occupancy will be cleared to allow
+new customers to use the table. The money earned from the bill will automatically be added to the RestOrRant&#8217;s revenue statistics.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>bill</code> can only be called when all order items have been served.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the user interface will change its colour scheme and
+display.<br></p>
+</div>
+<div class="paragraph">
+<p>In the new user interface, the order items in the order panel are cleared and the menu panel displays the
+customer&#8217;s receipt.<br>
+The receipt will indicate the price, quantity and type of menu items ordered, along with the time, date and total bill the customer has to pay.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Given that Table 5 has 4 items in the Order Panel as shown below. Note that all items have been
+served.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Bill_AllServed.png" alt="Bill AllServed">
+</div>
+</div>
+<div class="paragraph">
+<p>When bill is called, the user interface changes to display the receipt as shown below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Bill_Receipt.png" alt="Bill Receipt">
+</div>
+</div>
+<div class="paragraph">
+<p>When you switch to Restaurant Mode using <a href="#RM"><code>restaurantMode</code></a> command, you will realise that the table
+has been updated to accomodate new customers.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Bill_UpdatedSeats.png" alt="Bill UpdatedSeats">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="StatsClasses"><a class="link" href="#StatsClasses">Classes for Statistics feature in Model</a></h4>
+<div class="paragraph">
+<p>The Statistics feature was implemented with the introduction of a new set of classes to <span class="java">Model</span>.
+A new <span class="java">Statistics</span> class encapsulates all the methods and classes related to this feature. It also contains a
+listener that is used to update the storage when any modification is made to the statistics. The <span class="java">Statistics</span>
+object is stored in <span class="java">RestOrRant</span> and it exposes a read-only interface <span class="java">ReadOnlyStatistics</span> to allow the
+other components to retrieve statistics-related information while maintaining data integrity.</p>
+</div>
+<div class="paragraph">
+<p><span class="java">Statistics</span> contains a <span class="java">RevenueList</span>, which contains a list of all the revenue recorded in the
+restaurant, represented by <span class="java">Revenue</span> objects. Each <span class="java">Revenue</span> object consists of 3 objects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="java">Year</span> indicates the year revenue was earned</p>
+</li>
+<li>
+<p><span class="java">Month</span> indicates the month revenue was earned</p>
+</li>
+<li>
+<p><span class="java">Day</span> indicates the day revenue was earned</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="java">YearlyRevenue</span>, <span class="java">MonthlyRevenue</span> and  <span class="java">DailyRevenue</span> are classes that extends <span class="java">Revenue</span> to inherit its properties.
+Hence, they are all uniquely identified by <span class="java">Year</span>, <span class="java">Month</span> and <span class="java">Day</span>.
+Similarly, <span class="java">Date</span> and <span class="java">Bill</span> also consists and are identified by the above 3 objects.</p>
+</div>
+<div class="paragraph">
+<p>The Statistics Class Diagram below shows the relationship between the classes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Statistics_ModelClassDiagram.png" alt="Statistics ModelClassDiagram" width="700">
+</div>
+<div class="title">Figure 1. Statistics Class diagram in Model component</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="StatsStorage"><a class="link" href="#StatsStorage">Design Considerations for Statistics Storage</a></h4>
+<div class="paragraph">
+<p>The data stored in <span class="java">Storage</span> (/data/statistics.json) only encompasses Day, Month, Year and Revenue earned on
+that specific date. These data are stored when the <a href="#Bill"><code>bill</code></a> command is called.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Storage of statistical data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stores daily revenue which comprises of day, month, year and revenue.<br>
+- <strong>Pros</strong>: Less storage space used.<br>
+- <strong>Cons</strong>: No record of bill. Impossible to retrieve receipts.<br></p>
+<p class="tableblock">In a restaurant, it is unlikely that a customer will request for a refund after consuming and paying for the meal.
+Even if there are complaints about the meal, they will demand for a newly cook dish before calling for the bill.
+Hence, we did not see the need to store receipts in the storage and chose this design.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stores bill which comprises of the day, month, year, bill, table number and receipt.<br>
+- <strong>Pros</strong>: Able to retrieve data of bills.<br>
+- <strong>Cons</strong>: More storage space for lists of bills for each day.+</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="Bill"><a class="link" href="#Bill">Billing an order</a></h4>
+<div class="paragraph">
+<p>Each <span class="java">Bill</span> is unique to a Table. Hence, the <code>bill</code> mechanism can only be executed under Table Mode.
+ The <span class="java">Table</span> and its <span class="java">TableNumber</span> was specified when <a href="#ChangeToTableMode">switching over to Table Mode</a>.
+  The way <span class="java">TableNumber</span> is specified is <a href="#CurrentTable">explained in Orders feature</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once the <code>bill</code> command is called, it will internally switch to <a href="#BillMode">Bill Mode</a> where the receipt of
+ the specified table is displayed. Concurrently, the bill mechanism excesses functions from Table, Order, Menu and
+ Statistics to execute the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Table</strong>: Updates specified table&#8217;s occupancy to accomodate new customers.</p>
+</li>
+<li>
+<p><strong>Order</strong>: Clears the order list unique to the specified table.</p>
+</li>
+<li>
+<p><strong>Menu</strong>: Saves the quantity of menu items ordered in the Menu storage (/data/menu.json).</p>
+</li>
+<li>
+<p><strong>Statistics</strong>: Saves the revenue in the Statistics Storage (/data/statistics.json).</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The main crust of Bill mechanism is implemented in <span class="java">BillCommand</span>. Just like any other commands, <span class="java">BillCommand#execute()</span> overrides
+<span class="java">Command#execute()</span> which is called in <span class="java">LogicManager</span>. It takes in the current mode, model and command
+history which will provide the necessary functions it will need to execute the command properly with the following
+operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="java">BillCommand#calculateBill()</span>&#8201;&#8212;&#8201;Creates a bill with a receipt of all menu items ordered and updates the
+quantity of menu items ordered in <span class="java">Menu#menuItems</span>.</p>
+</li>
+<li>
+<p><span class="java">BillCommand#createOrUpdateRevenue()</span>&#8201;&#8212;&#8201;Either saves the bill as a new <span class="java">DailyRevenue</span> or updates an
+existing <span class="java">Revenue</span> in the <span class="java">Statistics#revenueList</span>.</p>
+</li>
+<li>
+<p><span class="java">BillCommand#updateStatusOfTable()</span>&#8201;&#8212;&#8201;Updates the occupancy of the specified table to indicate that it has
+zero pax and resets the selected table to null.</p>
+</li>
+<li>
+<p><span class="java">Model#clearOrderItemsFrom()</span>&#8201;&#8212;&#8201;Clears the order list to prepare for the next customer.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This sequence diagram provides an overview of how the operations above work together to execute <code>bill</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Bill_SequenceDiagram.png" alt="Bill SequenceDiagram" width="700">
+</div>
+<div class="title">Figure 2. Sequence diagram for executing the bill command</div>
+</div>
+<div class="paragraph">
+<p>To give you a better understanding of the sequence diagram, the following is a usage scenario and how the bill
+mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 1.</strong>
+Let&#8217;s assume that the user is in Table Mode 1. This means Table 1 is the selected table. Before the
+<code>bill</code> command can be executed successfully, <span class="java">BillCommand#execute()</span> conducts 2 checks.<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Checks that current table obtained from <span class="java">Model#getSelectedTable()</span> exists.</p>
+</li>
+<li>
+<p>Checks that all order items in <span class="java">Model#getFilteredOrderItemList()</span> have been served. The status of the order item is determined via <span class="java">Model#getOrderItemStatus()</span>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Step 2.</strong>
+Given that the command passes all checks, the user can successfully run <span class="java">BillCommand#calculateBill()</span> to assign a new calculated bill to <span class="java">BillCommand#tableToBill</span>. Let&#8217;s
+refer to the function&#8217;s sequence diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Bill_CalculateBill.png" alt="Bill CalculateBill" width="700">
+</div>
+<div class="title">Figure 3. Sequence diagram for calculating the bill</div>
+</div>
+<div class="paragraph">
+<p><span class="java">BillCommand#calculateBill()</span> calls both <span class="java">Model#getFilteredOrderItemList</span> and <span class="java">ReadOnlyRestOrRant#getMenu()</span> to obtain the table’s list of orders and the restaurant’s menu.
+After which, it iterates through the list of orders to obtain individual <span class="java">OrderItem</span> and
+executes the following in each iteration:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Gets <span class="java">MenuItem</span> by passing the code of the <span class="java">OrderItem</span> into <span class="java">Menu#getItemFromCode()</span>.</p>
+</li>
+<li>
+<p>Retrieves the quantity of <span class="java">OrderItem</span> ordered using <span class="java">OrderItem#getQuantityOrdered()</span>.</p>
+</li>
+<li>
+<p>Updates the quantity of menu item ordered using <span class="java">ReadOnlyMenu#updateMenuItemQuantity()</span>.</p>
+</li>
+<li>
+<p>Creates a <span class="java">receipt</span> that appends the <span class="java">MenuItem#getCode()</span>, <span class="java">MenuItem#getName()</span>, <span class="java">MenuItem#getPrice()</span> and the quantity retrieved previously.</p>
+</li>
+<li>
+<p>Adds the price of each <span class="java">MenuItem</span> multiplied by the quantity ordered to the total bill.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After iterating through the list of orders, <span class="java">receipt</span> appends the final calculation of the total
+bill and the function returns a new <span class="java">Bill</span> that contains the updated <span class="java">tableNumber</span>, <span class="java">totalBill</span> and
+<span class="java">receipt</span>. This new <span class="java">Bill</span> will be assigned to <span class="java">BillCommand#bill</span> and passed into <span class="java">Model#setRecentBill()</span> to update the Model&#8217;s recent bill (This step is needed when changing the user interface to Bill Mode).</p>
+</div>
+<div class="paragraph">
+<p>Now that <span class="java">BillCommand#bill</span> is updated, it is passed into <span class="java">BillCommand#createOrUpdateRevenue()</span> to store the calculated bill in <span class="java">Statistics#revenueList</span>. Refer to the function&#8217;s sequence diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Bill_CreateOrUpdateRevenue.png" alt="Bill CreateOrUpdateRevenue" width="550">
+</div>
+<div class="title">Figure 4. Sequence diagram for creating or updating revenue in the Statistics revenue list</div>
+</div>
+<div class="paragraph">
+<p>As shown above, <span class="java">BillCommand#createOrUpdateRevenue()</span> creates a <span class="java">DailyRevenue</span> with the bill&#8217;s year, month and day.
+ It checks if the newly created <span class="java">DailyRevenue</span> exists in the <span class="java">Statistics#revenueList</span> via <span class="java">Model#hasRevenue()</span>.
+If it is true that <span class="java">DailyRevenue</span> exists, the function iterates through the <span class="java">Model#getFilteredRevenueList()</span> and searches for a an existing <span class="java">Revenue</span> that has the same year, month and
+day as the <span class="java">DailyRevenue</span>. Once the <span class="java">Revenue</span> is found, <span class="java">Revenue#addToRevenue()</span> is used to add the
+ total bill of the <span class="java">DailyRevenue</span> into <span class="java">Revenue</span>. Otherwise, the <span class="java">DailyRevenue</span> is added into
+  the <span class="java">Statistics#revenueList</span> via <span class="java">Model#addRevenue()</span>.</p>
+</div>
+<div class="paragraph">
+<p>Now, that the necessary data are updated in the internal list of Menu and Statistics, <span class="java">BillCommand#execute()</span>
+calls <span class="java">BillCommand#updateStatusOfTable()</span> and  <span class="java">Model#clearOrderItemsFrom()</span> to make the table available for
+new customers.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Bill_UpdateStatusOfTable.png" alt="Bill UpdateStatusOfTable" width="550">
+</div>
+<div class="title">Figure 5. Sequence diagram for updating the status of the table</div>
+</div>
+<div class="paragraph">
+<p><span class="java">BillCommand#updateStatusOfTable()</span> updates the table status by creating a new <span class="java">Table</span> with an updated
+<span class="java">TableStatus</span> and replace the existing <span class="java">Table</span> with the new one. After the table is updated, the program
+ sets the selected table to null to indicate that the table is no longer in use.</p>
+</div>
+<div class="paragraph">
+<p>Once these essential functions are executed, <span class="java">BillCommand#execute()</span> moves on to indicate that the
+Tables, Orders, Menu and Statistics data have been modified via <span class="java">Model#updateTables()</span>, <span class="java">Model#updateOrders()</span>, <span class="java">Model#updateMenu()</span>, <span class="java">Model#updateStatistics()</span>. After which it returns
+the <span class="java">CommandResult</span> to <span class="java">LogicManager#excute()</span> where the it will check if the Tables, Orders, Menu
+and Statistics data have been modified and updates the storage accordingly. The same <span class="java">CommandResult</span> is
+returned to <span class="java">MainWindow#executeCommand()</span> where the user interface switches to Bill Mode to display the
+receipt of the recent Bill.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Internally the program switches to Bill Mode. However, this mode is not shown to the user as a Table Mode to avoid
+confusion.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Step 3.</strong> Once the user is in Bill Mode, they can execute and mode commands like <code>RM</code>, <code>TM</code> and <code>MM</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design calculateBill()</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Iterates through the <span class="java">FilteredOrderItemList</span> once to append the receipt, update quantity ordered of
+the Menu Items in <span class="java">Menu#menuItems</span> and calculate the bill.<br>
+- <strong>Pros</strong>: Efficient as it only iterates through the list once.<br>
+- <strong>Cons</strong>: The code can be further break into different functions.<br></p>
+<p class="tableblock">We chose this design to prioritize efficiency in this use case. Since <code>bill</code> command is only
+called when the customer is ready to pay and leave the restaurant, it is better for the payment process to
+be swift.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create different functions that specifically calculates the bill, creates a bill receipt and update the quantity of
+ menu items ordered.<br>
+- <strong>Pros</strong>: Adheres to a better abstract design of the code.<br>
+- <strong>Cons</strong>: Inefficient due to multiple iteration of the <span class="java">FilteredOrderItemList</span>. Given a long list of order
+items, this design will be impractical.<br></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 04:43:23 UTC</div></div></div></body></html>
