@@ -15,11 +15,58 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>My team and I were given a basic command line interface addressbook program and were tasked to enhance or morph it for our Software Engineering module project. We decided to morph it into a restaurant management system called <em>RestOrRant</em>. With <em>RestOrRant</em>, the restaurant&#8217;s front-end operations can be streamlined via automation to maximise efficiency for waiters and cashiers. <em>RestOrRant</em> allows restaurant managers to manage tables (availabilities and lists of orders), orders (whether they have been served and calculation of the bill), menu (updates to the menu) and statistics (daily, monthly and yearly revenue).</p>
+<p><em>RestOrRant</em> is a Command Line Interface (CLI) desktop restaurant management application that allows <strong>restaurant managers, waiters and cashiers</strong> to perform <strong>restaurant front-end operations</strong> more efficiently. With <em>RestOrRant</em>, restaurant managers can easily <strong>manage table allocation, handle orders, track menu item availability and check restaurant statistics</strong>. <em>RestOrRant</em> was developed by a team of four, including myself, as part of our CS2103T Software Engineering module project, where we were given an addressbook application and tasked to enhance or morph it.</p>
 </div>
 <div class="paragraph">
-<p>My role was to implement the menu feature end-to-end (across <code>UI</code>, <code>Model</code>, <code>Logic</code> and <code>Storage</code> components). The following sections elaborate on my enhancements as well as the relevant updates to the User Guide and Developer Guide to reflect these enhancements.</p>
+<p>We decided to split the implementation of the features according to <span class="java">Menu</span>, <span class="java">Orders</span>, <span class="java">Table</span> and <span class="java">Statistics</span>. My role was to implement the menu feature end-to-end (across <span class="java">Ui</span>, <span class="java">Model</span>, <span class="java">Logic</span> and <span class="java">Storage</span> components). The following sections elaborate on my enhancements as well as the relevant updates to the User Guide and Developer Guide to reflect these enhancements.</p>
 </div>
+<div class="paragraph">
+<p>The table below specifies the different symbols and formatting used in this Portfolio.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 70%;">
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 85%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><code>code</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A grey highlight with monospaced font indicates a command that can be typed into the command box of the application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="java">name</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A blue highlight with monospaced font indicates a reference to the codebase. This could be a component, class, method, attribute or file name.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A green tick indicates the expected result that you should see after executing a command in the application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="icon icon-tip"><i class="fa fa-lightbulb-o fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A lightbulb indicates tips and tricks that might be useful to the user.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="icon icon-note"><i class="fa fa-info-circle fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A blue information symbol indicates additional information for that section that is good to know.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><span class="icon icon-important"><i class="fa fa-exclamation-circle fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A red exclamation mark symbol indicates important pointers to take note.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -31,7 +78,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: I added the ability to add menu items to and delete menu items from the menu.</p>
+<p><strong>Major enhancement</strong>: I added the ability to add menu items to, delete menu items from and clear the menu.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -39,10 +86,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>addToMenu</code>: The <code>addToMenu</code> command allows the user to add a menu item to the menu. The menu item must be specified with an item code, name and price using labels such as <code><strong>c/</strong></code> for code, <code><strong>n/</strong></code> for name and <code><strong>p/</strong></code> for price. For example, <code>addToMenu c/W09 n/Chicken Wings p/3.20</code> would add the item Chicken wings with code W09 and price 3.20 to the menu.</p>
+<p><code>addToMenu</code>: The <code>addToMenu</code> command allows the user to add a menu item to the menu. The menu item must be specified with an item code, name and price using labels such as <code><strong>c/</strong></code> for code, <code><strong>n/</strong></code> for name and <code><strong>p/</strong></code> for price. For example, <code>addToMenu c/W09 n/Chicken Wings p/3.20</code> would add the <span class="java">MenuItem</span> with <span class="java">Name</span> Chicken Wings with <span class="java">Code</span> W09 and <span class="java">Price</span> 3.20 to the <span class="java">Menu</span>.</p>
 </li>
 <li>
-<p><code>deleteFromMenu</code>: The <code>deleteFromMenu</code> command allows the user to delete a menu item from the menu, but here the menu item is only identified by its code. For example, <code>deleteFromMenu W09</code> would delete the menu item with the code W09 from the menu.</p>
+<p><code>deleteFromMenu</code>: The <code>deleteFromMenu</code> command allows the user to delete a <span class="java">MenuItem</span> from the <span class="java">Menu</span>, but here the <span class="java">MenuItem</span> is only identified by its <span class="java">Code</span>. For example, <code>deleteFromMenu W09</code> would delete the <span class="java">MenuItem</span> with the <span class="java">Code</span> W09 from the <span class="java">Menu</span>.</p>
+</li>
+<li>
+<p><code>clearMenu</code>: The <code>clearMenu</code> command allows the user to remove all <span class="java">MenuItem</span> from the <span class="java">Menu</span>.</p>
 </li>
 </ul>
 </div>
@@ -51,7 +101,7 @@
 <p>Justification: These commands in the menu feature would allow restaurant managers to edit the menu according to the ingredients they have available each day. The menu is also stored internally, and thus there would be no need to re-enter all the menu items but instead only add or remove a few menu items each day.</p>
 </li>
 <li>
-<p>Highlights: This enhancement works well with existing as well as future commands. The format of labelling for the <code>addToMenu</code> command was used for ease of distinguishing the name, code and price of the menu items. With the labels, users need not follow the format of keying in name, code then price and the command would work fine. However, the labelling approach was not needed for the <code>deleteFromMenu</code> command as the code is the only input needed.</p>
+<p>Highlights: The format of labelling for the <code>addToMenu</code> command was used for ease of distinguishing the <span class="java">Name</span>, <span class="java">Code</span> and <span class="java">Price</span> of the menu items. With the labels, users can key in any permutation of the attributes and  the command would work as intended. However, the labelling approach was not needed for the <code>deleteFromMenu</code> command as the <span class="java">Code</span> is the only input needed.</p>
 </li>
 <li>
 <p>Credits: The addressbook given to us had originally used the labelling format for adding people to the addressbook, which is where I got my inspiration from for the <code>addToMenu</code> command.</p>
@@ -60,24 +110,21 @@
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: I added the ability to store the quantity ordered for each menu item in the menu, and update the
-quantity ordered every time the bill is called, (implementation of <code>updateMenuItemQuantity</code> method).</p>
+<p><strong>Minor enhancement</strong>: I added the ability to store the quantity ordered for each <span class="java">MenuItem</span> in the <span class="java">Menu</span>, and update the quantity ordered every time the <span class="java">bill</span> is called, (implementation of <code>updateMenuItemQuantity</code> method).</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: When a menu item is added for the first time, the quantity is automatically set to zero. It then
-updates from zero every time the orders are confirmed (i.e. when the bill is called).</p>
+<p>What it does: When a <span class="java">MenuItem</span> is added for the first time, the quantity is automatically set to zero. It then updates from zero every time the orders are confirmed (i.e. when the <span class="java">bill</span> is called).</p>
 </li>
 <li>
-<p>Justification: This enhancement is to aid the future implementation of finding the most popular item in the menu, by
-retrieving the menu item with the largest number of quantity ordered.</p>
-</li>
-<li>
-<p>Highlights: This enhancement works well with existing as well as future commands, and would help in future
-implementation of finding out whether an item is sold out as well.</p>
+<p>Justification: This enhancement is to aid the implementation of finding the most popular item in the <span class="java">Menu</span>, by retrieving the <span class="java">MenuItem</span> with the largest number of quantity ordered.</p>
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&amp;search=bava98">Project Code
+Dashboard</a>]</p>
 </li>
 </ul>
 </div>
@@ -91,7 +138,7 @@ implementation of finding out whether an item is sold out as well.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>There were a total of 2 releases, from version 1.2.1 to 1.3 and I managed both releases on GitHub.</p>
+<p>There were a total of 3 releases, from version 1.2.1 to 1.4 and I managed all releases on GitHub.</p>
 </li>
 <li>
 <p>I was also in charge of scheduling and tracking, and managed the tracking of issues and milestones on GitHub.</p>
@@ -104,7 +151,11 @@ implementation of finding out whether an item is sold out as well.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the User Guide and Developer Guide to reflect the commands related to the menu feature.</p>
+<p>Updated the User Guide and Developer Guide to reflect the commands related to the menu feature. [PR <a href="https://github.com/cs2103-ay1819s2-w09-3/main/pull/115">#115</a>, <a href="https://github.com/cs2103-ay1819s2-w09-3/main/pull/161">#161</a>, <a href="https://github.com/cs2103-ay1819s2-w09-3/main/pull/198">#198</a>]</p>
+</li>
+<li>
+<p>Added some cosmetic changes to both the User Guide and Developer Guide for improved readability. [PR
+<a href="https://github.com/cs2103-ay1819s2-w09-3/main/pull/115">#115</a>, <a href="https://github.com/cs2103-ay1819s2-w09-3/main/pull/203">#203</a>]</p>
 </li>
 </ul>
 </div>
@@ -115,6 +166,9 @@ implementation of finding out whether an item is sold out as well.</p>
 <ul>
 <li>
 <p>Offered suggestions on improvements to other teams' documentation in the class.</p>
+</li>
+<li>
+<p>Reported bugs and offered suggestions for other teams in class [Examples: <a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/171">1</a>, <a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/447">2</a>, <a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/954">3</a>, <a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/846">4</a>, <a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/691">5</a>]</p>
 </li>
 </ul>
 </div>
@@ -472,9 +526,61 @@ Now, if the ingredients for Lobster Burger are available again, executing <code>
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We also had to make changes to the original addressbook Developer Guide as our implementation had major changes in the
-UI, logic, model and storage components. The following is an excerpt from our <strong>RestOrRant Developer Guide</strong> to show the
-updates that I have made for the menu features as well as the storage component.</p>
+<p>We also had to make changes to the original addressbook Developer Guide as our implementation had major changes in the <span class="java">Ui</span>, <span class="java">Logic</span>, <span class="java">Model</span> and <span class="java">Storage</span> components. The following is an excerpt from our <strong>RestOrRant Developer Guide</strong> to show the updates that I have made for the menu features as well as the storage component.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In the following snippet, I explained the classes in the <span class="java">Model</span> component that are used in the Menu feature.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="MenuClasses"><a class="link" href="#MenuClasses">Classes for Menu feature in Model</a></h4>
+<div class="paragraph">
+<p>The Menu feature was implemented with the introduction of a new set of classes to <span class="java">Model</span>. A new <span class="java">Menu</span> class encapsulates all the methods and classes related to this feature. It also contains a listener that is used to update the storage when any modification is made to the orders. The <span class="java">Menu</span> object is stored in <span class="java">RestOrRant</span> and it exposes a read-only interface <span class="java">ReadOnlyMenu</span> to allow the other components to retrieve menu-related information while maintaining data integrity.</p>
+</div>
+<div class="paragraph">
+<p><span class="java">Menu</span> contains a <span class="java">UniqueMenuItemList</span>, which contains a list of all the items in the menu, represented by <span class="java">MenuItem</span> objects. Each <span class="java">MenuItem</span> object consists of 3 objects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="java">Name</span> indicates the item name and is used for display in the UI</p>
+</li>
+<li>
+<p><span class="java">Code</span> indicates the item code and is used to identify the menu item</p>
+</li>
+<li>
+<p><span class="java">Price</span> indicates the item price and is used for display in the UI and calculation of bill</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="java">MenuItem</span> objects are uniquely identified by <span class="java">Code</span>. As such, each menu item should have distinct item codes.</p>
+</div>
+<div class="paragraph">
+<p>The Menu Class Diagram below shows the relationship between the classes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/MenuModelClassDiagram.png" alt="MenuModelClassDiagram" width="800">
+</div>
+<div class="title">Figure 1. Menu Class Diagram in the Model component</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The following demonstrates my technical writing skills for my implementation of the <code>addToMenu</code> command.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="AddToMenu"><a class="link" href="#AddToMenu">Adding to menu</a></h4>
@@ -496,7 +602,7 @@ updates that I have made for the menu features as well as the storage component.
 <div class="content">
 <img src="../images/AddToMenuSequenceDiagram.png" alt="AddToMenuSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 1. Component interactions for <code>addToMenu</code> command</div>
+<div class="title">Figure 2. Component interactions for <code>addToMenu</code> command</div>
 </div>
 <div class="paragraph">
 <p>The <span class="java">Logic#execute()</span> method then creates a command from the text string input
@@ -553,7 +659,156 @@ the long run if we were to save every instance of the restaurant for every updat
 </tr>
 </tbody>
 </table>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In the following excerpt, I explained my implementation of the <code>deleteFromMenu</code> command, and went into details for
+the <span class="java">Menu#getItemFromCode()</span> method.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="DeleteFromMenu"><a class="link" href="#DeleteFromMenu">Deleting from menu</a></h4>
+<div class="paragraph">
+<p>The user may want to remove a menu item from the menu and this can be done using the <code>deleteFromMenu</code> command.</p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
+<div class="paragraph">
+<p>As mentioned above, deleting a menu item from the menu is done by removing from the existing list.</p>
+</div>
+<div class="paragraph">
+<p>The interactions between all four components when a user executes the <code>deleteFromMenu</code> command is very similar to the interactions when <a href="#AddToMenu">adding to menu</a>:</p>
+</div>
+<div class="paragraph">
+<p>One specific difference is that deleting from menu only requires item <span class="java">Code</span>, whereas adding to menu requires <span class="java">Name</span>, <span class="java">Code</span> and <span class="java">Price</span>. For this reason, we have decided to not use any prefixes (such as <code>c/</code> to denote item code).</p>
+</div>
+<div class="paragraph">
+<p>After parsing the input text string by the <span class="java">RestOrRantParser#parse()</span> method, the <span class="java">DeleteFromMenuCommand</span> object is created.</p>
+</div>
+<div class="paragraph">
+<p><span class="java">DeleteFromMenuCommand</span> then makes use of the method <span class="java">Menu#getItemFromCode()</span> to retrieve the menu item from the item <span class="java">Code</span> input. The code snippet of the method is shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> Optional&lt;<span class="predefined-type">MenuItem</span>&gt; getItemFromCode(Code code) {
+    <span class="predefined-type">Iterator</span>&lt;<span class="predefined-type">MenuItem</span>&gt; iterator = menuItems.iterator();
+    <span class="keyword">while</span> (iterator.hasNext()) { <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="predefined-type">MenuItem</span> menuItem = iterator.next();
+        <span class="keyword">if</span> (menuItem.getCode().equals(code)) {
+            <span class="keyword">return</span> Optional.of(menuItem); <i class="conum" data-value="2"></i><b>(2)</b>
+        }
+    }
+    <span class="keyword">return</span> Optional.empty(); <i class="conum" data-value="3"></i><b>(3)</b>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <span class="java">MenuItem</span> is retrieved from the <span class="java">Code</span> by searching through the <span class="java">UniqueMenuItemList</span>, called <span class="java">menuItems</span> in this snippet. <span class="java">Optional</span> is used as a means of defensive programming so that a null <span class="java">Code</span> would not result in a null pointer exception but would be safely handled by showing an error message to the user for incorrect <span class="java">Code</span> input.</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The method first loops through all items in the list.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>If a <span class="java">MenuItem</span> with the same code is found, it is returned as an <span class="java">Optional</span>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>If no such <span class="java">MenuItem</span> is found, an <span class="java">Optional.empty()</span> is returned, to safely handle nulls.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The retrieved <span class="java">MenuItem</span> is then passed to Model component to be removed from the <span class="java">UniqueMenuItemList</span>.</p>
+</div>
+<div class="paragraph">
+<p>Similar to adding to the menu, after removing from the list in the <span class="java">Model</span> component, the <span class="java">Menu#indicateModified()</span> method is called, which then triggers the Logic component to save the state of the menu, by calling <span class="java">Storage#saveMenu()</span>.</p>
+</div>
+<div class="paragraph">
+<p>The User Interface is also updated by removing the menu item on the list panel.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This action can only be done in Menu Mode. If not in Menu Mode currently, users can first change mode by <a href="#ChangingModes">switching over to Menu Mode</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
+<div class="paragraph">
+<p>The above design considerations under <a href="#AddToMenu">Adding to Menu</a> on saving changes to the menu also holds when deleting menu items.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retrieving the <span class="java">MenuItem</span> from the <span class="java">Code</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handle this operation with the already existing <span class="java">UniqueMenuItemList</span>.<br>
+- <strong>Pros</strong>: Uses less memory as using another data structure would take up twice the space, since <span class="java">UniqueMenuItemList</span> is required for ease of implementations of display in the UI.<br>
+- <strong>Cons</strong>: Takes more time to loop through all menu items in the <span class="java">UniqueMenuItemList</span>, especially if the list
+is extensive.</p>
+<p class="tableblock">We decided to choose this option because we realise that the system would be able to support a typical restaurant&#8217;s
+menu with close to no lagging, and chose to optimise memory over speed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create a new HashTable to map item codes to menu items, and search through this HashTable to retrieve the item.<br>
+- <strong>Pros</strong>: Less time taken to search in HashTable than in List.<br>
+- <strong>Cons</strong>: Uses more memory as all menu items will be saved in two data structures. Moreover, there is a need to
+reflect any changes to the menu in both of the data structures.<br></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lastly, in this excerpt, I explain the main differences between the <code>clearMenu</code> and <code>clearOrders</code> command.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ClearMenu"><a class="link" href="#ClearMenu">Clearing the menu</a></h4>
+<div class="paragraph">
+<p>The user may want to remove all the menu items from the menu and this can be done with the <code>clearMenu</code> command.</p>
+</div>
+<div class="paragraph">
+<p>The interaction between the components for this function is similar to <a href="#ClearOrder">clearing an order</a>. A small difference is that <code>clearMenu</code> clears all menu items, while <code>clearOrder</code> only clears orders within a specific table.</p>
+</div>
+<div class="paragraph">
+<p>When <code>clearMenu</code> is keyed in, the command is parsed by <span class="java">RestOrRantParser</span> and a <span class="java">ClearMenuCommand</span> object is returned by the parser.</p>
+</div>
+<div class="paragraph">
+<p>When <span class="java">ClearMenuCommand#execute()</span> is called, it will check if the restaurant is occupied, and if the menu is empty. <span class="java">CommandException</span> with respective error messages will be thrown if either of the conditions are true. After ensuring that the restaurant is unoccupied and the menu is non-empty, the menu will be cleared by initializing the menu with an empty <span class="java">ArrayList</span>, with the <span class="java">Model#setMenuItems()</span> method.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:02:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:09:35 UTC</div></div></div></body></html>
