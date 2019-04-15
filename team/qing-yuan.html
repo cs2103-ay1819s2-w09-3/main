@@ -177,6 +177,13 @@ This symbol indicates important information.
 </li>
 <li>
 <p><strong>Minor enhancement</strong>: implemented the <code><span class="blue"><strong>RestaurantMode</strong></span></code> to only accept commands for the table features only and morphed the <code><span class="blue"><strong>Logic</strong></span></code> component to be compatible with RestOrRant&#8217;s features.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&amp;search=Qing-Yuan">Project Code Dashboard</a>]</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -238,13 +245,16 @@ This symbol indicates important information.
 <div class="sect1">
 <h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This section shows the updates that I made to the <strong>RestOrRant User Guide</strong> for table features to ensure that it accurately documents the current features in the application.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This section shows the updates that I made to the <strong>RestOrRant User Guide</strong> for table features to ensure that it accurately documents the current features in the application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In the User Guide, I wrote about the usages of the commands that can be used in `<span class="blue"><strong>RestaurantMode</strong></span></p></td>
 </tr>
 </tbody>
 </table>
@@ -727,58 +737,6 @@ This command finds the table with the least number of seats that is able to acco
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="Reserve"><a class="link" href="#Reserve">Making a reservation : <code>reserve</code> <em>(Coming in v2.0)</em></a></h4>
-<div class="paragraph">
-<p>Another key feature that many restaurants have is the ability to make reservations. Hence, a reserve function would be a necessary next step to make management of tables and customers more efficient.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Format</strong>: <code>reserve c/NUMBER_OF_CUSTOMERS n/NAME d/DAY m/MONTH y/YEAR t/TIME</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-RestOrRant will check for other reservations and availabilities of tables before allowing you to make a reservation.
-</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-none spread">
-<colgroup>
-<col style="width: 5%;">
-<col style="width: 95%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message in the Results Display.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For example, after executing <code>reserve c/5 n/John Doe d/28 m/2 y/2019 t/1900</code>, the following confirmation message will appear:
-"Table 4 is available and has been reserved for John Doe at 1900H on 28/2/2019."</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 </div>
 </div>
@@ -791,7 +749,7 @@ RestOrRant will check for other reservations and availabilities of tables before
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This section shows the updates that I made to the <strong>RestOrRant Developer Guide</strong> for table features to demonstrate the technical details of how they are implemented.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In the Developer Guide, I provided implementation details of the <code><span class="blue"><strong>EditPaxCommand</strong></span></code> and its design considerations.</p></td>
 </tr>
 </tbody>
 </table>
@@ -800,26 +758,16 @@ RestOrRant will check for other reservations and availabilities of tables before
 <div class="sect4">
 <h5 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h5>
 <div class="paragraph">
-<p>The edit pax mechanism is facilitated by <span class="java">UniqueTableList</span>. It stores all tables currently in ROR and ensures that there are no duplicated tables. Additionally, it implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><span class="java">UniqueTableList#contains(targetTable)</span>&#8201;&#8212;&#8201;Checks if the target table exists within the unique list of tables.</p>
-</li>
-<li>
-<p><span class="java">UniqueTableList#setTable(targetTable, editedTable)</span>&#8201;&#8212;&#8201;Replaces the target table in the list with the new table with the updated <span class="java">TableStatus</span>.</p>
-</li>
-</ul>
+<p>The edit pax mechanism is facilitated by <span class="java">UniqueTableList</span>. It stores all tables currently in ROR and ensures that there are no duplicated tables. Additionally, it implements <span class="java">UniqueTableList#setTable(targetTable, editedTable)</span>, which replaces the target table in the list with the new table with the updated <span class="java">TableStatus</span>.</p>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the Model interface as <span class="java">Model#setTable(targetTable, editedTable)</span> and <span class="java">Model#hasTable(targetTable)</span>.</p>
+<p>This operation is exposed in the Model interface as <span class="java">Model#setTable(targetTable, editedTable)</span>.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the edit pax mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. Suppose the user launches the application for the first time, the sample data has 35 tables and are stored in the <span class="java">UniqueTableList</span> as shown below. Focus your attention on the <span class="java">Table</span> orange markup as this will be our target table in this example.</p>
+<p>Step 1. Suppose the user launches the application for the first time, the sample data has 35 tables and are stored in the <span class="java">UniqueTableList</span> as shown below. Focus your attention on the <span class="java">Table</span> with the orange markup as this will be our target table in this example.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -827,7 +775,7 @@ RestOrRant will check for other reservations and availabilities of tables before
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. Suppose the user decides to have 2 customers sit at table 2 and executes <code>editPax 2 2</code> command to update the table labelled 2 with 2 customers. The <code>editPax</code> command calls <span class="java">Model#setTable(targeTable, editedTable)</span>, causing the ROR to create a new table with the updated <span class="java">TableStatus</span> and replace the current target table in the <span class="java">UniqueTableList</span>. As shown below, the index of the replaced table now points to a new <span class="java">Table</span> which is highlighted orange.</p>
+<p>Step 2. Suppose the user decides to have 2 customers sit at table 2 and executes <code>editPax 2 2</code> command to update Table 2 with 2 customers. The <code>editPax</code> command calls <span class="java">Model#setTable(targeTable, editedTable)</span>, causing the ROR to create a new table with the updated <span class="java">TableStatus</span> and replace the current target table in the <span class="java">UniqueTableList</span>. As shown below, the index of the replaced table now points to a new <span class="java">Table</span> which is highlighted orange.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -852,7 +800,7 @@ RestOrRant will check for other reservations and availabilities of tables before
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the table to be edited does not exist in the <code>UniqueTableList</code>, the application returns an error to the user rather than attempting to replace the non existent table.
+If the table to be edited does not exist in the <span class="java">UniqueTableList</span>, the application returns an error to the user rather than attempting to replace the non existent table.
 </td>
 </tr>
 </table>
@@ -897,4 +845,4 @@ If the table to be edited does not exist in the <code>UniqueTableList</code>, th
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 11:29:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 13:44:45 UTC</div></div></div></body></html>

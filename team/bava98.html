@@ -500,7 +500,7 @@ updates that I have made for the menu features as well as the storage component.
 </div>
 <div class="paragraph">
 <p>The <span class="java">Logic#execute()</span> method then creates a command from the text string input
- by parsing the string to identify the command word (done by the <span class="java">RestOrRantParser#parse()</span> method) and other parameters, in this case the attributes of the <span class="java">MenuItem</span> (done by the <span class="java">AddToMenuCommandParser#parse()</span> method, omitted from the sequence diagram). After parsing, the text string is then converted to <span class="java">Name</span>, <span class="java">Code</span>, and <span class="java">Price</span> and a new <span class="java">MenuItem</span> is created with these attributes and then passed to Model component.</p>
+ by parsing the string to identify the command word (done by the <span class="java">RestOrRantParser#parse()</span> method) and other parameters, in this case the attributes of the <span class="java">MenuItem</span> (done by the <span class="java">AddToMenuCommandParser#parse()</span> method, omitted from the sequence diagram). After parsing, the text string is then converted to <span class="java">Name</span>, <span class="java">Code</span>, and <span class="java">Price</span> and a new <span class="java">MenuItem</span> is created with these attributes and then passed to <span class="java">Model</span> component.</p>
 </div>
 <div class="paragraph">
 <p>In the <span class="java">Model</span> component, firstly the validity of the <span class="java">Name</span>, <span class="java">Code</span> and <span class="java">Price</span> of the <span class="java">MenuItem</span> is checked. The three attributes must follow the specified format for them to be valid. The <span class="java">MenuItem</span> is only added to the <span class="java">UniqueMenuItemList</span> after ensuring that the same menu item does not already exist in the list. For this to be true, the new menu item should not have the same <span class="java">Code</span> as any other  item in the list.</p>
@@ -518,8 +518,7 @@ updates that I have made for the menu features as well as the storage component.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This action can only be done in Menu Mode. If not in Menu Mode currently , users can first change mode by typing
-<a href="#ChangingModes">switching over to Menu Mode</a>.
+This action can only be done in Menu Mode. If not in Menu Mode currently, users can first change mode by <a href="#ChangingModes">switching over to Menu Mode</a>.
 </td>
 </tr>
 </table>
@@ -545,7 +544,7 @@ This action can only be done in Menu Mode. If not in Menu Mode currently , users
 <td class="tableblock halign-left valign-top"><p class="tableblock">Saving changes from addition of menu items</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Save only the menu, using the <span class="java">Menu#indicateModified()</span> and <span class="java">Storage#saveMenu()</span> methods.<br>
 - <strong>Pros</strong>: Uses less memory as any update to the menu will only save the menu.<br>
-- <strong>Cons</strong>: An increase in the number of variables during runtime, as every feature will need a listener and a boolean (for instance, menu feature would have a listener and a boolean <span class="java">menuModified</span> to call storage#saveMenu() when the boolean evaluates to true).</p>
+- <strong>Cons</strong>: An increase in the number of variables during runtime, as every feature will need a listener and a boolean (for instance, menu feature would have a listener and a boolean <span class="java">menuModified</span> to call <span class="java">Storage#saveMenu()</span> when the boolean evaluates to true).</p>
 <p class="tableblock">We decided to choose this option because we realise that there would be bigger performance issues such as lagging in
 the long run if we were to save every instance of the restaurant for every update to each feature.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Save the whole restaurant instance, by just having two methods (<span class="java">RestOrRant#indicateModified()</span> and <span class="java">Storage#saveRestOrRant()</span>) overall.<br>
@@ -557,4 +556,4 @@ the long run if we were to save every instance of the restaurant for every updat
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 11:29:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 13:44:45 UTC</div></div></div></body></html>

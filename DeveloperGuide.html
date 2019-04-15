@@ -117,7 +117,6 @@
 <ul class="sectlevel4">
 <li><a href="#current-implementation-7">Current Implementation</a></li>
 <li><a href="#design-considerations-8">Design Considerations</a></li>
-<li><a href="#validating-date">Validating Date</a></li>
 </ul>
 </li>
 </ul>
@@ -425,12 +424,10 @@ errors, and if so, resolve it the same way)</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Configure the <a href="#Docs-SiteWideDocSettings">site-wide documentation settings</a> in link:https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/build
-.gradle[<span class="java">build.gradle</span>], such as the <span class="java">site-name</span>, to suit your own project.</p>
+<p>Configure the <a href="#Docs-SiteWideDocSettings">site-wide documentation settings</a> in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/build.gradle"><span class="java">build.gradle</span></a>, such as the <span class="java">site-name</span>, to suit your own project.</p>
 </li>
 <li>
-<p>Replace the URL in the attribute <span class="java">repoURL</span> in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/docs/DeveloperGuide.adoc"><span class="java">DeveloperGuide.adoc</span></a> and <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/docs/UserGuide.adoc"><span class="java">UserGuide.adoc</span></a> with the URL
- of your fork.</p>
+<p>Replace the URL in the attribute <span class="java">repoURL</span> in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/docs/DeveloperGuide.adoc"><span class="java">DeveloperGuide.adoc</span></a> and <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/docs/UserGuide.adoc"><span class="java">UserGuide.adoc</span></a> with the URL of your fork.</p>
 </li>
 </ol>
 </div>
@@ -782,7 +779,7 @@ files that are in the <span class="java">/blob/master/src/main/resources/view</s
 </ul>
 </div>
 <div class="paragraph">
-<p>To use the different features, we have also implemented mode-changing commands for users to switch between the 4 user modes.</p>
+<p>To use the different features, we have also implemented commands for users to switch between the 4 user modes.</p>
 </div>
 <div id="BillMode" class="paragraph">
 <p>There is also a <strong>Bill Mode</strong> available for your use as a developer, although the existence of this mode is not shared with the users. The Bill Mode displays the receipt and is only used after the <code>bill</code> command is executed in RestOrRant.</p>
@@ -818,7 +815,7 @@ Although the <code>bill</code> command is used in Table Mode, it is considered a
 </ul>
 </div>
 <div class="paragraph">
-<p>For all the mode-changing commands, these updates are done using a new <span class="java">toMode</span> attribute added to the <span class="java">CommandResult</span> object. As an example, the figure below shows the sequence diagram for when a user executes the <code>menuMode</code> command:</p>
+<p>For all these commands, these updates are done using a new <span class="java">toMode</span> attribute added to the <span class="java">CommandResult</span> object. As an example, the figure below shows the sequence diagram for when a user executes the <code>menuMode</code> command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -855,7 +852,7 @@ For commands that do not involve a change in mode, <span class="java">CommandRes
 <div class="sect4">
 <h5 id="ChangeToTableMode"><a class="link" href="#ChangeToTableMode">Changing to Table Mode for a specific table</a></h5>
 <div class="paragraph">
-<p>All the mode-changing commands take no parameters except for Table Mode. When the user wants to perform order-related operations (eg. add an item to the table&#8217;s order), the user will first have to switch to Table Mode by typing the <code>tableMode</code> command (or its shortcut <code>TM</code>) followed by the table number of the table that the user wants to perform actions on.</p>
+<p>All the commands that change modes take no parameters except for Table Mode. When the user wants to perform order-related operations (eg. add an item to the table&#8217;s order), the user will first have to switch to Table Mode by typing the <code>tableMode</code> command (or its shortcut <code>TM</code>) followed by the table number of the table that the user wants to perform actions on.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows the relevant parts of what happens when a user executes the <code>tableMode 3</code> command:</p>
@@ -867,7 +864,7 @@ For commands that do not involve a change in mode, <span class="java">CommandRes
 <div class="title">Figure 10. Component interactions for <code>tableMode 3</code> command</div>
 </div>
 <div class="paragraph">
-<p>The <span class="java">Logic</span> and <span class="java">UI</span> component interactions work in a similar way to the other mode-changing commands and the implementation is mentioned above. The only difference is the parsing of the argument <strong>3</strong> into a <span class="java">TableNumber</span> object that indicates the table number of the target table to switch to. This <span class="java">TableNumber</span> object is stored as an attribute in <span class="java">TableModeCommand</span>.</p>
+<p>The <span class="java">Logic</span> and <span class="java">UI</span> component interactions work in a similar way to the other commands that change modes and the implementation is mentioned above. The only difference is the parsing of the argument <strong>3</strong> into a <span class="java">TableNumber</span> object that indicates the table number of the target table to switch to. This <span class="java">TableNumber</span> object is stored as an attribute in <span class="java">TableModeCommand</span>.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s focus on what happens to the <span class="java">Model</span> component when <span class="java">TableModeCommand#execute()</span> is called. The relevant parts of the sequence diagram has been extracted out and shown in the diagram below.</p>
@@ -895,7 +892,7 @@ The list of tables are stored within the <span class="java">Tables</span> object
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<span class="java">TableModeCommand#execute()</span> also checks to ensure that the application is not already in Table Mode of the same table number, the table number specified is valid, and the desired table is occupied.
+<span class="java">TableModeCommand#execute()</span> also checks that the application is not already in Table Mode of the same table number, the table number specified is valid, and the desired table is occupied.
 </td>
 </tr>
 </table>
@@ -922,7 +919,7 @@ The list of tables are stored within the <span class="java">Tables</span> object
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defining of modes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Modes are defined using a <span class="java">Mode</span> enum.<br>
 - <strong>Pros</strong>: Easily identify incorrect modes since the set of valid modes is restricted to the enum values.<br>
-- <strong>Cons</strong>: Need to create a new class and increases coupling between Logic and UI components.</p>
+- <strong>Cons</strong>: Need to create a new class in Logic, which increases coupling between Logic and UI components.</p>
 <p class="tableblock">We decided to choose this option as the enum is an abstraction over the possible modes. Apart from being less prone to errors,
 it also makes the code more readable as the enum values explicitly state the name of the mode (eg. <span class="java">TABLE_MODE</span>, <span class="java">MENU_MODE</span>) and are stored
 in <span class="java">Mode</span> variables, making it clear that it refers to a mode and not just any string.</p></td>
@@ -938,17 +935,17 @@ in <span class="java">Mode</span> variables, making it clear that it refers to a
 <p class="tableblock">We decided to store the current mode in Logic because we note that most of the work that requires access to the current mode is done here, so providing a quick access will be more efficient.
 The Model component does not need to know what the current mode is at all, so it would be better to keep the coupling low to facilitate integration.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mode stored in the Model component (<span class="java">ModelManager</span>).<br>
-- <strong>Pros</strong>: Maintains abstraction as the mode is part of the current state of the application, which is maintained in Model.<br>
+- <strong>Pros</strong>: Maintains abstraction as the mode is part of the current state of the application, which is maintained by Model.<br>
 - <strong>Cons</strong>: Increases coupling among the Model, Logic and UI components.<br></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifying table number for Table Mode commands</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified once when switching to Table Mode, then retrieved from <span class="java">Model#getSelectedTable()</span> for future commands.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified only once when switching to Table Mode, then retrieved from <span class="java">Model#getSelectedTable()</span> for future commands.<br>
 - <strong>Pros</strong>: Convenient to retrieve table number without having to explicitly specify it in every command.<br>
-- <strong>Cons</strong>: Non-standardized mode-changing commands since the others do not have any parameters.</p>
+- <strong>Cons</strong>: Commands that change modes are not standardized since the others do not have any parameters.</p>
 <p class="tableblock">We decided to go ahead with this implementation as we feel that from a user&#8217;s point of view, it would be more convenient to be able to just specify the table number once and then perform a series of operations afterwards. Furthermore, having to parse the table number for every command will also do more work.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified for every command (eg. <code>addToOrder 3 W09 1</code> to add 1x W09 to table 3).<br>
-- <strong>Pros</strong>: All mode-changing commands are simple and similar.<br>
+- <strong>Pros</strong>: All commands that change modes are simple and similar.<br>
 - <strong>Cons</strong>: Makes the commands longer to type.</p></td>
 </tr>
 </tbody>
@@ -957,11 +954,14 @@ The Model component does not need to know what the current mode is at all, so it
 </div>
 <div class="sect2">
 <h3 id="tables-feature"><a class="link" href="#tables-feature">4.2. Tables feature</a></h3>
+<div class="paragraph">
+<p>The Table feature allows the users to add, edit and clear tables using the commands <a href="#AddTable"><code>addTable</code></a>, <a href="#EditPax"><code>editPax</code></a>, <a href="#EditSeats"><code>editSeats</code></a> and <a href="#ClearTables"><code>clearTables</code></a> to ensure that RestOrRant reflects their physical restaurant in terms of the number of tables and each table&#8217;s occupancy. Also, the Tables feature provides a quick way to look for an available table that can accommodate the specified number of customers using the <a href="#SpaceFor"><code>spaceFor</code></a> command. All of the table details are displayed in our UI for easy reference.</p>
+</div>
 <div class="sect3">
 <h4 id="TablesClasses"><a class="link" href="#TablesClasses">4.2.1. Classes for Tables feature in Model</a></h4>
 <div class="paragraph">
 <p>The Tables feature was implemented with the introduction of a new set of classes to <span class="java">Model</span>.
-A new <span class="java">Orders</span> class encapsulates all the methods and classes related to this feature. It also contains a listener that is used to update the storage when any modification is made to the orders. The <span class="java">Orders</span> object is stored in <span class="java">RestOrRant</span> and it exposes a read-only interface <span class="java">ReadOnlyOrders</span> to allow the other components to retrieve order-related information while maintaining data integrity.</p>
+A new <span class="java">Tables</span> class encapsulates all the methods and classes related to this feature. It also contains a listener that is used to update the storage when any modification is made to the tables. The <span class="java">Tables</span> object is stored in <span class="java">RestOrRant</span> and it exposes a read-only interface <span class="java">ReadOnlyTables</span> to allow the other components to retrieve table-related information while maintaining data integrity.</p>
 </div>
 <div class="paragraph">
 <p><span class="java">Tables</span> contains a <span class="java">UniqueTableList</span>, which contains a list of all the tables. Each <span class="java">Table</span> object consists of 2 objects:</p>
@@ -1009,26 +1009,16 @@ A new <span class="java">Orders</span> class encapsulates all the methods and cl
 <div class="sect4">
 <h5 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h5>
 <div class="paragraph">
-<p>The edit pax mechanism is facilitated by <span class="java">UniqueTableList</span>. It stores all tables currently in ROR and ensures that there are no duplicated tables. Additionally, it implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><span class="java">UniqueTableList#contains(targetTable)</span>&#8201;&#8212;&#8201;Checks if the target table exists within the unique list of tables.</p>
-</li>
-<li>
-<p><span class="java">UniqueTableList#setTable(targetTable, editedTable)</span>&#8201;&#8212;&#8201;Replaces the target table in the list with the new table with the updated <span class="java">TableStatus</span>.</p>
-</li>
-</ul>
+<p>The edit pax mechanism is facilitated by <span class="java">UniqueTableList</span>. It stores all tables currently in ROR and ensures that there are no duplicated tables. Additionally, it implements <span class="java">UniqueTableList#setTable(targetTable, editedTable)</span>, which replaces the target table in the list with the new table with the updated <span class="java">TableStatus</span>.</p>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the Model interface as <span class="java">Model#setTable(targetTable, editedTable)</span> and <span class="java">Model#hasTable(targetTable)</span>.</p>
+<p>This operation is exposed in the Model interface as <span class="java">Model#setTable(targetTable, editedTable)</span>.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the edit pax mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. Suppose the user launches the application for the first time, the sample data has 35 tables and are stored in the <span class="java">UniqueTableList</span> as shown below. Focus your attention on the <span class="java">Table</span> orange markup as this will be our target table in this example.</p>
+<p>Step 1. Suppose the user launches the application for the first time, the sample data has 35 tables and are stored in the <span class="java">UniqueTableList</span> as shown below. Focus your attention on the <span class="java">Table</span> with the orange markup as this will be our target table in this example.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1036,7 +1026,7 @@ A new <span class="java">Orders</span> class encapsulates all the methods and cl
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. Suppose the user decides to have 2 customers sit at table 2 and executes <code>editPax 2 2</code> command to update the table labelled 2 with 2 customers. The <code>editPax</code> command calls <span class="java">Model#setTable(targeTable, editedTable)</span>, causing the ROR to create a new table with the updated <span class="java">TableStatus</span> and replace the current target table in the <span class="java">UniqueTableList</span>. As shown below, the index of the replaced table now points to a new <span class="java">Table</span> which is highlighted orange.</p>
+<p>Step 2. Suppose the user decides to have 2 customers sit at table 2 and executes <code>editPax 2 2</code> command to update Table 2 with 2 customers. The <code>editPax</code> command calls <span class="java">Model#setTable(targeTable, editedTable)</span>, causing the ROR to create a new table with the updated <span class="java">TableStatus</span> and replace the current target table in the <span class="java">UniqueTableList</span>. As shown below, the index of the replaced table now points to a new <span class="java">Table</span> which is highlighted orange.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1061,7 +1051,7 @@ A new <span class="java">Orders</span> class encapsulates all the methods and cl
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the table to be edited does not exist in the <code>UniqueTableList</code>, the application returns an error to the user rather than attempting to replace the non existent table.
+If the table to be edited does not exist in the <span class="java">UniqueTableList</span>, the application returns an error to the user rather than attempting to replace the non existent table.
 </td>
 </tr>
 </table>
@@ -1111,10 +1101,10 @@ If the table to be edited does not exist in the <code>UniqueTableList</code>, th
 <p>The interaction between the components for this function is similar to <a href="#EditPax">editing pax at a table</a>. A key difference in function is that <code>editPax</code> changes the occupancy of the <code>Table</code> by changing the number of customers seated at the table while <code>editSeats</code> changes the number of seats at the table.</p>
 </div>
 <div class="paragraph">
-<p>One thing to note is that the <code>editSeats</code> command can be called on not just unoccupied tables but also occupied tables. Hence, there is a different set of checks in place to ensure the integrity of tables are intact.</p>
+<p>One thing to note is that the <code>editSeats</code> command can be called on not just unoccupied tables but also occupied tables. Hence, there is a different set of checks in place to ensure that the integrity of tables is intact.</p>
 </div>
 <div class="paragraph">
-<p>An example would be, suppose <code>editSeats</code> is called on an occupied table, we do not allow the user to change the number of seats at the table to less than the current number of customers seated at the same table. Hence, if table 1 already has 4 customers, <code>editSeats 1 2</code> would return and error.</p>
+<p>An example would be, suppose <code>editSeats</code> is called on an occupied table, we do not allow the user to change the number of seats at the table to less than the current number of customers seated at the same table. Hence, if Table 1 already has 4 customers, <code>editSeats 1 2</code> would return an error.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1123,7 +1113,7 @@ If the table to be edited does not exist in the <code>UniqueTableList</code>, th
 <p>The interaction between the components for this function is similar to <a href="#ClearOrder">clearing an order</a>. The key difference is that <code>clearTables</code> requires ROR to be completely empty before the command can be successfully executed.</p>
 </div>
 <div class="paragraph">
-<p>This means that all of the tables in ROR have to be unoccupied and this is checked in the ClearTablesCommand#execute() method as shown in the code snippet below.</p>
+<p>This means that all of the tables in ROR have to be unoccupied and this is checked in the <span class="java">ClearTablesCommand#execute()</span> method as shown in the code snippet below.</p>
 </div>
 <div id="source" class="listingblock">
 <div class="content">
@@ -1169,7 +1159,7 @@ If the table to be edited does not exist in the <code>UniqueTableList</code>, th
 <p>This command&#8217;s interaction with the components is very similar to <a href="#EditPax">editing pax at a table</a>. The key difference is that it searches for the best fit table automatically instead of having the table specified by the user.</p>
 </div>
 <div class="paragraph">
-<p>This functionality uses the <code>spaceFor</code> command and is facilitated by the [.java]Model#isOccupied(Table)# method. This method checks if the specified table has any customers seated at the table. The <code>spaceFor</code> command works like a request and takes in 1 argument specifying the number of customers to be seated in ROR.</p>
+<p>This functionality uses the <code>spaceFor</code> command and is facilitated by the <span class="java">Model#isOccupied(Table)</span> method. This method checks if the specified table has any customers seated at the table. The <code>spaceFor</code> command works like a request and takes in 1 argument specifying the number of customers to be seated in ROR.</p>
 </div>
 <div class="paragraph">
 <p><span class="java">SpaceForCommand#execute()</span> is then called which searches through the <span class="java">UniqueTableList</span> for the best fit table. In this case, the best fit <span class="java">Table</span> is the smallest available one that can accommodate the specified number of customers. If there is more than 1 <span class="java">Table</span> that fits those criterions, the <span class="java">Table</span> with the smallest <span class="java">TableNumber</span> is chosen.</p>
@@ -1401,8 +1391,8 @@ If the <span class="java">OrderItem</span> is found and the quantity served is v
 <div class="sect2">
 <h3 id="menu-feature"><a class="link" href="#menu-feature">4.4. Menu feature</a></h3>
 <div class="paragraph">
-<p>The Menu feature allows restaurant managers to take add items to the menu using the <code>addToMenu</code> command, as well as
-remove menu items as needed using the <code>deleteFromMenu</code> or <code>clearMenu</code> commands. They can track the current list of
+<p>The Menu feature allows restaurant managers to take add items to the menu using the <a href="#AddToMenu"><code>addToMenu</code></a> command, as well as
+remove menu items as needed using the <a href="#DeleteFromMenu"><code>deleteFromMenu</code></a> or <a href="#ClearMenu"><code>clearMenu</code></a> commands. They can track the current list of
 available items in the menu (with the UI displays in Table Mode and Menu Mode).</p>
 </div>
 <div class="paragraph">
@@ -1476,7 +1466,7 @@ available items in the menu (with the UI displays in Table Mode and Menu Mode).<
 </div>
 <div class="paragraph">
 <p>The <span class="java">Logic#execute()</span> method then creates a command from the text string input
- by parsing the string to identify the command word (done by the <span class="java">RestOrRantParser#parse()</span> method) and other parameters, in this case the attributes of the <span class="java">MenuItem</span> (done by the <span class="java">AddToMenuCommandParser#parse()</span> method, omitted from the sequence diagram). After parsing, the text string is then converted to <span class="java">Name</span>, <span class="java">Code</span>, and <span class="java">Price</span> and a new <span class="java">MenuItem</span> is created with these attributes and then passed to Model component.</p>
+ by parsing the string to identify the command word (done by the <span class="java">RestOrRantParser#parse()</span> method) and other parameters, in this case the attributes of the <span class="java">MenuItem</span> (done by the <span class="java">AddToMenuCommandParser#parse()</span> method, omitted from the sequence diagram). After parsing, the text string is then converted to <span class="java">Name</span>, <span class="java">Code</span>, and <span class="java">Price</span> and a new <span class="java">MenuItem</span> is created with these attributes and then passed to <span class="java">Model</span> component.</p>
 </div>
 <div class="paragraph">
 <p>In the <span class="java">Model</span> component, firstly the validity of the <span class="java">Name</span>, <span class="java">Code</span> and <span class="java">Price</span> of the <span class="java">MenuItem</span> is checked. The three attributes must follow the specified format for them to be valid. The <span class="java">MenuItem</span> is only added to the <span class="java">UniqueMenuItemList</span> after ensuring that the same menu item does not already exist in the list. For this to be true, the new menu item should not have the same <span class="java">Code</span> as any other  item in the list.</p>
@@ -1494,8 +1484,7 @@ available items in the menu (with the UI displays in Table Mode and Menu Mode).<
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This action can only be done in Menu Mode. If not in Menu Mode currently , users can first change mode by typing
-<a href="#ChangingModes">switching over to Menu Mode</a>.
+This action can only be done in Menu Mode. If not in Menu Mode currently, users can first change mode by <a href="#ChangingModes">switching over to Menu Mode</a>.
 </td>
 </tr>
 </table>
@@ -1521,7 +1510,7 @@ This action can only be done in Menu Mode. If not in Menu Mode currently , users
 <td class="tableblock halign-left valign-top"><p class="tableblock">Saving changes from addition of menu items</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Save only the menu, using the <span class="java">Menu#indicateModified()</span> and <span class="java">Storage#saveMenu()</span> methods.<br>
 - <strong>Pros</strong>: Uses less memory as any update to the menu will only save the menu.<br>
-- <strong>Cons</strong>: An increase in the number of variables during runtime, as every feature will need a listener and a boolean (for instance, menu feature would have a listener and a boolean <span class="java">menuModified</span> to call storage#saveMenu() when the boolean evaluates to true).</p>
+- <strong>Cons</strong>: An increase in the number of variables during runtime, as every feature will need a listener and a boolean (for instance, menu feature would have a listener and a boolean <span class="java">menuModified</span> to call <span class="java">Storage#saveMenu()</span> when the boolean evaluates to true).</p>
 <p class="tableblock">We decided to choose this option because we realise that there would be bigger performance issues such as lagging in
 the long run if we were to save every instance of the restaurant for every update to each feature.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Save the whole restaurant instance, by just having two methods (<span class="java">RestOrRant#indicateModified()</span> and <span class="java">Storage#saveRestOrRant()</span>) overall.<br>
@@ -1569,7 +1558,7 @@ the long run if we were to save every instance of the restaurant for every updat
 </div>
 </div>
 <div class="paragraph">
-<p>The <span class="java">MenuItem</span> is retrieved from the <span class="java">Code</span> by searching through the <span class="java">UniqueMenuItemList</span>, called <span class="java">menuItems</span> in this snippet. Optional is used as a means of defensive programming so that a null <span class="java">Code</span> would not result in a null pointer exception but would be safely handled by showing an error message to the user for incorrect <span class="java">Code</span> input.</p>
+<p>The <span class="java">MenuItem</span> is retrieved from the <span class="java">Code</span> by searching through the <span class="java">UniqueMenuItemList</span>, called <span class="java">menuItems</span> in this snippet. <span class="java">Optional</span> is used as a means of defensive programming so that a null <span class="java">Code</span> would not result in a null pointer exception but would be safely handled by showing an error message to the user for incorrect <span class="java">Code</span> input.</p>
 </div>
 <div class="colist arabic">
 <table>
@@ -1579,11 +1568,11 @@ the long run if we were to save every instance of the restaurant for every updat
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>If a <span class="java">MenuItem</span> with the same code is found, it is returned as an Optional.</td>
+<td>If a <span class="java">MenuItem</span> with the same code is found, it is returned as an <span class="java">Optional</span>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>If no such <span class="java">MenuItem</span> is found, an Optional.empty() is returned, to safely handle nulls.</td>
+<td>If no such <span class="java">MenuItem</span> is found, an <span class="java">Optional.empty()</span> is returned, to safely handle nulls.</td>
 </tr>
 </table>
 </div>
@@ -1591,10 +1580,10 @@ the long run if we were to save every instance of the restaurant for every updat
 <p>The retrieved <span class="java">MenuItem</span> is then passed to Model component to be removed from the <span class="java">UniqueMenuItemList</span>.</p>
 </div>
 <div class="paragraph">
-<p>As above, after removing from the list in the <span class="java">Model</span> component, the <span class="java">Menu#indicateModified()</span> method is called, which then triggers the Logic component to save the state of the menu, by calling <span class="java">Storage#saveMenu()</span>.</p>
+<p>Similar to adding to the menu, after removing from the list in the <span class="java">Model</span> component, the <span class="java">Menu#indicateModified()</span> method is called, which then triggers the Logic component to save the state of the menu, by calling <span class="java">Storage#saveMenu()</span>.</p>
 </div>
 <div class="paragraph">
-<p>The User Interface also updated by removing the menu item on the list panel.</p>
+<p>The User Interface is also updated by removing the menu item on the list panel.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1603,7 +1592,7 @@ the long run if we were to save every instance of the restaurant for every updat
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This action can only be done in Menu Mode. If not in Menu Mode currently , users can first change mode by typing <a href="#ChangingModes">switching over to Menu Mode</a>.
+This action can only be done in Menu Mode. If not in Menu Mode currently, users can first change mode by <a href="#ChangingModes">switching over to Menu Mode</a>.
 </td>
 </tr>
 </table>
@@ -1657,7 +1646,7 @@ reflect any changes to the menu in both of the data structures.<br></p></td>
 <p>When <code>clearMenu</code> is keyed in, the command is parsed by <span class="java">RestOrRantParser</span> and a <span class="java">ClearMenuCommand</span> object is returned by the parser.</p>
 </div>
 <div class="paragraph">
-<p>When <span class="java">ClearMenuCommand#execute()</span> is called, it will check if the restaurant is occupied, and if the menu is empty. <span class="java">CommandException</span> with respective error messages will be thrown if either of the conditions are true. After ensuring that the restaurant is unoccupied and the menu is non-empty, the menu will be cleared by initializing the menu with an empty ArrayList, with the [.java]#Model#setMenuItems() method.</p>
+<p>When <span class="java">ClearMenuCommand#execute()</span> is called, it will check if the restaurant is occupied, and if the menu is empty. <span class="java">CommandException</span> with respective error messages will be thrown if either of the conditions are true. After ensuring that the restaurant is unoccupied and the menu is non-empty, the menu will be cleared by initializing the menu with an empty <span class="java">ArrayList</span>, with the <span class="java">Model#setMenuItems()</span> method.</p>
 </div>
 </div>
 </div>
@@ -1687,13 +1676,13 @@ restaurant, represented by <span class="java">Revenue</span> objects. Each <span
 <div class="ulist">
 <ul>
 <li>
-<p><span class="java">Year</span> indicates the year revenue was earned</p>
+<p><span class="java">Year</span> indicates the year which the revenue was earned</p>
 </li>
 <li>
-<p><span class="java">Month</span> indicates the month revenue was earned</p>
+<p><span class="java">Month</span> indicates the month which the revenue was earned</p>
 </li>
 <li>
-<p><span class="java">Day</span> indicates the day revenue was earned</p>
+<p><span class="java">Day</span> indicates the day which the revenue was earned</p>
 </li>
 </ul>
 </div>
@@ -1738,11 +1727,11 @@ that specific date. These data are stored when the <a href="#Bill"><code>bill</c
 - <strong>Pros</strong>: Less storage space used.<br>
 - <strong>Cons</strong>: No record of bill. Impossible to retrieve receipts.<br></p>
 <p class="tableblock">In a restaurant, it is unlikely that a customer will request for a refund after consuming and paying for the meal.
-Even if there are complaints about the meal, they will demand for a newly cook dish before calling for the bill.
+Even if there are complaints about the meal, they will demand for a newly cooked dish before calling for the bill.
 Hence, we did not see the need to store receipts in the storage and chose this design.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Stores bill which comprises of the day, month, year, bill, table number and receipt.<br>
 - <strong>Pros</strong>: Able to retrieve data of bills.<br>
-- <strong>Cons</strong>: More storage space for lists of bills for each day.+</p></td>
+- <strong>Cons</strong>: More storage space for lists of bills for each day.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1756,16 +1745,16 @@ Hence, we did not see the need to store receipts in the storage and chose this d
 </div>
 <div class="paragraph">
 <p>Once the <code>bill</code> command is called, it will internally switch to <a href="#BillMode">Bill Mode</a> where the receipt of
- the specified table is displayed. Concurrently, the bill mechanism excesses functions from Table, Order, Menu and
- Statistics to execute the following:</p>
+ the specified table is displayed. Concurrently, the bill mechanism accesses functions from <span class="java">Tables</span>, <span class="java">Orders</span>, <span class="java">Menu</span> and
+ <span class="java">Statistics</span> to execute the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Table</strong>: Updates specified table&#8217;s occupancy to accomodate new customers.</p>
+<p><strong>Table</strong>: Updates specified table&#8217;s occupancy to accommodate new customers.</p>
 </li>
 <li>
-<p><strong>Order</strong>: Clears the order list unique to the specified table.</p>
+<p><strong>Order</strong>: Clears the order list that belongs to the specified table.</p>
 </li>
 <li>
 <p><strong>Menu</strong>: Saves the quantity of menu items ordered in the Menu storage (/data/menu.json).</p>
@@ -1778,7 +1767,7 @@ Hence, we did not see the need to store receipts in the storage and chose this d
 <div class="sect4">
 <h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
 <div class="paragraph">
-<p>The main crust of Bill mechanism is implemented in <span class="java">BillCommand</span>. Just like any other commands, <span class="java">BillCommand#execute()</span> overrides
+<p>The main crux of Bill mechanism is implemented in <span class="java">BillCommand</span>. Just like any other commands, <span class="java">BillCommand#execute()</span> overrides
 <span class="java">Command#execute()</span> which is called in <span class="java">LogicManager</span>. It takes in the current mode, model and command
 history which will provide the necessary functions it will need to execute the command properly with the following
 operations:</p>
@@ -1795,7 +1784,7 @@ existing <span class="java">Revenue</span> in the <span class="java">Statistics#
 </li>
 <li>
 <p><span class="java">BillCommand#updateStatusOfTable()</span>&#8201;&#8212;&#8201;Updates the occupancy of the specified table to indicate that it has
-zero pax and resets the selected table to null.</p>
+zero customers and resets the selected table to null.</p>
 </li>
 <li>
 <p><span class="java">Model#clearOrderItemsFrom()</span>&#8201;&#8212;&#8201;Clears the order list to prepare for the next customer.</p>
@@ -1807,9 +1796,9 @@ zero pax and resets the selected table to null.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Bill_SequenceDiagram.png" alt="Bill SequenceDiagram" width="700">
+<img src="images/Bill_SequenceDiagram.png" alt="Bill SequenceDiagram" width="800">
 </div>
-<div class="title">Figure 19. Sequence diagram for executing the bill command</div>
+<div class="title">Figure 19. Sequence diagram for executing the <code>bill</code> command</div>
 </div>
 <div class="paragraph">
 <p>To give you a better understanding of the sequence diagram, the following is a usage scenario and how the bill
@@ -1832,17 +1821,17 @@ Let&#8217;s assume that the user is in Table Mode 1. This means Table 1 is the s
 </div>
 <div class="paragraph">
 <p><strong>Step 2.</strong>
-Given that the command passes all checks, the user can successfully run <span class="java">BillCommand#calculateBill()</span> to assign a new calculated bill to <span class="java">BillCommand#tableToBill</span>. Let&#8217;s
+Given that the command passes all checks, the user can successfully run <span class="java">BillCommand#calculateBill()</span> to assign a new calculated bill to the <span class="java">tableToBill</span> attribute. Let&#8217;s
 refer to the function&#8217;s sequence diagram below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Bill_CalculateBill.png" alt="Bill CalculateBill" width="700">
+<img src="images/Bill_CalculateBill.png" alt="Bill CalculateBill" width="800">
 </div>
 <div class="title">Figure 20. Sequence diagram for calculating the bill</div>
 </div>
 <div class="paragraph">
-<p><span class="java">BillCommand#calculateBill()</span> calls both <span class="java">Model#getFilteredOrderItemList</span> and <span class="java">ReadOnlyRestOrRant#getMenu()</span> to obtain the table’s list of orders and the restaurant’s menu.
+<p><span class="java">BillCommand#calculateBill()</span> calls both <span class="java">Model#getFilteredOrderItemList()</span> and <span class="java">ReadOnlyRestOrRant#getMenu()</span> to obtain the table’s list of orders and the restaurant’s menu.
 After which, it iterates through the list of orders to obtain individual <span class="java">OrderItem</span> and
 executes the following in each iteration:</p>
 </div>
@@ -1868,24 +1857,24 @@ executes the following in each iteration:</p>
 <div class="paragraph">
 <p>After iterating through the list of orders, <span class="java">receipt</span> appends the final calculation of the total
 bill and the function returns a new <span class="java">Bill</span> that contains the updated <span class="java">tableNumber</span>, <span class="java">totalBill</span> and
-<span class="java">receipt</span>. This new <span class="java">Bill</span> will be assigned to <span class="java">BillCommand#bill</span> and passed into <span class="java">Model#setRecentBill()</span> to update the Model&#8217;s recent bill (This step is needed when changing the user interface to Bill Mode).</p>
+<span class="java">receipt</span>. This new <span class="java">Bill</span> will be assigned to the <span class="java">bill</span> attribute and passed into <span class="java">Model#setRecentBill()</span> to update the Model&#8217;s recent bill (This step is needed when changing the user interface to Bill Mode).</p>
 </div>
 <div class="paragraph">
-<p>Now that <span class="java">BillCommand#bill</span> is updated, it is passed into <span class="java">BillCommand#createOrUpdateRevenue()</span> to store the calculated bill in <span class="java">Statistics#revenueList</span>. Refer to the function&#8217;s sequence diagram below.</p>
+<p>Now that <span class="java">bill</span> is updated, it is passed into <span class="java">BillCommand#createOrUpdateRevenue()</span> to store the calculated bill in <span class="java">Statistics#revenueList</span>. Refer to the function&#8217;s sequence diagram below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Bill_CreateOrUpdateRevenue.png" alt="Bill CreateOrUpdateRevenue" width="550">
+<img src="images/Bill_CreateOrUpdateRevenue.png" alt="Bill CreateOrUpdateRevenue" width="700">
 </div>
 <div class="title">Figure 21. Sequence diagram for creating or updating revenue in the Statistics revenue list</div>
 </div>
 <div class="paragraph">
 <p>As shown above, <span class="java">BillCommand#createOrUpdateRevenue()</span> creates a <span class="java">DailyRevenue</span> with the bill&#8217;s year, month and day.
- It checks if the newly created <span class="java">DailyRevenue</span> exists in the <span class="java">Statistics#revenueList</span> via <span class="java">Model#hasRevenue()</span>.
+ It checks if the newly created <span class="java">DailyRevenue</span> exists in the <span class="java">revenueList</span> via <span class="java">Model#hasRevenue()</span>.
 If it is true that <span class="java">DailyRevenue</span> exists, the function iterates through the <span class="java">Model#getFilteredRevenueList()</span> and searches for a an existing <span class="java">Revenue</span> that has the same year, month and
 day as the <span class="java">DailyRevenue</span>. Once the <span class="java">Revenue</span> is found, <span class="java">Revenue#addToRevenue()</span> is used to add the
  total bill of the <span class="java">DailyRevenue</span> into <span class="java">Revenue</span>. Otherwise, the <span class="java">DailyRevenue</span> is added into
-  the <span class="java">Statistics#revenueList</span> via <span class="java">Model#addRevenue()</span>.</p>
+  the <span class="java">revenueList</span> via <span class="java">Model#addRevenue()</span>.</p>
 </div>
 <div class="paragraph">
 <p>Now, that the necessary data are updated in the internal list of Menu and Statistics, <span class="java">BillCommand#execute()</span>
@@ -1894,7 +1883,7 @@ new customers.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Bill_UpdateStatusOfTable.png" alt="Bill UpdateStatusOfTable" width="550">
+<img src="images/Bill_UpdateStatusOfTable.png" alt="Bill UpdateStatusOfTable" width="700">
 </div>
 <div class="title">Figure 22. Sequence diagram for updating the status of the table</div>
 </div>
@@ -1909,7 +1898,7 @@ Tables, Orders, Menu and Statistics data have been modified via <span class="jav
 the <span class="java">CommandResult</span> to <span class="java">LogicManager#excute()</span> where the it will check if the Tables, Orders, Menu
 and Statistics data have been modified and updates the storage accordingly. The same <span class="java">CommandResult</span> is
 returned to <span class="java">MainWindow#executeCommand()</span> where the user interface switches to Bill Mode to display the
-receipt of the recent Bill.</p>
+receipt of the recent <span class="java">Bill</span>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1918,14 +1907,11 @@ receipt of the recent Bill.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Internally the program switches to Bill Mode. However, this mode is not shown to the user as a Table Mode to avoid
+Internally the program switches to Bill Mode. However, this mode is shown to the user as Table Mode to avoid
 confusion.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p><strong>Step 3.</strong> Once the user is in Bill Mode, they can execute and mode commands like <code>RM</code>, <code>TM</code> and <code>MM</code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1947,7 +1933,7 @@ confusion.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Design calculateBill()</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Iterates through the <span class="java">FilteredOrderItemList</span> once to append the receipt, update quantity ordered of
-the Menu Items in <span class="java">Menu#menuItems</span> and calculate the bill.<br>
+the items in <span class="java">Menu</span> and calculate the bill.<br>
 - <strong>Pros</strong>: Efficient as it only iterates through the list once.<br>
 - <strong>Cons</strong>: The code can be further break into different functions.<br></p>
 <p class="tableblock">We chose this design to prioritize efficiency in this use case. Since <code>bill</code> command is only
@@ -1974,22 +1960,22 @@ These commands make adjustments to the user interface to display statistical dat
 <div class="paragraph">
 <p>The execution of these commands is similar to <a href="#ChangeMode">changing the mode</a>. The only difference is that <span class="java">isYearly</span>, <span class="java">isMonthly</span> and <span class="java">isDaily</span> boolean variables are used in <span class="java">MainWindow#executeCommand()</span>. These boolean variables are passed into <span class="java">MainWindow#handleChangeMode()</span>
 where it will determine which display to switch to. You may refer to the activity diagram to understand the cause of
-actions in the <span class="java">Statistics Mode</span> user interface.</p>
+actions in the Statistics Mode user interface.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/Trend_ActivityDiagram.png" alt="Trend ActivityDiagram">
 </div>
-<div class="title">Figure 23. Yearly, Monthly and Daily Activity Diagram</div>
+<div class="title">Figure 23. Statistics Mode Display Activity Diagram</div>
 </div>
 <div class="paragraph">
-<p>Since these commands changes the user interface, a huge portion of their mechanism is dependent on <span class="java">StatisitcsFlowPanel</span>. It determines the layout and arrangement of the revenue cards displayed.</p>
+<p>Since these commands changes the user interface, a huge portion of their mechanism is dependent on <span class="java">StatisticsFlowPanel</span>. It determines the layout and arrangement of the revenue cards displayed.</p>
 </div>
 <div class="paragraph">
-<p>Once the revenue observable list and boolean variables are passed into <span class="java">StatisitcsFlowPanel</span>, the function
+<p>Once the revenue observable list and boolean variables are passed into <span class="java">StatisticsFlowPanel</span>, the function
 checks which boolean variable is true. Lets assume that <span class="java">isDaily</span> is true for <code>daily</code> command. The function
-enters a while loop that iterates through the revenue list until at most 30 <span class="java">DailyRevenue</span> are created
-and added to an list of <span class="java">DailyRevenue</span>.</p>
+enters a while loop that iterates through the revenue list until at most 30 <span class="java">DailyRevenue</span> objects are created
+and added to a list of <span class="java">DailyRevenue</span>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1998,8 +1984,8 @@ and added to an list of <span class="java">DailyRevenue</span>.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The list of <span class="java">DailyRevenue</span> generated is sorted in a chronological descending order of the date.
-Hence, even if there are no revenue recorded on a specific date, a <span class="java">DailyRevenue</span> is still created and added to
+The list of <span class="java">DailyRevenue</span> generated is sorted in a reverse chronological order of the date.
+Hence, even if there are no revenue recorded on a specific date, a <span class="java">DailyRevenue</span> object is still created and added to
 the list.
 </td>
 </tr>
@@ -2044,7 +2030,7 @@ the list.
 - <strong>Cons</strong>: Might experience overflow of data in the user interface. User might have to scroll to the revenue<br></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Create additional <span class="java">[XXX]StatisticsCard</span> with $0 revenue.<br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create additional <span class="java">[XXX]StatisticsCard</span> with $0 revenue<br></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Display all <span class="java">[XXX]StatisticsCard</span> in chronological order.<br>
 - <strong>Pros</strong>: Gives user a bigger picture of the restaurant&#8217;s recent earning trends.<br>
 - <strong>Cons</strong>: Takes up space. It might be unnecessary information to the user.<br></p></td>
@@ -2057,8 +2043,8 @@ the list.
 <div class="paragraph">
 <p>The current implementation uses the designs in Alternative 1. However, in version 2.0, the application will take the
 pros of Alternative 2 designs and incorporate them to the current implementation. To help users better study the
-revenue trend, v2.0 will allow users to call the commands with an argument that indicates the month or year they want
-. The display will arrange the <span class="java">DailyStatisticsCard</span> in a calender view with 7 columns for each day. A limit
+revenue trends, v2.0 will allow users to call the commands with an argument that indicates the month or year that they want.
+The display will arrange the <span class="java">DailyStatisticsCard</span> in a calender view with 7 columns for each day. A limit
 of 31 <span class="java">DailyStatisticsCard</span> will be used to replicate a calendar and prevent overflowing.</p>
 </div>
 </div>
@@ -2083,10 +2069,9 @@ The diagram below illustrates the internal flow of actions for different argumen
 <div class="title">Figure 24. Revenue Internal Flow Diagram</div>
 </div>
 <div class="paragraph">
-<p>The above diagram summarizes the overall implementation of <span class="java">RevenueCommand</span>. Depending on the user
-arguments, the function creates a new <span class="java">Revenue</span> and iterate through the revenue list to search for revenue of
-the same year, month or day. If the revenue is the same as the new [.java#]Revenue#, its total revenue is added to the
-new <span class="java">Revenue</span>. After which, the new <span class="java">Revenue</span> is used to generate the <span class="java">CommandResult</span> output
+<p>The above diagram summarizes the overall implementation of <span class="java">RevenueCommand</span>. Depending on the user input, the function creates a new <span class="java">Revenue</span> object and iterates through the revenue list to search for revenue of
+the same year, month or day. If the revenue is the same as the new <span class="java">Revenue</span>, its total revenue is added to the
+new <span class="java">Revenue</span>. After which, the new <span class="java">Revenue</span> object is used to generate the <span class="java">CommandResult</span> output
 string where the calculated figure will be returned.</p>
 </div>
 </div>
@@ -2132,50 +2117,13 @@ restrict the day and month inputs to 2 digits.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Store months in string format in an Array<br>
 - <strong>Pros</strong>: Efficient and fast.<br>
 - <strong>Cons</strong>: Uses more temporary storage.<br></p>
-<p class="tableblock">We chose this design as it not only reduces the lines of codes, but also efficiently obtains the needed string.</p></td>
+<p class="tableblock">We chose this design as it not only reduces the lines of code, but also efficiently obtains the needed string.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Switch case<br>
 - <strong>Pros</strong>: Use less temporary storage.<br>
 - <strong>Cons</strong>: Checks through every case if it only passes the last case.<br></p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="sect4">
-<h5 id="validating-date"><a class="link" href="#validating-date">Validating Date</a></h5>
-<div class="paragraph">
-<p>Even though <span class="java">Year</span>, <span class="java">Month</span> and <span class="java">Day</span> have their own restrictions and validation checks, <span class="java">Date</span> is needed to check that the combination of the 3 objects produces a valid and exiting date in the
-calendar. One of the interesting checks is finding out which year is a lunar year that has 29 days in February.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">boolean</span> isLeapYear(<span class="predefined-type">String</span> year) {
-    requireNonNull(year);
-    <span class="keyword">return</span> (((<span class="predefined-type">Integer</span>.parseInt(year) % <span class="integer">4</span> == <span class="integer">0</span>) <i class="conum" data-value="1"></i><b>(1)</b>
-        &amp;&amp; (<span class="predefined-type">Integer</span>.parseInt(year) % <span class="integer">100</span> != <span class="integer">0</span>)) <i class="conum" data-value="2"></i><b>(2)</b>
-        || <span class="predefined-type">Integer</span>.parseInt(year) % <span class="integer">400</span> == <span class="integer">0</span>); <i class="conum" data-value="3"></i><b>(3)</b>
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In the method above, <span class="java">Year#isLeapYear</span> calculates the year that is a leap year. Let&#8217;s walk through this method
- to understand how it is calculated:</p>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>It checks that the year is a multiple of 4. (Since it occurs every 4 years)</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>It checks that the year is not a multiple of 100.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>It checks that the year is a multiple of 400.</td>
-</tr>
-</table>
-</div>
 </div>
 </div>
 </div>
@@ -2407,8 +2355,7 @@ One of: <span class="java">UserGuide</span>, <span class="java">DeveloperGuide</
 <div class="sect2">
 <h3 id="site-template"><a class="link" href="#site-template">5.6. Site Template</a></h3>
 <div class="paragraph">
-<p>The files in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/docs/stylesheets"><span class="java">docs/stylesheets</span></a> are the <a href="https://developer.mozilla" class="bare">https://developer.mozilla</a>
-.org/en-US/docs/Web/CSS[CSS stylesheets] of the site.
+<p>The files in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/docs/stylesheets"><span class="java">docs/stylesheets</span></a> are the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS stylesheets</a> of the site.
 You can modify them to change some properties of the site&#8217;s design.</p>
 </div>
 <div class="paragraph">
@@ -2596,8 +2543,7 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Update the version number in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/src/main/java/seedu/address/MainApp.java"><span class="java">MainApp
-.java</span></a>.</p>
+<p>Update the version number in <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/src/main/java/seedu/address/MainApp.java"><span class="java">MainApp.java</span></a>.</p>
 </li>
 <li>
 <p>Generate a JAR file <a href="UsingGradle.html#creating-the-jar-file">using Gradle</a>.</p>
@@ -3883,4 +3829,4 @@ Expected: Shows the GUI with no data.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 11:29:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 13:44:45 UTC</div></div></div></body></html>

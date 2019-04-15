@@ -500,7 +500,7 @@ If any of the item codes do not exist in the menu or if the new quantity exceeds
 </ul>
 </div>
 <div class="paragraph">
-<p>For all the mode-changing commands, these updates are done using a new <span class="java">toMode</span> attribute added to the <span class="java">CommandResult</span> object. As an example, the figure below shows the sequence diagram for when a user executes the <code>menuMode</code> command:</p>
+<p>For all these commands, these updates are done using a new <span class="java">toMode</span> attribute added to the <span class="java">CommandResult</span> object. As an example, the figure below shows the sequence diagram for when a user executes the <code>menuMode</code> command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -537,7 +537,7 @@ For commands that do not involve a change in mode, <span class="java">CommandRes
 <div class="sect4">
 <h5 id="ChangeToTableMode"><a class="link" href="#ChangeToTableMode">Changing to Table Mode for a specific table</a></h5>
 <div class="paragraph">
-<p>All the mode-changing commands take no parameters except for Table Mode. When the user wants to perform order-related operations (eg. add an item to the table&#8217;s order), the user will first have to switch to Table Mode by typing the <code>tableMode</code> command (or its shortcut <code>TM</code>) followed by the table number of the table that the user wants to perform actions on.</p>
+<p>All the commands that change modes take no parameters except for Table Mode. When the user wants to perform order-related operations (eg. add an item to the table&#8217;s order), the user will first have to switch to Table Mode by typing the <code>tableMode</code> command (or its shortcut <code>TM</code>) followed by the table number of the table that the user wants to perform actions on.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows the relevant parts of what happens when a user executes the <code>tableMode 3</code> command:</p>
@@ -549,7 +549,7 @@ For commands that do not involve a change in mode, <span class="java">CommandRes
 <div class="title">Figure 2. Component interactions for <code>tableMode 3</code> command</div>
 </div>
 <div class="paragraph">
-<p>The <span class="java">Logic</span> and <span class="java">UI</span> component interactions work in a similar way to the other mode-changing commands and the implementation is mentioned above. The only difference is the parsing of the argument <strong>3</strong> into a <span class="java">TableNumber</span> object that indicates the table number of the target table to switch to. This <span class="java">TableNumber</span> object is stored as an attribute in <span class="java">TableModeCommand</span>.</p>
+<p>The <span class="java">Logic</span> and <span class="java">UI</span> component interactions work in a similar way to the other commands that change modes and the implementation is mentioned above. The only difference is the parsing of the argument <strong>3</strong> into a <span class="java">TableNumber</span> object that indicates the table number of the target table to switch to. This <span class="java">TableNumber</span> object is stored as an attribute in <span class="java">TableModeCommand</span>.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s focus on what happens to the <span class="java">Model</span> component when <span class="java">TableModeCommand#execute()</span> is called. The relevant parts of the sequence diagram has been extracted out and shown in the diagram below.</p>
@@ -577,7 +577,7 @@ The list of tables are stored within the <span class="java">Tables</span> object
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<span class="java">TableModeCommand#execute()</span> also checks to ensure that the application is not already in Table Mode of the same table number, the table number specified is valid, and the desired table is occupied.
+<span class="java">TableModeCommand#execute()</span> also checks that the application is not already in Table Mode of the same table number, the table number specified is valid, and the desired table is occupied.
 </td>
 </tr>
 </table>
@@ -604,7 +604,7 @@ The list of tables are stored within the <span class="java">Tables</span> object
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defining of modes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Modes are defined using a <span class="java">Mode</span> enum.<br>
 - <strong>Pros</strong>: Easily identify incorrect modes since the set of valid modes is restricted to the enum values.<br>
-- <strong>Cons</strong>: Need to create a new class and increases coupling between Logic and UI components.</p>
+- <strong>Cons</strong>: Need to create a new class in Logic, which increases coupling between Logic and UI components.</p>
 <p class="tableblock">We decided to choose this option as the enum is an abstraction over the possible modes. Apart from being less prone to errors,
 it also makes the code more readable as the enum values explicitly state the name of the mode (eg. <span class="java">TABLE_MODE</span>, <span class="java">MENU_MODE</span>) and are stored
 in <span class="java">Mode</span> variables, making it clear that it refers to a mode and not just any string.</p></td>
@@ -620,17 +620,17 @@ in <span class="java">Mode</span> variables, making it clear that it refers to a
 <p class="tableblock">We decided to store the current mode in Logic because we note that most of the work that requires access to the current mode is done here, so providing a quick access will be more efficient.
 The Model component does not need to know what the current mode is at all, so it would be better to keep the coupling low to facilitate integration.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mode stored in the Model component (<span class="java">ModelManager</span>).<br>
-- <strong>Pros</strong>: Maintains abstraction as the mode is part of the current state of the application, which is maintained in Model.<br>
+- <strong>Pros</strong>: Maintains abstraction as the mode is part of the current state of the application, which is maintained by Model.<br>
 - <strong>Cons</strong>: Increases coupling among the Model, Logic and UI components.<br></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifying table number for Table Mode commands</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified once when switching to Table Mode, then retrieved from <span class="java">Model#getSelectedTable()</span> for future commands.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified only once when switching to Table Mode, then retrieved from <span class="java">Model#getSelectedTable()</span> for future commands.<br>
 - <strong>Pros</strong>: Convenient to retrieve table number without having to explicitly specify it in every command.<br>
-- <strong>Cons</strong>: Non-standardized mode-changing commands since the others do not have any parameters.</p>
+- <strong>Cons</strong>: Commands that change modes are not standardized since the others do not have any parameters.</p>
 <p class="tableblock">We decided to go ahead with this implementation as we feel that from a user&#8217;s point of view, it would be more convenient to be able to just specify the table number once and then perform a series of operations afterwards. Furthermore, having to parse the table number for every command will also do more work.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Table number specified for every command (eg. <code>addToOrder 3 W09 1</code> to add 1x W09 to table 3).<br>
-- <strong>Pros</strong>: All mode-changing commands are simple and similar.<br>
+- <strong>Pros</strong>: All commands that change modes are simple and similar.<br>
 - <strong>Cons</strong>: Makes the commands longer to type.</p></td>
 </tr>
 </tbody>
@@ -803,4 +803,4 @@ Furthermore, it also provides the benefit of arranging the order items across al
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 11:29:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 13:44:45 UTC</div></div></div></body></html>

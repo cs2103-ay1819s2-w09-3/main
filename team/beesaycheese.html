@@ -337,13 +337,13 @@ restaurant, represented by <span class="java">Revenue</span> objects. Each <span
 <div class="ulist">
 <ul>
 <li>
-<p><span class="java">Year</span> indicates the year revenue was earned</p>
+<p><span class="java">Year</span> indicates the year which the revenue was earned</p>
 </li>
 <li>
-<p><span class="java">Month</span> indicates the month revenue was earned</p>
+<p><span class="java">Month</span> indicates the month which the revenue was earned</p>
 </li>
 <li>
-<p><span class="java">Day</span> indicates the day revenue was earned</p>
+<p><span class="java">Day</span> indicates the day which the revenue was earned</p>
 </li>
 </ul>
 </div>
@@ -388,11 +388,11 @@ that specific date. These data are stored when the <a href="#Bill"><code>bill</c
 - <strong>Pros</strong>: Less storage space used.<br>
 - <strong>Cons</strong>: No record of bill. Impossible to retrieve receipts.<br></p>
 <p class="tableblock">In a restaurant, it is unlikely that a customer will request for a refund after consuming and paying for the meal.
-Even if there are complaints about the meal, they will demand for a newly cook dish before calling for the bill.
+Even if there are complaints about the meal, they will demand for a newly cooked dish before calling for the bill.
 Hence, we did not see the need to store receipts in the storage and chose this design.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Stores bill which comprises of the day, month, year, bill, table number and receipt.<br>
 - <strong>Pros</strong>: Able to retrieve data of bills.<br>
-- <strong>Cons</strong>: More storage space for lists of bills for each day.+</p></td>
+- <strong>Cons</strong>: More storage space for lists of bills for each day.</p></td>
 </tr>
 </tbody>
 </table>
@@ -406,16 +406,16 @@ Hence, we did not see the need to store receipts in the storage and chose this d
 </div>
 <div class="paragraph">
 <p>Once the <code>bill</code> command is called, it will internally switch to <a href="#BillMode">Bill Mode</a> where the receipt of
- the specified table is displayed. Concurrently, the bill mechanism excesses functions from Table, Order, Menu and
- Statistics to execute the following:</p>
+ the specified table is displayed. Concurrently, the bill mechanism accesses functions from <span class="java">Tables</span>, <span class="java">Orders</span>, <span class="java">Menu</span> and
+ <span class="java">Statistics</span> to execute the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Table</strong>: Updates specified table&#8217;s occupancy to accomodate new customers.</p>
+<p><strong>Table</strong>: Updates specified table&#8217;s occupancy to accommodate new customers.</p>
 </li>
 <li>
-<p><strong>Order</strong>: Clears the order list unique to the specified table.</p>
+<p><strong>Order</strong>: Clears the order list that belongs to the specified table.</p>
 </li>
 <li>
 <p><strong>Menu</strong>: Saves the quantity of menu items ordered in the Menu storage (/data/menu.json).</p>
@@ -428,7 +428,7 @@ Hence, we did not see the need to store receipts in the storage and chose this d
 <div class="sect4">
 <h5 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h5>
 <div class="paragraph">
-<p>The main crust of Bill mechanism is implemented in <span class="java">BillCommand</span>. Just like any other commands, <span class="java">BillCommand#execute()</span> overrides
+<p>The main crux of Bill mechanism is implemented in <span class="java">BillCommand</span>. Just like any other commands, <span class="java">BillCommand#execute()</span> overrides
 <span class="java">Command#execute()</span> which is called in <span class="java">LogicManager</span>. It takes in the current mode, model and command
 history which will provide the necessary functions it will need to execute the command properly with the following
 operations:</p>
@@ -445,7 +445,7 @@ existing <span class="java">Revenue</span> in the <span class="java">Statistics#
 </li>
 <li>
 <p><span class="java">BillCommand#updateStatusOfTable()</span>&#8201;&#8212;&#8201;Updates the occupancy of the specified table to indicate that it has
-zero pax and resets the selected table to null.</p>
+zero customers and resets the selected table to null.</p>
 </li>
 <li>
 <p><span class="java">Model#clearOrderItemsFrom()</span>&#8201;&#8212;&#8201;Clears the order list to prepare for the next customer.</p>
@@ -457,9 +457,9 @@ zero pax and resets the selected table to null.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Bill_SequenceDiagram.png" alt="Bill SequenceDiagram" width="700">
+<img src="../images/Bill_SequenceDiagram.png" alt="Bill SequenceDiagram" width="800">
 </div>
-<div class="title">Figure 2. Sequence diagram for executing the bill command</div>
+<div class="title">Figure 2. Sequence diagram for executing the <code>bill</code> command</div>
 </div>
 <div class="paragraph">
 <p>To give you a better understanding of the sequence diagram, the following is a usage scenario and how the bill
@@ -482,17 +482,17 @@ Let&#8217;s assume that the user is in Table Mode 1. This means Table 1 is the s
 </div>
 <div class="paragraph">
 <p><strong>Step 2.</strong>
-Given that the command passes all checks, the user can successfully run <span class="java">BillCommand#calculateBill()</span> to assign a new calculated bill to <span class="java">BillCommand#tableToBill</span>. Let&#8217;s
+Given that the command passes all checks, the user can successfully run <span class="java">BillCommand#calculateBill()</span> to assign a new calculated bill to the <span class="java">tableToBill</span> attribute. Let&#8217;s
 refer to the function&#8217;s sequence diagram below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Bill_CalculateBill.png" alt="Bill CalculateBill" width="700">
+<img src="../images/Bill_CalculateBill.png" alt="Bill CalculateBill" width="800">
 </div>
 <div class="title">Figure 3. Sequence diagram for calculating the bill</div>
 </div>
 <div class="paragraph">
-<p><span class="java">BillCommand#calculateBill()</span> calls both <span class="java">Model#getFilteredOrderItemList</span> and <span class="java">ReadOnlyRestOrRant#getMenu()</span> to obtain the table’s list of orders and the restaurant’s menu.
+<p><span class="java">BillCommand#calculateBill()</span> calls both <span class="java">Model#getFilteredOrderItemList()</span> and <span class="java">ReadOnlyRestOrRant#getMenu()</span> to obtain the table’s list of orders and the restaurant’s menu.
 After which, it iterates through the list of orders to obtain individual <span class="java">OrderItem</span> and
 executes the following in each iteration:</p>
 </div>
@@ -518,24 +518,24 @@ executes the following in each iteration:</p>
 <div class="paragraph">
 <p>After iterating through the list of orders, <span class="java">receipt</span> appends the final calculation of the total
 bill and the function returns a new <span class="java">Bill</span> that contains the updated <span class="java">tableNumber</span>, <span class="java">totalBill</span> and
-<span class="java">receipt</span>. This new <span class="java">Bill</span> will be assigned to <span class="java">BillCommand#bill</span> and passed into <span class="java">Model#setRecentBill()</span> to update the Model&#8217;s recent bill (This step is needed when changing the user interface to Bill Mode).</p>
+<span class="java">receipt</span>. This new <span class="java">Bill</span> will be assigned to the <span class="java">bill</span> attribute and passed into <span class="java">Model#setRecentBill()</span> to update the Model&#8217;s recent bill (This step is needed when changing the user interface to Bill Mode).</p>
 </div>
 <div class="paragraph">
-<p>Now that <span class="java">BillCommand#bill</span> is updated, it is passed into <span class="java">BillCommand#createOrUpdateRevenue()</span> to store the calculated bill in <span class="java">Statistics#revenueList</span>. Refer to the function&#8217;s sequence diagram below.</p>
+<p>Now that <span class="java">bill</span> is updated, it is passed into <span class="java">BillCommand#createOrUpdateRevenue()</span> to store the calculated bill in <span class="java">Statistics#revenueList</span>. Refer to the function&#8217;s sequence diagram below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Bill_CreateOrUpdateRevenue.png" alt="Bill CreateOrUpdateRevenue" width="550">
+<img src="../images/Bill_CreateOrUpdateRevenue.png" alt="Bill CreateOrUpdateRevenue" width="700">
 </div>
 <div class="title">Figure 4. Sequence diagram for creating or updating revenue in the Statistics revenue list</div>
 </div>
 <div class="paragraph">
 <p>As shown above, <span class="java">BillCommand#createOrUpdateRevenue()</span> creates a <span class="java">DailyRevenue</span> with the bill&#8217;s year, month and day.
- It checks if the newly created <span class="java">DailyRevenue</span> exists in the <span class="java">Statistics#revenueList</span> via <span class="java">Model#hasRevenue()</span>.
+ It checks if the newly created <span class="java">DailyRevenue</span> exists in the <span class="java">revenueList</span> via <span class="java">Model#hasRevenue()</span>.
 If it is true that <span class="java">DailyRevenue</span> exists, the function iterates through the <span class="java">Model#getFilteredRevenueList()</span> and searches for a an existing <span class="java">Revenue</span> that has the same year, month and
 day as the <span class="java">DailyRevenue</span>. Once the <span class="java">Revenue</span> is found, <span class="java">Revenue#addToRevenue()</span> is used to add the
  total bill of the <span class="java">DailyRevenue</span> into <span class="java">Revenue</span>. Otherwise, the <span class="java">DailyRevenue</span> is added into
-  the <span class="java">Statistics#revenueList</span> via <span class="java">Model#addRevenue()</span>.</p>
+  the <span class="java">revenueList</span> via <span class="java">Model#addRevenue()</span>.</p>
 </div>
 <div class="paragraph">
 <p>Now, that the necessary data are updated in the internal list of Menu and Statistics, <span class="java">BillCommand#execute()</span>
@@ -544,7 +544,7 @@ new customers.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Bill_UpdateStatusOfTable.png" alt="Bill UpdateStatusOfTable" width="550">
+<img src="../images/Bill_UpdateStatusOfTable.png" alt="Bill UpdateStatusOfTable" width="700">
 </div>
 <div class="title">Figure 5. Sequence diagram for updating the status of the table</div>
 </div>
@@ -559,7 +559,7 @@ Tables, Orders, Menu and Statistics data have been modified via <span class="jav
 the <span class="java">CommandResult</span> to <span class="java">LogicManager#excute()</span> where the it will check if the Tables, Orders, Menu
 and Statistics data have been modified and updates the storage accordingly. The same <span class="java">CommandResult</span> is
 returned to <span class="java">MainWindow#executeCommand()</span> where the user interface switches to Bill Mode to display the
-receipt of the recent Bill.</p>
+receipt of the recent <span class="java">Bill</span>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -568,14 +568,11 @@ receipt of the recent Bill.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Internally the program switches to Bill Mode. However, this mode is not shown to the user as a Table Mode to avoid
+Internally the program switches to Bill Mode. However, this mode is shown to the user as Table Mode to avoid
 confusion.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p><strong>Step 3.</strong> Once the user is in Bill Mode, they can execute and mode commands like <code>RM</code>, <code>TM</code> and <code>MM</code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -597,7 +594,7 @@ confusion.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Design calculateBill()</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Iterates through the <span class="java">FilteredOrderItemList</span> once to append the receipt, update quantity ordered of
-the Menu Items in <span class="java">Menu#menuItems</span> and calculate the bill.<br>
+the items in <span class="java">Menu</span> and calculate the bill.<br>
 - <strong>Pros</strong>: Efficient as it only iterates through the list once.<br>
 - <strong>Cons</strong>: The code can be further break into different functions.<br></p>
 <p class="tableblock">We chose this design to prioritize efficiency in this use case. Since <code>bill</code> command is only
@@ -614,4 +611,4 @@ items, this design will be impractical.<br></p></td>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 11:29:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 13:44:45 UTC</div></div></div></body></html>
