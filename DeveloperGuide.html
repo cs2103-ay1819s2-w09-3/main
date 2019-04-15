@@ -40,7 +40,7 @@
 <li><a href="#mode-system">4.1. Mode System</a>
 <ul class="sectlevel3">
 <li><a href="#modes">4.1.1. Modes</a></li>
-<li><a href="#current-implementation">4.1.2. Current Implementation</a>
+<li><a href="#ChangeMode">4.1.2. Current Implementation</a>
 <ul class="sectlevel4">
 <li><a href="#changing-modes-in-general">Changing modes in general</a></li>
 <li><a href="#ChangeToTableMode">Changing to Table Mode for a specific table</a></li>
@@ -53,7 +53,7 @@
 <ul class="sectlevel3">
 <li><a href="#EditPax">4.2.1. Edit pax at a table</a>
 <ul class="sectlevel4">
-<li><a href="#current-implementation-2">Current Implementation</a></li>
+<li><a href="#current-implementation">Current Implementation</a></li>
 <li><a href="#design-considerations-2">Design Considerations</a></li>
 </ul>
 </li>
@@ -67,7 +67,7 @@
 <li><a href="#DeleteFromOrder">4.3.4. Deleting from an order</a></li>
 <li><a href="#ClearOrder">4.3.5. Clearing an order</a>
 <ul class="sectlevel4">
-<li><a href="#current-implementation-3">Current Implementation</a></li>
+<li><a href="#current-implementation-2">Current Implementation</a></li>
 <li><a href="#design-considerations-3">Design Considerations</a></li>
 </ul>
 </li>
@@ -78,17 +78,33 @@
 <ul class="sectlevel3">
 <li><a href="#AddToMenu">4.4.1. Adding to menu</a>
 <ul class="sectlevel4">
-<li><a href="#current-implementation-4">Current Implementation</a></li>
+<li><a href="#current-implementation-3">Current Implementation</a></li>
 <li><a href="#design-considerations-4">Design Considerations</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#statistics-feature">4.5. Statistics feature</a>
+<li><a href="#Statistics">4.5. Statistics feature</a>
 <ul class="sectlevel3">
-<li><a href="#Bill">4.5.1. Billing an order</a>
+<li><a href="#StatsClasses">4.5.1. Classes for Statistics feature in Model</a></li>
+<li><a href="#StatsStorage">4.5.2. Design Considerations for Statistics Storage</a></li>
+<li><a href="#Bill">4.5.3. Billing an order</a>
+<ul class="sectlevel4">
+<li><a href="#current-implementation-4">Current Implementation</a></li>
+<li><a href="#design-considerations-5">Design Considerations</a></li>
+</ul>
+</li>
+<li><a href="#Trends">4.5.4. Changing Statistics Mode display</a>
 <ul class="sectlevel4">
 <li><a href="#current-implementation-5">Current Implementation</a></li>
+<li><a href="#design-considerations-6">Design Considerations</a></li>
+</ul>
+</li>
+<li><a href="#Revenue">4.5.5. Getting the revenue</a>
+<ul class="sectlevel4">
+<li><a href="#current-implementation-6">Current Implementation</a></li>
+<li><a href="#design-considerations-7">Design Considerations</a></li>
+<li><a href="#validating-date">Validating Date</a></li>
 </ul>
 </li>
 </ul>
@@ -136,7 +152,7 @@
 <li><a href="#tables-feature-2">F.3. Tables feature</a></li>
 <li><a href="#menu-feature-2">F.4. Menu feature</a></li>
 <li><a href="#orders-feature-2">F.5. Orders feature</a></li>
-<li><a href="#statistics-feature-2">F.6. Statistics feature</a></li>
+<li><a href="#statistics-feature">F.6. Statistics feature</a></li>
 <li><a href="#data-storage">F.7. Data storage</a></li>
 </ul>
 </li>
@@ -311,7 +327,8 @@ Do not disable them. If you have disabled them, go to <span class="menuseq"><b c
 This will generate all resources required by the application and tests.</p>
 </li>
 <li>
-<p>Open <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/MainWindow.java"><span class="java">MainWindow.java</span></a> and check for any code errors</p>
+<p>Open <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/src/main/java/seedu/address/ui/MainWindow.java"><span class="java">MainWindow.java</span></a> and check for
+any code errors</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -324,7 +341,9 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </li>
 <li>
-<p>Repeat this for the test folder as well (e.g. check <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/test/java/seedu/address/ui/HelpWindowTest.java"><span class="java">HelpWindowTest.java</span></a> for code errors, and if so, resolve it the same way)</p>
+<p>Repeat this for the test folder as well (e.g. check
+<a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/src/test/java/seedu/address/ui/HelpWindowTest.java"><span class="java">HelpWindowTest.java</span></a> for code
+errors, and if so, resolve it the same way)</p>
 </li>
 </ol>
 </div>
@@ -569,7 +588,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 4. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/ui/Ui.java"><span class="java">Ui.java</span></a></p>
+<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/src/main/java/seedu/address/ui/Ui.java"><span class="java">Ui.java</span></a></p>
 </div>
 <div class="paragraph">
 <p>The UI consists of a <span class="java">MainWindow</span> that is made up of parts such as <span class="java">CommandBox</span>, <span class="java">ResultDisplay</span> and <span class="java">StatusBarFooter</span>. All these, including the <span class="java">MainWindow</span>, inherit from the abstract <span class="java">UiPart</span> class. Not all the parts are displayed to the user at the same time (eg. <span class="java">TableFlowPanel</span> is not shown together with <span class="java">StatisticsFlowPanel</span>). The parts that are shown depends on the <a href="#modes">mode</a>.</p>
@@ -604,7 +623,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/logic/Logic.java"><span class="java">Logic.java</span></a></p>
+<a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/src/main/java/seedu/address/logic/Logic.java"><span class="java">Logic.java</span></a></p>
 </div>
 <div class="ulist">
 <ul>
@@ -647,7 +666,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/model/Model.java"><span class="java">Model.java</span></a></p>
+<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/src/main/java/seedu/address/model/Model.java"><span class="java">Model.java</span></a></p>
 </div>
 <div class="paragraph">
 <p>The <span class="java">Model</span> :</p>
@@ -681,7 +700,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 8. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/src/main/java/seedu/address/storage/Storage.java"><span class="java">Storage.java</span></a></p>
+<p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w09-3/main/blob/master/src/main/java/seedu/address/storage/Storage.java"><span class="java">Storage.java</span></a></p>
 </div>
 <div class="paragraph">
 <p>The <span class="java">Storage</span> component:</p>
@@ -733,14 +752,14 @@ The following class plays an important role at the architecture level:</p>
 <p><strong>Menu Mode</strong> - perform <a href="#menu-feature">menu-related operations</a> on the restaurant&#8217;s menu</p>
 </li>
 <li>
-<p><strong>Statistics Mode</strong> - perform <a href="#statistics-feature">queries</a> to retrieve the restaurant&#8217;s statistics</p>
+<p><strong>Statistics Mode</strong> - perform <a href="#Statistics">queries</a> to retrieve the restaurant&#8217;s statistics</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>To use the different features, we have also implemented mode-changing commands for users to switch between the 4 user modes.</p>
 </div>
-<div class="paragraph">
+<div id="BillMode" class="paragraph">
 <p>There is also a <strong>Bill Mode</strong> available for your use as a developer, although the existence of this mode is not shared with the users. The Bill Mode displays the receipt and is only used after the <code>bill</code> command is executed in RestOrRant.</p>
 </div>
 <div class="admonitionblock note">
@@ -750,14 +769,14 @@ The following class plays an important role at the architecture level:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Although the <code>bill</code> command is used in Table Mode, it is considered a <a href="#statistics-feature">Statistics feature</a> rather than an Orders feature as it involves calculation for the revenue.
+Although the <code>bill</code> command is used in Table Mode, it is considered a <a href="#Statistics">Statistics feature</a> rather than an Orders feature as it involves calculation for the revenue.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">4.1.2. Current Implementation</a></h4>
+<h4 id="ChangeMode"><a class="link" href="#ChangeMode">4.1.2. Current Implementation</a></h4>
 <div class="sect4">
 <h5 id="changing-modes-in-general"><a class="link" href="#changing-modes-in-general">Changing modes in general</a></h5>
 <div class="paragraph">
@@ -916,7 +935,7 @@ The Model component does not need to know what the current mode is at all, so it
 <div class="sect3">
 <h4 id="EditPax"><a class="link" href="#EditPax">4.2.1. Edit pax at a table</a></h4>
 <div class="sect4">
-<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
+<h5 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The edit pax mechanism is facilitated by <code>UniqueTableList</code>. It stores the all tables currently in the system and ensures that there are no duplicated tables. Additionally, it implements the following operations:</p>
 </div>
@@ -1147,7 +1166,7 @@ If the <span class="java">OrderItem</span> is found, it will be deleted from the
 <p>The user may want to remove all the order items from a specific table&#8217;s order and this can be done with the <code>clearOrder</code> command.</p>
 </div>
 <div class="sect4">
-<h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
+<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
 <div class="paragraph">
 <p>When the user enters the <code>clearOrder</code> command, the command is parsed and a <span class="java">ClearOrderCommand</span> object is created.</p>
 </div>
@@ -1254,7 +1273,7 @@ If the <span class="java">OrderItem</span> is found and the quantity served is v
 <div class="sect3">
 <h4 id="AddToMenu"><a class="link" href="#AddToMenu">4.4.1. Adding to menu</a></h4>
 <div class="sect4">
-<h5 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h5>
+<h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The menu items in the menu are stored as a list. Adding a new menu item to the menu is done by adding to the existing list.</p>
 </div>
@@ -1337,80 +1356,254 @@ This action can only be done in Menu Mode. If not in Menu Mode currently , users
 </div>
 </div>
 <div class="sect2">
-<h3 id="statistics-feature"><a class="link" href="#statistics-feature">4.5. Statistics feature</a></h3>
+<h3 id="Statistics"><a class="link" href="#Statistics">4.5. Statistics feature</a></h3>
+<div class="paragraph">
+<p>The Statistics feature allows users to perform queries that deal with the restaurant&#8217;s statistical data, mainly the
+revenue earned and the popularity of menu items. With Statistics feature, restaurant front-end staffs can bill the
+customers' orders and automatically save the revenue in the restaurant&#8217;s statistics storage using the <a href="#Bill"><code>bill</code></a>
+ command.
+Other commands like <a href="#Trends"><code>yearly</code></a>, <a href="#Trends"><code>monthly</code></a>, <a href="#Trends"><code>daily</code></a> and <a href="#Revenue"><code>revenue</code></a>
+commands allow the manager to retrieve and study the restaurant&#8217;s statistical data trends.<br></p>
+</div>
 <div class="sect3">
-<h4 id="Bill"><a class="link" href="#Bill">4.5.1. Billing an order</a></h4>
-<div class="sect4">
-<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
+<h4 id="StatsClasses"><a class="link" href="#StatsClasses">4.5.1. Classes for Statistics feature in Model</a></h4>
 <div class="paragraph">
-<p>The Bill mechanism can only be executed under the <code>TableMode</code>. After which, it switches to <code>BillMode</code> which changes the UI to display a receipt of the bill specific to the table selected in TableMode.</p>
+<p>The Statistics feature was implemented with the introduction of a new set of classes to <span class="java">Model</span>.
+A new <span class="java">Statistics</span> class encapsulates all the methods and classes related to this feature. It also contains a
+listener that is used to update the storage when any modification is made to the statistics. The <span class="java">Statistics</span>
+object is stored in <span class="java">RestOrRant</span> and it exposes a read-only interface <span class="java">ReadOnlyStatistics</span> to allow the
+other components to retrieve statistics-related information while maintaining data integrity.</p>
 </div>
 <div class="paragraph">
-<p>The main crust of Bill mechanism is implemented in <code>BillCommand</code>. <code>BillCommand#execute()</code> overrides <code>Command#execcute()</code> which is called in <code>LogicManger</code>. It takes in the current mode, model and command history which will provide the necessary functions it will need to execute the command properly.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, it implements the following operations:</p>
+<p><span class="java">Statistics</span> contains a <span class="java">RevenueList</span>, which contains a list of all the revenue recorded in the
+restaurant, represented by <span class="java">Revenue</span> objects. Each <span class="java">Revenue</span> object consists of 3 objects:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>BillCommand#calculateBill()</code>&#8201;&#8212;&#8201;Calculates the total bill from the order list that is unique to a table.</p>
+<p><span class="java">Year</span> indicates the year revenue was earned</p>
 </li>
 <li>
-<p><code>BillCommand#updateDailyRevenue()</code>&#8201;&#8212;&#8201;Either saves the bill as a new <code>DailyRevenue</code>  or updates the <code>DailyRevenue</code> that is existing in its Statistics storage.</p>
+<p><span class="java">Month</span> indicates the month revenue was earned</p>
 </li>
 <li>
-<p><code>BillCommand#updateStatusOfTable()</code>&#8201;&#8212;&#8201;Updates the status of the table to indicate that it is empty.</p>
-</li>
-<li>
-<p><code>BillCommand#updateOrderList()</code>&#8201;&#8212;&#8201;Clears the order list to prepare for the next customer.</p>
+<p><span class="java">Day</span> indicates the day revenue was earned</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The <code>bill</code> or <code>b</code> command is executed in 2 simple steps. Given below is an example usage scenario and how the bill mechanism behaves at each step.</p>
+<p><span class="java">YearlyRevenue</span>, <span class="java">MonthlyRevenue</span> and  <span class="java">DailyRevenue</span> are classes that extends <span class="java">Revenue</span> to inherit its properties.
+Hence, they are all uniquely identified by <span class="java">Year</span>, <span class="java">Month</span> and <span class="java">Day</span>.
+Similarly, <span class="java">Date</span> and <span class="java">Bill</span> also consists and are identified by the above 3 objects.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. Users are only allowed to use the <code>bill/b</code> command in <strong>TableMode</strong>. When they enter the <code>TableMode 1</code> command, the program calls for <code>Model#setselectedTable()</code> to set the current table to Table 1 and change the UI display to the menu and the table’s list of orders as shown below:</p>
+<p>The Statistics Class Diagram below shows the relationship between the classes.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/TableMode.png" alt="TableMode" width="800">
+<img src="images/Statistics_ModelClassDiagram.png" alt="Statistics ModelClassDiagram" width="700">
 </div>
+<div class="title">Figure 15. Statistics Class diagram in Model component</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="StatsStorage"><a class="link" href="#StatsStorage">4.5.2. Design Considerations for Statistics Storage</a></h4>
+<div class="paragraph">
+<p>The data stored in <span class="java">Storage</span> (/data/statistics.json) only encompasses Day, Month, Year and Revenue earned on
+that specific date. These data are stored when the <a href="#Bill"><code>bill</code></a> command is called.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Storage of statistical data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stores daily revenue which comprises of day, month, year and revenue.<br>
+- <strong>Pros</strong>: Less storage space used.<br>
+- <strong>Cons</strong>: No record of bill. Impossible to retrieve receipts.<br></p>
+<p class="tableblock">In a restaurant, it is unlikely that a customer will request for a refund after consuming and paying for the meal.
+Even if there are complaints about the meal, they will demand for a newly cook dish before calling for the bill.
+Hence, we did not see the need to store receipts in the storage and chose this design.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stores bill which comprises of the day, month, year, bill, table number and receipt.<br>
+- <strong>Pros</strong>: Able to retrieve data of bills.<br>
+- <strong>Cons</strong>: More storage space for lists of bills for each day.+</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="Bill"><a class="link" href="#Bill">4.5.3. Billing an order</a></h4>
+<div class="paragraph">
+<p>Each <span class="java">Bill</span> is unique to a Table. Hence, the <code>bill</code> mechanism can only be executed under Table Mode.
+ The <span class="java">Table</span> and its <span class="java">TableNumber</span> was specified when <a href="#ChangeToTableMode">switching over to Table Mode</a>.
+  The way <span class="java">TableNumber</span> is specified is <a href="#CurrentTable">explained in Orders feature</a>.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>bill</code> command to bill the orders of the current Table. The <code>bill</code> command gets the details of the current table using <code>Model#getSelectedTable()</code> and checks that the table exists. If it is true that the table exists, it calls both <code>Model#getFilteredOrderItemList</code> and <code>ReadOnlyRestOrRant#geMenu()</code> to obtain the table’s list of orders and the restaurant’s menu to pass into <code>BillCommand#calculateBill()</code>.</p>
+<p>Once the <code>bill</code> command is called, it will internally switch to <a href="#BillMode">Bill Mode</a> where the receipt of
+ the specified table is displayed. Concurrently, the bill mechanism excesses functions from Table, Order, Menu and
+ Statistics to execute the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Table</strong>: Updates specified table&#8217;s occupancy to accomodate new customers.</p>
+</li>
+<li>
+<p><strong>Order</strong>: Clears the order list unique to the specified table.</p>
+</li>
+<li>
+<p><strong>Menu</strong>: Saves the quantity of menu items ordered in the Menu storage (/data/menu.json).</p>
+</li>
+<li>
+<p><strong>Statistics</strong>: Saves the revenue in the Statistics Storage (/data/statistics.json).</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The main crust of Bill mechanism is implemented in <span class="java">BillCommand</span>. Just like any other commands, <span class="java">BillCommand#execute()</span> overrides
+<span class="java">Command#execute()</span> which is called in <span class="java">LogicManager</span>. It takes in the current mode, model and command
+history which will provide the necessary functions it will need to execute the command properly with the following
+operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="java">BillCommand#calculateBill()</span>&#8201;&#8212;&#8201;Creates a bill with a receipt of all menu items ordered and updates the
+quantity of menu items ordered in <span class="java">Menu#menuItems</span>.</p>
+</li>
+<li>
+<p><span class="java">BillCommand#createOrUpdateRevenue()</span>&#8201;&#8212;&#8201;Either saves the bill as a new <span class="java">DailyRevenue</span> or updates an
+existing <span class="java">Revenue</span> in the <span class="java">Statistics#revenueList</span>.</p>
+</li>
+<li>
+<p><span class="java">BillCommand#updateStatusOfTable()</span>&#8201;&#8212;&#8201;Updates the occupancy of the specified table to indicate that it has
+zero pax and resets the selected table to null.</p>
+</li>
+<li>
+<p><span class="java">Model#clearOrderItemsFrom()</span>&#8201;&#8212;&#8201;Clears the order list to prepare for the next customer.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p><code>BillCommand#calculateBill()</code> will iterate through the <code>orderItemList</code> to obtain individual <code>orderItems</code> and execute the following in each iteration:
-* Obtain the <code>menuItem</code> by passing the code of the OrderItem into <code>Menu#getItemFromCode</code>.
-* Create a <code>Receipt</code> that appends the <code>MenuItem#getCode()</code>, <code>MenuItem#getName()</code>, <code>MenuItem#getPrice()</code> and <code>OrderItem#getQuantity()</code>.
-* Add the price of each dish multiplied by the quantity ordered to the bill.</p>
-</div>
-<div class="paragraph">
-<p>After the iterating through the <code>orderItemList</code>, the receipt will append the final calculation of the total bill and the function will return a new Bill that contains the updated <code>tableNumber</code>, <code>totalBill</code> and <code>receipt</code>. This new Bill will be assigned as the recent bill that was created via <code>Model#setRecentBill()</code>. Format of the receipt should be as follows:</p>
+<p>This sequence diagram provides an overview of how the operations above work together to execute <code>bill</code> command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/BillReceipt.png" alt="BillReceipt" width="300">
+<img src="images/Bill_SequenceDiagram.png" alt="Bill SequenceDiagram" width="700">
 </div>
-</div>
-<div class="paragraph">
-<p>Now that the bill is calculated, the <code>BillCommand</code> has to store the calculated data in the <code>Statistics</code> storage. If a <code>DailyRevenue</code> with the same <code>Day</code>, <code>Month</code> and <code>Year</code> exists in the <code>DailyRevenueList</code>, the program calls <code>BillCommand#updateDailyRevenue()</code> to add the total bill to the recorded total daily revenue. On the other hand, if no matching Daily Revenue is found, the program will create a new Daily Revenue from the details of the new bill and store it in the statistics storage using <code>Model#addDailyRevenue</code>.</p>
+<div class="title">Figure 16. Sequence diagram for executing the bill command</div>
 </div>
 <div class="paragraph">
-<p><code>BillCommand#updateStatusOfTable()</code> takes in the <code>Model</code> as an argument and creates a new Table with the updated <code>TableStatus</code>. This is done by calling <code>TableStatus#changeOccupancy(). After which, `Model#setTable()</code> is called to replace the current <code>Table</code> with the new <code>Table</code> that has the updated <code>TableStatus</code>.</p>
+<p>To give you a better understanding of the sequence diagram, the following is a usage scenario and how the bill
+mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Lastly, <code>BillCommand#updateOrderList</code> is called to empty the order list of the current <code>Table</code>. Below is illustrates the final result that derived from executing the <code>bill</code> command.</p>
+<p><strong>Step 1.</strong>
+Let&#8217;s assume that the user is in Table Mode 1. This means Table 1 is the selected table. Before the
+<code>bill</code> command can be executed successfully, <span class="java">BillCommand#execute()</span> conducts 2 checks.<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Checks that current table obtained from <span class="java">Model#getSelectedTable()</span> exists.</p>
+</li>
+<li>
+<p>Checks that all order items in <span class="java">Model#getFilteredOrderItemList()</span> have been served. The status of the order item is determined via <span class="java">Model#getOrderItemStatus()</span>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Step 2.</strong>
+Given that the command passes all checks, the user can successfully run <span class="java">BillCommand#calculateBill()</span> to assign a new calculated bill to <span class="java">BillCommand#tableToBill</span>. Let&#8217;s
+refer to the function&#8217;s sequence diagram below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/BillMode.png" alt="BillMode" width="650">
+<img src="images/Bill_CalculateBill.png" alt="Bill CalculateBill" width="700">
 </div>
+<div class="title">Figure 17. Sequence diagram for calculating the bill</div>
 </div>
 <div class="paragraph">
-<p>Step 3. Once the user is in BillMode, they can change their execute any commands that are related to StatisticsMode or manually change their mode to <code>Restaurant Mode</code>, <code>TableMode</code> and <code>MenuMode</code>.</p>
+<p><span class="java">BillCommand#calculateBill()</span> calls both <span class="java">Model#getFilteredOrderItemList</span> and <span class="java">ReadOnlyRestOrRant#getMenu()</span> to obtain the table’s list of orders and the restaurant’s menu.
+After which, it iterates through the list of orders to obtain individual <span class="java">OrderItem</span> and
+executes the following in each iteration:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Gets <span class="java">MenuItem</span> by passing the code of the <span class="java">OrderItem</span> into <span class="java">Menu#getItemFromCode()</span>.</p>
+</li>
+<li>
+<p>Retrieves the quantity of <span class="java">OrderItem</span> ordered using <span class="java">OrderItem#getQuantityOrdered()</span>.</p>
+</li>
+<li>
+<p>Updates the quantity of menu item ordered using <span class="java">ReadOnlyMenu#updateMenuItemQuantity()</span>.</p>
+</li>
+<li>
+<p>Creates a <span class="java">receipt</span> that appends the <span class="java">MenuItem#getCode()</span>, <span class="java">MenuItem#getName()</span>, <span class="java">MenuItem#getPrice()</span> and the quantity retrieved previously.</p>
+</li>
+<li>
+<p>Adds the price of each <span class="java">MenuItem</span> multiplied by the quantity ordered to the total bill.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After iterating through the list of orders, <span class="java">receipt</span> appends the final calculation of the total
+bill and the function returns a new <span class="java">Bill</span> that contains the updated <span class="java">tableNumber</span>, <span class="java">totalBill</span> and
+<span class="java">receipt</span>. This new <span class="java">Bill</span> will be assigned to <span class="java">BillCommand#bill</span> and passed into <span class="java">Model#setRecentBill()</span> to update the Model&#8217;s recent bill (This step is needed when changing the user interface to Bill Mode).</p>
+</div>
+<div class="paragraph">
+<p>Now that <span class="java">BillCommand#bill</span> is updated, it is passed into <span class="java">BillCommand#createOrUpdateRevenue()</span> to store the calculated bill in <span class="java">Statistics#revenueList</span>. Refer to the function&#8217;s sequence diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Bill_CreateOrUpdateRevenue.png" alt="Bill CreateOrUpdateRevenue" width="550">
+</div>
+<div class="title">Figure 18. Sequence diagram for creating or updating revenue in the Statistics revenue list</div>
+</div>
+<div class="paragraph">
+<p>As shown above, <span class="java">BillCommand#createOrUpdateRevenue()</span> creates a <span class="java">DailyRevenue</span> with the bill&#8217;s year, month and day.
+ It checks if the newly created <span class="java">DailyRevenue</span> exists in the <span class="java">Statistics#revenueList</span> via <span class="java">Model#hasRevenue()</span>.
+If it is true that <span class="java">DailyRevenue</span> exists, the function iterates through the <span class="java">Model#getFilteredRevenueList()</span> and searches for a an existing <span class="java">Revenue</span> that has the same year, month and
+day as the <span class="java">DailyRevenue</span>. Once the <span class="java">Revenue</span> is found, <span class="java">Revenue#addToRevenue()</span> is used to add the
+ total bill of the <span class="java">DailyRevenue</span> into <span class="java">Revenue</span>. Otherwise, the <span class="java">DailyRevenue</span> is added into
+  the <span class="java">Statistics#revenueList</span> via <span class="java">Model#addRevenue()</span>.</p>
+</div>
+<div class="paragraph">
+<p>Now, that the necessary data are updated in the internal list of Menu and Statistics, <span class="java">BillCommand#execute()</span>
+calls <span class="java">BillCommand#updateStatusOfTable()</span> and  <span class="java">Model#clearOrderItemsFrom()</span> to make the table available for
+new customers.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Bill_UpdateStatusOfTable.png" alt="Bill UpdateStatusOfTable" width="550">
+</div>
+<div class="title">Figure 19. Sequence diagram for updating the status of the table</div>
+</div>
+<div class="paragraph">
+<p><span class="java">BillCommand#updateStatusOfTable()</span> updates the table status by creating a new <span class="java">Table</span> with an updated
+<span class="java">TableStatus</span> and replace the existing <span class="java">Table</span> with the new one. After the table is updated, the program
+ sets the selected table to null to indicate that the table is no longer in use.</p>
+</div>
+<div class="paragraph">
+<p>Once these essential functions are executed, <span class="java">BillCommand#execute()</span> moves on to indicate that the
+Tables, Orders, Menu and Statistics data have been modified via <span class="java">Model#updateTables()</span>, <span class="java">Model#updateOrders()</span>, <span class="java">Model#updateMenu()</span>, <span class="java">Model#updateStatistics()</span>. After which it returns
+the <span class="java">CommandResult</span> to <span class="java">LogicManager#excute()</span> where the it will check if the Tables, Orders, Menu
+and Statistics data have been modified and updates the storage accordingly. The same <span class="java">CommandResult</span> is
+returned to <span class="java">MainWindow#executeCommand()</span> where the user interface switches to Bill Mode to display the
+receipt of the recent Bill.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1419,18 +1612,263 @@ This action can only be done in Menu Mode. If not in Menu Mode currently , users
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The command will not execute the functions stated above until it has confirmed that the user is in <code>TableMode</code> and the current table exists.
-* If the user is in the wrong mode, the program will return a <code>CommandException</code> with the message “Incorrect Mode, unable to execute command. Enter tableMode.”.
-* If the current table does not exist, the program will return a <code>CommandException</code> with the message “This table does not exist.”.
+Internally the program switches to Bill Mode. However, this mode is not shown to the user as a Table Mode to avoid
+confusion.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a the <code>bill</code> command:</p>
+<p><strong>Step 3.</strong> Once the user is in Bill Mode, they can execute and mode commands like <code>RM</code>, <code>TM</code> and <code>MM</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design calculateBill()</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Iterates through the <span class="java">FilteredOrderItemList</span> once to append the receipt, update quantity ordered of
+the Menu Items in <span class="java">Menu#menuItems</span> and calculate the bill.<br>
+- <strong>Pros</strong>: Efficient as it only iterates through the list once.<br>
+- <strong>Cons</strong>: The code can be further break into different functions.<br></p>
+<p class="tableblock">We chose this design to prioritize efficiency in this use case. Since <code>bill</code> command is only
+called when the customer is ready to pay and leave the restaurant, it is better for the payment process to
+be swift.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create different functions that specifically calculates the bill, creates a bill receipt and update the quantity of
+ menu items ordered.<br>
+- <strong>Pros</strong>: Adheres to a better abstract design of the code.<br>
+- <strong>Cons</strong>: Inefficient due to multiple iteration of the <span class="java">FilteredOrderItemList</span>. Given a long list of order
+items, this design will be impractical.<br></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Trends"><a class="link" href="#Trends">4.5.4. Changing Statistics Mode display</a></h4>
+<div class="paragraph">
+<p>The following implementation applies for <code>yearly</code>, <code>monthly</code> and <code>daily</code> commands.
+These commands make adjustments to the user interface to display statistical data trends.</p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The execution of these commands is similar to <a href="#ChangeMode">changing the mode</a>. The only difference is that <span class="java">isYearly</span>, <span class="java">isMonthly</span> and <span class="java">isDaily</span> boolean variables are used in <span class="java">MainWindow#executeCommand()</span>. These boolean variables are passed into <span class="java">MainWindow#handleChangeMode()</span>
+where it will determine which display to switch to. You may refer to the activity diagram to understand the cause of
+actions in the <span class="java">Statistics Mode</span> user interface.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Trend_ActivityDiagram.png" alt="Trend ActivityDiagram">
+</div>
+<div class="title">Figure 20. Yearly, Monthly and Daily Activity Diagram</div>
 </div>
 <div class="paragraph">
-<p>To add: BillActivityDiagram.png[width="650"]</p>
+<p>Since these commands changes the user interface, a huge portion of their mechanism is dependent on <span class="java">StatisitcsFlowPanel</span>. It determines the layout and arrangement of the revenue cards displayed.</p>
+</div>
+<div class="paragraph">
+<p>Once the revenue observable list and boolean variables are passed into <span class="java">StatisitcsFlowPanel</span>, the function
+checks which boolean variable is true. Lets assume that <span class="java">isDaily</span> is true for <code>daily</code> command. The function
+enters a while loop that iterates through the revenue list until at most 30 <span class="java">DailyRevenue</span> are created
+and added to an list of <span class="java">DailyRevenue</span>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The list of <span class="java">DailyRevenue</span> generated is sorted in a chronological descending order of the date.
+Hence, even if there are no revenue recorded on a specific date, a <span class="java">DailyRevenue</span> is still created and added to
+the list.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After which, the list of <span class="java">DailyRevenue</span> is iterated to generate <span class="java">DailyStatisticsCard</span> for each <span class="java">DailyRevenue</span>. These <span class="java">DailyStatisticsCard</span> are added to the <span class="java">StatisticsFlowPanel#statisticsFlowPane</span> to update the user interface.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arrangement of <span class="java">[XXX]StatisticsCard</span><br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="java">[XXX]StatisticsCard</span> are arranged in descending order.<br>
+- <strong>Pros</strong>: The most recent card is visible to the user without scrolling.<br>
+- <strong>Cons</strong>: Viewing dates in a descending order might make it difficult to study trends.<br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="java">[XXX]StatisticsCard</span> are arranged in ascending order.<br>
+- <strong>Pros</strong>: Provides a sense of familiarity as the order is similar to that of a calendar.<br>
+- <strong>Cons</strong>: Users have to scroll to the end to view the latest revenue.<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Limit the number of <span class="java">[XXX]StatisticsCard</span><br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum <span class="java">[XXX]StatisticsCard</span> shown is 30.<br>
+- <strong>Pros</strong>: Prevents overflow of data. No longer have to scroll through multiple <span class="java">[XXX]StatisticsCard</span><br>
+- <strong>Cons</strong>: Cannot view revenue from the other dates.<br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display all <span class="java">[XXX]StatisticsCard</span> created from stored revenue data.<br>
+- <strong>Pros</strong>: All revenue is available in a single page.<br>
+- <strong>Cons</strong>: Might experience overflow of data in the user interface. User might have to scroll to the revenue<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create additional <span class="java">[XXX]StatisticsCard</span> with $0 revenue.<br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display all <span class="java">[XXX]StatisticsCard</span> in chronological order.<br>
+- <strong>Pros</strong>: Gives user a bigger picture of the restaurant&#8217;s recent earning trends.<br>
+- <strong>Cons</strong>: Takes up space. It might be unnecessary information to the user.<br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only display all <span class="java">[XXX]StatisticsCard</span> created from stored revenue data.<br>
+- <strong>Pros</strong>: More revenue figures are presented to the user.<br>
+- <strong>Cons</strong>: Might appear too cluttered making it difficult to study revenue trends.<br></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The current implementation uses the designs in Alternative 1. However, in version 2.0, the application will take the
+pros of Alternative 2 designs and incorporate them to the current implementation. To help users better study the
+revenue trend, v2.0 will allow users to call the commands with an argument that indicates the month or year they want
+. The display will arrange the <span class="java">DailyStatisticsCard</span> in a calender view with 7 columns for each day. A limit
+of 31 <span class="java">DailyStatisticsCard</span> will be used to replicate a calendar and prevent overflowing.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Revenue"><a class="link" href="#Revenue">4.5.5. Getting the revenue</a></h4>
+<div class="sect4">
+<h5 id="current-implementation-6"><a class="link" href="#current-implementation-6">Current Implementation</a></h5>
+<div class="paragraph">
+<p>When the user enters the <code>revenue</code> command, the command is parsed and a <span class="java">RevenueCommand</span> object is created.</p>
+</div>
+<div class="paragraph">
+<p><span class="java">RevenueCommand#execute()</span> is then called, which in turn calls <span class="java">Model#getFilteredRevenueList()</span> to
+obtain the list of revenue stored in the Storage. To create convenience and efficiency in the execution of the
+<code>revenue</code> command, 4 different types of argument combinations are provided for the users to obtain the desired revenue.
+The activity diagram illustrates the cause of actions for different argument inputs.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Revenue_ActivityDiagram.png" alt="Revenue ActivityDiagram">
+</div>
+<div class="title">Figure 21. Revenue Activity Diagram</div>
+</div>
+<div class="paragraph">
+<p>The above activity diagram summarizes the overall implementation of <span class="java">RevenueCommand</span>. Depending on the user
+arguments, the function creates a new <span class="java">Revenue</span> and iterate through the revenue list to search for revenue of
+the same year, month or day. If the revenue is the same as the new [.java#]Revenue#, its total revenue is added to the
+new <span class="java">Revenue</span>. After which, the new <span class="java">Revenue</span> is used to generate the <span class="java">CommandResult</span> output
+string where the calculated figure will be returned.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-7"><a class="link" href="#design-considerations-7">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validation regex of Month and Day</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow single and double digits.<br>
+- <strong>Pros</strong>: Users type less, providing convenience.<br></p>
+<p class="tableblock">Since the user input will eventually be parsed as an integer during its validation check, there is no need to
+restrict the day and month inputs to 2 digits.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restricts to double digit <br>
+- <strong>Pros</strong>: Easier to store and present date in a standardize format like 01-Jan-2000 rather than 1-Jan-2000.<br>
+- <strong>Cons</strong>: User has to type more.<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validation regex of Year</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only allow four digits that are greater than 2000.<br>
+- <strong>Pros</strong>: Specific restrictions prevents the possibility of making nonsensical typos.<br>
+- <strong>Cons</strong>: Less flexibility.<br></p>
+<p class="tableblock">Since this application is catered to existing restaurants with messy front-end management, there is no need to accept
+ dates that are way before the 2000s.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No restrictions <br>
+- <strong>Pros</strong>: Type less.<br>
+- <strong>Cons</strong>: Users have more freedom to make queries that are not beneficial to them.<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Switch case versus Array</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Store months in string format in an Array<br>
+- <strong>Pros</strong>: Efficient and fast.<br>
+- <strong>Cons</strong>: Uses more temporary storage.<br></p>
+<p class="tableblock">We chose this design as it not only reduces the lines of codes, but also efficiently obtains the needed string.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Switch case<br>
+- <strong>Pros</strong>: Use less temporary storage.<br>
+- <strong>Cons</strong>: Checks through every case if it only passes the last case.<br></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="validating-date"><a class="link" href="#validating-date">Validating Date</a></h5>
+<div class="paragraph">
+<p>Even though <span class="java">Year</span>, <span class="java">Month</span> and <span class="java">Day</span> have their own restrictions and validation checks, <span class="java">Date</span> is needed to check that the combination of the 3 objects produces a valid and exiting date in the
+calendar. One of the interesting checks is finding out which year is a lunar year that has 29 days in February.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">boolean</span> isLeapYear(<span class="predefined-type">String</span> year) {
+    requireNonNull(year);
+    <span class="keyword">return</span> (((<span class="predefined-type">Integer</span>.parseInt(year) % <span class="integer">4</span> == <span class="integer">0</span>) <i class="conum" data-value="1"></i><b>(1)</b>
+        &amp;&amp; (<span class="predefined-type">Integer</span>.parseInt(year) % <span class="integer">100</span> != <span class="integer">0</span>)) <i class="conum" data-value="2"></i><b>(2)</b>
+        || <span class="predefined-type">Integer</span>.parseInt(year) % <span class="integer">400</span> == <span class="integer">0</span>); <i class="conum" data-value="3"></i><b>(3)</b>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the method above, <span class="java">Year#isLeapYear</span> calculates the year that is a leap year. Let&#8217;s walk through this method
+ to understand how it is calculated:</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>It checks that the year is a multiple of 4. (Since it occurs every 4 years)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>It checks that the year is not a multiple of 100.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>It checks that the year is a multiple of 400.</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1540,7 +1978,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 15. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 22. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -1924,10 +2362,10 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 </div>
 <table class="tableblock frame-all grid-all" style="width: 59%;">
 <colgroup>
-<col style="width: 22%;">
-<col style="width: 23%;">
-<col style="width: 25%;">
-<col style="width: 30%;">
+<col style="width: 19.1304%;">
+<col style="width: 20%;">
+<col style="width: 26.0869%;">
+<col style="width: 34.7827%;">
 </colgroup>
 <thead>
 <tr>
@@ -1975,10 +2413,28 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">easily process their bill when they are done eating</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">obtain specific date&#8217;s revenue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily close accounts for the day and track profit</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view yearly, monthly and daily statistics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">study the restaurant&#8217;s revenue trends</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">waiter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add special requests to the order</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">inform the chef of the customers' specific preferences</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view popular dishes via statistics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">decide the amount of ingredients to purchase</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2366,20 +2822,19 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-uc8-check-statistics" class="discrete">Use case: UC8 - Check statistics</h3>
+<h3 id="use-case-uc8-obtaining-revenue-from-statistics" class="discrete">Use case: UC8 - Obtaining revenue from statistics</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User enters the statistic command with specific optional arguments (year, month and date).</p>
+<p>User enters the revenue command with specific optional arguments (year, month and date).</p>
 </li>
 <li>
-<p>RestOrRant Program collates data from the stated period, calculates all the statistics and prints out the calculated data in a neat presentation for the user to refer to.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
+<p>RestOrRant Program collates data from the stated period, calculates all the revenue and prints out the calculated
+figure for the user to refer.<br>
+Use case ends.</p>
 </li>
 </ol>
 </div>
@@ -2389,11 +2844,91 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. The arguments are invalid.</p>
+<p>1a. The combination of arguments are invalid.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. RestOrRant prints out "Invalid arguments. All arguments should be a numercial number. Format: getStatistics [Year] [Month] [Date]".</p>
+<p>1a1. RestOrRant prints out "Invalid command format!
+revenue: Gets the revenue from the specified year, month or day. Parameters: [y/YEAR [m/MONTH] [d/DAY]]]
+Example: revenue or revenue y/2019 or revenue y/2019 m/12 or revenue y/2019 m/12 d/30"<br>
+Use case ends.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b. Invalid year.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. RestOrRant prints out "Year should be in the format &lt;four digit integer&gt;, it should not be blank or larger
+than current year. Years before 2000s are not supported (2000 to current year)."<br>
+Use case ends.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c. Invalid month.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c1. RestOrRant prints out "Month should be a single or double double digit integer, and it should not be blank
+and should be a valid month (1 to 12)."<br>
+Use case ends.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1d. Invalid day.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1d1. RestOrRant prints out "Day should be a single or double double digit integer, it should not be blank and
+should be a valid day (1 to 31)."<br>
+Use case ends.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1d. Invalid date.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1d1. RestOrRant prints out "Date is invalid. It does not exists."<br>
+Use case ends.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. No arguments keyed in.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. RestOrRant returns the revenue of the current day.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2406,27 +2941,10 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. There is no data recorded, list is empty.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a1. RestOrRant prints out "No available data recorded."</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2b. Not all arguments were keyed in.</p>
+<p>2b. There is no data recorded, list is empty.</p>
 </li>
 <li>
-<p>2b1. RestOrRant returns the statistical data based on the year if only 1 argument was specified; and the month if only 2 arguments were specified.</p>
+<p>2b1. RestOrRant prints out "Revenue for (stated day, month or year) $ 0.00"</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2645,7 +3163,9 @@ Expected: Mode is not changed. Error message is shown in the Results Display.</p
 </li>
 <li>
 <p>In any other mode, switch to Statistics Mode with <code>statisticsMode</code> or <code>SM</code>.<br>
-Expected: Status bar indicates "Statistics Mode". Success message is shown in the Results Display. Main panel will display a grid of dates with their revenues and side panel will be empty.</p>
+Expected: Status bar indicates "Statistics Mode". Success message is shown in the Results Display.
+Main panel will display a grid of dates with their revenues and side panel will be a list of menu items sorted
+according to its popularity.</p>
 </li>
 </ol>
 </div>
@@ -2828,7 +3348,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="statistics-feature-2"><a class="link" href="#statistics-feature-2">F.6. Statistics feature</a></h3>
+<h3 id="statistics-feature"><a class="link" href="#statistics-feature">F.6. Statistics feature</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2836,14 +3356,22 @@ Expected: Similar to previous.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Switch to Table Mode of the selected table. Orders should have been populated from the Order tests above.</p>
+<p>Switch to Table Mode of the selected table. Orders should have been populated and served from the Order tests above.</p>
 </li>
 <li>
 <p>Test case: <code>bill</code> or <code>b</code><br>
 Expected: Mode change to Bill Mode where a receipt of the orders will be shown. The total bill is calculated and
 recorded. If Bill is the first bill of the day, a new daily revenue card will appear in the default display of
 Statistics Mode. Otherwise, it just updates the daily revenue by adding the total bill to the current revenue of the
-current date.</p>
+current date. The order list and occupancy of the selected table should be cleared.</p>
+</li>
+<li>
+<p>Switch to Table Mode of the selected table. Orders should have been populated from the Order tests above. Some of
+the order items are not served.</p>
+</li>
+<li>
+<p>Test case: <code>bill</code> or <code>b</code><br>
+Expected: Error message is shown in Results Display.</p>
 </li>
 </ol>
 </div>
@@ -2860,11 +3388,11 @@ current date.</p>
 Expected: Revenue of the current date will be calculated.</p>
 </li>
 <li>
-<p>Test case: <code>revenue d/1 m/1 y/2019</code> or <code>r d/1 m/1 y/2019</code><br>
+<p>Test case: <code>revenue y/2019 m/1 d/1</code> or <code>r y/2019 m/1 d/1</code><br>
 Expected: Revenue of 1-Jan-2019 will be calculated.</p>
 </li>
 <li>
-<p>Test case: <code>revenue m/1 y/2019</code> or <code>r m/1 y/2019</code><br>
+<p>Test case: <code>revenue y/2019 m/1</code> or <code>r y/2019 m/1</code><br>
 Expected: Revenue of Jan-2019 will be calculated.</p>
 </li>
 <li>
@@ -2876,7 +3404,7 @@ Expected: Revenue of year 2019 will be calculated.</p>
 Expected: No revenue are calculated. Error message is shown in the Results Display.</p>
 </li>
 <li>
-<p>Other invalid test cases: <code>revenue d/1</code>, <code>revenue d/29 m/2 y/2019</code></p>
+<p>Other invalid test cases: <code>revenue m/1</code>, <code>revenue d/1</code>, <code>revenue m/1 d/1</code>, <code>revenue y/2019 m/2 d/29</code></p>
 </li>
 </ol>
 </div>
@@ -2920,4 +3448,4 @@ Expected: Shows the GUI with no data.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 17:53:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 02:14:23 UTC</div></div></div></body></html>
