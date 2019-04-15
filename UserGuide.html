@@ -50,12 +50,12 @@
 </li>
 <li><a href="#table-mode">3.4. Table Mode</a>
 <ul class="sectlevel3">
-<li><a href="#AddToOrder">3.4.1. Adding item(s) to an order : <code>addToOrder</code></a></li>
-<li><a href="#AddNote">3.4.2. Adding a note to an order item : <code>addNote</code> <em>(Coming in v2.0)</em></a></li>
-<li><a href="#DeleteFromOrder">3.4.3. Deleting an item from an order : <code>deleteFromOrder</code></a></li>
-<li><a href="#ClearOrder">3.4.4. Clearing all the items in an order : <code>clearOrder</code></a></li>
-<li><a href="#Serve">3.4.5. Marking an item in an order as served : <code>serve</code></a></li>
-<li><a href="#Bill">3.4.6. Calling the bill of an order : <code>bill</code></a></li>
+<li><a href="#AddToOrder">3.4.1. Adding items to an order : <code>addToOrder</code></a></li>
+<li><a href="#DeleteFromOrder">3.4.2. Deleting an item from an order : <code>deleteFromOrder</code></a></li>
+<li><a href="#ClearOrder">3.4.3. Clearing all the items in an order : <code>clearOrder</code></a></li>
+<li><a href="#Serve">3.4.4. Marking an item in an order as served : <code>serve</code></a></li>
+<li><a href="#Bill">3.4.5. Calling the bill of an order : <code>bill</code></a></li>
+<li><a href="#AddNote">3.4.6. Adding a note to an order item : <code>addNote</code> <em>(Coming in v2.0)</em></a></li>
 </ul>
 </li>
 <li><a href="#menu-mode">3.5. Menu Mode</a>
@@ -68,9 +68,9 @@
 </li>
 <li><a href="#statistics-mode">3.6. Statistics Mode</a>
 <ul class="sectlevel3">
-<li><a href="#Yearly">3.6.1. Changing the Revenue Panel to yearly : <code>yearly</code></a></li>
-<li><a href="#Monthly">3.6.2. Changing the Revenue Panel to monthly : <code>monthly</code></a></li>
-<li><a href="#Daily">3.6.3. Changing the Revenue Panel to daily : <code>daily</code></a></li>
+<li><a href="#Yearly">3.6.1. Changing the Revenue Panel to yearly view : <code>yearly</code></a></li>
+<li><a href="#Monthly">3.6.2. Changing the Revenue Panel to monthly view : <code>monthly</code></a></li>
+<li><a href="#Daily">3.6.3. Changing the Revenue Panel to daily view : <code>daily</code></a></li>
 <li><a href="#Revenue">3.6.4. Getting the total revenue : <code>revenue</code></a></li>
 </ul>
 </li>
@@ -95,7 +95,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>RestOrRant (ROR) is a desktop restaurant management application that allows <strong>restaurant managers, waiters and cashiers</strong> to perform <strong>restaurant front-end operations</strong> more efficiently. With ROR, you can easily manage table allocation, handle orders, track item availability and check restaurant statistics.</p>
+<p>RestOrRant is a desktop restaurant management application that allows <strong>restaurant managers, waiters and cashiers</strong> to perform <strong>restaurant front-end operations</strong> more efficiently. With RestOrRant, you can easily manage table allocation, handle orders, track menu item availability and check restaurant statistics.</p>
 </div>
 <div class="paragraph">
 <p>RestOrRant mainly uses a <strong>Command Line Interface</strong> (CLI) to perform operations, but it also boasts a Graphical User Interface (GUI) to provide you with visual information for ease of reference.</p>
@@ -109,7 +109,7 @@
 <h2 id="quick-start"><a class="link" href="#quick-start">2. Quick Start</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Welcome to RestOrRant! If you are just starting out, this quick start section will help you get RestOrRant up and running in no time at all. It will equip you with the basics so that you can quickly enjoy and master the features that ROR has to offer.</p>
+<p>Welcome to RestOrRant! If you are just starting out, this quick start section will help you get RestOrRant up and running in no time at all. It will equip you with the basics so that you can quickly enjoy and master the features that RestOrRant has to offer.</p>
 </div>
 <div class="sect2">
 <h3 id="using-the-user-guide"><a class="link" href="#using-the-user-guide">2.1. Using the User Guide</a></h3>
@@ -157,6 +157,9 @@
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>You may also refer to the <a href="#glossary">Glossary</a> for some common terms used in this User Guide.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="first-steps"><a class="link" href="#first-steps">2.2. First steps</a></h3>
@@ -201,7 +204,7 @@ You can download the latest Java version <a href="https://www.oracle.com/technet
 <h3 id="understanding-the-mode-system"><a class="link" href="#understanding-the-mode-system">2.3. Understanding the Mode system</a></h3>
 <div class="paragraph">
 <p>RestOrRant operates in 4 different modes and you will start off in the default Restaurant Mode.
-Each mode is dedicated to a main feature that ROR provides and comes with its own colour, display and set of commands for that feature.
+Each mode is dedicated to a main feature that RestOrRant provides and comes with its own colour, display and set of commands for that feature.
 You may switch between the modes by using the <a href="#changing-modes">commands provided</a>.</p>
 </div>
 <div class="paragraph">
@@ -249,7 +252,7 @@ Manages the items ordered and their serving status for a specific table</p>
 </div>
 <div class="paragraph">
 <p><a href="#menu-mode"><strong>Menu Mode</strong></a><br>
-Tracks the items on the restaurant&#8217;s menu and their availability</p>
+Tracks the items on the restaurant&#8217;s menu and their availabilities</p>
 </div></div></td>
 <td class="tableblock halign-center valign-top"><div><div class="imageblock">
 <div class="content">
@@ -304,7 +307,7 @@ and the different components are labeled in the image below.</p>
 <h3 id="Command"><a class="link" href="#Command">2.5. Using commands</a></h3>
 <div class="paragraph">
 <p>You can use the commands described in <a href="#modes-and-commands">Section 3, &#8220;Modes and Commands&#8221;</a> by typing them into the Command Box and pressing <kbd>Enter</kbd> to execute it.
-For example, typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
+For example, typing <code>help</code> and pressing <kbd>Enter</kbd> will open the help window.</p>
 </div>
 <div class="paragraph">
 <p>Shortcuts are also provided for some commands to allow you to type faster and perform operations more quickly.
@@ -358,7 +361,7 @@ e.g. <code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS]&#8230;&#8203;</code> can b
 <p><code>TABLE_NUMBER</code> has to be a whole number greater than 0.</p>
 </li>
 <li>
-<p><code>NUMBER_OF_SEATS</code> and <code>NUMBER_OF_CUSTOMERS</code> have to be</p>
+<p><code>NUMBER_OF_SEATS</code> and <code>NUMBER_OF_CUSTOMERS</code> have to be non-negative whole numbers.</p>
 </li>
 <li>
 <p><code>ITEM_CODE</code> has to be in the form of an uppercase alphabet followed by a double digit integer.</p>
@@ -370,16 +373,16 @@ e.g. <code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS]&#8230;&#8203;</code> can b
 <p><code>ITEM_NAME</code> has to be in alphanumeric format and may contain spaces, but should not be blank.</p>
 </li>
 <li>
-<p><code>ITEM_PRICE</code> has to be nonnegative and in the format <strong>X.YY</strong> where <strong>X</strong> is a whole number and each <strong>Y</strong> is a single digit from 0 to 9.</p>
+<p><code>ITEM_PRICE</code> has to be non-negative and in the format <strong>X.YY</strong> where <strong>X</strong> is a whole number and each <strong>Y</strong> is a single digit from 0 to 9.</p>
 </li>
 <li>
-<p><code>YEAR</code> has to be a 4 digit whole number within 2000 and the current year.</p>
+<p><code>YEAR</code> has to be a 4 digit whole number between 2000 and the current year inclusive.</p>
 </li>
 <li>
-<p><code>MONTH</code> has to be a whole number within 1 to 12.</p>
+<p><code>MONTH</code> has to be a whole number between 1 and 12 inclusive.</p>
 </li>
 <li>
-<p><code>DAY</code> has to be a whole number within 1 to 31 provided it exists in the desired month and year.</p>
+<p><code>DAY</code> has to be a whole number between 1 and 31 inclusive, provided it exists in the desired month and year.</p>
 </li>
 </ul>
 </div>
@@ -396,7 +399,7 @@ e.g. <code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS]&#8230;&#8203;</code> can b
 The examples in this User Guide also make use of this data so that you can easily follow along.</p>
 </div>
 <div class="paragraph">
-<p>When you are ready to use RestOrRant in your restaurant, use the commands in the following steps to set up and personalise ROR for your own usage. You can find out more information about each command by clicking on them.</p>
+<p>When you are ready to use RestOrRant in your restaurant, use the commands in the following steps to set up and personalise RestOrRant for your own usage. You can find out more information about each command by clicking on them.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -404,7 +407,7 @@ The examples in this User Guide also make use of this data so that you can easil
 <p><a href="#ClearRestOrRant"><strong><code>clearRestOrRant</code></strong></a>: Remove all the sample data so that you can fill it with your own restaurant&#8217;s information.</p>
 </li>
 <li>
-<p><a href="#AddTable"><strong><code>addTable</code></strong></a> (in Restaurant Mode): Populate the tables in ROR with your restaurant&#8217;s seating information by specifying the number of seats for each table, in ascending order of table number.</p>
+<p><a href="#AddTable"><strong><code>addTable</code></strong></a> (in Restaurant Mode): Populate the tables in RestOrRant with your restaurant&#8217;s seating information by specifying the number of seats for each table, in ascending order of table number.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -426,14 +429,14 @@ You can add all the tables with just a single command!
 </div>
 </li>
 <li>
-<p><a href="#MenuMode"><strong><code>menuMode</code></strong></a>: Switch over to Menu Mode to fill up the menu in ROR with your restaurant&#8217;s menu information.</p>
+<p><a href="#MM"><strong><code>menuMode</code></strong></a>: Switch over to Menu Mode to fill up the menu in RestOrRant with your restaurant&#8217;s menu information.</p>
 </li>
 <li>
 <p><a href="#AddToMenu"><strong><code>addToMenu</code></strong></a> (in Menu Mode): Add each item into the menu by specifying the item code, name and price.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For example, <code>addToMenu c/A05 n/Salad p/4.50</code> will add a new salad item to the menu in ROR.</p>
+<p>For example, <code>addToMenu c/A05 n/Salad p/4.50</code> will add a new salad item to the menu in RestOrRant.</p>
 </li>
 </ul>
 </div>
@@ -451,7 +454,7 @@ You can add all the tables with just a single command!
 <div class="sectionbody">
 <div class="paragraph">
 <p>In this section, you can find details about the commands that RestOrRant supports. These details include the command function, format and example usage.
-The commands have been organised based on their function and the mode that they can be executed in so that you can easily look for the command that you want.</p>
+The commands have been organised based on the mode that they can be executed in so that you can easily look for the command that you want.</p>
 </div>
 <div class="sect2">
 <h3 id="general"><a class="link" href="#general">3.1. General</a></h3>
@@ -675,7 +678,7 @@ You may find out more information about RestOrRant&#8217;s Mode system <a href="
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Restaurant Mode is the default application mode when first starting up RestOrRant.
+Restaurant Mode is the application&#8217;s default mode when first starting up RestOrRant.
 </td>
 </tr>
 </table>
@@ -746,7 +749,7 @@ You can use this command in Table Mode if you are switching to a different table
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>The user interface switches to <a href="#table-mode">Table Mode</a>.
-The specified table number is also indicated in the Results Display and as part of the Current Mode in the status bar.</p>
+The specified table number is also indicated in the Results Display and the Mode Display.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -760,7 +763,7 @@ The specified table number is also indicated in the Results Display and as part 
 </div>
 </div>
 <div class="paragraph">
-<p>The table number will also be displayed in the Current Mode portion of the status bar until you change the mode, as shown below.</p>
+<p>The table number will also be displayed in the Mode Display until you change the mode, as shown below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -855,15 +858,15 @@ The default Revenue Panel view is Daily when you first switch over to Statistics
 </div>
 </div>
 <div class="paragraph">
-<p>The function of the order and table panels are as follows:</p>
+<p>The function of the side and main panels are as follows:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Order Panel</strong>: This panel shows you the list of items ordered by all tables in RstOrRant, arranged in chronological order. This means that items that were ordered first appears at the top of the list. It also indicates the quantity left to serve for each item, and the background turns dark when the item is fully served.</p>
+<p><strong>Order Panel</strong>: This panel shows you the list of items ordered by all tables in RestOrRant, arranged in chronological order. This means that items that were ordered first appears at the top of the list. It also indicates the quantity left to serve for each item, and the background turns dark when the item is fully served.</p>
 </li>
 <li>
-<p><strong>Table  Panel</strong>: This panel gives you an overview of all tables in ROR with their table numbers and respective occupancies.</p>
+<p><strong>Table Panel</strong>: This panel gives you an overview of all tables in RestOrRant with their table numbers and their respective occupancies.</p>
 </li>
 </ul>
 </div>
@@ -887,7 +890,7 @@ The very dark coloured tables represent unusable tables.
 <div class="sect3">
 <h4 id="AddTable"><a class="link" href="#AddTable">3.3.1. Adding tables : <code>addTable</code></a></h4>
 <div class="paragraph">
-<p>As you set up ROR to reflect your physical restaurant or add tables in the event that there are new tables in your restaurant, this command allows you to add tables in ROR by specifying the number of seats at each table.</p>
+<p>As you set up RestOrRant to reflect your physical restaurant or add tables in the event that there are new tables in your restaurant, this command allows you to add tables in RestOrRant by specifying the number of seats at each table.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -950,17 +953,17 @@ You can add multiple tables at once. This means all of your tables can be added 
 <p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message in the Results Display and the new tables will be displayed in the table panel.</p>
+<p>You will see a success message in the Results Display and the new tables will be displayed in the Table Panel.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For example, ROR initially has 35 tables when you open it for the first time as shown in the image below.</p>
+<p>For example, RestOrRant initially has 35 tables when you open it for the first time as shown in the image below.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/AddTable_Before.png" alt="AddTable Before">
+<img src="images/AddTable_Before.png" alt="AddTable Before" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -973,18 +976,18 @@ Simply execute the command <code>addTable 2 2 2 2 2 4 4 4 8 8</code>. You will s
 </div>
 </div>
 <div class="paragraph">
-<p>The Table Panel will also be updated and if you were to scroll down on the table panel, you will see tables 36 to 45 added as shown in  the image below.</p>
+<p>The Table Panel will also be updated and if you were to scroll down on the Table Panel, you will see Table 36 to Table 45 added as shown in  the image below.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/AddTable_After.png" alt="AddTable After">
+<img src="images/AddTable_After.png" alt="AddTable After" width="500">
 </div>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Alternatively, you can add also add just one table at a time. For example, you can use the command <code>addTable 4</code> to add one table with 4 seats.</p>
+<p>Alternatively, you can also add just one table at a time. For example, you can use the command <code>addTable 4</code> to add one table with 4 seats.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -993,7 +996,7 @@ Simply execute the command <code>addTable 2 2 2 2 2 4 4 4 8 8</code>. You will s
 <div class="sect3">
 <h4 id="EditPax"><a class="link" href="#EditPax">3.3.2. Editing the occupancy : <code>editPax</code></a></h4>
 <div class="paragraph">
-<p>During the operation of your restaurant, this command helps you to update the occupancies of the tables in ROR when customers enter your restaurant.</p>
+<p>During the operation of your restaurant, this command helps you to update the occupancies of the tables in RestOrRant when customers enter your restaurant.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1002,7 +1005,7 @@ Simply execute the command <code>addTable 2 2 2 2 2 4 4 4 8 8</code>. You will s
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Changing the table&#8217;s occupancy to 0 will automatically clear all records of its orders which will not be included in ROR&#8217;s statistics.
+Changing the table&#8217;s occupancy to 0 will automatically clear all records of its orders and they will not be included in RestOrRant&#8217;s statistics.
 </td>
 </tr>
 </table>
@@ -1025,7 +1028,7 @@ Changing the table&#8217;s occupancy to 0 will automatically clear all records o
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The specified table has to exist in ROR and your specified number of customers cannot be greater than the number of seats available at the table.
+The specified table has to exist in RestOrRant and your specified number of customers cannot be greater than the number of seats available at the table.
 </td>
 </tr>
 </table>
@@ -1041,21 +1044,21 @@ The specified table has to exist in ROR and your specified number of customers c
 <p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message in the Results Display and the updated table will be displayed in the table panel.</p>
+<p>You will see a success message in the Results Display and the updated table will be displayed in the Table Panel.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For example, Table 1 in ROR is initially unoccupied as shown below where the table&#8217;s status is 0/2.</p>
+<p>For example, Table 1 in RestOrRant is initially unoccupied as shown below where the table&#8217;s status is 0/2.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/EditPax_Before.png" alt="EditPax Before">
+<img src="images/EditPax_Before.png" alt="EditPax Before" width="500">
 </div>
 </div>
 <div class="paragraph">
-<p>Suppose, two customers now enter your restaurant and you would like to seat them at table 1.<br>
+<p>Suppose two customers now enter your restaurant and you would like to seat them at table 1.<br>
 Simply execute the command <code>editPax 1 2</code>. You will see the success message of the updated table in the result display as shown below.</p>
 </div>
 <div class="imageblock">
@@ -1064,11 +1067,11 @@ Simply execute the command <code>editPax 1 2</code>. You will see the success me
 </div>
 </div>
 <div class="paragraph">
-<p>The Table Panel will also be updated where table 1 shows an updated table status as well as a change to a slightly darker colour to represent an occupied table.</p>
+<p>The Table Panel will also be updated where Table 1 shows an updated table status as well as a change to a slightly darker colour to represent an occupied table.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/EditPax_After.png" alt="EditPax After">
+<img src="images/EditPax_After.png" alt="EditPax After" width="500">
 </div>
 </div></div></td>
 </tr>
@@ -1078,7 +1081,7 @@ Simply execute the command <code>editPax 1 2</code>. You will see the success me
 <div class="sect3">
 <h4 id="EditSeats"><a class="link" href="#EditSeats">3.3.3. Editing the available seats : <code>editSeats</code></a></h4>
 <div class="paragraph">
-<p>In the event that there are changes to any table in your restaurant in terms of the number of seats at the table, this command can help you make sure ROR is updated to reflect your physical restaurant.</p>
+<p>In the event that there are changes to any table in your restaurant in terms of the number of seats at the table, this command can help you make sure RestOrRant is updated to reflect your physical restaurant.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1110,7 +1113,7 @@ You can use this command to change the number of seats at a table to 0 to repres
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The specified table has to exist in ROR and the specified number of seats has to be more than the number of customers already seated at the table.
+The specified table has to exist in RestOrRant and the specified number of seats has to be more than the number of customers already seated at the table.
 </td>
 </tr>
 </table>
@@ -1126,22 +1129,22 @@ The specified table has to exist in ROR and the specified number of seats has to
 <p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message in the Results Display and the updated table will be displayed in the table panel.</p>
+<p>You will see a success message in the Results Display and the updated table will be displayed in the Table Panel.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For example, Table 2 in ROR is initially occupied as shown below where the table&#8217;s status is 2/2.</p>
+<p>For example, Table 2 in RestOrRant is initially occupied as shown below where the table&#8217;s status is 2/2.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/EditSeats_Before.png" alt="EditSeats Before">
+<img src="images/EditSeats_Before.png" alt="EditSeats Before" width="500">
 </div>
 </div>
 <div class="paragraph">
-<p>Suppose, the customers at this table inform you that 2 other friends are joining them and they would like to pull chairs over.<br>
-Now, you can simply execute the command <code>editSeats 2 4</code> and you will see the success message of the updated table in the results display as shown below.</p>
+<p>Suppose the customers at this table inform you that 2 other friends are joining them and they would like to pull chairs over.<br>
+Now, you can simply execute the command <code>editSeats 2 4</code> and you will see the success message of the updated table in the Results Display as shown below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1149,11 +1152,11 @@ Now, you can simply execute the command <code>editSeats 2 4</code> and you will 
 </div>
 </div>
 <div class="paragraph">
-<p>Table 2 in the table panel will then display the updated table information as shown below.</p>
+<p>Table 2 in the Table Panel will then display the updated table information as shown below.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/EditSeats_After.png" alt="EditSeats After">
+<img src="images/EditSeats_After.png" alt="EditSeats After" width="500">
 </div>
 </div></div></td>
 </tr>
@@ -1163,7 +1166,7 @@ Now, you can simply execute the command <code>editSeats 2 4</code> and you will 
 <div class="sect3">
 <h4 id="ClearTables"><a class="link" href="#ClearTables">3.3.4. Clearing all the tables : <code>clearTables</code></a></h4>
 <div class="paragraph">
-<p>In the event that you have undergone massive changes in the restaurant, you can use this command to remove all tables in ROR.</p>
+<p>In the event that you have undergone massive changes in the restaurant, you can use this command to remove all tables in RestOrRant.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1226,25 +1229,25 @@ This command is irreversible! In the event that you accidentally cleared your ta
 <p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message in the Results Display and all tables will be removed from the table panel.</p>
+<p>You will see a success message in the Results Display and all tables will be removed from the Table Panel.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For example, when all the customers have left the restaurant, all the tables in ROR will be unoccupied as shown below.</p>
+<p>For example, when all the customers have left the restaurant, all the tables in RestOrRant will be unoccupied as shown below.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/ClearTables_Before.png" alt="ClearTables Before">
+<img src="images/ClearTables_Before.png" alt="ClearTables Before" width="700">
 </div>
 </div>
 <div class="paragraph">
-<p>After you enter the command <code>clearTables</code>, a success message will be displayed and the table panel will become completely empty as shown below.</p>
+<p>After you enter the command <code>clearTables</code>, a success message will be displayed and the Table Panel will become completely empty as shown below.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/ClearTables_After.png" alt="ClearTables After">
+<img src="images/ClearTables_After.png" alt="ClearTables After" width="700">
 </div>
 </div></div></td>
 </tr>
@@ -1263,7 +1266,7 @@ This command is irreversible! In the event that you accidentally cleared your ta
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This command finds the smallest table able to accommodate the specified customers with the smallest table number.
+This command finds the table with the least number of seats that is able to accommodate the specified customers. It will always choose the table with the smallest table number first.
 </td>
 </tr>
 </table>
@@ -1296,11 +1299,11 @@ This command finds the smallest table able to accommodate the specified customer
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For example, in the sample layout we provided, the next available table that can fit 3 customers is table 25 since it is the smallest unoccupied table that can accommodate 3 customers with the smallest table number as shown below.</p>
+<p>For example, in the sample layout we provided, the next available table that can fit 3 customers is Table 25, as shown below.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/SpaceFor_Before.png" alt="SpaceFor Before">
+<img src="images/SpaceFor_Before.png" alt="SpaceFor Before" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -1312,11 +1315,11 @@ This command finds the smallest table able to accommodate the specified customer
 </div>
 </div>
 <div class="paragraph">
-<p>In the table panel, you will see that table 25 will have been updated to the correct table&#8217;s occupancy and changed to a slightly darker colour to indicate that it is occupied.</p>
+<p>In the Table Panel, you will see that Table 25 will have been updated to the correct occupancy and changed to a slightly darker colour to indicate that it is occupied.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/SpaceFor_After.png" alt="SpaceFor After">
+<img src="images/SpaceFor_After.png" alt="SpaceFor After" width="500">
 </div>
 </div></div></td>
 </tr>
@@ -1326,14 +1329,14 @@ This command finds the smallest table able to accommodate the specified customer
 <div class="sect3">
 <h4 id="Reserve"><a class="link" href="#Reserve">3.3.6. Making a reservation : <code>reserve</code> <em>(Coming in v2.0)</em></a></h4>
 <div class="paragraph">
-<p>Another key features that many restaurants have is the ability to make reservations. Hence, a reserve function would be a necessary next step to make management of tables and customers more efficient.</p>
+<p>Another key feature that many restaurants have is the ability to make reservations. Hence, a reserve function would be a necessary next step to make management of tables and customers more efficient.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Format</strong>: reserve c/NUMBER_OF_CUSTOMERS n/NAME d/DAY m/MONTH y/YEAR t/TIME</p>
+<p><strong>Format</strong>: <code>reserve c/NUMBER_OF_CUSTOMERS n/NAME d/DAY m/MONTH y/YEAR t/TIME</code></p>
 </li>
 </ul>
 </div>
@@ -1346,7 +1349,7 @@ This command finds the smallest table able to accommodate the specified customer
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-ROR will check for other reservations and availabilities of tables before allowing the user to make a reservation.
+RestOrRant will check for other reservations and availabilities of tables before allowing you to make a reservation.
 </td>
 </tr>
 </table>
@@ -1383,7 +1386,7 @@ ROR will check for other reservations and availabilities of tables before allowi
 You can take orders, track the serving status of the items ordered, and calculate the bill for that table in this mode.</p>
 </div>
 <div class="paragraph">
-<p>The user interface for Table Mode (on Table 5) is shown in the image below.</p>
+<p>The user interface for Table Mode (in this example, for Table 5) is shown in the image below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1407,10 +1410,10 @@ You can take orders, track the serving status of the items ordered, and calculat
 <p>Here are the commands that you can use in this mode to efficiently handle the orders in your restaurant.</p>
 </div>
 <div class="sect3">
-<h4 id="AddToOrder"><a class="link" href="#AddToOrder">3.4.1. Adding item(s) to an order : <code>addToOrder</code></a></h4>
+<h4 id="AddToOrder"><a class="link" href="#AddToOrder">3.4.1. Adding items to an order : <code>addToOrder</code></a></h4>
 <div class="paragraph">
 <p>As you are taking an order from customers, this command allows you to record down the items that were ordered by the table by specifying the item code and quantity for each item that was ordered.
-You may also add more quantities to an item that has already been previously ordered by the table if customers choose to order more.</p>
+You may also add an item that was previously ordered by the table to increase its quantity if customers choose to order more.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1431,7 +1434,7 @@ The maximum quantity of an item that can be ordered by a table is 2,000,000.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The item codes for each item on the menu can be easily found from the Menu Panel.
+The item codes for each item on the menu can be easily found in the Menu Panel.
 </td>
 </tr>
 </table>
@@ -1463,7 +1466,19 @@ You can only add item codes that exist in the menu. You may add items to the men
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can add multiple or duplicate order items in a single command! If any of the item codes do not exist in the menu or if the new quantity exceeds 2,000,000, then that item and subsequent items will not be added to the order.
+You can add multiple or duplicate order items in a single command!
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If any of the item codes do not exist in the menu or if the new quantity exceeds 2,000,000, then that item and subsequent items will not be added to the order.
 </td>
 </tr>
 </table>
@@ -1489,7 +1504,7 @@ You can add multiple or duplicate order items in a single command! If any of the
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Order_Before.png" alt="Order Before">
+<img src="images/AddToOrder_Before.png" alt="AddToOrder Before" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -1505,7 +1520,7 @@ You can add multiple or duplicate order items in a single command! If any of the
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AddToOrder_After.png" alt="AddToOrder After">
+<img src="images/AddToOrder_After.png" alt="AddToOrder After" width="300">
 </div>
 </div></div></td>
 </tr>
@@ -1513,55 +1528,7 @@ You can add multiple or duplicate order items in a single command! If any of the
 </table>
 </div>
 <div class="sect3">
-<h4 id="AddNote"><a class="link" href="#AddNote">3.4.2. Adding a note to an order item : <code>addNote</code> <em>(Coming in v2.0)</em></a></h4>
-<div class="paragraph">
-<p>Sometimes, customers may have special requests for their orders, such as reducing the level of spicyness or removing certain ingredients from their meal.
-You can easily add all these special requests and more to the order item with this command.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Format</strong>: <code>addNote ITEM_CODE NOTE</code></p>
-</div>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You can only add notes to item codes that have already been ordered by the table. You can add items to the order using the <a href="#AddToOrder"><code>addToOrder</code></a> command.
-</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-none spread">
-<colgroup>
-<col style="width: 5%;">
-<col style="width: 95%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message in the Results Display and the note will appear in a tag beside the item name in the Order Panel.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For example, after executing <code>addNote W09 Less spicy</code>, a "Less spicy" tag will appear beside "Chicken Wings" in the Order Panel.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="DeleteFromOrder"><a class="link" href="#DeleteFromOrder">3.4.3. Deleting an item from an order : <code>deleteFromOrder</code></a></h4>
+<h4 id="DeleteFromOrder"><a class="link" href="#DeleteFromOrder">3.4.2. Deleting an item from an order : <code>deleteFromOrder</code></a></h4>
 <div class="paragraph">
 <p>If you have accidentally keyed in an incorrect order or if the customer decides not to order a particular item anymore, you can remove that item from the table&#8217;s order with this command.</p>
 </div>
@@ -1606,7 +1573,7 @@ You can only delete item codes that have already been ordered by the table.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Order_Before.png" alt="Order Before">
+<img src="images/AddToOrder_Before.png" alt="AddToOrder Before" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -1622,7 +1589,7 @@ You can only delete item codes that have already been ordered by the table.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/DeleteFromOrder_After.png" alt="DeleteFromOrder After">
+<img src="images/DeleteFromOrder_After.png" alt="DeleteFromOrder After" width="300">
 </div>
 </div></div></td>
 </tr>
@@ -1630,7 +1597,7 @@ You can only delete item codes that have already been ordered by the table.
 </table>
 </div>
 <div class="sect3">
-<h4 id="ClearOrder"><a class="link" href="#ClearOrder">3.4.4. Clearing all the items in an order : <code>clearOrder</code></a></h4>
+<h4 id="ClearOrder"><a class="link" href="#ClearOrder">3.4.3. Clearing all the items in an order : <code>clearOrder</code></a></h4>
 <div class="paragraph">
 <p>This command allows you to clear all the items ordered by a table so that you can take orders from scratch.</p>
 </div>
@@ -1641,7 +1608,7 @@ You can only delete item codes that have already been ordered by the table.
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-This command is irreversible and will not save the order under restaurant statistics. If the customers are done with the meal, use the <a href="#Bill"><code>bill</code></a> command instead, which will automatically clear the orders from the table.
+This command is irreversible and will not save the order under RestOrRant&#8217;s statistics. If the customers are done with the meal, use the <a href="#Bill"><code>bill</code></a> command instead, which will automatically clear the orders from the table.
 </td>
 </tr>
 </table>
@@ -1675,7 +1642,7 @@ This command is irreversible and will not save the order under restaurant statis
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Order_Before.png" alt="Order Before">
+<img src="images/Order_Before.png" alt="Order Before" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -1691,7 +1658,7 @@ This command is irreversible and will not save the order under restaurant statis
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/ClearOrder_After.png" alt="ClearOrder After">
+<img src="images/ClearOrder_After.png" alt="ClearOrder After" width="300">
 </div>
 </div></div></td>
 </tr>
@@ -1699,7 +1666,7 @@ This command is irreversible and will not save the order under restaurant statis
 </table>
 </div>
 <div class="sect3">
-<h4 id="Serve"><a class="link" href="#Serve">3.4.5. Marking an item in an order as served : <code>serve</code></a></h4>
+<h4 id="Serve"><a class="link" href="#Serve">3.4.4. Marking an item in an order as served : <code>serve</code></a></h4>
 <div class="paragraph">
 <p>Once you have served items to the table, you can update the serving status of those items by using this command so that you can easily keep track of what has and has not been served.</p>
 </div>
@@ -1746,7 +1713,7 @@ If the quantity is not specified, the default quantity served is 1.
 <p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message in the Results Display and the order item&#8217;s quantity to serve in the Order Panel will be updated. The background of the order item also turns dark once it is fully served.</p>
+<p>You will see a success message in the Results Display and the order item&#8217;s quantity to serve will be updated in the Order Panel. The background of the order item also turns dark once it is fully served.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1756,7 +1723,7 @@ If the quantity is not specified, the default quantity served is 1.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Order_Before.png" alt="Order Before">
+<img src="images/Serve_Before.png" alt="Serve Before" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -1772,7 +1739,7 @@ If the quantity is not specified, the default quantity served is 1.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Serve_After.png" alt="Serve After">
+<img src="images/Serve_After.png" alt="Serve After" width="300">
 </div>
 </div></div></td>
 </tr>
@@ -1780,7 +1747,7 @@ If the quantity is not specified, the default quantity served is 1.
 </table>
 </div>
 <div class="sect3">
-<h4 id="Bill"><a class="link" href="#Bill">3.4.6. Calling the bill of an order : <code>bill</code></a></h4>
+<h4 id="Bill"><a class="link" href="#Bill">3.4.5. Calling the bill of an order : <code>bill</code></a></h4>
 <div class="paragraph">
 <p>Now that all the orders have been served and the customer is ready to pay for the meal, you can call the
 bill to obtain the customer&#8217;s receipt.</p>
@@ -1800,8 +1767,8 @@ bill to obtain the customer&#8217;s receipt.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-This command is irreversible. Once the command is executed, all orders and the table occupancy will be cleared to allow
-new customers to use the table. The money earned from the bill will automatically be added to the RestOrRant&#8217;s revenue statistics.
+This command is irreversible. Once the command is executed, the order will be cleared and the table&#8217;s occupancy will be reset to allow
+new customers to use the table. The money earned from the bill will automatically be added to RestOrRant&#8217;s revenue statistics.
 </td>
 </tr>
 </table>
@@ -1830,18 +1797,14 @@ The <code>bill</code> can only be called when all order items have been served.
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>You will see a success message in the Results Display and the user interface will change its colour scheme and
-display.<br></p>
-</div>
-<div class="paragraph">
-<p>In the new user interface, the order items in the order panel are cleared and the menu panel displays the
-customer&#8217;s receipt.<br>
-The receipt will indicate the price, quantity and type of menu items ordered, along with the time, date and total bill the customer has to pay.</p>
+display.<br>
+The customer&#8217;s receipt will be displayed in the main panel and the receipt will indicate the price, quantity and name of items ordered, along with the time, date and total amount the customer has to pay.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Given that Table 5 has 4 items in the Order Panel as shown below. Note that all items have been
+<p>As seen from the image below, Table 5 has 4 items in the Order Panel. Note that all items have been
 served.</p>
 </div>
 <div class="imageblock">
@@ -1850,21 +1813,69 @@ served.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>When bill is called, the user interface changes to display the receipt as shown below:</p>
+<p>When <code>bill</code> is called, the user interface changes to display the receipt as shown below:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/Bill_Receipt.png" alt="Bill Receipt">
+<img src="images/Bill_Receipt.png" alt="Bill Receipt" width="700">
 </div>
 </div>
 <div class="paragraph">
-<p>When you switch to Restaurant Mode using <a href="#RM"><code>restaurantMode</code></a> command, you will realise that the table
+<p>When you switch to Restaurant Mode using the <a href="#RM"><code>restaurantMode</code></a> command, you will realise that the table
 has been updated to accomodate new customers.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/Bill_UpdatedSeats.png" alt="Bill UpdatedSeats">
+<img src="images/Bill_UpdatedSeats.png" alt="Bill UpdatedSeats" width="500">
 </div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="AddNote"><a class="link" href="#AddNote">3.4.6. Adding a note to an order item : <code>addNote</code> <em>(Coming in v2.0)</em></a></h4>
+<div class="paragraph">
+<p>Sometimes, customers may have special requests for their orders, such as reducing the level of spicyness or removing certain ingredients from their meal.
+You can easily add all these special requests and more to the order item with this command.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>addNote ITEM_CODE NOTE</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can only add notes to item codes that have already been ordered by the table. You can add items to the order using the <a href="#AddToOrder"><code>addToOrder</code></a> command.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the note will appear as a tag beside the item name in the Order Panel.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, if the customers want their chicken wings to be less spicy, you can execute the <code>addNote W09 Less spicy</code> command. A "Less spicy" tag will then appear beside "Chicken Wings" in the Order Panel.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1874,7 +1885,7 @@ has been updated to accomodate new customers.</p>
 <div class="sect2">
 <h3 id="menu-mode"><a class="link" href="#menu-mode">3.5. Menu Mode</a></h3>
 <div class="paragraph">
-<p>In Menu Mode, you can track all updates to the menu, and the application will display the current items on the menu.</p>
+<p>In Menu Mode, you can track all updates to the menu, and RestOrRant will display the current items on the menu.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1882,12 +1893,12 @@ has been updated to accomodate new customers.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This mode only uses the side panel, to avoid any confusion and for ease of use. The function is as follows:</p>
+<p>This mode only uses the side panel to avoid any confusion and for ease of use. The function is as follows:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Menu Panel</strong>: This panel displays the currently available items on the menu along with their item codes and price.</p>
+<p><strong>Menu Panel</strong>: This panel displays the currently available items and their details on the menu.</p>
 </li>
 </ul>
 </div>
@@ -1927,7 +1938,7 @@ keyed in and the command will work as intended).
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-RestOrRant does not allow you to add two items with the same item code, they are considered to be the same item. Make sure to have different item codes for all your available dishes!
+RestOrRant does not allow you to add two items with the same item code as they are considered to be the same item. Make sure to have different item codes for all your available dishes!
 </td>
 </tr>
 </table>
@@ -1953,7 +1964,7 @@ RestOrRant does not allow you to add two items with the same item code, they are
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AddToMenu_Before.png" alt="AddToMenu Before">
+<img src="images/AddToMenu_Before.png" alt="AddToMenu Before" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -1965,11 +1976,11 @@ RestOrRant does not allow you to add two items with the same item code, they are
 </div>
 </div>
 <div class="paragraph">
-<p>The Menu Panel will also be updated and you will now see 16 items displayed. As seen in the image below, a new 16th item with code W16, name Chocolate Ice Cream and price of 1.50 has been added to the menu.</p>
+<p>The Menu Panel will also be updated and you will now see 16 items displayed. As seen in the image below, a new 16th item has been added to the menu.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AddToMenu_After.png" alt="AddToMenu After">
+<img src="images/AddToMenu_After.png" alt="AddToMenu After" width="300">
 </div>
 </div></div></td>
 </tr>
@@ -1980,6 +1991,18 @@ RestOrRant does not allow you to add two items with the same item code, they are
 <h4 id="DeleteFromMenu"><a class="link" href="#DeleteFromMenu">3.5.2. Deleting menu items from the menu : <code>deleteFromMenu</code></a></h4>
 <div class="paragraph">
 <p>Suppose you now decide you no longer want to sell a particular dish, and would like to make it unavailable for customers. You can do so by specifying the item code of the item you wish to remove.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The restaurant must be empty (there should not be any occupied tables).
+</td>
+</tr>
+</table>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1996,8 +2019,7 @@ RestOrRant does not allow you to add two items with the same item code, they are
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You can only delete item codes that already exist in the menu. You can add items to the menu using the <a href="#AddToMenu"><code>addToMenu</code></a> command.<br>
-The restaurant must be empty (there should not be any occupied tables).
+You can only delete item codes that already exist in the menu. You can add items to the menu using the <a href="#AddToMenu"><code>addToMenu</code></a> command.
 </td>
 </tr>
 </table>
@@ -2009,7 +2031,7 @@ The restaurant must be empty (there should not be any occupied tables).
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Deleting an item from the menu would also erase the quantity ordered associated with that item, and this item will not show up on the Menu Panels in all modes. If you choose to add the same item to the menu again, it would be considered as a new item with quantity ordered starting from zero.
+Deleting an item from the menu would also erase the order statistics associated with that item, and this item will not show up on the Menu Panels in all modes. If you choose to add the same item to the menu again, the order statistics for the item will be reset to 0.
 </td>
 </tr>
 </table>
@@ -2031,11 +2053,11 @@ Deleting an item from the menu would also erase the quantity ordered associated 
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For example, the menu initially has 6 items as shown below.</p>
+<p>For example, the menu initially has a few items as shown below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AddToMenu_After.png" alt="AddToMenu After">
+<img src="images/DeleteFromMenu_Before.png" alt="DeleteFromMenu Before" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -2047,12 +2069,11 @@ Deleting an item from the menu would also erase the quantity ordered associated 
 </div>
 </div>
 <div class="paragraph">
-<p>The Menu Panel will also be updated and you will now see 5 items displayed. As seen in the image below, Beef Burger
-has been deleted from the menu.</p>
+<p>The Menu Panel will also be updated and you will no longer see the Beef Burger, as seen in the image below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/DeleteFromMenu_After.png" alt="DeleteFromMenu After">
+<img src="images/DeleteFromMenu_After.png" alt="DeleteFromMenu After" width="300">
 </div>
 </div></div></td>
 </tr>
@@ -2092,7 +2113,7 @@ The restaurant must be empty (there should not be any occupied tables).
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-This command is irreversible and will not save the menu under restaurant statistics.
+This command is irreversible and will not save the menu under RestOrRant&#8217;s statistics.
 </td>
 </tr>
 </table>
@@ -2114,27 +2135,19 @@ This command is irreversible and will not save the menu under restaurant statist
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For example, the menu initially has 6 items as shown below.</p>
+<p>For example, the menu initially has a few items as shown below.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/AddToMenu_After.png" alt="AddToMenu After">
+<img src="images/ClearMenu_Before.png" alt="ClearMenu Before" width="700">
 </div>
 </div>
 <div class="paragraph">
-<p>After executing <code>clearMenu</code>, you will see a success message in the Results Display, as shown below.</p>
+<p>After executing <code>clearMenu</code>, you will see a success message in the Results Display and the Menu Panel will now be empty, as seen in the image below.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/ClearMenu_RD.png" alt="ClearMenu RD">
-</div>
-</div>
-<div class="paragraph">
-<p>The Menu Panel will now be empty, as seen in the image below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/ClearMenu_After.png" alt="ClearMenu After">
+<img src="images/ClearMenu_After.png" alt="ClearMenu After" width="700">
 </div>
 </div></div></td>
 </tr>
@@ -2144,19 +2157,8 @@ This command is irreversible and will not save the menu under restaurant statist
 <div class="sect3">
 <h4 id="ToggleAvailability"><a class="link" href="#ToggleAvailability">3.5.4. Changing an item&#8217;s availability : <code>toggleAvailability</code> <em>(Coming in v2.0)</em></a></h4>
 <div class="paragraph">
-<p>This command allows you to change an item&#8217;s availability by specifying the item code.<br></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-All added menu items are available by default.
-</td>
-</tr>
-</table>
+<p>This command allows you to change an item&#8217;s availability by specifying the item code.
+Calling this command on an available item would mark the item as unavailable, whereas calling this command on an unavailable item would mark it as available again.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2165,7 +2167,7 @@ All added menu items are available by default.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Calling this command on an available item would mark the item as unavailable, whereas calling this command on an unavailable item would mark it as available again.
+All added menu items are available by default.
 </td>
 </tr>
 </table>
@@ -2185,7 +2187,7 @@ Calling this command on an available item would mark the item as unavailable, wh
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The specified item should exist in the menu.
+The specified item code should exist in the menu.
 </td>
 </tr>
 </table>
@@ -2207,9 +2209,9 @@ The specified item should exist in the menu.
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For example, say Lobster Burger has just become sold out.<br>
+<p>Let&#8217;s say that the Lobster Burger has just become sold out.<br>
 Executing <code>toggleAvailability W06</code> would make Lobster Burger unavailable for ordering and the background of the Lobster Burger would turn dark.<br>
-Now, if the ingredients for Lobster Burger is available again, executing <code>toggleAvailability W06</code> would change the background to its original colour and enable Lobster Burger to be ordered by diners.</p>
+Now, if the ingredients for Lobster Burger are available again, executing <code>toggleAvailability W06</code> would change the background to its original colour and enable Lobster Burger to be ordered.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2253,7 +2255,7 @@ you have selected. This allows you to study trends in your restaurant&#8217;s re
 </td>
 <td class="content">
 By default the Statistics Mode displays revenue up to 30 days in the Revenue Panel unless you execute
-<a href="#Yearly"><code>yearly</code></a>, <a href="#Monthly"><code>monthly</code></a> or <a href="#Daily"><code>daily</code></a> commands to change its display respectively.
+<a href="#Yearly"><code>yearly</code></a>, <a href="#Monthly"><code>monthly</code></a> or <a href="#Daily"><code>daily</code></a> commands to change its display.
 </td>
 </tr>
 </table>
@@ -2262,10 +2264,9 @@ By default the Statistics Mode displays revenue up to 30 days in the Revenue Pan
 <p>Here are the commands that you can use in this mode to study the statistical data of your restaurant.</p>
 </div>
 <div class="sect3">
-<h4 id="Yearly"><a class="link" href="#Yearly">3.6.1. Changing the Revenue Panel to yearly : <code>yearly</code></a></h4>
+<h4 id="Yearly"><a class="link" href="#Yearly">3.6.1. Changing the Revenue Panel to yearly view : <code>yearly</code></a></h4>
 <div class="paragraph">
-<p>This command changes the Revenue Panel to display the statistical yearly revenue for you to study the
-yearly revenue trends.<br></p>
+<p>This command changes the Revenue Panel to display the statistical yearly revenue for you to study its trends.<br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2286,19 +2287,19 @@ yearly revenue trends.<br></p>
 <p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message in the Results Display and the Revenue Panel changes to display up to 30 yearly
-revenue starting from the most recent record.</p>
+<p>You will see a success message in the Results Display and the Revenue Panel changes to display the yearly
+revenue of up to the past 30 years, starting from the most recent record.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Notice that the first yearly revenue is the most recent year recorded. This saves you the trouble of
+<p>Notice that the first revenue is the most recent year recorded. This saves you the trouble of
 scrolling through the rest of the record.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/SM_Yearly.png" alt="SM Yearly">
+<img src="images/SM_Yearly.png" alt="SM Yearly" width="700">
 </div>
 </div></div></td>
 </tr>
@@ -2306,10 +2307,9 @@ scrolling through the rest of the record.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="Monthly"><a class="link" href="#Monthly">3.6.2. Changing the Revenue Panel to monthly : <code>monthly</code></a></h4>
+<h4 id="Monthly"><a class="link" href="#Monthly">3.6.2. Changing the Revenue Panel to monthly view : <code>monthly</code></a></h4>
 <div class="paragraph">
-<p>This command changes the Revenue Panel to display the statistical monthly revenue for you to study the
-monthly revenue trends.<br></p>
+<p>This command changes the Revenue Panel to display the statistical monthly revenue for you to study its trends.<br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2330,19 +2330,19 @@ monthly revenue trends.<br></p>
 <p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message in the Results Display and the Revenue Panel changes to display up to 30 monthly
-revenue starting from the most recent record.</p>
+<p>You will see a success message in the Results Display and the Revenue Panel changes to display the monthly
+revenue of up to the past 30 months, starting from the most recent record.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Notice that the first monthly revenue is the most recent month recorded. This saves you the trouble of
+<p>Notice that the first revenue is the most recent month recorded. This saves you the trouble of
 scrolling through the rest of the record.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/SM_Monthly.png" alt="SM Monthly">
+<img src="images/SM_Monthly.png" alt="SM Monthly" width="700">
 </div>
 </div></div></td>
 </tr>
@@ -2350,10 +2350,10 @@ scrolling through the rest of the record.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="Daily"><a class="link" href="#Daily">3.6.3. Changing the Revenue Panel to daily : <code>daily</code></a></h4>
+<h4 id="Daily"><a class="link" href="#Daily">3.6.3. Changing the Revenue Panel to daily view : <code>daily</code></a></h4>
 <div class="paragraph">
 <p>This command helps you to change the Revenue Panel back to its default display of the statistical daily revenue
- for you to study the daily revenue trends.<br></p>
+ for you to study its trends.<br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2374,19 +2374,19 @@ scrolling through the rest of the record.</p>
 <p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message in the Results Display and the Revenue Panel changes to display up to 30 daily
-revenue starting from the most recent record.</p>
+<p>You will see a success message in the Results Display and the Revenue Panel changes to display the daily
+revenue for up to the past 30 days, starting from the most recent record.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Notice that the first daily revenue is the most recent day recorded. This saves you the trouble of
+<p>Notice that the first revenue is the most recent day recorded. This saves you the trouble of
 scrolling through the rest of the record.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/SM_Daily.png" alt="SM Daily">
+<img src="images/SM_Daily.png" alt="SM Daily" width="700">
 </div>
 </div></div></td>
 </tr>
@@ -2401,9 +2401,8 @@ scrolling through the rest of the record.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>Format</strong>: <code>revenue [ y/YEAR [m/MONTH [d/DAY] ] ]</code><br>
-<strong>Shortcut</strong>: <code>r</code><br>
-<strong>Examples</strong>: <code>r</code>, <code>r [y/YEAR]</code>, <code>r y/YEAR [m/MONTH]</code>, <code>r y/YEAR m/MONTH [d/DAY]</code></p>
+<p><strong>Format</strong>: <code>revenue</code> or <code>revenue y/YEAR</code> or <code>revenue y/YEAR m/MONTH</code> or <code>revenue y/YEAR m/MONTH d/DAY</code><br>
+<strong>Shortcut</strong>: <code>r</code></p>
 </div>
 </div>
 </div>
@@ -2417,7 +2416,7 @@ scrolling through the rest of the record.</p>
 Order of the parameters does not matter.<br>
 For example, <code>r y/2019 d/6 m/4</code> will still return the revenue earned on
 6th April 2019.<br>
-If <strong>no arguments</strong> are included, by default the revenue earned from the <strong>current day</strong> will be returned.
+If <strong>no arguments</strong> are included, the revenue earned from the <strong>current day</strong> will be returned by default.
 </td>
 </tr>
 </table>
@@ -2429,7 +2428,7 @@ If <strong>no arguments</strong> are included, by default the revenue earned fro
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If there are no records of the stated period, it will be returned as $0.<br>
+If there are no records of the stated period, it will be returned as $0.00.<br>
 Refer to <a href="#Command">commands</a> to take note of the parameter restrictions of <code>YEAR</code>, <code>MONTH</code> and <code>DAY</code>.
 </td>
 </tr>
@@ -2446,8 +2445,7 @@ Refer to <a href="#Command">commands</a> to take note of the parameter restricti
 <p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>You will see a success message and the revenue of the specified year, month or day in the Results Display. Examples
-are provided below.</p>
+<p>You will see a success message and the revenue of the specified year, month or day in the Results Display.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2567,7 +2565,7 @@ There should be 4 files in the data folder, <strong>menu.json</strong>, <strong>
 <p><code>help</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Shows the user guide</p>
+<p>Shows the User Guide</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2725,7 +2723,7 @@ Switches to Table Mode for Table 1</p>
 <p><code><strong>add</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS] &#8230;&#8203;</code></p>
+<p><code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS]&#8230;&#8203;</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>addTable 2 4 6 8</code><br>
@@ -2744,7 +2742,7 @@ Adds 4 tables with 2, 4, 6 and 8 seats</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>editPax 1 2</code><br>
-Updates Table 1 to have 2 diners</p>
+Updates Table 1 to have 2 customers</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2791,6 +2789,22 @@ Updates Table 1 to have 5 seats</p>
 Allocates a table for 3 customers</p>
 </div></div></td>
 </tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><a href="#Reserve"><code>reserve</code></a><br>
+<em>(Coming in v2.0)</em></p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p>-</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>reserve c/NUMBER_OF_CUSTOMERS n/NAME d/DAY m/MONTH y/YEAR t/TIME</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>reserve c/5 n/John Doe d/28 m/2 y/2019 t/1900</code><br>
+Reserves a table for 5 under John Doe&#8217;s name at 1900H on 28/2/2019</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -2823,27 +2837,11 @@ Allocates a table for 3 customers</p>
 <p><code><strong>add</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>addToOrder ITEM_CODE QUANTITY [ITEM_CODE QUANTITY] …</code></p>
+<p><code>addToOrder ITEM_CODE QUANTITY [ITEM_CODE QUANTITY]&#8230;&#8203;</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>addToOrder W07 1 W13 1</code><br>
 Adds 1 W07 and 1 W13 to the current table&#8217;s order</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><div><div class="paragraph">
-<p><a href="#AddNote"><code>addNote</code></a><br>
-<em>(Coming in v2.0)</em></p>
-</div></div></td>
-<td class="tableblock halign-center valign-top"><div><div class="paragraph">
-<p>-</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>addNote ITEM_CODE NOTE</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>addNote W09 Less spicy</code><br>
-Adds the "Less spicy" note to W09 in the current table&#8217;s order</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2904,6 +2902,22 @@ Marks 2 W03 as served in the current table&#8217;s order</p>
 <p>Returns the bill for the current table&#8217;s order</p>
 </div></div></td>
 </tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><a href="#AddNote"><code>addNote</code></a><br>
+<em>(Coming in v2.0)</em></p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p>-</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>addNote ITEM_CODE NOTE</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>addNote W09 Less spicy</code><br>
+Adds the "Less spicy" note to W09 in the current table&#8217;s order</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -2936,7 +2950,7 @@ Marks 2 W03 as served in the current table&#8217;s order</p>
 <p><code><strong>add</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>addToMenu c/ITEM_CODE n/ITEM_NAME p/ITEM_PRICE …</code></p>
+<p><code>addToMenu c/ITEM_CODE n/ITEM_NAME p/ITEM_PRICE</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>addToMenu c/A02 n/French Fries p/2.00</code><br>
@@ -2978,7 +2992,7 @@ Removes A02 from the menu</p>
 <em>(Coming in v2.0)</em></p>
 </div></div></td>
 <td class="tableblock halign-center valign-top"><div><div class="paragraph">
-<p>t</p>
+<p><code><strong>t</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>toggleAvailability ITEM_CODE</code></p>
@@ -3071,7 +3085,10 @@ Removes A02 from the menu</p>
 <p><code><strong>r</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>revenue [y/YEAR [[m/MONTH] [d/DAY]]]</code></p>
+<p><code>revenue</code> or<br>
+ <code>revenue y/YEAR</code> or<br>
+ <code>revenue y/YEAR m/MONTH</code> or<br>
+ <code>revenue y/YEAR m/MONTH d/DAY</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>revenue y/2019 m/1 d/1</code><br>
@@ -3082,4 +3099,4 @@ Returns the revenue earned on 01 January 2019</p>
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 11:19:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 11:21:41 UTC</div></div></div></body></html>
