@@ -49,7 +49,7 @@
 <li><a href="#design-considerations">4.1.3. Design Considerations</a></li>
 </ul>
 </li>
-<li><a href="#tables-feature">4.2. Tables feature</a>
+<li><a href="#Tablesf">4.2. Tables feature</a>
 <ul class="sectlevel3">
 <li><a href="#TablesClasses">4.2.1. Classes for Tables feature in Model</a></li>
 <li><a href="#AddTable">4.2.2. Adding a table to ROR</a></li>
@@ -64,7 +64,7 @@
 <li><a href="#SpaceFor">4.2.6. Getting an available table for customers</a></li>
 </ul>
 </li>
-<li><a href="#orders-feature">4.3. Orders feature</a>
+<li><a href="#Ordersf">4.3. Orders feature</a>
 <ul class="sectlevel3">
 <li><a href="#OrdersClasses">4.3.1. Classes for Orders feature in Model</a></li>
 <li><a href="#CurrentTable">4.3.2. Getting the table number</a></li>
@@ -79,7 +79,7 @@
 <li><a href="#Serve">4.3.6. Serving items in an order</a></li>
 </ul>
 </li>
-<li><a href="#menu-feature">4.4. Menu feature</a>
+<li><a href="#Menuf">4.4. Menu feature</a>
 <ul class="sectlevel3">
 <li><a href="#MenuClasses">4.4.1. Classes for Menu feature in Model</a></li>
 <li><a href="#AddToMenu">4.4.2. Adding to menu</a>
@@ -97,7 +97,7 @@
 <li><a href="#ClearMenu">4.4.4. Clearing the menu</a></li>
 </ul>
 </li>
-<li><a href="#Statistics">4.5. Statistics feature</a>
+<li><a href="#Statisticsf">4.5. Statistics feature</a>
 <ul class="sectlevel3">
 <li><a href="#StatsClasses">4.5.1. Classes for Statistics feature in Model</a></li>
 <li><a href="#StatsStorage">4.5.2. Design Considerations for Statistics Storage</a></li>
@@ -161,9 +161,9 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
 <li><a href="#changing-modes">F.2. Changing Modes</a></li>
-<li><a href="#tables-feature-2">F.3. Tables feature</a></li>
-<li><a href="#menu-feature-2">F.4. Menu feature</a></li>
-<li><a href="#orders-feature-2">F.5. Orders feature</a></li>
+<li><a href="#tables-feature">F.3. Tables feature</a></li>
+<li><a href="#menu-feature">F.4. Menu feature</a></li>
+<li><a href="#orders-feature">F.5. Orders feature</a></li>
 <li><a href="#statistics-feature">F.6. Statistics feature</a></li>
 <li><a href="#data-storage">F.7. Data storage</a></li>
 </ul>
@@ -668,7 +668,7 @@ files that are in the <span class="java">/blob/master/src/main/resources/view</s
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AddTableSdForLogic.png" alt="AddTableSdForLogic" width="800">
+<img src="images/AddTableSdforLogic.png" alt="AddTableSdforLogic" width="800">
 </div>
 <div class="title">Figure 6. Interactions Inside the Logic Component for the <code>addTable 2</code> Command</div>
 </div>
@@ -765,16 +765,16 @@ files that are in the <span class="java">/blob/master/src/main/resources/view</s
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Restaurant Mode</strong> - perform <a href="#tables-feature">table-related operations</a> across the entire restaurant</p>
+<p><strong>Restaurant Mode</strong> - perform <a href="#Tablesf">table-related operations</a> across the entire restaurant</p>
 </li>
 <li>
-<p><strong>Table Mode</strong> - perform <a href="#orders-feature">order-related operations</a> for a specific table</p>
+<p><strong>Table Mode</strong> - perform <a href="#Ordersf">order-related operations</a> for a specific table</p>
 </li>
 <li>
-<p><strong>Menu Mode</strong> - perform <a href="#menu-feature">menu-related operations</a> on the restaurant&#8217;s menu</p>
+<p><strong>Menu Mode</strong> - perform <a href="#Menuf">menu-related operations</a> on the restaurant&#8217;s menu</p>
 </li>
 <li>
-<p><strong>Statistics Mode</strong> - perform <a href="#Statistics">queries</a> to retrieve the restaurant&#8217;s statistics</p>
+<p><strong>Statistics Mode</strong> - perform <a href="#Statisticsf">queries</a> to retrieve the restaurant&#8217;s statistics</p>
 </li>
 </ul>
 </div>
@@ -791,7 +791,7 @@ files that are in the <span class="java">/blob/master/src/main/resources/view</s
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Although the <code>bill</code> command is used in Table Mode, it is considered a <a href="#Statistics">Statistics feature</a> rather than an Orders feature as it involves calculation for the revenue.
+Although the <code>bill</code> command is used in Table Mode, it is considered a <a href="#Statisticsf">Statistics feature</a> rather than an Orders feature as it involves calculation for the revenue.
 </td>
 </tr>
 </table>
@@ -953,7 +953,7 @@ The Model component does not need to know what the current mode is at all, so it
 </div>
 </div>
 <div class="sect2">
-<h3 id="tables-feature"><a class="link" href="#tables-feature">4.2. Tables feature</a></h3>
+<h3 id="Tablesf"><a class="link" href="#Tablesf">4.2. Tables feature</a></h3>
 <div class="paragraph">
 <p>The Table feature allows the users to add, edit and clear tables using the commands <a href="#AddTable"><code>addTable</code></a>, <a href="#EditPax"><code>editPax</code></a>, <a href="#EditSeats"><code>editSeats</code></a> and <a href="#ClearTables"><code>clearTables</code></a> to ensure that RestOrRant reflects their physical restaurant in terms of the number of tables and each table&#8217;s occupancy. Also, the Tables feature provides a quick way to look for an available table that can accommodate the specified number of customers using the <a href="#SpaceFor"><code>spaceFor</code></a> command. All of the table details are displayed in our UI for easy reference.</p>
 </div>
@@ -1167,7 +1167,7 @@ If the table to be edited does not exist in the <span class="java">UniqueTableLi
 </div>
 </div>
 <div class="sect2">
-<h3 id="orders-feature"><a class="link" href="#orders-feature">4.3. Orders feature</a></h3>
+<h3 id="Ordersf"><a class="link" href="#Ordersf">4.3. Orders feature</a></h3>
 <div class="paragraph">
 <p>The Orders feature allows restaurant front-end staff to take orders from customers using the <a href="#AddToOrder"><code>addToOrder</code></a> command,
 as well as remove incorrectly inputted orders using the <a href="#DeleteFromOrder"><code>deleteFromOrder</code></a> or <a href="#ClearOrder"><code>clearOrder</code></a> commands.
@@ -1389,7 +1389,7 @@ If the <span class="java">OrderItem</span> is found and the quantity served is v
 </div>
 </div>
 <div class="sect2">
-<h3 id="menu-feature"><a class="link" href="#menu-feature">4.4. Menu feature</a></h3>
+<h3 id="Menuf"><a class="link" href="#Menuf">4.4. Menu feature</a></h3>
 <div class="paragraph">
 <p>The Menu feature allows restaurant managers to take add items to the menu using the <a href="#AddToMenu"><code>addToMenu</code></a> command, as well as
 remove menu items as needed using the <a href="#DeleteFromMenu"><code>deleteFromMenu</code></a> or <a href="#ClearMenu"><code>clearMenu</code></a> commands. They can track the current list of
@@ -1651,7 +1651,7 @@ reflect any changes to the menu in both of the data structures.<br></p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Statistics"><a class="link" href="#Statistics">4.5. Statistics feature</a></h3>
+<h3 id="Statisticsf"><a class="link" href="#Statisticsf">4.5. Statistics feature</a></h3>
 <div class="paragraph">
 <p>The Statistics feature allows users to perform queries that deal with the restaurant&#8217;s statistical data, mainly the
 revenue earned and the popularity of menu items. With Statistics feature, restaurant front-end staffs can bill the
@@ -3469,7 +3469,7 @@ according to its popularity.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="tables-feature-2"><a class="link" href="#tables-feature-2">F.3. Tables feature</a></h3>
+<h3 id="tables-feature"><a class="link" href="#tables-feature">F.3. Tables feature</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3498,7 +3498,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="menu-feature-2"><a class="link" href="#menu-feature-2">F.4. Menu feature</a></h3>
+<h3 id="menu-feature"><a class="link" href="#menu-feature">F.4. Menu feature</a></h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -3588,7 +3588,7 @@ Expected: All the menu items are deleted.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="orders-feature-2"><a class="link" href="#orders-feature-2">F.5. Orders feature</a></h3>
+<h3 id="orders-feature"><a class="link" href="#orders-feature">F.5. Orders feature</a></h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -3829,4 +3829,4 @@ Expected: Shows the GUI with no data.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 13:44:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:15:59 UTC</div></div></div></body></html>
