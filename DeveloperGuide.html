@@ -42,7 +42,7 @@
 <li><a href="#modes">4.1.1. Modes</a></li>
 <li><a href="#ChangeMode">4.1.2. Current Implementation</a>
 <ul class="sectlevel4">
-<li><a href="#changing-modes-in-general">Changing modes in general</a></li>
+<li><a href="#ChangingModes">Changing modes in general</a></li>
 <li><a href="#ChangeToTableMode">Changing to Table Mode for a specific table</a></li>
 </ul>
 </li>
@@ -76,12 +76,20 @@
 </li>
 <li><a href="#menu-feature">4.4. Menu feature</a>
 <ul class="sectlevel3">
-<li><a href="#AddToMenu">4.4.1. Adding to menu</a>
+<li><a href="#MenuClasses">4.4.1. Classes for Menu feature in Model</a></li>
+<li><a href="#AddToMenu">4.4.2. Adding to menu</a>
 <ul class="sectlevel4">
 <li><a href="#current-implementation-3">Current Implementation</a></li>
 <li><a href="#design-considerations-4">Design Considerations</a></li>
 </ul>
 </li>
+<li><a href="#DeleteFromMenu">4.4.3. Deleting from menu</a>
+<ul class="sectlevel4">
+<li><a href="#current-implementation-4">Current Implementation</a></li>
+<li><a href="#design-considerations-5">Design Considerations</a></li>
+</ul>
+</li>
+<li><a href="#ClearMenu">4.4.4. Clearing the menu</a></li>
 </ul>
 </li>
 <li><a href="#Statistics">4.5. Statistics feature</a>
@@ -90,20 +98,20 @@
 <li><a href="#StatsStorage">4.5.2. Design Considerations for Statistics Storage</a></li>
 <li><a href="#Bill">4.5.3. Billing an order</a>
 <ul class="sectlevel4">
-<li><a href="#current-implementation-4">Current Implementation</a></li>
-<li><a href="#design-considerations-5">Design Considerations</a></li>
-</ul>
-</li>
-<li><a href="#Trends">4.5.4. Changing Statistics Mode display</a>
-<ul class="sectlevel4">
 <li><a href="#current-implementation-5">Current Implementation</a></li>
 <li><a href="#design-considerations-6">Design Considerations</a></li>
 </ul>
 </li>
-<li><a href="#Revenue">4.5.5. Getting the revenue</a>
+<li><a href="#Trends">4.5.4. Changing Statistics Mode display</a>
 <ul class="sectlevel4">
 <li><a href="#current-implementation-6">Current Implementation</a></li>
 <li><a href="#design-considerations-7">Design Considerations</a></li>
+</ul>
+</li>
+<li><a href="#Revenue">4.5.5. Getting the revenue</a>
+<ul class="sectlevel4">
+<li><a href="#current-implementation-7">Current Implementation</a></li>
+<li><a href="#design-considerations-8">Design Considerations</a></li>
 <li><a href="#validating-date">Validating Date</a></li>
 </ul>
 </li>
@@ -708,10 +716,13 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>can save <span class="java">UserPref</span> objects in json format and read it back.</p>
+<p>saves <span class="java">UserPref</span> objects in json format and reads it back.</p>
 </li>
 <li>
-<p>can save the <span class="java">Tables</span>, <span class="java">Orders</span>, <span class="java">Menu</span> and <span class="java">Statistics</span> data in json format and read it back.</p>
+<p><span class="java">LogicManager</span> calls for each of <span class="java">Tables</span>, <span class="java">Orders</span>, <span class="java">Menu</span> and <span class="java">Statistics</span> to be saved when they are modified.</p>
+</li>
+<li>
+<p>saves the <span class="java">Tables</span>, <span class="java">Orders</span>, <span class="java">Menu</span> and <span class="java">Statistics</span> data in json format and reads it back.</p>
 </li>
 </ul>
 </div>
@@ -778,7 +789,7 @@ Although the <code>bill</code> command is used in Table Mode, it is considered a
 <div class="sect3">
 <h4 id="ChangeMode"><a class="link" href="#ChangeMode">4.1.2. Current Implementation</a></h4>
 <div class="sect4">
-<h5 id="changing-modes-in-general"><a class="link" href="#changing-modes-in-general">Changing modes in general</a></h5>
+<h5 id="ChangingModes"><a class="link" href="#ChangingModes">Changing modes in general</a></h5>
 <div class="paragraph">
 <p>The modes of the application are defined using a <span class="java">Mode</span> enum and the current mode of the application is stored as a private attribute <span class="java">mode</span> in <span class="java">LogicManager</span>. Users can switch between modes in ROR using the <code>{XXX}Mode</code> command, such as <code>menuMode</code> and <code>tableMode</code>. When the mode of the application is changed, we need to update the:</p>
 </div>
@@ -1270,24 +1281,89 @@ If the <span class="java">OrderItem</span> is found and the quantity served is v
 </div>
 <div class="sect2">
 <h3 id="menu-feature"><a class="link" href="#menu-feature">4.4. Menu feature</a></h3>
+<div class="paragraph">
+<p>The Menu feature allows restaurant managers to take add items to the menu using the <code>addToMenu</code> command, as well as
+remove menu items as needed using the <code>deleteFromMenu</code> or <code>clearMenu</code> commands. They can track the current list of
+available items in the menu (with the UI displays in Table Mode and Menu Mode).</p>
+</div>
+<div class="paragraph">
+<p>This feature works in support of</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Orders feature: Adding and removing items from the menu would in turn affect items to be ordered.</p>
+</li>
+<li>
+<p>Statistics feature: Popular menu items are listed in descending order of quantities ordered. This is supported by storing the quantities ordered in the json file and internally updating it when orders are confirmed.</p>
+</li>
+</ul>
+</div>
 <div class="sect3">
-<h4 id="AddToMenu"><a class="link" href="#AddToMenu">4.4.1. Adding to menu</a></h4>
+<h4 id="MenuClasses"><a class="link" href="#MenuClasses">4.4.1. Classes for Menu feature in Model</a></h4>
+<div class="paragraph">
+<p>The Menu feature was implemented with the introduction of a new set of classes to <span class="java">Model</span>. A new <span class="java">Menu</span> class encapsulates all the methods and classes related to this feature. It also contains a listener that is used to update the storage when any modification is made to the orders. The <span class="java">Menu</span> object is stored in <span class="java">RestOrRant</span> and it exposes a read-only interface <span class="java">ReadOnlyMenu</span> to allow the other components to retrieve menu-related information while maintaining data integrity.</p>
+</div>
+<div class="paragraph">
+<p><span class="java">Menu</span> contains a <span class="java">UniqueMenuItemList</span>, which contains a list of all the items in the menu, represented by <span class="java">MenuItem</span> objects. Each <span class="java">MenuItem</span> object consists of 3 objects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="java">Name</span> indicates the item name and is used for display in the UI</p>
+</li>
+<li>
+<p><span class="java">Code</span> indicates the item code and is used to identify the menu item</p>
+</li>
+<li>
+<p><span class="java">Price</span> indicates the item price and is used for display in the UI and calculation of bill</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="java">MenuItem</span> objects are uniquely identified by <span class="java">Code</span>. As such, each menu item should have distinct item codes.</p>
+</div>
+<div class="paragraph">
+<p>The Menu Class Diagram below shows the relationship between the classes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MenuModelClassDiagram.png" alt="MenuModelClassDiagram" width="800">
+</div>
+<div class="title">Figure 15. Menu Class Diagram in the Model component</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="AddToMenu"><a class="link" href="#AddToMenu">4.4.2. Adding to menu</a></h4>
+<div class="paragraph">
+<p>The user may want to add new menu items to the menu and this can be done with the <code>addToMenu</code> command.</p>
+</div>
 <div class="sect4">
 <h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The menu items in the menu are stored as a list. Adding a new menu item to the menu is done by adding to the existing list.</p>
 </div>
 <div class="paragraph">
-<p>The command is read as a text string from the command box and then is executed by calling <code>executeCommand</code>, which passes this string to the Logic component by calling <code>execute</code>.</p>
+<p>The command is read as a text string from the command box in the UI and then is executed by calling <span class="java">MainWindow#executeCommand()</span>, which passes this string to the <span class="java">Logic</span> component by calling <span class="java">Logic#execute()</span>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>execute</code> method in the logic component then creates a command from the text string input by parsing the string to identify the command word (done by the <code>parse</code> method in the <code>RestOrRantParser</code> class) and other parameters, in this case the details of the menu item (done by the <code>parse</code> method in the <code>AddToMenuCommandParser</code> class). The text string is then converted to Name, Code, and Price after parsing and then passed to Model component.</p>
+<p>The sequence diagram for interactions between the <span class="java">Logic</span>, <span class="java">Model</span> and <span class="java">Storage</span> components when a user executes the <code>addToMenu</code> command is shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddToMenuSequenceDiagram.png" alt="AddToMenuSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 16. Component interactions for <code>addToMenu</code> command</div>
 </div>
 <div class="paragraph">
-<p>In the model component, the validity of the name, code and price of the menu item is checked, and the menu item is only added to the current menu items list if all three parameters are valid (i.e. in the specified format). The new menu item is added to the list in the Model component after ensuring that the menu item does not already exist in the list and that it does not have the same name and code as another menu item already in the list.</p>
+<p>The <span class="java">Logic#execute()</span> method then creates a command from the text string input
+ by parsing the string to identify the command word (done by the <span class="java">RestOrRantParser#parse()</span> method) and other parameters, in this case the attributes of the <span class="java">MenuItem</span> (done by the <span class="java">AddToMenuCommandParser#parse()</span> method, omitted from the sequence diagram). After parsing, the text string is then converted to <span class="java">Name</span>, <span class="java">Code</span>, and <span class="java">Price</span> and a new <span class="java">MenuItem</span> is created with these attributes and then passed to Model component.</p>
 </div>
 <div class="paragraph">
-<p>After adding to the list in the Model component, the <code>indicateModified</code> method is called, which then triggers the Logic component to save the menu, by calling <code>saveMenu</code> in the Storage Component.</p>
+<p>In the <span class="java">Model</span> component, firstly the validity of the <span class="java">Name</span>, <span class="java">Code</span> and <span class="java">Price</span> of the <span class="java">MenuItem</span> is checked. The three attributes must follow the specified format for them to be valid. The <span class="java">MenuItem</span> is only added to the <span class="java">UniqueMenuItemList</span> after ensuring that the same menu item does not already exist in the list. For this to be true, the new menu item should not have the same <span class="java">Code</span> as any other  item in the list.</p>
+</div>
+<div class="paragraph">
+<p>After adding to the list in the <span class="java">Model</span> component, the <span class="java">Menu#indicateModified()</span> method is called, which then triggers the Logic component to save the state of the menu, by calling <span class="java">Storage#saveMenu()</span>.</p>
 </div>
 <div class="paragraph">
 <p>The User Interface also updated by adding the new menu item to the list panel.</p>
@@ -1299,59 +1375,170 @@ If the <span class="java">OrderItem</span> is found and the quantity served is v
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This action can only be done in Menu Mode. If not in Menu Mode currently , users can first change mode by typing <code>MenuMode</code> or <code>MM</code> in the command box.
+This action can only be done in Menu Mode. If not in Menu Mode currently , users can first change mode by typing
+<a href="#ChangingModes">switching over to Menu Mode</a>.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the <code>addToMenu</code> mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user executes the <code>addToMenu</code> command by typing the name, code and price of the menu item (e.g.: <code>addToMenu n/French Fries c/W12 p/2.50</code>).</p>
-</div>
-<div class="paragraph">
-<p>Step 2. After ensuring that all parameters is valid and that the new menu item is unique, the change is reflected in the User Interface, where the list panel displays the newly added menu item. A success message is also displayed to the users at the Results Display box.</p>
-</div>
 </div>
 <div class="sect4">
 <h5 id="design-considerations-4"><a class="link" href="#design-considerations-4">Design Considerations</a></h5>
-<div class="sect5">
-<h6 id="aspect-saving-changes-from-code-addtomenu-code-command"><a class="link" href="#aspect-saving-changes-from-code-addtomenu-code-command">Aspect: Saving changes from <code>AddToMenu</code> command</a></h6>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Saves only the menu.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Uses less memory as any update to the menu will only save the menu. This is implemented by adding a listener to menu, which detects any changes to the menu when the <code>indicateModified</code> method is called. This then triggers Storage component to save the state of the menu.</p>
-</li>
-<li>
-<p>Cons: An increase in the number of variables during runtime, as every feature will need a listener and a boolean (for instance, menu feature would have a listener and a boolean <code>menuModified</code> to trigger call storage#saveMenu() when the boolean evaluates to true).</p>
-</li>
-</ul>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Saving changes from addition of menu items</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Save only the menu, using the <span class="java">Menu#indicateModified()</span> and <span class="java">Storage#saveMenu()</span> methods.<br>
+- <strong>Pros</strong>: Uses less memory as any update to the menu will only save the menu.<br>
+- <strong>Cons</strong>: An increase in the number of variables during runtime, as every feature will need a listener and a boolean (for instance, menu feature would have a listener and a boolean <span class="java">menuModified</span> to call storage#saveMenu() when the boolean evaluates to true).</p>
+<p class="tableblock">We decided to choose this option because we realise that there would be bigger performance issues such as lagging in
+the long run if we were to save every instance of the restaurant for every update to each feature.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Save the whole restaurant instance, by just having two methods (<span class="java">RestOrRant#indicateModified()</span> and <span class="java">Storage#saveRestOrRant()</span>) overall.<br>
+- <strong>Pros</strong>: Fewer variables during runtime, easier to call just one boolean upon any change to restaurant features.<br>
+- <strong>Cons</strong>: There is no need to save another feature if only menu is being updated, may cause lagging instead of improving performance.<br></p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Save the whole restaurant instance.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Fewer variables during runtime, easier to call just one boolean upon any change to restaurant features.</p>
-</li>
-<li>
-<p>Cons: There is no need to save another feature if only menu is being updated, may cause lagging instead of improving performance.</p>
-</li>
-</ul>
 </div>
-</li>
-</ul>
+<div class="sect3">
+<h4 id="DeleteFromMenu"><a class="link" href="#DeleteFromMenu">4.4.3. Deleting from menu</a></h4>
+<div class="paragraph">
+<p>The user may want to remove a menu item from the menu and this can be done using the <code>deleteFromMenu</code> command.</p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h5>
+<div class="paragraph">
+<p>As mentioned above, deleting a menu item from the menu is done by removing from the existing list.</p>
 </div>
 <div class="paragraph">
-<p>The pros outweighs the cons as despite the number of variables during runtime, in the long run saving every instance of the restaurant would cause bigger performance issues such as lagging especially if there are constant and multiple changes to every feature of the restaurant. This implementation is also more scalable for future developments.</p>
+<p>The interactions between all four components when a user executes the <code>deleteFromMenu</code> command is very similar to the interactions when <a href="#AddToMenu">adding to menu</a>:</p>
+</div>
+<div class="paragraph">
+<p>One specific difference is that deleting from menu only requires item <span class="java">Code</span>, whereas adding to menu requires <span class="java">Name</span>, <span class="java">Code</span> and <span class="java">Price</span>. For this reason, we have decided to not use any prefixes (such as <code>c/</code> to denote item code).</p>
+</div>
+<div class="paragraph">
+<p>After parsing the input text string by the <span class="java">RestOrRantParser#parse()</span> method, the <span class="java">DeleteFromMenuCommand</span> object is created.</p>
+</div>
+<div class="paragraph">
+<p><span class="java">DeleteFromMenuCommand</span> then makes use of the method <span class="java">Menu#getItemFromCode()</span> to retrieve the menu item from the item <span class="java">Code</span> input. The code snippet of the method is shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> Optional&lt;<span class="predefined-type">MenuItem</span>&gt; getItemFromCode(Code code) {
+    <span class="predefined-type">Iterator</span>&lt;<span class="predefined-type">MenuItem</span>&gt; iterator = menuItems.iterator();
+    <span class="keyword">while</span> (iterator.hasNext()) { <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="predefined-type">MenuItem</span> menuItem = iterator.next();
+        <span class="keyword">if</span> (menuItem.getCode().equals(code)) {
+            <span class="keyword">return</span> Optional.of(menuItem); <i class="conum" data-value="2"></i><b>(2)</b>
+        }
+    }
+    <span class="keyword">return</span> Optional.empty(); <i class="conum" data-value="3"></i><b>(3)</b>
+}</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The <span class="java">MenuItem</span> is retrieved from the <span class="java">Code</span> by searching through the <span class="java">UniqueMenuItemList</span>, called <span class="java">menuItems</span> in this snippet. Optional is used as a means of defensive programming so that a null <span class="java">Code</span> would not result in a null pointer exception but would be safely handled by showing an error message to the user for incorrect <span class="java">Code</span> input.</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The method first loops through all items in the list.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>If a <span class="java">MenuItem</span> with the same code is found, it is returned as an Optional.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>If no such <span class="java">MenuItem</span> is found, an Optional.empty() is returned, to safely handle nulls.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The retrieved <span class="java">MenuItem</span> is then passed to Model component to be removed from the <span class="java">UniqueMenuItemList</span>.</p>
+</div>
+<div class="paragraph">
+<p>As above, after removing from the list in the <span class="java">Model</span> component, the <span class="java">Menu#indicateModified()</span> method is called, which then triggers the Logic component to save the state of the menu, by calling <span class="java">Storage#saveMenu()</span>.</p>
+</div>
+<div class="paragraph">
+<p>The User Interface also updated by removing the menu item on the list panel.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This action can only be done in Menu Mode. If not in Menu Mode currently , users can first change mode by typing <a href="#ChangingModes">switching over to Menu Mode</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations</a></h5>
+<div class="paragraph">
+<p>The above design considerations under <a href="#AddToMenu">Adding to Menu</a> on saving changes to the menu also holds when deleting menu items.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retrieving the <span class="java">MenuItem</span> from the <span class="java">Code</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handle this operation with the already existing <span class="java">UniqueMenuItemList</span>.<br>
+- <strong>Pros</strong>: Uses less memory as using another data structure would take up twice the space, since <span class="java">UniqueMenuItemList</span> is required for ease of implementations of display in the UI.<br>
+- <strong>Cons</strong>: Takes more time to loop through all menu items in the <span class="java">UniqueMenuItemList</span>, especially if the list
+is extensive.</p>
+<p class="tableblock">We decided to choose this option because we realise that the system would be able to support a typical restaurant&#8217;s
+menu with close to no lagging, and chose to optimise memory over speed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create a new HashTable to map item codes to menu items, and search through this HashTable to retrieve the item.<br>
+- <strong>Pros</strong>: Less time taken to search in HashTable than in List.<br>
+- <strong>Cons</strong>: Uses more memory as all menu items will be saved in two data structures. Moreover, there is a need to
+reflect any changes to the menu in both of the data structures.<br></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ClearMenu"><a class="link" href="#ClearMenu">4.4.4. Clearing the menu</a></h4>
+<div class="paragraph">
+<p>The user may want to remove all the menu items from the menu and this can be done with the <code>clearMenu</code> command.</p>
+</div>
+<div class="paragraph">
+<p>The interaction between the components for this function is similar to <a href="#ClearOrder">clearing an order</a>. A small difference is that <code>clearMenu</code> clears all menu items, while <code>clearOrder</code> only clears orders within a specific table.</p>
+</div>
+<div class="paragraph">
+<p>When <code>clearMenu</code> is keyed in, the command is parsed by <span class="java">RestOrRantParser</span> and a <span class="java">ClearMenuCommand</span> object is returned by the parser.</p>
+</div>
+<div class="paragraph">
+<p>When <span class="java">ClearMenuCommand#execute()</span> is called, it will check if the restaurant is occupied, and if the menu is empty. <span class="java">CommandException</span> with respective error messages will be thrown if either of the conditions are true. After ensuring that the restaurant is unoccupied and the menu is non-empty, the menu will be cleared by initializing the menu with an empty ArrayList, with the [.java]#Model#setMenuItems() method.</p>
 </div>
 </div>
 </div>
@@ -1403,7 +1590,7 @@ Similarly, <span class="java">Date</span> and <span class="java">Bill</span> als
 <div class="content">
 <img src="images/Statistics_ModelClassDiagram.png" alt="Statistics ModelClassDiagram" width="700">
 </div>
-<div class="title">Figure 15. Statistics Class diagram in Model component</div>
+<div class="title">Figure 17. Statistics Class diagram in Model component</div>
 </div>
 </div>
 <div class="sect3">
@@ -1470,7 +1657,7 @@ Hence, we did not see the need to store receipts in the storage and chose this d
 </ul>
 </div>
 <div class="sect4">
-<h5 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h5>
+<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The main crust of Bill mechanism is implemented in <span class="java">BillCommand</span>. Just like any other commands, <span class="java">BillCommand#execute()</span> overrides
 <span class="java">Command#execute()</span> which is called in <span class="java">LogicManager</span>. It takes in the current mode, model and command
@@ -1503,7 +1690,7 @@ zero pax and resets the selected table to null.</p>
 <div class="content">
 <img src="images/Bill_SequenceDiagram.png" alt="Bill SequenceDiagram" width="700">
 </div>
-<div class="title">Figure 16. Sequence diagram for executing the bill command</div>
+<div class="title">Figure 18. Sequence diagram for executing the bill command</div>
 </div>
 <div class="paragraph">
 <p>To give you a better understanding of the sequence diagram, the following is a usage scenario and how the bill
@@ -1533,7 +1720,7 @@ refer to the function&#8217;s sequence diagram below.</p>
 <div class="content">
 <img src="images/Bill_CalculateBill.png" alt="Bill CalculateBill" width="700">
 </div>
-<div class="title">Figure 17. Sequence diagram for calculating the bill</div>
+<div class="title">Figure 19. Sequence diagram for calculating the bill</div>
 </div>
 <div class="paragraph">
 <p><span class="java">BillCommand#calculateBill()</span> calls both <span class="java">Model#getFilteredOrderItemList</span> and <span class="java">ReadOnlyRestOrRant#getMenu()</span> to obtain the table’s list of orders and the restaurant’s menu.
@@ -1571,7 +1758,7 @@ bill and the function returns a new <span class="java">Bill</span> that contains
 <div class="content">
 <img src="images/Bill_CreateOrUpdateRevenue.png" alt="Bill CreateOrUpdateRevenue" width="550">
 </div>
-<div class="title">Figure 18. Sequence diagram for creating or updating revenue in the Statistics revenue list</div>
+<div class="title">Figure 20. Sequence diagram for creating or updating revenue in the Statistics revenue list</div>
 </div>
 <div class="paragraph">
 <p>As shown above, <span class="java">BillCommand#createOrUpdateRevenue()</span> creates a <span class="java">DailyRevenue</span> with the bill&#8217;s year, month and day.
@@ -1590,7 +1777,7 @@ new customers.</p>
 <div class="content">
 <img src="images/Bill_UpdateStatusOfTable.png" alt="Bill UpdateStatusOfTable" width="550">
 </div>
-<div class="title">Figure 19. Sequence diagram for updating the status of the table</div>
+<div class="title">Figure 21. Sequence diagram for updating the status of the table</div>
 </div>
 <div class="paragraph">
 <p><span class="java">BillCommand#updateStatusOfTable()</span> updates the table status by creating a new <span class="java">Table</span> with an updated
@@ -1623,7 +1810,7 @@ confusion.
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations</a></h5>
+<h5 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design Considerations</a></h5>
 <table class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 20%;">
@@ -1664,7 +1851,7 @@ items, this design will be impractical.<br></p></td>
 These commands make adjustments to the user interface to display statistical data trends.</p>
 </div>
 <div class="sect4">
-<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
+<h5 id="current-implementation-6"><a class="link" href="#current-implementation-6">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The execution of these commands is similar to <a href="#ChangeMode">changing the mode</a>. The only difference is that <span class="java">isYearly</span>, <span class="java">isMonthly</span> and <span class="java">isDaily</span> boolean variables are used in <span class="java">MainWindow#executeCommand()</span>. These boolean variables are passed into <span class="java">MainWindow#handleChangeMode()</span>
 where it will determine which display to switch to. You may refer to the activity diagram to understand the cause of
@@ -1674,7 +1861,7 @@ actions in the <span class="java">Statistics Mode</span> user interface.</p>
 <div class="content">
 <img src="images/Trend_ActivityDiagram.png" alt="Trend ActivityDiagram">
 </div>
-<div class="title">Figure 20. Yearly, Monthly and Daily Activity Diagram</div>
+<div class="title">Figure 22. Yearly, Monthly and Daily Activity Diagram</div>
 </div>
 <div class="paragraph">
 <p>Since these commands changes the user interface, a huge portion of their mechanism is dependent on <span class="java">StatisitcsFlowPanel</span>. It determines the layout and arrangement of the revenue cards displayed.</p>
@@ -1704,7 +1891,7 @@ the list.
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design Considerations</a></h5>
+<h5 id="design-considerations-7"><a class="link" href="#design-considerations-7">Design Considerations</a></h5>
 <table class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 20%;">
@@ -1760,7 +1947,7 @@ of 31 <span class="java">DailyStatisticsCard</span> will be used to replicate a 
 <div class="sect3">
 <h4 id="Revenue"><a class="link" href="#Revenue">4.5.5. Getting the revenue</a></h4>
 <div class="sect4">
-<h5 id="current-implementation-6"><a class="link" href="#current-implementation-6">Current Implementation</a></h5>
+<h5 id="current-implementation-7"><a class="link" href="#current-implementation-7">Current Implementation</a></h5>
 <div class="paragraph">
 <p>When the user enters the <code>revenue</code> command, the command is parsed and a <span class="java">RevenueCommand</span> object is created.</p>
 </div>
@@ -1774,7 +1961,7 @@ The activity diagram illustrates the cause of actions for different argument inp
 <div class="content">
 <img src="images/Revenue_ActivityDiagram.png" alt="Revenue ActivityDiagram">
 </div>
-<div class="title">Figure 21. Revenue Activity Diagram</div>
+<div class="title">Figure 23. Revenue Activity Diagram</div>
 </div>
 <div class="paragraph">
 <p>The above activity diagram summarizes the overall implementation of <span class="java">RevenueCommand</span>. Depending on the user
@@ -1785,7 +1972,7 @@ string where the calculated figure will be returned.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-7"><a class="link" href="#design-considerations-7">Design Considerations</a></h5>
+<h5 id="design-considerations-8"><a class="link" href="#design-considerations-8">Design Considerations</a></h5>
 <table class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 20%;">
@@ -1978,7 +2165,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 22. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 24. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2390,6 +2577,18 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add items to the menu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">accurately reflect the available dishes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delete items from the menu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">update changes to the menu</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">waiter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add orders to a table</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">know which orders to serve to each table</p></td>
@@ -2750,7 +2949,7 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 </div>
 <h3 id="use-case-uc7-adding-items-to-menu" class="discrete">Use case: UC7 - Adding items to menu</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> Program mode should be in Menu Mode. Item to be added cannot exist in the menu.</p>
+<p><strong>Preconditions:</strong> Item to be added cannot exist in the menu.</p>
 </div>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2758,10 +2957,16 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User enters the addToMenu command along with the item&#8217;s code, name and price.</p>
+<p>User <span class="underline">switches to Menu Mode (UC2)</span>.</p>
 </li>
 <li>
-<p>RestOrRant updates the menu to include the added menu item.</p>
+<p>RestOrRant switches to Menu Mode.</p>
+</li>
+<li>
+<p>User enters the item&#8217;s code, name and price.</p>
+</li>
+<li>
+<p>RestOrRant updates the list of menu items in the side panel to include the added menu item.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2774,11 +2979,11 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. The menu already contains the item to be added.</p>
+<p>1a. The menu already contains the item to be added (same item code).</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. RestOrRant prints out "Invalid arguments, item already exists in the menu!".</p>
+<p>1a1. RestOrRant returns an error message saying that duplicate menu items cannot be added.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2791,11 +2996,11 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b. The item code already exists in the menu.</p>
+<p>1b. The item code does not follow the specified alphanumeric format.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b1. RestOrRant prints out "Invalid arguments, item code exists in the menu!".</p>
+<p>1b1. RestOrRant returns an error message saying that the item code is in invalid format.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2808,11 +3013,28 @@ e.g. <span class="java">seedu.address.logic.LogicManagerTest</span></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1c. The item code does not follow the standard alphanumeric format.</p>
+<p>1c. The item name does not follow the standard alphanumeric format.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1c1. RestOrRant prints out "Invalid code. Please use an alphanumeric code. Example: W09".</p>
+<p>1b1. RestOrRant returns an error message saying that the item name is in invalid format.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1d. The item price does not follow the specified format of rational number with two decimal digits.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1d1. RestOrRant returns an error message saying that the item price is in invalid format.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2978,6 +3200,9 @@ Use case ends.</p>
 </li>
 <li>
 <p>Quantity of an item ordered by a table will not be greater than 2,000,000,000.</p>
+</li>
+<li>
+<p>Number of menu items in the menu will not be greater than 200.</p>
 </li>
 <li>
 <p>Not required to handle the printing of receipts.</p>
@@ -3204,7 +3429,93 @@ Expected: Similar to previous.</p>
 </div>
 <div class="sect2">
 <h3 id="menu-feature-2"><a class="link" href="#menu-feature-2">F.4. Menu feature</a></h3>
-
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>You can restore the original sample data by deleting the json files in the data folder and restarting the application.</p>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding to the menu</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Menu Mode (<code>menuMode</code>).</p>
+</li>
+<li>
+<p>For the following tst cases, <code>addToMenu</code> can be replaced with the shortcut <code>add</code>.</p>
+</li>
+<li>
+<p>Test case: <code>addToMenu c/W09 n/Chicken Wings p/4.50</code><br>
+Expected: Adds a menu item "Chicken Wings" with code W09 and price 4.50 to the menu.</p>
+</li>
+<li>
+<p>Test case: <code>addToMenu n/French Fries c/W12 p/2.50</code><br>
+Expected: Adds a menu item "French Fries" with code W12 and price 2.50 to the menu.</p>
+</li>
+<li>
+<p>Test case: <code>addToMenu p/4.00 n/Beef Burger c/W04</code><br>
+Expected: Adds a menu item "Beef Burger" with code W04 and price 4.00 to the menu.</p>
+</li>
+<li>
+<p>Test case for invalid name format: <code>addToMenu n/N@me c/W12 p/2.50</code><br>
+Expected: No menu items are added. Error message is shown in the Results Display.</p>
+</li>
+<li>
+<p>Test case for invalid code format: <code>addToMenu n/French Fries c/102W p/2.50</code><br>
+Expected: Similar to previous.</p>
+</li>
+<li>
+<p>Test case for invalid price format: <code>addToMenu n/French Fries c/W12 p/2.505</code><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting from the menu</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Menu Mode (<code>menuMode</code>).</p>
+</li>
+<li>
+<p>For the following tst cases, <code>deleteFromMenu</code> can be replaced with the shortcut <code>del</code>.</p>
+</li>
+<li>
+<p>Test case: <code>deleteFromMenu W09</code><br>
+Expected: Deletes the menu item "Chicken Wings" with code W09 from the menu.</p>
+</li>
+<li>
+<p>Test case for invalid code format: <code>deleteFromMenu 102W</code><br>
+Expected: No items are deleted from the menu. Error message is shown in the Results Display.</p>
+</li>
+<li>
+<p>Test case for item does not exist in the menu: <code>deleteFromMenu A01</code><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Clearing the menu</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to Menu Mode (<code>menuMode</code>).</p>
+</li>
+<li>
+<p>Test case: <code>clearMenu</code> or <code>clear</code>
+Expected: All the menu items are deleted.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect2">
 <h3 id="orders-feature-2"><a class="link" href="#orders-feature-2">F.5. Orders feature</a></h3>
@@ -3448,4 +3759,4 @@ Expected: Shows the GUI with no data.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 02:14:23 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 03:10:33 UTC</div></div></div></body></html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Sivakumar Bavadharini - Project Portfolio for RestOrRant</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">RestOrRant</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819s2-w09-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Sivakumar Bavadharini - Project Portfolio for RestOrRant</h1></div><div id="content"><div class="sect1">
+<h2 id="project-restorrant"><a class="link" href="#project-restorrant">PROJECT: RestOrRant</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="about-the-project"><a class="link" href="#about-the-project">About the project</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My team and I were given a basic command line interface addressbook program and were tasked to enhance or morph it for our Software Engineering module project. We decided to morph it into a restaurant management system called <em>RestOrRant</em>. With <em>RestOrRant</em>, the restaurant&#8217;s front-end operations can be streamlined via automation to maximise efficiency for waiters and cashiers. <em>RestOrRant</em> allows restaurant managers to manage tables (availabilities and lists of orders), orders (whether they have been served and calculation of the bill), menu (updates to the menu) and statistics (daily, monthly and yearly revenue).</p>
+</div>
+<div class="paragraph">
+<p>My role was to implement the menu feature end-to-end (across <code>UI</code>, <code>Model</code>, <code>Logic</code> and <code>Storage</code> components). The following sections elaborate on my enhancements as well as the relevant updates to the User Guide and Developer Guide to reflect these enhancements.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section contains a summary of my contributions to the code, documentation, and other minor enhancements made to <em>RestOrRant</em>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: I added the ability to add menu items to and delete menu items from the menu.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addToMenu</code>: The <code>addToMenu</code> command allows the user to add a menu item to the menu. The menu item must be specified with an item code, name and price using labels such as <code><strong>c/</strong></code> for code, <code><strong>n/</strong></code> for name and <code><strong>p/</strong></code> for price. For example, <code>addToMenu c/W09 n/Chicken Wings p/3.20</code> would add the item Chicken wings with code W09 and price 3.20 to the menu.</p>
+</li>
+<li>
+<p><code>deleteFromMenu</code>: The <code>deleteFromMenu</code> command allows the user to delete a menu item from the menu, but here the menu item is only identified by its code. For example, <code>deleteFromMenu W09</code> would delete the menu item with the code W09 from the menu.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Justification: These commands in the menu feature would allow restaurant managers to edit the menu according to the ingredients they have available each day. The menu is also stored internally, and thus there would be no need to re-enter all the menu items but instead only add or remove a few menu items each day.</p>
+</li>
+<li>
+<p>Highlights: This enhancement works well with existing as well as future commands. The format of labelling for the <code>addToMenu</code> command was used for ease of distinguishing the name, code and price of the menu items. With the labels, users need not follow the format of keying in name, code then price and the command would work fine. However, the labelling approach was not needed for the <code>deleteFromMenu</code> command as the code is the only input needed.</p>
+</li>
+<li>
+<p>Credits: The addressbook given to us had originally used the labelling format for adding people to the addressbook, which is where I got my inspiration from for the <code>addToMenu</code> command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: I added the ability to store the quantity ordered for each menu item in the menu, and update the
+quantity ordered every time the bill is called, (implementation of <code>updateMenuItemQuantity</code> method).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: When a menu item is added for the first time, the quantity is automatically set to zero. It then
+updates from zero every time the orders are confirmed (i.e. when the bill is called).</p>
+</li>
+<li>
+<p>Justification: This enhancement is to aid the future implementation of finding the most popular item in the menu, by
+retrieving the menu item with the largest number of quantity ordered.</p>
+</li>
+<li>
+<p>Highlights: This enhancement works well with existing as well as future commands, and would help in future
+implementation of finding out whether an item is sold out as well.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Other contributions:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Project Management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>There were a total of 2 releases, from version 1.2.1 to 1.3 and I managed both releases on GitHub.</p>
+</li>
+<li>
+<p>I was also in charge of scheduling and tracking, and managed the tracking of issues and milestones on GitHub.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the User Guide and Developer Guide to reflect the commands related to the menu feature.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Offered suggestions on improvements to other teams' documentation in the class.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We had to make changes to the original addressbook User Guide with the instructions relevant to <em>RestOrRant</em>. The
+following is an excerpt from our <strong>RestOrRant User Guide</strong> to show the updates that I have made for the menu features.</p>
+</div>
+<div class="sect2">
+<h3 id="menu-mode"><a class="link" href="#menu-mode">Menu Mode</a></h3>
+<div class="paragraph">
+<p>In Menu Mode, you can track all updates to the menu, and the application will display the current items on the menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/MMUi.png" alt="MMUi" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>This mode only uses the side panel, to avoid any confusion and for ease of use. The function is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Menu Panel</strong>: This panel displays the currently available items on the menu along with their item codes and price.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here are the commands that you can use in this mode to efficiently handle the menu in your restaurant.</p>
+</div>
+<div class="sect3">
+<h4 id="AddToMenu"><a class="link" href="#AddToMenu">Adding menu items to the menu : <code>addToMenu</code></a></h4>
+<div class="paragraph">
+<p>If your restaurant has a new dish you would like to make available for your customers, this command allows you to add that item to the menu by specifying the item code, name and price.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>addToMenu c/ITEM_CODE n/ITEM_NAME p/ITEM_PRICE</code><br>
+<strong>Shortcut</strong>: <code>add</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Order of the input parameters does not matter (i.e. any permutation of <code>c/ITEM_CODE n/ITEM_NAME p/ITEM_PRICE</code> can be
+keyed in and the command will work as intended).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+RestOrRant does not allow you to add two items with the same item code, they are considered to be the same item. Make sure to have different item codes for all your available dishes!
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the updated menu with the new item will be displayed in the Menu Panel.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, the menu initially has 15 items as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddToMenu_Before.png" alt="AddToMenu Before">
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose you would like to add a Chocolate Ice Cream to the menu. After executing <code>addToMenu c/W16 n/Chocolate Ice Cream p/1.50</code>, you will see a success message in the Results Display, as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddToMenu_RD.png" alt="AddToMenu RD">
+</div>
+</div>
+<div class="paragraph">
+<p>The Menu Panel will also be updated and you will now see 16 items displayed. As seen in the image below, a new 16th item with code W16, name Chocolate Ice Cream and price of 1.50 has been added to the menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddToMenu_After.png" alt="AddToMenu After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="DeleteFromMenu"><a class="link" href="#DeleteFromMenu">Deleting menu items from the menu : <code>deleteFromMenu</code></a></h4>
+<div class="paragraph">
+<p>Suppose you now decide you no longer want to sell a particular dish, and would like to make it unavailable for customers. You can do so by specifying the item code of the item you wish to remove.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>deleteFromMenu ITEM_CODE</code><br>
+<strong>Shortcut</strong>: <code>del</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can only delete item codes that already exist in the menu. You can add items to the menu using the <a href="#AddToMenu"><code>addToMenu</code></a> command.<br>
+The restaurant must be empty (there should not be any occupied tables).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Deleting an item from the menu would also erase the quantity ordered associated with that item, and this item will not show up on the Menu Panels in all modes. If you choose to add the same item to the menu again, it would be considered as a new item with quantity ordered starting from zero.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the displayed menu on the Menu Panel would have the specified item removed.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, the menu initially has 6 items as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddToMenu_After.png" alt="AddToMenu After">
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose you would like to delete the Beef Burger from the menu. After executing <code>deleteFromMenu W04</code>, you will see a success message in the Results Display, as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteFromMenu_RD.png" alt="DeleteFromMenu RD">
+</div>
+</div>
+<div class="paragraph">
+<p>The Menu Panel will also be updated and you will now see 5 items displayed. As seen in the image below, Beef Burger
+has been deleted from the menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteFromMenu_After.png" alt="DeleteFromMenu After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="ClearMenu"><a class="link" href="#ClearMenu">Clearing all the items in the menu : <code>clearMenu</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to clear all the items from the menu, if you ever need to start afresh.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>clearMenu</code><br>
+<strong>Shortcut</strong>: <code>clear</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The menu must not be empty (one or more items should exist in the menu).<br>
+The restaurant must be empty (there should not be any occupied tables).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is irreversible and will not save the menu under restaurant statistics.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the Menu Panel will be empty.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, the menu initially has 6 items as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddToMenu_After.png" alt="AddToMenu After">
+</div>
+</div>
+<div class="paragraph">
+<p>After executing <code>clearMenu</code>, you will see a success message in the Results Display, as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ClearMenu_RD.png" alt="ClearMenu RD">
+</div>
+</div>
+<div class="paragraph">
+<p>The Menu Panel will now be empty, as seen in the image below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ClearMenu_After.png" alt="ClearMenu After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="ToggleAvailability"><a class="link" href="#ToggleAvailability">Changing an item&#8217;s availability : <code>toggleAvailability</code> <em>(Coming in v2.0)</em></a></h4>
+<div class="paragraph">
+<p>This command allows you to change an item&#8217;s availability by specifying the item code.<br></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+All added menu items are available by default.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Calling this command on an available item would mark the item as unavailable, whereas calling this command on an unavailable item would mark it as available again.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>toggleAvailability ITEM_CODE</code><br>
+<strong>Shortcut</strong>: <code>t</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The specified item should exist in the menu.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the background of the menu item would turn dark.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, say Lobster Burger has just become sold out.<br>
+Executing <code>toggleAvailability W06</code> would make Lobster Burger unavailable for ordering and the background of the Lobster Burger would turn dark.<br>
+Now, if the ingredients for Lobster Burger is available again, executing <code>toggleAvailability W06</code> would change the background to its original colour and enable Lobster Burger to be ordered by diners.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We also had to make changes to the original addressbook Developer Guide as our implementation had major changes in the
+UI, logic, model and storage components. The following is an excerpt from our <strong>RestOrRant Developer Guide</strong> to show the
+updates that I have made for the menu features as well as the storage component.</p>
+</div>
+<div class="sect3">
+<h4 id="AddToMenu"><a class="link" href="#AddToMenu">Adding to menu</a></h4>
+<div class="paragraph">
+<p>The user may want to add new menu items to the menu and this can be done with the <code>addToMenu</code> command.</p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The menu items in the menu are stored as a list. Adding a new menu item to the menu is done by adding to the existing list.</p>
+</div>
+<div class="paragraph">
+<p>The command is read as a text string from the command box in the UI and then is executed by calling <span class="java">MainWindow#executeCommand()</span>, which passes this string to the <span class="java">Logic</span> component by calling <span class="java">Logic#execute()</span>.</p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram for interactions between the <span class="java">Logic</span>, <span class="java">Model</span> and <span class="java">Storage</span> components when a user executes the <code>addToMenu</code> command is shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddToMenuSequenceDiagram.png" alt="AddToMenuSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 1. Component interactions for <code>addToMenu</code> command</div>
+</div>
+<div class="paragraph">
+<p>The <span class="java">Logic#execute()</span> method then creates a command from the text string input
+ by parsing the string to identify the command word (done by the <span class="java">RestOrRantParser#parse()</span> method) and other parameters, in this case the attributes of the <span class="java">MenuItem</span> (done by the <span class="java">AddToMenuCommandParser#parse()</span> method, omitted from the sequence diagram). After parsing, the text string is then converted to <span class="java">Name</span>, <span class="java">Code</span>, and <span class="java">Price</span> and a new <span class="java">MenuItem</span> is created with these attributes and then passed to Model component.</p>
+</div>
+<div class="paragraph">
+<p>In the <span class="java">Model</span> component, firstly the validity of the <span class="java">Name</span>, <span class="java">Code</span> and <span class="java">Price</span> of the <span class="java">MenuItem</span> is checked. The three attributes must follow the specified format for them to be valid. The <span class="java">MenuItem</span> is only added to the <span class="java">UniqueMenuItemList</span> after ensuring that the same menu item does not already exist in the list. For this to be true, the new menu item should not have the same <span class="java">Code</span> as any other  item in the list.</p>
+</div>
+<div class="paragraph">
+<p>After adding to the list in the <span class="java">Model</span> component, the <span class="java">Menu#indicateModified()</span> method is called, which then triggers the Logic component to save the state of the menu, by calling <span class="java">Storage#saveMenu()</span>.</p>
+</div>
+<div class="paragraph">
+<p>The User Interface also updated by adding the new menu item to the list panel.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This action can only be done in Menu Mode. If not in Menu Mode currently , users can first change mode by typing
+<a href="#ChangingModes">switching over to Menu Mode</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Saving changes from addition of menu items</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Save only the menu, using the <span class="java">Menu#indicateModified()</span> and <span class="java">Storage#saveMenu()</span> methods.<br>
+- <strong>Pros</strong>: Uses less memory as any update to the menu will only save the menu.<br>
+- <strong>Cons</strong>: An increase in the number of variables during runtime, as every feature will need a listener and a boolean (for instance, menu feature would have a listener and a boolean <span class="java">menuModified</span> to call storage#saveMenu() when the boolean evaluates to true).</p>
+<p class="tableblock">We decided to choose this option because we realise that there would be bigger performance issues such as lagging in
+the long run if we were to save every instance of the restaurant for every update to each feature.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Save the whole restaurant instance, by just having two methods (<span class="java">RestOrRant#indicateModified()</span> and <span class="java">Storage#saveRestOrRant()</span>) overall.<br>
+- <strong>Pros</strong>: Fewer variables during runtime, easier to call just one boolean upon any change to restaurant features.<br>
+- <strong>Cons</strong>: There is no need to save another feature if only menu is being updated, may cause lagging instead of improving performance.<br></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 03:10:33 UTC</div></div></div></body></html>

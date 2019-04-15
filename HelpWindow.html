@@ -61,7 +61,8 @@
 <ul class="sectlevel3">
 <li><a href="#AddToMenu">3.5.1. Adding menu items to the menu : <code>addToMenu</code></a></li>
 <li><a href="#DeleteFromMenu">3.5.2. Deleting menu items from the menu : <code>deleteFromMenu</code></a></li>
-<li><a href="#ClearMenu">3.5.3. Clearing all the items in the menu : <code>clearMenu</code> <em>(Coming in v1.4)</em></a></li>
+<li><a href="#ClearMenu">3.5.3. Clearing all the items in the menu : <code>clearMenu</code></a></li>
+<li><a href="#ToggleAvailability">3.5.4. Changing an item&#8217;s availability : <code>toggleAvailability</code> <em>(Coming in v2.0)</em></a></li>
 </ul>
 </li>
 <li><a href="#statistics-mode">3.6. Statistics Mode</a>
@@ -365,10 +366,10 @@ e.g. <code>addTable NUMBER_OF_SEATS [NUMBER_OF_SEATS]&#8230;&#8203;</code> can b
 <p><code>QUANTITY</code> has to be a whole number between 0 and 2,000,000 inclusive.</p>
 </li>
 <li>
-<p><code>ITEM_NAME</code> has to be</p>
+<p><code>ITEM_NAME</code> has to be in alphanumeric format and may contain spaces, but should not be blank.</p>
 </li>
 <li>
-<p><code>ITEM_PRICE</code> has to be</p>
+<p><code>ITEM_PRICE</code> has to be a nonnegative rational number with 2 decimal digits.</p>
 </li>
 <li>
 <p><code>YEAR</code> has to be a 4 digit whole number within 2000 and the current year.</p>
@@ -1499,104 +1500,346 @@ has been updated to accomodate new customers.</p>
 <div class="sect2">
 <h3 id="menu-mode"><a class="link" href="#menu-mode">3.5. Menu Mode</a></h3>
 <div class="paragraph">
-<p>In Menu Mode, you can perform menu-related operations. The application will display the current items on the menu.</p>
+<p>In Menu Mode, you can track all updates to the menu, and the application will display the current items on the menu.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/MMUi.png" alt="MMUi" width="790">
 </div>
 </div>
+<div class="paragraph">
+<p>This mode only uses the side panel, to avoid any confusion and for ease of use. The function is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Menu Panel</strong>: This panel displays the currently available items on the menu along with their item codes and price.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here are the commands that you can use in this mode to efficiently handle the menu in your restaurant.</p>
+</div>
 <div class="sect3">
 <h4 id="AddToMenu"><a class="link" href="#AddToMenu">3.5.1. Adding menu items to the menu : <code>addToMenu</code></a></h4>
 <div class="paragraph">
-<p>Adds the specified item to the menu.<br>
-Format: <code>addToMenu ITEM_CODE ITEM_NAME ITEM_PRICE</code></p>
+<p>If your restaurant has a new dish you would like to make available for your customers, this command allows you to add that item to the menu by specifying the item code, name and price.<br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Item code, name and price must be valid (follow the format specified).</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Format</strong>: <code>addToMenu c/ITEM_CODE n/ITEM_NAME p/ITEM_PRICE</code><br>
+<strong>Shortcut</strong>: <code>add</code></p>
 </div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Order of the input parameters does not matter (i.e. any permutation of <code>c/ITEM_CODE n/ITEM_NAME p/ITEM_PRICE</code> can be
+keyed in and the command will work as intended).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+RestOrRant does not allow you to add two items with the same item code, they are considered to be the same item. Make sure to have different item codes for all your available dishes!
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the updated menu with the new item will be displayed in the Menu Panel.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, the menu initially has 15 items as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddToMenu_Before.png" alt="AddToMenu Before">
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Suppose you would like to add a Chocolate Ice Cream to the menu. After executing <code>addToMenu c/W16 n/Chocolate Ice Cream p/1.50</code>, you will see a success message in the Results Display, as shown below.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addToMenu c/A02 n/French Fries p/2.00</code><br>
-Adds French Fries with item code A02 and price $2.00 to the menu.</p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddToMenu_RD.png" alt="AddToMenu RD">
 </div>
+</div>
+<div class="paragraph">
+<p>The Menu Panel will also be updated and you will now see 16 items displayed. As seen in the image below, a new 16th item with code W16, name Chocolate Ice Cream and price of 1.50 has been added to the menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddToMenu_After.png" alt="AddToMenu After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="DeleteFromMenu"><a class="link" href="#DeleteFromMenu">3.5.2. Deleting menu items from the menu : <code>deleteFromMenu</code></a></h4>
 <div class="paragraph">
-<p>Deletes the item specified by the item code from the menu.<br>
-Format: <code>deleteFromMenu ITEM_CODE</code></p>
+<p>Suppose you now decide you no longer want to sell a particular dish, and would like to make it unavailable for customers. You can do so by specifying the item code of the item you wish to remove.<br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Item has to exist in the menu (item code must be valid).</p>
-</li>
-<li>
-<p>The restaurant must be empty (there should be no customers).</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Format</strong>: <code>deleteFromMenu ITEM_CODE</code><br>
+<strong>Shortcut</strong>: <code>del</code></p>
 </div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can only delete item codes that already exist in the menu. You can add items to the menu using the <a href="#AddToMenu"><code>addToMenu</code></a> command.<br>
+The restaurant must be empty (there should not be any occupied tables).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Deleting an item from the menu would also erase the quantity ordered associated with that item, and this item will not show up on the Menu Panels in all modes. If you choose to add the same item to the menu again, it would be considered as a new item with quantity ordered starting from zero.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the displayed menu on the Menu Panel would have the specified item removed.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, the menu initially has 6 items as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddToMenu_After.png" alt="AddToMenu After">
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Suppose you would like to delete the Beef Burger from the menu. After executing <code>deleteFromMenu W04</code>, you will see a success message in the Results Display, as shown below.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>deleteFromMenu A02</code><br>
-Deletes the menu item with item code A02 from the menu.</p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteFromMenu_RD.png" alt="DeleteFromMenu RD">
 </div>
+</div>
+<div class="paragraph">
+<p>The Menu Panel will also be updated and you will now see 5 items displayed. As seen in the image below, Beef Burger
+has been deleted from the menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteFromMenu_After.png" alt="DeleteFromMenu After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
-<h4 id="ClearMenu"><a class="link" href="#ClearMenu">3.5.3. Clearing all the items in the menu : <code>clearMenu</code> <em>(Coming in v1.4)</em></a></h4>
+<h4 id="ClearMenu"><a class="link" href="#ClearMenu">3.5.3. Clearing all the items in the menu : <code>clearMenu</code></a></h4>
 <div class="paragraph">
-<p>Removes all menu items from the menu.<br>
-Format: <code>clearMenu</code></p>
+<p>This command allows you to clear all the items from the menu, if you ever need to start afresh.<br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The menu must be non-empty (there should already be items in the menu).</p>
-</li>
-<li>
-<p>The restaurant must be empty (there should be no customers).</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Format</strong>: <code>clearMenu</code><br>
+<strong>Shortcut</strong>: <code>clear</code></p>
 </div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The menu must not be empty (one or more items should exist in the menu).<br>
+The restaurant must be empty (there should not be any occupied tables).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is irreversible and will not save the menu under restaurant statistics.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the Menu Panel will be empty.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, the menu initially has 6 items as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddToMenu_After.png" alt="AddToMenu After">
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>After executing <code>clearMenu</code>, you will see a success message in the Results Display, as shown below.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>clearMenu</code></p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="images/ClearMenu_RD.png" alt="ClearMenu RD">
 </div>
+</div>
+<div class="paragraph">
+<p>The Menu Panel will now be empty, as seen in the image below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ClearMenu_After.png" alt="ClearMenu After">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="ToggleAvailability"><a class="link" href="#ToggleAvailability">3.5.4. Changing an item&#8217;s availability : <code>toggleAvailability</code> <em>(Coming in v2.0)</em></a></h4>
+<div class="paragraph">
+<p>This command allows you to change an item&#8217;s availability by specifying the item code.<br></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+All added menu items are available by default.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Calling this command on an available item would mark the item as unavailable, whereas calling this command on an unavailable item would mark it as available again.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>toggleAvailability ITEM_CODE</code><br>
+<strong>Shortcut</strong>: <code>t</code></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The specified item should exist in the menu.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-none spread">
+<colgroup>
+<col style="width: 5%;">
+<col style="width: 95%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon green"><i class="fa fa-check fa-2x"></i></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will see a success message in the Results Display and the background of the menu item would turn dark.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>For example, say Lobster Burger has just become sold out.<br>
+Executing <code>toggleAvailability W06</code> would make Lobster Burger unavailable for ordering and the background of the Lobster Burger would turn dark.<br>
+Now, if the ingredients for Lobster Burger is available again, executing <code>toggleAvailability W06</code> would change the background to its original colour and enable Lobster Burger to be ordered by diners.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -2326,6 +2569,45 @@ Adds A02 to the menu</p>
 Removes A02 from the menu</p>
 </div></div></td>
 </tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><a href="#ClearMenu"><code>clearMenu</code></a></p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><code><strong>clear</strong></code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>clearMenu</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Clears all items from the menu</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p><a href="#ToggleAvailability"><code>toggleAvailability</code></a><br>
+<em>(Coming in v2.0)</em></p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div><div class="paragraph">
+<p>t</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>toggleAvailability ITEM_CODE</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>toggleAvailability W06</code><br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Makes W06 unavailable for ordering if initially available</p>
+</li>
+<li>
+<p>Makes W06 available for ordering if initially unavailable</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -2411,4 +2693,4 @@ Returns the revenue earned on 01 January 2019</p>
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 02:14:23 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 03:10:33 UTC</div></div></div></body></html>
